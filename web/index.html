@@ -2,18 +2,18 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="dark light" />
     <meta name="description" content="BadgerSkope is an open peptide research library with plain-English summaries, evidence grading, and comparison tools. Not medical advice." />
     <meta property="og:title" content="BadgerSkope — Peptide Research Library" />
     <meta property="og:description" content="53 peptide compounds with plain-English summaries, evidence grading, and comparison tools. Free and open." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://badgerskope.netlify.app/web/" />
-    <meta property="og:image" content="https://badgerskope.netlify.app/web/logo-hero.png" />
+    <meta property="og:url" content="https://www.badgerskope.com/web/" />
+    <meta property="og:image" content="https://www.badgerskope.com/web/logo-hero.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="BadgerSkope — Peptide Research Library" />
     <meta name="twitter:description" content="53 peptide compounds. Plain English. Evidence-graded. Free." />
-    <meta name="twitter:image" content="https://badgerskope.netlify.app/web/logo-hero.png" />
+    <meta name="twitter:image" content="https://www.badgerskope.com/web/logo-hero.png" />
     <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/png" href="./favicon.png" />
@@ -33,7 +33,7 @@
     <section class="hero">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__inner">
-        <img class="hero__logo" src="./logo-hero.png" alt="BadgerSkope logo" width="180" height="180" />
+        <img class="hero__logo" src="./logo-hero.png" alt="BadgerSkope logo" width="80" height="80" />
         <h1 class="hero__title">Badger<span class="hero__title-accent">Skope</span></h1>
         <p class="hero__sub">Peptide research library &mdash; plain English, evidence-graded, not medical advice</p>
         <div class="hero__stats" id="stats" aria-live="polite"></div>
@@ -61,39 +61,12 @@
           <a href="/" class="nav-bar__home" title="Back to homepage">Home</a>
           <a href="/glossary.html" class="nav-bar__link" title="Peptide glossary">Glossary</a>
           <a href="/evidence-guide.html" class="nav-bar__link" title="Evidence guide">Evidence</a>
-          <button type="button" class="btn btn--ghost btn--small" id="open-help" title="Help guide (h)">Help</button>
-        </div>
-      </nav>
-
-      <!-- ===== Tab navigation ===== -->
-      <nav class="tab-bar" aria-label="Main sections">
-        <div class="tab-bar__inner" role="tablist" aria-label="Content sections">
-          <button
-            type="button"
-            role="tab"
-            id="tab-browse"
-            class="tab"
-            aria-selected="true"
-            aria-controls="panel-browse"
-          >Browse</button>
-          <button
-            type="button"
-            role="tab"
-            id="tab-compare"
-            class="tab"
-            aria-selected="false"
-            aria-controls="panel-compare"
-            tabindex="-1"
-          >Compare</button>
-          <button
-            type="button"
-            role="tab"
-            id="tab-stats"
-            class="tab"
-            aria-selected="false"
-            aria-controls="panel-stats"
-            tabindex="-1"
-          >Stats</button>
+          <button type="button" class="nav-bar__link" id="open-help" title="Help guide (h)">Help</button>
+          <div class="nav-bar__tabs" role="tablist" aria-label="Content sections">
+            <button type="button" role="tab" id="tab-browse" class="tab" aria-selected="true" aria-controls="panel-browse">Browse</button>
+            <button type="button" role="tab" id="tab-compare" class="tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">Compare</button>
+            <button type="button" role="tab" id="tab-stats" class="tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">Stats</button>
+          </div>
         </div>
       </nav>
 
@@ -105,7 +78,7 @@
         tabindex="0"
       >
         <section class="controls">
-          <label class="field">
+          <label class="field field--search">
             <span class="field__label">Search</span>
             <input
               id="search"
@@ -116,20 +89,30 @@
             />
             <span class="field__help">Matches title, summary, benefits, and more</span>
           </label>
+          <div class="controls__reset">
+            <button type="button" class="controls__reset-btn" id="reset-filters" hidden>Reset filters</button>
+          </div>
+        </section>
+
+        <div class="filters-toggle-wrap">
+          <button type="button" class="filters-toggle" id="filters-toggle">
+            More filters
+            <span class="filters-toggle__icon" aria-hidden="true">+</span>
+          </button>
+        </div>
+
+        <section class="controls controls--advanced" id="advanced-filters" hidden>
           <label class="field">
             <span class="field__label">Category</span>
             <select id="category" class="field__input field__select"></select>
-            <span class="field__help">Wellness area (e.g. body composition, immune)</span>
           </label>
           <label class="field">
             <span class="field__label">Type</span>
             <select id="compound" class="field__input field__select"></select>
-            <span class="field__help">Chemical class (peptide, small molecule, etc.)</span>
           </label>
           <label class="field">
             <span class="field__label">Known for</span>
             <select id="known-for" class="field__input field__select"></select>
-            <span class="field__help">Reputation theme (weight loss, healing, etc.)</span>
           </label>
           <label class="field">
             <span class="field__label">Evidence</span>
@@ -141,21 +124,17 @@
               <option value="Animal only">Animal only</option>
               <option value="Practice-based">Practice-based</option>
             </select>
-            <span class="field__help">Highest evidence tier for this compound</span>
           </label>
-          <label class="field field--narrow">
+          <label class="field">
             <span class="field__label">Sort</span>
             <select id="sort" class="field__input field__select">
               <option value="title">Title A&ndash;Z</option>
               <option value="title-desc">Title Z&ndash;A</option>
-              <option value="price-asc">Price low to high</option>
-              <option value="price-desc">Price high to low</option>
               <option value="evidence">Best evidence first</option>
               <option value="type">By compound type</option>
             </select>
-            <span class="field__help">Change display order</span>
           </label>
-          <label class="field field--narrow">
+          <label class="field">
             <span class="field__label">Group by</span>
             <select id="group-by" class="field__input field__select">
               <option value="">No grouping</option>
@@ -164,14 +143,10 @@
               <option value="evidence">Evidence tier</option>
               <option value="category">Top category</option>
             </select>
-            <span class="field__help">Organize into sections</span>
           </label>
-          <div class="controls__reset">
-            <button type="button" class="controls__reset-btn" id="reset-filters" hidden>Reset filters</button>
-          </div>
         </section>
 
-        <section class="selection-bar" id="selection-bar" aria-label="Selection actions">
+        <section class="selection-bar" id="selection-bar" hidden aria-label="Selection actions">
           <span class="selection-bar__count" id="selection-count">0 selected</span>
           <div class="selection-bar__actions">
             <button type="button" class="btn btn--ghost" id="select-visible">Select all</button>
@@ -183,14 +158,6 @@
 
         <p id="load-error" class="load-error" hidden></p>
         <p class="result-count" id="result-count" hidden></p>
-
-        <div class="info-banner">
-          <span class="info-banner__icon" aria-hidden="true">&#9432;</span>
-          <div>
-            <strong>Research literacy tool.</strong> BadgerSkope summarizes published science in plain English. It is not medical advice, a prescribing guide, or an endorsement of any product.
-            Evidence tiers tell you how strong each claim is — from FDA-approved to animal-only. <a href="/#evidence">Learn about evidence tiers</a>.
-          </div>
-        </div>
 
         <main class="grid" id="grid" aria-busy="true"></main>
       </div>
@@ -232,12 +199,6 @@
             <div class="stat-hero__number" id="stat-total-value">&mdash;</div>
             <div class="stat-hero__label">compounds in the library</div>
             <div class="stat-hero__sub" id="stat-total-sub"></div>
-          </div>
-
-          <div class="stat-card stat-card--hero" id="stat-price-range">
-            <div class="stat-hero__sub" id="stat-price-low"></div>
-            <div class="stat-hero__number" id="stat-price-label">&mdash;</div>
-            <div class="stat-hero__sub" id="stat-price-high"></div>
           </div>
 
           <div class="stat-card" id="stat-evidence">
@@ -285,13 +246,6 @@
     <dialog class="modal" id="detail-dialog" aria-labelledby="detail-title">
       <div class="modal__panel">
         <div class="modal__toolbar">
-          <button
-            type="button"
-            class="btn btn--icon"
-            id="detail-bookmark"
-            aria-label="Bookmark this entry"
-            title="Bookmark (b)"
-          >&#9734;</button>
           <button
             type="button"
             class="modal__close"
@@ -378,7 +332,7 @@
             </div>
             <div class="help-item">
               <dt>Filter dropdowns</dt>
-              <dd><strong>Category:</strong> Filter by wellness area (weight, brain, immune, etc.). <strong>Type:</strong> Filter by compound class. <strong>Known for:</strong> Filter by research theme. <strong>Evidence:</strong> Show only entries at a specific evidence level. <strong>Sort:</strong> Reorder by name, price, evidence strength, or type.</dd>
+              <dd><strong>Category:</strong> Filter by wellness area (weight, brain, immune, etc.). <strong>Type:</strong> Filter by compound class. <strong>Known for:</strong> Filter by research theme. <strong>Evidence:</strong> Show only entries at a specific evidence level. <strong>Sort:</strong> Reorder by name, evidence strength, or type.</dd>
             </div>
             <div class="help-item">
               <dt>Quick find buttons</dt>
@@ -404,7 +358,7 @@
           <dl class="help-list">
             <div class="help-item">
               <dt>Opening details</dt>
-              <dd>Click any card to open its full detail view. You&rsquo;ll see the compound name, type, price, and evidence level in a header bar.</dd>
+              <dd>Click any card to open its full detail view. You&rsquo;ll see the compound name, type, and evidence level in a header bar.</dd>
             </div>
             <div class="help-item">
               <dt>Evidence badges</dt>
@@ -421,10 +375,6 @@
             <div class="help-item">
               <dt>Unit tooltips</dt>
               <dd>Hover over units like mg, mcg, IU, or terms like HbA1c, IGF-1, BDNF to see plain-English definitions.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Price per mg</dt>
-              <dd>When a clear mg amount and price are available, a $/mg badge appears so you can compare value across dose sizes.</dd>
             </div>
             <div class="help-item">
               <dt>Sport/doping flags</dt>
@@ -446,7 +396,7 @@
             </div>
             <div class="help-item">
               <dt>Compare tab</dt>
-              <dd>With 2+ entries selected, switch to the Compare tab to see them side by side. Differences are highlighted. &ldquo;Best&rdquo; badges mark the lowest price and strongest evidence.</dd>
+              <dd>With 2+ entries selected, switch to the Compare tab to see them side by side. Differences are highlighted. &ldquo;Best&rdquo; badges mark the strongest evidence.</dd>
             </div>
             <div class="help-item">
               <dt>Stack synergy map</dt>
@@ -494,7 +444,7 @@
           <dl class="help-list">
             <div class="help-item">
               <dt>Overview</dt>
-              <dd>The Stats tab shows the database at a glance — total compounds, price range, and distribution charts for compound types, categories, evidence quality, and themes.</dd>
+              <dd>The Stats tab shows the database at a glance — total compounds and distribution charts for compound types, categories, evidence quality, and themes.</dd>
             </div>
             <div class="help-item">
               <dt>Click to filter</dt>
@@ -559,12 +509,11 @@
       hidden
     >&uarr;</button>
 
-    <script src="./app.js" type="module"></script>
+    <script src="./src/main.js" type="module"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js").catch(() => {});
       }
     </script>
-    <script src="./features.js" defer></script>
   </body>
 </html>
