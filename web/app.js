@@ -46,6 +46,36 @@ function highestTier(entry) {
   return best || tierForKey("unknown_identity");
 }
 
+function evidenceTierExplainer(tierKey) {
+  const explainers = {
+    approved: "This compound has FDA or regulator-approved prescribing information \u2014 the strongest level of evidence.",
+    pivotal: "Backed by large, rigorous clinical trials in humans \u2014 the kind of data that gets drugs approved.",
+    phase1: "Tested in small human studies or Phase 1 safety trials \u2014 promising but not conclusive.",
+    preclinical: "Only tested in animals or lab dishes \u2014 interesting science, but unproven in people.",
+    practice: "Used in clinics or wellness protocols, but formal controlled studies are thin.",
+    unknown: "The active ingredient or evidence basis couldn't be confirmed."
+  };
+  return explainers[tierKey] || "Evidence tier for this compound.";
+}
+
+function compoundTypeExplainer(type) {
+  const map = {
+    peptide: "A chain of amino acids \u2014 the building blocks of proteins.",
+    peptide_incretin: "A peptide that mimics gut hormones involved in appetite and blood sugar control.",
+    peptide_secretagogue: "A peptide that stimulates the body to release its own hormones (like growth hormone).",
+    peptide_blend: "A vendor-made mix of multiple peptides in one product.",
+    peptide_blend_secretagogue: "A blend of peptides designed to stimulate hormone release.",
+    peptide_blend_incretin: "A blend of peptides targeting appetite and blood sugar pathways.",
+    peptide_bioregulator: "A very short peptide marketed for organ-specific support, often from Russian research traditions.",
+    peptide_hormone: "A naturally occurring hormone that is also a peptide.",
+    small_molecule: "A chemical compound, not a peptide \u2014 included because it's sold alongside peptides.",
+    cofactor: "A molecule the body needs for enzyme reactions \u2014 not a peptide but sold in the same markets.",
+    blend_injection: "A compounded injection mixing vitamins, amino acids, or other nutrients.",
+    unknown_blend: "A vendor blend whose exact composition isn't publicly confirmed."
+  };
+  return map[type] || "The chemical class of this compound.";
+}
+
 /* ------------------------------------------------------------------ */
 /*  Utility helpers                                                    */
 /* ------------------------------------------------------------------ */
@@ -419,7 +449,7 @@ function renderCard(entry, catIndex, cardIndex) {
   main.setAttribute("aria-label", `View details for ${title}`);
   main.innerHTML = `
     ${type ? `<span class="card__type">${escapeHtml(type)}</span>` : ""}
-    <span class="card__evidence-badge" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
+    <span class="card__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
     ${headline ? `<p class="card__distinctive" title="${escapeHtml(headline)}">${escapeHtml(headline)}</p>` : ""}
     <p class="card__summary">${escapeHtml(summary)}</p>
     <div class="card__chips">${chips}</div>
@@ -584,6 +614,7 @@ function renderDetailHtml(entry) {
     ${dq?.headline
       ? `<div class="detail__section detail__section--highlight">
       <h3>Distinctive reputation</h3>
+      <p class="detail__help">What this compound is most known for in clinical and wellness discussions.</p>
       <p class="detail__prose">${escapeHtml(dq.headline)}</p>
       ${dqThemes ? `<div class="detail__row">${dqThemes}</div>` : ""}
       ${dq.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
@@ -592,33 +623,37 @@ function renderDetailHtml(entry) {
     }
     <div class="detail__row">
       ${price ? `<span class="detail__badge">Price: ${escapeHtml(price)}</span>` : ""}
-      ${entry.compoundType ? `<span class="detail__badge">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
+      ${entry.compoundType ? `<span class="detail__badge" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
       <span class="evidence-pill" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
     </div>
     ${cats ? `<div class="detail__row">${cats}</div>` : ""}
 
     <div class="detail__section">
       <h3>Research summary</h3>
+      <p class="detail__help">A plain-English overview of what this compound is, how it works, and what the research shows.</p>
       <p class="detail__prose">${escapeHtml(entry.researchSummary || "")}</p>
     </div>
 
     ${entry.notes ? `<div class="detail__section"><h3>Notes</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
 
-    ${benefits ? `<div class="detail__section"><h3>What people report</h3><ul>${benefits}</ul></div>` : ""}
+    ${benefits ? `<div class="detail__section"><h3>What people report</h3><p class="detail__help">Benefits reported in studies, trials, or clinical practice \u2014 each tagged by evidence quality.</p><ul>${benefits}</ul></div>` : ""}
 
     <div class="detail__section">
       <h3>Dosing &amp; timing notes</h3>
+      <p class="detail__help">How this compound is typically administered in research or clinical settings. Not personal dosing advice.</p>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "Not specified.")}</p>
     </div>
 
     <details class="detail__section detail__collapsible">
       <summary><h3>Cycling</h3></summary>
+      <p class="detail__help">Whether this compound is used continuously or in on/off cycles, and what the evidence says about timing.</p>
       <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "Not specified.")}</p>
     </details>
 
     ${doseRows
       ? `<details class="detail__section detail__collapsible">
       <summary><h3>Published dose info</h3></summary>
+      <p class="detail__help">Doses reported in published studies, trials, or product labels. These are literature references, not instructions.</p>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>Context</th><th>Evidence basis</th><th>Notes</th></tr></thead>
@@ -629,9 +664,9 @@ function renderDetailHtml(entry) {
       : ""
     }
 
-    ${apps ? `<div class="detail__section"><h3>What it's used for</h3><ul>${apps}</ul></div>` : ""}
-    ${synergy ? `<div class="detail__section"><h3>Often paired with</h3><ul class="synergy-list">${synergy}</ul></div>` : ""}
-    ${sources ? `<div class="detail__section"><h3>Sources</h3><ul>${sources}</ul></div>` : ""}
+    ${apps ? `<div class="detail__section"><h3>What it's used for</h3><p class="detail__help">Person-centered benefit descriptions with notes on how strong the supporting evidence is.</p><ul>${apps}</ul></div>` : ""}
+    ${synergy ? `<div class="detail__section"><h3>Often paired with</h3><p class="detail__help">Other compounds discussed alongside this one in research, product lines, or practice \u2014 not a recommendation to combine.</p><ul class="synergy-list">${synergy}</ul></div>` : ""}
+    ${sources ? `<div class="detail__section"><h3>Sources</h3><p class="detail__help">Published references where you can verify the information above.</p><ul>${sources}</ul></div>` : ""}
   `;
 }
 
@@ -878,7 +913,7 @@ function renderStatsDashboard() {
   const compMax = compSorted.length ? compSorted[0][1] : 1;
   if (els.statCompounds) {
     const compBody = els.statCompounds.querySelector(".stat-card__body") || els.statCompounds;
-    compBody.innerHTML = compSorted.map(([k, c]) => renderBar(formatCompoundType(k), c, compMax)).join("");
+    compBody.innerHTML = '<p class="stat-help">How many entries fall into each chemical class.</p>' + compSorted.map(([k, c]) => renderBar(formatCompoundType(k), c, compMax)).join("");
   }
 
   /* Wellness categories */
@@ -892,7 +927,7 @@ function renderStatsDashboard() {
   const catMax = catSorted.length ? catSorted[0][1] : 1;
   if (els.statCategories) {
     const catBody = els.statCategories.querySelector(".stat-card__body") || els.statCategories;
-    catBody.innerHTML = catSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, catMax)).join("");
+    catBody.innerHTML = '<p class="stat-help">How many entries appear in each wellness research area (entries can appear in multiple categories).</p>' + catSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, catMax)).join("");
   }
 
   /* Evidence tiers */
@@ -905,7 +940,7 @@ function renderStatsDashboard() {
   const evMax = evSorted.length ? evSorted[0][1] : 1;
   if (els.statEvidence) {
     const evBody = els.statEvidence.querySelector(".stat-card__body") || els.statEvidence;
-    evBody.innerHTML = evSorted.map(([k, c]) => {
+    evBody.innerHTML = '<p class="stat-help">Distribution of the highest evidence tier across all entries.</p>' + evSorted.map(([k, c]) => {
       const tier = EVIDENCE_TIERS.find(t => t.label === k);
       const color = tier ? tier.color : "#9ca3af";
       return `<div class="stat-bar">
@@ -929,7 +964,7 @@ function renderStatsDashboard() {
   const themeMax = themeSorted.length ? themeSorted[0][1] : 1;
   if (els.statThemes) {
     const themeBody = els.statThemes.querySelector(".stat-card__body") || els.statThemes;
-    themeBody.innerHTML = themeSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, themeMax)).join("");
+    themeBody.innerHTML = '<p class="stat-help">What each compound is best known for in research and wellness discussions.</p>' + themeSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, themeMax)).join("");
   }
 
   if (!els.statsDashboard.contains(totalEl)) {

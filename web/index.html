@@ -102,18 +102,22 @@
               placeholder="Search peptides, compounds, benefits..."
               autocomplete="off"
             />
+            <span class="field__help">Matches title, summary, benefits, and more</span>
           </label>
           <label class="field">
             <span class="field__label">Category</span>
             <select id="category" class="field__input field__select"></select>
+            <span class="field__help">Wellness area (e.g. body composition, immune)</span>
           </label>
           <label class="field">
             <span class="field__label">Type</span>
             <select id="compound" class="field__input field__select"></select>
+            <span class="field__help">Chemical class (peptide, small molecule, etc.)</span>
           </label>
           <label class="field">
             <span class="field__label">Known for</span>
             <select id="known-for" class="field__input field__select"></select>
+            <span class="field__help">Reputation theme (weight loss, healing, etc.)</span>
           </label>
           <label class="field">
             <span class="field__label">Evidence</span>
@@ -125,6 +129,7 @@
               <option value="Animal only">Animal only</option>
               <option value="Practice-based">Practice-based</option>
             </select>
+            <span class="field__help">Highest evidence tier for this compound</span>
           </label>
           <label class="field field--narrow">
             <span class="field__label">Sort</span>
@@ -136,6 +141,7 @@
               <option value="evidence">Best evidence first</option>
               <option value="type">By compound type</option>
             </select>
+            <span class="field__help">Change display order</span>
           </label>
           <div class="controls__reset">
             <button type="button" class="controls__reset-btn" id="reset-filters" hidden>Reset filters</button>
@@ -155,6 +161,14 @@
         <p id="load-error" class="load-error" hidden></p>
         <p class="result-count" id="result-count" hidden></p>
 
+        <div class="info-banner">
+          <span class="info-banner__icon" aria-hidden="true">&#9432;</span>
+          <div>
+            <strong>Research literacy tool.</strong> BadgerSkope summarizes published science in plain English. It is not medical advice, a prescribing guide, or an endorsement of any product.
+            Evidence tiers tell you how strong each claim is — from FDA-approved to animal-only. <a href="/#evidence">Learn about evidence tiers</a>.
+          </div>
+        </div>
+
         <main class="grid" id="grid" aria-busy="true"></main>
       </div>
 
@@ -171,6 +185,7 @@
             <span class="monogram monogram--lg" aria-hidden="true">BS</span>
             <p class="compare-panel__empty-title">Nothing to compare yet</p>
             <p class="compare-panel__empty-hint">Select 2 or more entries from the Browse tab, then come back here.</p>
+            <p class="compare-panel__empty-hint" style="margin-top:0.75rem;font-size:0.78rem;opacity:0.6">Tip: Use checkboxes on cards or "Select all" to pick entries, then switch to this tab.</p>
           </div>
           <div class="compare-table-wrap" id="compare-table"></div>
         </section>
@@ -185,6 +200,10 @@
         hidden
       >
         <section class="stats-dashboard" id="stats-dashboard">
+          <div class="info-banner" style="grid-column:1/-1">
+            <span class="info-banner__icon" aria-hidden="true">&#128202;</span>
+            <div>Overview of what's in the BadgerSkope database — compound types, wellness categories, evidence quality, and research themes across all 53 entries.</div>
+          </div>
           <div class="stat-card" id="stat-total">
             <h3 class="stat-card__title">Database size</h3>
             <p class="stat-card__value" id="stat-total-value">&mdash;</p>
