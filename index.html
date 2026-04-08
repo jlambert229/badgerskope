@@ -9,235 +9,255 @@
   <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./marketing.css">
 </head>
 <body>
 
-  <!-- Sticky Nav -->
+  <!-- ====== NAV ====== -->
   <header class="site-header" id="top">
-    <nav class="nav-bar">
+    <nav class="nav">
       <a href="#top" class="nav-logo">
         <span class="monogram">BS</span>
         <span class="wordmark">BadgerSkope</span>
       </a>
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="nav-hamburger" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </label>
+      <label for="nav-toggle" class="nav-hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#why">Why</a></li>
+        <li><a href="#how">How</a></li>
         <li><a href="#evidence">Evidence</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="/web/" class="btn btn-sm">Open Library &rarr;</a></li>
+        <li><a href="/web/" class="nav-cta">Open Library &rarr;</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="container hero-inner">
-        <img src="./logo-hero.png" alt="BadgerSkope logo" class="hero-logo" width="180" height="180">
-        <h1>Peptide Research, Finally in Plain English</h1>
-        <p class="hero-sub">BadgerSkope is the open reference library that translates dense peptide science into clear, evidence-graded summaries anyone can understand.</p>
-        <div class="hero-ctas">
-          <a href="/web/" class="btn btn-primary">Explore the Library &rarr;</a>
-          <a href="#how-it-works" class="btn btn-ghost">See How It Works &darr;</a>
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="helix"></div>
+      </div>
+      <div class="hero-content">
+        <img src="./logo-hero.png" alt="BadgerSkope" class="hero-logo" width="320" height="320">
+        <h1 class="hero-h1">Stop guessing.<br><span class="grad-text">Start reading the evidence.</span></h1>
+        <p class="hero-p">53 peptide compounds. Every claim tagged by evidence quality. Zero jargon. Zero sales pitches. Just the science, translated into English.</p>
+        <div class="hero-actions">
+          <a href="/web/" class="btn-big">Explore the Library</a>
+          <a href="#why" class="btn-outline">Why this exists &darr;</a>
         </div>
-        <p class="trust-line">53 compounds &middot; Evidence-graded &middot; 100% free &middot; Not medical advice</p>
+        <div class="hero-proof">
+          <div class="proof-item"><strong>53</strong> compounds</div>
+          <div class="proof-dot"></div>
+          <div class="proof-item"><strong>6</strong> evidence tiers</div>
+          <div class="proof-dot"></div>
+          <div class="proof-item"><strong>100%</strong> free</div>
+          <div class="proof-dot"></div>
+          <div class="proof-item">Not medical advice</div>
+        </div>
       </div>
     </section>
 
-    <!-- Problem / Solution -->
-    <section class="section" id="features">
-      <div class="container">
-        <h2 class="section-title">Research Without the PhD</h2>
-
-        <div class="card-grid">
-          <div class="card card-problem">
-            <span class="card-icon" aria-hidden="true">&#128269;</span>
-            <h3>Jargon Overload</h3>
-            <p>Most peptide info is buried in PubMed abstracts or sketchy forum posts. You shouldn't need a biochemistry degree to understand what you're reading about.</p>
+    <!-- ====== THE PROBLEM ====== -->
+    <section class="band" id="why">
+      <div class="wrap">
+        <div class="split">
+          <div class="split-text">
+            <p class="kicker">The problem</p>
+            <h2>Peptide info is a<br>dumpster fire.</h2>
+            <p>PubMed papers written for PhDs. Reddit threads written by strangers. Vendor pages that read like infomercials. And none of them tell you whether the evidence is from a 10,000-person FDA trial or a single mouse study.</p>
+            <p>You shouldn't need a biochemistry degree just to understand what you're putting in your body &mdash; or to know when someone's selling you hype.</p>
           </div>
-          <div class="card card-problem">
-            <span class="card-icon" aria-hidden="true">&#9888;&#65039;</span>
-            <h3>No Evidence Grading</h3>
-            <p>Claims fly around with zero context. Is this backed by a major human trial or a single mouse study? Nobody tells you.</p>
-          </div>
-          <div class="card card-problem">
-            <span class="card-icon" aria-hidden="true">&#129513;</span>
-            <h3>Scattered Sources</h3>
-            <p>Dosing info here, benefits there, interactions somewhere else. Piecing together a complete picture takes hours.</p>
-          </div>
-        </div>
-
-        <p class="divider-text">BadgerSkope solves this.</p>
-
-        <div class="card-grid">
-          <div class="card card-solution">
-            <span class="card-icon" aria-hidden="true">&#128214;</span>
-            <h3>Plain English Summaries</h3>
-            <p>Every compound explained like a smart friend would &mdash; accurate but readable. No jargon walls, no dumbing down.</p>
-          </div>
-          <div class="card card-solution">
-            <span class="card-icon" aria-hidden="true">&#9989;</span>
-            <h3>Evidence Grading</h3>
-            <p>Every claim is tagged: FDA-approved, major trial, early human study, animal only, or practice-based. You always know how strong the evidence is.</p>
-          </div>
-          <div class="card card-solution">
-            <span class="card-icon" aria-hidden="true">&#128218;</span>
-            <h3>Everything in One Place</h3>
-            <p>Research summary, benefits, dosing, cycling, synergies, and sources &mdash; all on one card. Compare compounds side by side.</p>
+          <div class="split-visual">
+            <div class="noise-card nc-1"><span class="nc-tag nc-red">Forum post</span>"Bro trust me this peptide cured my entire family"</div>
+            <div class="noise-card nc-2"><span class="nc-tag nc-yellow">Vendor page</span>"Revolutionary breakthrough compound for optimal wellness synergy"</div>
+            <div class="noise-card nc-3"><span class="nc-tag nc-gray">PubMed</span>"Subcutaneous administration of the GLP-1 receptor agonist demonstrated statistically significant reductions in HbA1c (p&lt;0.001)..."</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="section section-alt" id="how-it-works">
-      <div class="container">
-        <h2 class="section-title">Three Steps to Clarity</h2>
-
-        <div class="steps">
-          <div class="step">
-            <span class="step-num">1</span>
-            <h3>Search or Browse</h3>
-            <p>Type a name, filter by category, evidence level, or what it's known for. Find what you need in seconds.</p>
+    <!-- ====== THE FIX ====== -->
+    <section class="band band-dark">
+      <div class="wrap">
+        <div class="split split-reverse">
+          <div class="split-text">
+            <p class="kicker kicker-green">The fix</p>
+            <h2>One card. Everything<br>you need to know.</h2>
+            <p>BadgerSkope takes each compound and gives you one clean card with the research summary in plain English, reported benefits with evidence tags, dosing context from the literature, cycling notes, synergies, and linked sources.</p>
+            <p>No scrolling through five tabs. No cross-referencing forums. No guessing how good the evidence is.</p>
           </div>
-          <div class="step">
-            <span class="step-num">2</span>
-            <h3>Read the Evidence</h3>
-            <p>Each entry has a plain-English summary, reported benefits with evidence tags, dosing context, and linked sources.</p>
+          <div class="split-visual">
+            <div class="sample-card">
+              <div class="sc-head">
+                <div class="sc-stripe sc-stripe-green"></div>
+                <div>
+                  <div class="sc-title">Semaglutide (1G-SGT)</div>
+                  <div class="sc-type">peptide incretin</div>
+                </div>
+                <span class="sc-price">$69.99</span>
+              </div>
+              <div class="sc-badge sc-badge-green">Approved / Labeled</div>
+              <p class="sc-summary">A weekly injectable in the same family as Ozempic. Mimics a gut hormone called GLP-1 that tells your brain you're full and helps manage blood sugar.</p>
+              <div class="sc-chips">
+                <span>appetite &amp; satiety</span>
+                <span>body composition</span>
+                <span>cardiovascular</span>
+              </div>
+              <div class="sc-hint">View details &rarr;</div>
+            </div>
           </div>
-          <div class="step">
-            <span class="step-num">3</span>
-            <h3>Compare &amp; Decide</h3>
-            <p>Select multiple compounds and compare them side by side. See synergies, evidence quality, and pricing at a glance.</p>
-          </div>
-        </div>
-
-        <div class="center">
-          <a href="/web/" class="btn btn-primary">Try It Now &mdash; It's Free &rarr;</a>
         </div>
       </div>
     </section>
 
-    <!-- Evidence System -->
-    <section class="section" id="evidence">
-      <div class="container">
-        <h2 class="section-title">Evidence You Can Actually Trust</h2>
-        <p class="section-sub">Every claim in BadgerSkope is tagged with its evidence tier so you never confuse marketing with proof.</p>
-
-        <div class="tier-grid">
-          <div class="tier-card">
-            <span class="tier-badge tier-green">Approved / Labeled</span>
-            <p>FDA or regulator-approved. Backed by official prescribing information.</p>
+    <!-- ====== HOW IT WORKS ====== -->
+    <section class="band" id="how">
+      <div class="wrap center">
+        <p class="kicker">How it works</p>
+        <h2>Search. Read. Compare.</h2>
+        <div class="how-grid">
+          <div class="how-step">
+            <div class="how-num">1</div>
+            <h3>Find it fast</h3>
+            <p>Search by name or filter by category, evidence level, compound type, or what it's known for. 53 entries, zero clutter.</p>
           </div>
-          <div class="tier-card">
-            <span class="tier-badge tier-teal">Major Trials</span>
-            <p>Large, high-quality clinical trials in humans.</p>
+          <div class="how-arrow" aria-hidden="true">&rarr;</div>
+          <div class="how-step">
+            <div class="how-num">2</div>
+            <h3>Read the real story</h3>
+            <p>Plain English summaries with every claim tagged by evidence quality. You'll know if it's FDA-approved or a single mouse study.</p>
           </div>
-          <div class="tier-card">
-            <span class="tier-badge tier-amber">Early Human</span>
-            <p>Small human studies or Phase 1 safety data.</p>
-          </div>
-          <div class="tier-card">
-            <span class="tier-badge tier-orange">Animal Only</span>
-            <p>Tested in animals; human translation uncertain.</p>
-          </div>
-          <div class="tier-card">
-            <span class="tier-badge tier-gray">Practice-Based</span>
-            <p>Clinic patterns or regional prescribing; controlled data is thin.</p>
+          <div class="how-arrow" aria-hidden="true">&rarr;</div>
+          <div class="how-step">
+            <div class="how-num">3</div>
+            <h3>Compare side by side</h3>
+            <p>Select compounds and see them in a comparison table. Evidence, pricing, synergies, dosing &mdash; all at a glance.</p>
           </div>
         </div>
-
-        <p class="note">We don't hide weak evidence &mdash; we label it clearly so you can decide.</p>
+        <a href="/web/" class="btn-big" style="margin-top:2.5rem">Try it now &mdash; free</a>
       </div>
     </section>
 
-    <!-- Stats / Social Proof -->
-    <section class="section section-alt" id="about">
-      <div class="container">
-        <h2 class="section-title">Built for Research Literacy</h2>
+    <!-- ====== EVIDENCE SYSTEM ====== -->
+    <section class="band band-dark" id="evidence">
+      <div class="wrap">
+        <p class="kicker kicker-blue">The system</p>
+        <h2 class="center">We don't hide weak evidence.<br>We <em>label</em> it.</h2>
+        <p class="sub center">Every claim in BadgerSkope carries its evidence tier. Here's what they mean:</p>
 
-        <div class="stats-grid">
-          <div class="stat">
-            <strong>53</strong>
-            <span>Compounds</span>
+        <div class="ev-stack">
+          <div class="ev-row">
+            <span class="ev-pill ev-green">Approved / Labeled</span>
+            <span class="ev-desc">FDA or regulator-approved. This is the gold standard &mdash; real prescribing information from real drug approvals.</span>
           </div>
-          <div class="stat">
-            <strong>6</strong>
-            <span>Evidence Tiers</span>
+          <div class="ev-row">
+            <span class="ev-pill ev-teal">Major Trials</span>
+            <span class="ev-desc">Large, rigorous clinical trials in humans. The kind of data that gets drugs approved.</span>
           </div>
-          <div class="stat">
-            <strong>14</strong>
-            <span>Wellness Categories</span>
+          <div class="ev-row">
+            <span class="ev-pill ev-amber">Early Human</span>
+            <span class="ev-desc">Small human studies or Phase 1 safety data. Promising, but not conclusive.</span>
           </div>
-          <div class="stat">
-            <strong>100%</strong>
-            <span>Open</span>
+          <div class="ev-row">
+            <span class="ev-pill ev-orange">Animal Only</span>
+            <span class="ev-desc">Worked in mice or rats. That's interesting &mdash; but mice aren't people.</span>
+          </div>
+          <div class="ev-row">
+            <span class="ev-pill ev-gray">Practice-Based</span>
+            <span class="ev-desc">Used in clinics or wellness protocols. The controlled evidence? Thin at best.</span>
           </div>
         </div>
-
-        <p class="mission">BadgerSkope exists because everyone deserves access to clear, honest peptide information. We're not selling peptides. We're not giving medical advice. We're building the reference library we wished existed &mdash; plain English, evidence-graded, and free.</p>
-        <p class="note">BadgerSkope is an educational tool. Always consult licensed medical professionals before making health decisions.</p>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="container container-narrow">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-
-        <details class="faq-item">
-          <summary>Is BadgerSkope free?</summary>
-          <p>Yes, completely. The library is open and always will be.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Is this medical advice?</summary>
-          <p>No. BadgerSkope is a research literacy tool. It summarizes published science in plain English but is not a substitute for professional medical guidance.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Where does the data come from?</summary>
-          <p>From published clinical trials, FDA labels, PubMed, and peer-reviewed research. Each entry links to its sources. Marketing claims are clearly labeled as such.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Can I trust the evidence grades?</summary>
-          <p>The grades tell you the type and quality of evidence behind each claim. We don't inflate &mdash; if something only has mouse data, we say so.</p>
-        </details>
-        <details class="faq-item">
-          <summary>Do you sell peptides?</summary>
-          <p>No. BadgerSkope is purely informational. We have no commercial relationship with any peptide vendor.</p>
-        </details>
-        <details class="faq-item">
-          <summary>How do I report an error?</summary>
-          <p>Open an issue on our GitHub repository. We take accuracy seriously.</p>
-        </details>
+    <!-- ====== WHAT WE'RE NOT ====== -->
+    <section class="band">
+      <div class="wrap center">
+        <h2>What BadgerSkope is <em>not</em>.</h2>
+        <div class="not-grid">
+          <div class="not-card">
+            <span class="not-x" aria-hidden="true">&times;</span>
+            <strong>Not a store.</strong>
+            <p>We don't sell peptides. Never have. Never will.</p>
+          </div>
+          <div class="not-card">
+            <span class="not-x" aria-hidden="true">&times;</span>
+            <strong>Not medical advice.</strong>
+            <p>We summarize science. We don't prescribe, diagnose, or promise outcomes.</p>
+          </div>
+          <div class="not-card">
+            <span class="not-x" aria-hidden="true">&times;</span>
+            <strong>Not sponsored.</strong>
+            <p>Zero vendor relationships. No affiliate links. No conflicts of interest.</p>
+          </div>
+          <div class="not-card">
+            <span class="not-x" aria-hidden="true">&times;</span>
+            <strong>Not hype.</strong>
+            <p>If the evidence is weak, we say so. If it only worked in mice, you'll know.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="section section-cta" id="cta">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="container center">
-        <img src="./logo.png" alt="BadgerSkope" class="cta-logo" width="80" height="80">
-        <h2>Ready to dig in?</h2>
-        <p>Explore 53 compounds with plain-English summaries and evidence grading.</p>
-        <a href="/web/" class="btn btn-primary btn-lg">Launch BadgerSkope &rarr;</a>
+    <!-- ====== FAQ ====== -->
+    <section class="band band-dark" id="faq">
+      <div class="wrap wrap-narrow">
+        <h2 class="center">Questions? Good.</h2>
+        <div class="faq-list">
+          <details class="faq">
+            <summary>Is BadgerSkope actually free?</summary>
+            <p>Yes. Completely free, no account needed, no paywall. The library is open and it stays that way.</p>
+          </details>
+          <details class="faq">
+            <summary>Where does the data come from?</summary>
+            <p>Published clinical trials, FDA prescribing labels, PubMed, and peer-reviewed research. Every entry links to its sources. If something is based on vendor marketing, we say so explicitly.</p>
+          </details>
+          <details class="faq">
+            <summary>Can I use this to decide what to take?</summary>
+            <p>BadgerSkope is a research literacy tool, not a prescribing guide. It helps you understand the landscape &mdash; but any decision about your health should involve a licensed medical professional.</p>
+          </details>
+          <details class="faq">
+            <summary>How do I know the evidence grades are honest?</summary>
+            <p>Every grade maps to a specific type of evidence (FDA label, clinical trial, animal study, etc.). We don't inflate. If something only has mouse data, it says "Animal Only" &mdash; not "clinically proven."</p>
+          </details>
+          <details class="faq">
+            <summary>Do you have a commercial relationship with any vendor?</summary>
+            <p>No. BadgerSkope has zero vendor affiliations, zero affiliate links, and zero financial incentive to recommend any product.</p>
+          </details>
+          <details class="faq">
+            <summary>I found an error. How do I report it?</summary>
+            <p>Open an issue on <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank">our GitHub</a>. We take accuracy seriously and will investigate every report.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== FINAL CTA ====== -->
+    <section class="cta-end">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+      </div>
+      <div class="wrap center">
+        <img src="./logo-hero.png" alt="" class="cta-logo" width="96" height="96">
+        <h2>Done guessing?</h2>
+        <p class="cta-p">53 compounds. Plain English. Evidence-graded. Free forever.</p>
+        <a href="/web/" class="btn-big btn-glow">Launch BadgerSkope &rarr;</a>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
+  <!-- ====== FOOTER ====== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
+    <div class="wrap footer-inner">
+      <div class="footer-left">
         <span class="monogram monogram-sm">BS</span>
         <span class="wordmark">BadgerSkope</span>
       </div>
@@ -246,8 +266,10 @@
         <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
         <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank" rel="noopener">Report Issue</a>
       </nav>
-      <p class="footer-legal">Not medical advice. For research literacy only.</p>
-      <p class="footer-copy">&copy; 2026 BadgerSkope</p>
+      <div class="footer-right">
+        <p>Not medical advice. For research literacy only.</p>
+        <p>&copy; 2026 BadgerSkope</p>
+      </div>
     </div>
   </footer>
 
