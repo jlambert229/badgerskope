@@ -1039,6 +1039,43 @@
     }
   }
 
+  /* ---- help dialog ---- */
+  function addHelpDialog() {
+    const helpDialog = document.getElementById("help-dialog");
+    const helpClose = document.getElementById("help-close");
+    const openHelp = document.getElementById("open-help");
+
+    if (helpDialog && helpClose) {
+      helpClose.addEventListener("click", () => helpDialog.close());
+      helpDialog.addEventListener("click", (e) => {
+        if (e.target === helpDialog) helpDialog.close();
+      });
+    }
+
+    if (openHelp && helpDialog) {
+      openHelp.addEventListener("click", () => helpDialog.showModal());
+    }
+
+    // "h" keyboard shortcut
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
+      if (document.querySelector("dialog[open]")) return;
+      if (e.key === "h" && helpDialog) {
+        e.preventDefault();
+        helpDialog.showModal();
+      }
+    });
+
+    // Show help on first visit
+    const helpSeen = localStorage.getItem("peptide-help-seen");
+    if (!helpSeen && helpDialog) {
+      setTimeout(() => {
+        helpDialog.showModal();
+        localStorage.setItem("peptide-help-seen", "1");
+      }, 2000);
+    }
+  }
+
   /* ---- init ---- */
   function init() {
     autoDetectTheme();
@@ -1068,6 +1105,7 @@
     addPricePerMg();
     addDopingIndicator();
     addGoalFilters();
+    addHelpDialog();
 
     // Keyboard shortcut: "f" toggles bookmarks filter
     document.addEventListener("keydown", (e) => {

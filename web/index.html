@@ -59,6 +59,7 @@
             <span class="icon-moon" aria-hidden="true">&#9790;</span>
           </button>
           <a href="/" class="nav-bar__home" title="Back to homepage">Home</a>
+          <button type="button" class="btn btn--ghost btn--small" id="open-help" title="Help guide (h)">Help</button>
         </div>
       </nav>
 
@@ -272,7 +273,7 @@
         <div class="footer__bottom">
           <p class="footer__meta" id="footer-meta"></p>
           <p class="footer__shortcuts">
-            <kbd>?</kbd> keyboard shortcuts
+            <kbd>?</kbd> shortcuts &middot; <kbd>h</kbd> help guide
           </p>
         </div>
       </footer>
@@ -356,6 +357,187 @@
             <dd>Toggle bookmarked only</dd>
           </div>
         </dl>
+      </div>
+    </dialog>
+
+    <!-- ===== Help / User Guide ===== -->
+    <dialog class="modal" id="help-dialog" aria-labelledby="help-title">
+      <div class="modal__panel modal__panel--wide">
+        <button type="button" class="modal__close" id="help-close" aria-label="Close">&times;</button>
+        <h2 id="help-title" class="modal__title">How to use BadgerSkope</h2>
+        <p class="help-intro">BadgerSkope is a free, open peptide research library. Everything here is for education — not medical advice. Here's how to get the most out of it.</p>
+
+        <div class="help-section">
+          <h3>Browsing &amp; Searching</h3>
+          <dl class="help-list">
+            <div class="help-item">
+              <dt>Search bar</dt>
+              <dd>Type any word to search across titles, summaries, benefits, dosing notes, and more. Supports multiple words — all must match. An autocomplete dropdown shows matching titles as you type.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Filter dropdowns</dt>
+              <dd><strong>Category:</strong> Filter by wellness area (weight, brain, immune, etc.). <strong>Type:</strong> Filter by compound class. <strong>Known for:</strong> Filter by research theme. <strong>Evidence:</strong> Show only entries at a specific evidence level. <strong>Sort:</strong> Reorder by name, price, evidence strength, or type.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Quick find buttons</dt>
+              <dd>The row of pill buttons below filters lets you jump to common goals like &ldquo;Weight loss&rdquo; or &ldquo;Brain &amp; mood&rdquo; with one click.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Group by</dt>
+              <dd>Use the &ldquo;Group by&rdquo; dropdown to organize entries into labeled sections by theme, compound type, evidence tier, or category.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Category chips</dt>
+              <dd>Click any colored category chip on a card to instantly filter by that category. A &ldquo;Filter&rdquo; tooltip appears on hover.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Reset filters</dt>
+              <dd>A red &ldquo;Reset filters&rdquo; button appears whenever any filter is active. Click it to clear everything.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="help-section">
+          <h3>Reading an Entry</h3>
+          <dl class="help-list">
+            <div class="help-item">
+              <dt>Opening details</dt>
+              <dd>Click any card to open its full detail view. You&rsquo;ll see the compound name, type, price, and evidence level in a header bar.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Evidence badges</dt>
+              <dd>Color-coded badges tell you how strong the evidence is. <span style="color:#22c55e">Green = FDA approved.</span> <span style="color:#14b8a6">Teal = strong human trials.</span> <span style="color:#f59e0b">Amber = early human studies.</span> <span style="color:#f97316">Orange = animal studies only.</span> <span style="color:#9ca3af">Gray = clinic practice or unknown.</span> Hover any badge for a full explanation.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Evidence in context</dt>
+              <dd>A chart shows how this entry&rsquo;s evidence compares to others in the same category. Look for the verdict: &ldquo;strongest,&rdquo; &ldquo;above average,&rdquo; or &ldquo;below average.&rdquo;</dd>
+            </div>
+            <div class="help-item">
+              <dt>Source quality</dt>
+              <dd>A quality bar above the sources shows what percentage are from high-quality origins (FDA labels and peer-reviewed papers score highest).</dd>
+            </div>
+            <div class="help-item">
+              <dt>Unit tooltips</dt>
+              <dd>Hover over units like mg, mcg, IU, or terms like HbA1c, IGF-1, BDNF to see plain-English definitions.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Price per mg</dt>
+              <dd>When a clear mg amount and price are available, a $/mg badge appears so you can compare value across dose sizes.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Sport/doping flags</dt>
+              <dd>Compounds banned by WADA or flagged by anti-doping agencies show an amber warning badge on cards and a banner in the detail view.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Collapsible sections</dt>
+              <dd>&ldquo;Cycling&rdquo; and &ldquo;Published doses&rdquo; sections start collapsed. Click to expand them.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="help-section">
+          <h3>Selecting &amp; Comparing</h3>
+          <dl class="help-list">
+            <div class="help-item">
+              <dt>Selecting entries</dt>
+              <dd>Use the checkbox on each card, or click &ldquo;Select all&rdquo; to select everything visible. The selection count shows in the toolbar and on the Compare tab.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Compare tab</dt>
+              <dd>With 2+ entries selected, switch to the Compare tab to see them side by side. Differences are highlighted. &ldquo;Best&rdquo; badges mark the lowest price and strongest evidence.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Stack synergy map</dt>
+              <dd>The Compare tab also shows a synergy map revealing which of your selected compounds are discussed together in research or product lines.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Export CSV</dt>
+              <dd>Click &ldquo;Export CSV&rdquo; in the selection toolbar to download your selected entries as a spreadsheet.</dd>
+            </div>
+            <div class="help-item">
+              <dt>View details (multi)</dt>
+              <dd>Click &ldquo;View details&rdquo; with multiple selections to browse through them one by one with Previous/Next navigation.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="help-section">
+          <h3>Personal Tools</h3>
+          <dl class="help-list">
+            <div class="help-item">
+              <dt>Bookmarks</dt>
+              <dd>Click the star on any card or in the detail view to bookmark it. Toggle &ldquo;Bookmarked only&rdquo; in the toolbar to see only your bookmarks. Press <kbd>b</kbd> to bookmark, <kbd>f</kbd> to filter.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Private notes</dt>
+              <dd>Each detail view has a &ldquo;Your private notes&rdquo; section at the bottom. Your notes are saved only in your browser — never sent anywhere.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Recently viewed</dt>
+              <dd>A bar above the grid shows your last 6 viewed entries for quick access. Click &times; to clear history.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Reading tracker</dt>
+              <dd>A small green dot appears on cards you&rsquo;ve already opened, so you can track what you&rsquo;ve read.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Share &amp; print</dt>
+              <dd>Use &ldquo;Copy link&rdquo; in the detail view to share a direct link to an entry. Use &ldquo;Print&rdquo; for a clean paper copy.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="help-section">
+          <h3>Stats Dashboard</h3>
+          <dl class="help-list">
+            <div class="help-item">
+              <dt>Overview</dt>
+              <dd>The Stats tab shows the database at a glance — total compounds, price range, and distribution charts for compound types, categories, evidence quality, and themes.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Click to filter</dt>
+              <dd>Click any bar in the Stats dashboard to switch to the Browse tab filtered by that value.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="help-section">
+          <h3>Keyboard Shortcuts</h3>
+          <dl class="help-list">
+            <div class="help-item"><dt><kbd>/</kbd></dt><dd>Focus the search bar</dd></div>
+            <div class="help-item"><dt><kbd>?</kbd></dt><dd>Show keyboard shortcuts</dd></div>
+            <div class="help-item"><dt><kbd>h</kbd></dt><dd>Open this help guide</dd></div>
+            <div class="help-item"><dt><kbd>t</kbd></dt><dd>Toggle dark/light theme</dd></div>
+            <div class="help-item"><dt><kbd>b</kbd></dt><dd>Bookmark current entry</dd></div>
+            <div class="help-item"><dt><kbd>f</kbd></dt><dd>Toggle bookmarked-only filter</dd></div>
+            <div class="help-item"><dt><kbd>Esc</kbd></dt><dd>Close any dialog</dd></div>
+            <div class="help-item"><dt><kbd>&larr;</kbd> <kbd>&rarr;</kbd></dt><dd>Navigate between entries</dd></div>
+          </dl>
+        </div>
+
+        <div class="help-section">
+          <h3>Other Features</h3>
+          <dl class="help-list">
+            <div class="help-item">
+              <dt>Dark/light theme</dt>
+              <dd>Click the sun/moon icon or press <kbd>t</kbd>. Your preference is saved. On first visit, it matches your system setting.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Offline access</dt>
+              <dd>After your first visit, BadgerSkope works offline — the full database is cached in your browser.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Related &amp; similar</dt>
+              <dd>&ldquo;Often discussed alongside&rdquo; shows synergy-linked compounds. &ldquo;Similar compounds&rdquo; suggests entries in the same categories.</dd>
+            </div>
+            <div class="help-item">
+              <dt>Report an issue</dt>
+              <dd>Found an error? Click &ldquo;Report issue&rdquo; in the detail view to open a pre-filled GitHub issue.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <p class="help-footer">BadgerSkope is a research literacy tool, not medical advice. All data is stored locally on your device. <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">View on GitHub</a>.</p>
       </div>
     </dialog>
 
