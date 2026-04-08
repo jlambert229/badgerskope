@@ -441,3 +441,195 @@
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
+
+/* ---- Detail hero bar ---- */
+.detail__hero-bar {
+  padding: 1.25rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  margin-bottom: 1.25rem;
+}
+
+.detail__hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail__hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.detail__price {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--success);
+}
+
+.detail__evidence-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+
+.detail__compound-type {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+  cursor: help;
+}
+
+.detail__hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.detail__cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ---- Detail prose large ---- */
+.detail__prose--lg {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* ---- Note section ---- */
+.detail__section--note {
+  background: rgba(245, 166, 35, 0.06);
+  border: 1px solid rgba(245, 166, 35, 0.15);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.detail__section--note h3 {
+  color: var(--warning);
+}
+
+/* ---- Benefits list ---- */
+.detail__benefits li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.detail__benefits li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---- Applications list ---- */
+.detail__apps li {
+  margin-bottom: 0.85rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.detail__apps li strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.92rem;
+  margin-bottom: 0.3rem;
+}
+
+/* ---- Sources list ---- */
+.detail__sources {
+  list-style: none;
+  padding: 0;
+}
+
+.detail__sources li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail__sources li:last-child {
+  border-bottom: none;
+}
+
+.detail__sources a {
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.detail__sources a::before {
+  content: '\2197';
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+/* ---- Disclaimer at bottom of detail ---- */
+.detail__disclaimer {
+  margin-top: 1.5rem;
+  padding: 0.85rem 1rem;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.detail__disclaimer strong {
+  color: var(--danger);
+}
+
+/* ---- Card meta row ---- */
+.card__meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ---- Responsive detail ---- */
+@media (max-width: 520px) {
+  .detail__hero-top {
+    flex-direction: column;
+  }
+  .detail__hero-right {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+}

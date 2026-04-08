@@ -535,12 +535,14 @@ function renderCard(entry, catIndex, cardIndex) {
   main.className = "card__main";
   main.setAttribute("aria-label", `View details for ${title}`);
   main.innerHTML = `
-    ${type ? `<span class="card__type">${escapeHtml(type)}</span>` : ""}
-    <span class="card__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
-    ${headline ? `<p class="card__distinctive" title="${escapeHtml(headline)}">${escapeHtml(headline)}</p>` : ""}
+    <div class="card__meta-row">
+      ${type ? `<span class="card__type">${escapeHtml(type)}</span>` : ""}
+      <span class="card__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
+    </div>
+    ${headline ? `<p class="card__distinctive">${escapeHtml(headline)}</p>` : ""}
     <p class="card__summary">${escapeHtml(summary)}</p>
     <div class="card__chips">${chips}</div>
-    <p class="card__hint">View details \u2192</p>
+    <span class="card__hint">View details \u2192</span>
   `;
   main.addEventListener("click", () => {
     article.style.transform = "scale(0.98)";
@@ -721,64 +723,73 @@ function renderDetailHtml(entry) {
   const dqThemes = (dq?.themes || [])
     .map((k) => {
       const tip = kfIdx[k] || "";
-      return `<span class="detail__badge" title="${escapeHtml(tip)}">${escapeHtml(k.replace(/_/g, " "))}</span>`;
+      const friendlyTheme = GROUP_THEME_LABELS[k] || k.replace(/_/g, " ");
+      return `<span class="detail__badge" title="${escapeHtml(tip)}">${escapeHtml(friendlyTheme)}</span>`;
     })
     .join("");
 
   return `
-    <div class="detail__header">
-      <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
-      <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
-        ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
-      </button>
+    <div class="detail__hero-bar" style="border-left: 4px solid ${tier.color}">
+      <div class="detail__hero-top">
+        <div>
+          <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
+          ${entry.compoundType ? `<span class="detail__compound-type" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
+        </div>
+        <div class="detail__hero-right">
+          ${price ? `<span class="detail__price">${escapeHtml(price)}</span>` : ""}
+          <span class="detail__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
+        </div>
+      </div>
+      <div class="detail__hero-actions">
+        <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
+          ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
+        </button>
+        ${url ? `<a class="detail__link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">View catalog listing \u2192</a>` : ""}
+      </div>
     </div>
-    ${url ? `<a class="detail__link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Catalog link</a>` : ""}
+
+    ${cats ? `<div class="detail__cats">${cats}</div>` : ""}
+
     ${dq?.headline
       ? `<div class="detail__section detail__section--highlight">
-      <h3>Distinctive reputation</h3>
-      <p class="detail__help">What this compound is most known for in clinical and wellness discussions.</p>
-      <p class="detail__prose">${escapeHtml(dq.headline)}</p>
+      <h3>What it's known for</h3>
+      <p class="detail__prose detail__prose--lg">${escapeHtml(dq.headline)}</p>
       ${dqThemes ? `<div class="detail__row">${dqThemes}</div>` : ""}
       ${dq.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
     </div>`
       : ""
     }
-    <div class="detail__row">
-      ${price ? `<span class="detail__badge">Price: ${escapeHtml(price)}</span>` : ""}
-      ${entry.compoundType ? `<span class="detail__badge" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
-      <span class="evidence-pill" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
-    </div>
-    ${cats ? `<div class="detail__row">${cats}</div>` : ""}
 
     <div class="detail__section">
-      <h3>Research summary</h3>
-      <p class="detail__help">A plain-English overview of what this compound is, how it works, and what the research shows.</p>
+      <h3>In plain English</h3>
       <p class="detail__prose">${escapeHtml(entry.researchSummary || "")}</p>
     </div>
 
-    ${entry.notes ? `<div class="detail__section"><h3>Notes</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
+    ${entry.notes ? `<div class="detail__section detail__section--note"><h3>Important note</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
 
-    ${benefits ? `<div class="detail__section"><h3>What people report</h3><p class="detail__help">Benefits reported in studies, trials, or clinical practice \u2014 each tagged by evidence quality.</p><ul>${benefits}</ul></div>` : ""}
+    ${benefits ? `<div class="detail__section">
+      <h3>What the research shows</h3>
+      <p class="detail__help">Each line is tagged by the type of evidence behind it.</p>
+      <ul class="detail__benefits">${benefits}</ul>
+    </div>` : ""}
 
     <div class="detail__section">
-      <h3>Dosing &amp; timing notes</h3>
-      <p class="detail__help">How this compound is typically administered in research or clinical settings. Not personal dosing advice.</p>
-      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "Not specified.")}</p>
+      <h3>How it's typically used</h3>
+      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
     </div>
 
     <details class="detail__section detail__collapsible">
-      <summary><h3>Cycling</h3></summary>
-      <p class="detail__help">Whether this compound is used continuously or in on/off cycles, and what the evidence says about timing.</p>
-      <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "Not specified.")}</p>
+      <summary><h3>Cycling pattern</h3></summary>
+      <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "No established cycling pattern.")}</p>
     </details>
 
     ${doseRows
       ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Published dose info</h3></summary>
-      <p class="detail__help">Doses reported in published studies, trials, or product labels. These are literature references, not instructions.</p>
+      <summary><h3>Published doses from the literature</h3></summary>
+      <p class="detail__help">These are doses that appeared in published research. They are not personal dosing instructions.</p>
       <div class="table-wrap">
         <table class="doses">
-          <thead><tr><th>Context</th><th>Evidence basis</th><th>Notes</th></tr></thead>
+          <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
           <tbody>${doseRows}</tbody>
         </table>
       </div>
@@ -786,9 +797,23 @@ function renderDetailHtml(entry) {
       : ""
     }
 
-    ${apps ? `<div class="detail__section"><h3>What it's used for</h3><p class="detail__help">Person-centered benefit descriptions with notes on how strong the supporting evidence is.</p><ul>${apps}</ul></div>` : ""}
-    ${synergy ? `<div class="detail__section"><h3>Often paired with</h3><p class="detail__help">Other compounds discussed alongside this one in research, product lines, or practice \u2014 not a recommendation to combine.</p><ul class="synergy-list">${synergy}</ul></div>` : ""}
-    ${sources ? `<div class="detail__section"><h3>Sources</h3><p class="detail__help">Published references where you can verify the information above.</p><ul>${sources}</ul></div>` : ""}
+    ${apps ? `<div class="detail__section">
+      <h3>Potential uses people explore</h3>
+      <p class="detail__help">What people are looking for when they research this compound, with evidence quality noted.</p>
+      <ul class="detail__apps">${apps}</ul>
+    </div>` : ""}
+
+    ${synergy ? `<div class="detail__section">
+      <h3>Often discussed alongside</h3>
+      <p class="detail__help">These appear together in research, product lines, or practice patterns \u2014 not a recommendation to combine.</p>
+      <ul class="synergy-list">${synergy}</ul>
+    </div>` : ""}
+
+    ${sources ? `<div class="detail__section"><h3>Verify it yourself</h3><p class="detail__help">Published references you can check.</p><ul class="detail__sources">${sources}</ul></div>` : ""}
+
+    <div class="detail__disclaimer">
+      <strong>Reminder:</strong> This is a research summary, not medical advice. Consult a licensed professional before making health decisions.
+    </div>
   `;
 }
 
