@@ -3,6 +3,12 @@
   "private": true,
   "description": "Local static server for web/ UI and peptide-info-database.json",
   "scripts": {
-    "web": "npx --yes serve . -l 5173"
+    "web": "npx --yes serve . -l 5173",
+    "test": "npx playwright test",
+    "test:ios": "npx playwright test --project=safari-ios",
+    "test:headed": "npx playwright test --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
   }
 }

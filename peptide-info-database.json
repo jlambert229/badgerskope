@@ -1,7 +1,6 @@
 {
   "disclaimer": "For research literacy and catalog cross-reference only. Not medical advice, prescribing guidance, or an endorsement of any product. Regulatory status and indications vary by jurisdiction; many entries are not FDA-approved for human use. Verify every vial identity with certificates of analysis and licensed professionals. Reported benefits, timing, and cycling fields summarize literature, labels, or typical preclinical models only. They are not individualized instructions. Controlled drugs and prescription peptides require licensed supervision. synergisticWith links describe co-use or combination narratives in trials, labels, named stacks, or speculative mechanistic themes; they are not recommendations to combine agents. potentialApplications state person-centered benefit language for education only; evidenceNote on each line limits the claim. Not a promise of results for any catalog SKU. doseGuidelines summarize published label, trial, or animal literature about doses where effects were seen. They are not instructions to self-dose, convert animal doses, or match grey-market vials to pharmaceuticals. distinctiveQuality summarizes class reputation and discourse only; it is not a verified identity claim for grey-market SKUs, not individualized advice, and filter themes are educational groupings only. reportedBenefits lines are evidence-tier-labeled summaries from labels, trials, or bench literature; they are not individualized outcome promises for grey-market products.",
   "meta": {
-    "basedOnCatalogFile": "orbitrex-peptides.json",
     "builtAt": "2026-04-07T23:08:32.564Z",
     "entryCount": 53,
     "schemaVersion": "2.9",
@@ -85,9 +84,7 @@
   "entries": [
     {
       "catalog": {
-        "priceText": "$69.99",
-        "title": "1G-SGT 10mg",
-        "url": "https://orbitrexpeptide.is/product/1g-sgt-10mg-pic/"
+        "title": "1G-SGT 10mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
@@ -161,9 +158,7 @@
     },
     {
       "catalog": {
-        "priceText": "$119.99",
-        "title": "1G-SGT 20mg",
-        "url": "https://orbitrexpeptide.is/product/1g-sgt-20mg-pic/"
+        "title": "1G-SGT 20mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
@@ -237,9 +232,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "2G-TZ 10mg",
-        "url": "https://orbitrexpeptide.is/product/2g-tz-10mg/"
+        "title": "2G-TZ 10mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -294,9 +287,7 @@
     },
     {
       "catalog": {
-        "priceText": "$79.99",
-        "title": "2G-TZ 15mg",
-        "url": "https://orbitrexpeptide.is/product/2g-tz-15mg/"
+        "title": "2G-TZ 15mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -351,9 +342,7 @@
     },
     {
       "catalog": {
-        "priceText": "$129.99",
-        "title": "2G-TZ 30mg",
-        "url": "https://orbitrexpeptide.is/product/2g-tz-30mg/"
+        "title": "2G-TZ 30mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -408,9 +397,7 @@
     },
     {
       "catalog": {
-        "priceText": "$199.99",
-        "title": "2G-TZ 60mg",
-        "url": "https://orbitrexpeptide.is/product/2g-tz-60mg/"
+        "title": "2G-TZ 60mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -465,9 +452,7 @@
     },
     {
       "catalog": {
-        "priceText": "$79.99",
-        "title": "3G-RT 10mg",
-        "url": "https://orbitrexpeptide.is/product/3g-rt-10mg/"
+        "title": "3G-RT 10mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -518,9 +503,7 @@
     },
     {
       "catalog": {
-        "priceText": "$129.99",
-        "title": "3G-RT 20mg",
-        "url": "https://orbitrexpeptide.is/product/3g-rt-20mg-2/"
+        "title": "3G-RT 20mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -571,9 +554,7 @@
     },
     {
       "catalog": {
-        "priceText": "$219.99",
-        "title": "3G-RT 36mg",
-        "url": "https://orbitrexpeptide.is/product/3g-rt-36mg/"
+        "title": "3G-RT 36mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -624,9 +605,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99 – $159.99",
-        "title": "5-amino-1mq",
-        "url": "https://orbitrexpeptide.is/product/5-amino-1mq/"
+        "title": "5-amino-1mq"
       },
       "compoundType": "small_molecule",
       "cyclingNotes": "No published human regimen. Long-term safety is unknown, and any cycling schedule would be purely speculative.",
@@ -675,9 +654,7 @@
     },
     {
       "catalog": {
-        "priceText": "$54.99",
-        "title": "AOD-9604 5mg",
-        "url": "https://orbitrexpeptide.is/product/a9604-5mg/"
+        "title": "AOD-9604 5mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "No standard cycle. The main development programs ended without gaining approval.",
@@ -729,9 +706,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99",
-        "title": "ARA-290",
-        "url": "https://orbitrexpeptide.is/product/ara-290/"
+        "title": "ARA-290"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment length is defined by clinical trial design. Self-directed cycling is not supported by evidence.",
@@ -775,9 +750,7 @@
     },
     {
       "catalog": {
-        "priceText": "$39.99",
-        "title": "BPC-157 10mg",
-        "url": "https://orbitrexpeptide.is/product/bpc-15710mg/"
+        "title": "BPC-157 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "No evidence-based cycling template exists. Banned in sport by WADA since 2022.",
@@ -835,9 +808,7 @@
     },
     {
       "catalog": {
-        "priceText": null,
-        "title": "Bronchogen",
-        "url": "https://orbitrexpeptide.is/product/cartelax-2/"
+        "title": "Bronchogen"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Often described as short repeated courses by vendors. The evidence for optimal course length and rest periods is weak.",
@@ -881,9 +852,7 @@
     },
     {
       "catalog": {
-        "priceText": "$99.99",
-        "title": "Cag-10mg",
-        "url": "https://orbitrexpeptide.is/product/cag-10mg/"
+        "title": "Cag-10mg"
       },
       "compoundType": "peptide_blend_incretin",
       "cyclingNotes": "Should follow supervised dose increases if used medically. Informal cycling is not established.",
@@ -939,9 +908,7 @@
     },
     {
       "catalog": {
-        "priceText": "$74.99",
-        "title": "CJC-1295 (no DAC) + IPA",
-        "url": "https://orbitrexpeptide.is/product/cjc-1295-no-dac-5mg-ipa-5mg/"
+        "title": "CJC-1295 (no DAC) + IPA"
       },
       "compoundType": "peptide_blend_secretagogue",
       "cyclingNotes": "Online forums suggest weeks on/off to prevent the body from becoming less responsive, but there is little human proof for the optimal schedule. Growth hormone secretagogues are restricted by WADA.",
@@ -1008,9 +975,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "DSIP 10mg",
-        "url": "https://orbitrexpeptide.is/product/dsip-10mg/"
+        "title": "DSIP 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "No standard cycle. The research base is old and has not been updated with modern sleep study methods.",
@@ -1053,9 +1018,7 @@
     },
     {
       "catalog": {
-        "priceText": "$39.99 – $139.99",
-        "title": "Epithalon",
-        "url": "https://orbitrexpeptide.is/product/epithalon/"
+        "title": "Epithalon"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Often described as periodic short courses (e.g. 10-20 days) with rest periods. Evidence for the ideal schedule is very limited.",
@@ -1109,9 +1072,7 @@
     },
     {
       "catalog": {
-        "priceText": "$189.99",
-        "title": "FOXO4-DRI 10mg",
-        "url": "https://orbitrexpeptide.is/product/foxo4-dri-10mg/"
+        "title": "FOXO4-DRI 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Purely experimental. Any cycling protocol is speculative.",
@@ -1155,9 +1116,7 @@
     },
     {
       "catalog": {
-        "priceText": "$39.99",
-        "title": "GHK-Cu",
-        "url": "https://orbitrexpeptide.is/product/ghk-cu/"
+        "title": "GHK-Cu"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Topical use is typically ongoing. Injectable cycling has no evidence-based schedule.",
@@ -1218,9 +1177,7 @@
     },
     {
       "catalog": {
-        "priceText": "$119.99",
-        "title": "GLOW 70",
-        "url": "https://orbitrexpeptide.is/product/glow/"
+        "title": "GLOW 70"
       },
       "compoundType": "peptide_blend",
       "cyclingNotes": "No evidence-based cycle for this combination. Each component has its own research base.",
@@ -1278,9 +1235,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "Glutathione 1500mg",
-        "url": "https://orbitrexpeptide.is/product/glutathione-1500mg/"
+        "title": "Glutathione 1500mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Some clinics offer weekly or monthly IV series. Chronic oral supplementation also exists. The evidence quality depends on the specific medical condition.",
@@ -1334,9 +1289,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "Ipamorelin 10mg",
-        "url": "https://orbitrexpeptide.is/product/ipa-10mg/"
+        "title": "Ipamorelin 10mg"
       },
       "compoundType": "peptide_secretagogue",
       "cyclingNotes": "Online protocols commonly suggest periods on and off to maintain sensitivity. Formal human proof for the optimal schedule is limited.",
@@ -1406,9 +1359,7 @@
     },
     {
       "catalog": {
-        "priceText": "$69.99",
-        "title": "Kisspeptin",
-        "url": "https://orbitrexpeptide.is/product/kisspeptin-10mg/"
+        "title": "Kisspeptin"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Not a consumer supplement. Dosing is entirely research-protocol-dependent.",
@@ -1451,9 +1402,7 @@
     },
     {
       "catalog": {
-        "priceText": "$129.99",
-        "title": "KLOW",
-        "url": "https://orbitrexpeptide.is/product/klow-80-blend/"
+        "title": "KLOW"
       },
       "compoundType": "peptide_blend",
       "cyclingNotes": "No evidence-based cycle. Each component has its own considerations.",
@@ -1513,9 +1462,7 @@
     },
     {
       "catalog": {
-        "priceText": "$69.99",
-        "title": "KPV",
-        "url": "https://orbitrexpeptide.is/product/kpv-10mg/"
+        "title": "KPV"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Animal studies used limited treatment windows. There is no proven human cycling protocol.",
@@ -1572,9 +1519,7 @@
     },
     {
       "catalog": {
-        "priceText": "$69.99",
-        "title": "LIPO-C with B12",
-        "url": "https://orbitrexpeptide.is/product/lipo-c/"
+        "title": "LIPO-C with B12"
       },
       "compoundType": "blend_injection",
       "cyclingNotes": "Clinic-specific series, often weekly for a set number of weeks. Stop if side effects occur.",
@@ -1628,9 +1573,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99",
-        "title": "LL-37 5mg",
-        "url": "https://orbitrexpeptide.is/product/cartelax-4/"
+        "title": "LL-37 5mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Only theoretical intermittent use has been discussed. The safe dosing range in humans is unclear.",
@@ -1683,9 +1626,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99 – $139.99",
-        "title": "MOTS-c",
-        "url": "https://orbitrexpeptide.is/product/mots-c-10mg/"
+        "title": "MOTS-c"
       },
       "compoundType": "peptide",
       "cyclingNotes": "The research field is too early for any established cycling protocol. Current schedules are speculative.",
@@ -1740,9 +1681,7 @@
     },
     {
       "catalog": {
-        "priceText": "$39.99",
-        "title": "MT-1",
-        "url": "https://orbitrexpeptide.is/product/mt-1/"
+        "title": "MT-1"
       },
       "compoundType": "peptide",
       "cyclingNotes": "The implant replacement schedule is defined by the product label for the approved medical condition.",
@@ -1789,9 +1728,7 @@
     },
     {
       "catalog": {
-        "priceText": "$39.99",
-        "title": "MT-II",
-        "url": "https://orbitrexpeptide.is/product/mt-2/"
+        "title": "MT-II"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Tanning communities describe intermittent low-dose protocols, but no medical standard exists.",
@@ -1835,9 +1772,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99",
-        "title": "N-acetyl Selank Amidate 10mg",
-        "url": "https://orbitrexpeptide.is/product/selank-10mg/"
+        "title": "N-acetyl Selank Amidate 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Usually described as 2-4 week courses. Strong clinical trial evidence for the ideal cycle is limited.",
@@ -1892,9 +1827,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99",
-        "title": "N-acetyl Semax Amidate 10mg",
-        "url": "https://orbitrexpeptide.is/product/semax-30mg/"
+        "title": "N-acetyl Semax Amidate 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Given in treatment courses of defined length, not open-ended continuous use.",
@@ -1948,9 +1881,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "NAD+ 500mg",
-        "url": "https://orbitrexpeptide.is/product/n-adenine-d-500-mg/"
+        "title": "NAD+ 500mg"
       },
       "compoundType": "cofactor",
       "cyclingNotes": "Wellness IV treatments are often given weekly or monthly. The ideal frequency has not been established by strong clinical evidence.",
@@ -2004,9 +1935,7 @@
     },
     {
       "catalog": {
-        "priceText": "$129.99",
-        "title": "Orbitzen 40",
-        "url": "https://orbitrexpeptide.is/product/orbtizen40/"
+        "title": "Orbitzen 40"
       },
       "compoundType": "unknown_blend",
       "cyclingNotes": "Unknown without full ingredient disclosure.",
@@ -2030,12 +1959,7 @@
         "No standalone clinical trials: this exact mix has not been tested as a combined product in any formal study."
       ],
       "researchSummary": "A vendor-specific blend name that combines multiple weight-management peptide components into one product. The exact ratio and composition are defined by the supplier rather than by clinical trial design. Evaluate each component's evidence individually.",
-      "sources": [
-        {
-          "label": "Vendor product shell (login required for detail)",
-          "url": "https://orbitrexpeptide.is/product/orbtizen40/"
-        }
-      ],
+      "sources": [],
       "wellnessCategories": [],
       "distinctiveQuality": {
         "headline": "A vendor-blended weight-management product combining multiple active ingredients; no standalone clinical trials for the mix.",
@@ -2048,9 +1972,7 @@
     },
     {
       "catalog": {
-        "priceText": "$29.99",
-        "title": "Oxytocin 2mg",
-        "url": "https://orbitrexpeptide.is/product/oxytocin-2mg/"
+        "title": "Oxytocin 2mg"
       },
       "compoundType": "peptide_hormone",
       "cyclingNotes": "Not a supplement to cycle. Medical uses are episode-specific (childbirth, breastfeeding, research sessions).",
@@ -2103,9 +2025,7 @@
     },
     {
       "catalog": {
-        "priceText": "$34.99",
-        "title": "Pinealon",
-        "url": "https://orbitrexpeptide.is/product/pinealon-10mg/"
+        "title": "Pinealon"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Described as short repeated courses by vendors. The evidence for this approach is thin.",
@@ -2160,9 +2080,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99",
-        "title": "PT-141",
-        "url": "https://orbitrexpeptide.is/product/pt-141-10mg/"
+        "title": "PT-141"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Not for daily continuous use. Nausea limits how frequently most people can use it. Follow the label's maximum frequency guidance.",
@@ -2205,9 +2123,7 @@
     },
     {
       "catalog": {
-        "priceText": "$29.99",
-        "title": "Selank 10mg",
-        "url": "https://orbitrexpeptide.is/product/selank-30mg-copy/"
+        "title": "Selank 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Typically used in multi-week treatment courses rather than indefinitely.",
@@ -2262,9 +2178,7 @@
     },
     {
       "catalog": {
-        "priceText": "$29.99",
-        "title": "Semax 10mg",
-        "url": "https://orbitrexpeptide.is/product/semax-10mg/"
+        "title": "Semax 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Used in defined treatment courses, not as a lifelong daily supplement.",
@@ -2318,9 +2232,7 @@
     },
     {
       "catalog": {
-        "priceText": "$79.99",
-        "title": "Sermorelin 10mg",
-        "url": "https://orbitrexpeptide.is/product/sermorelin-10mg/"
+        "title": "Sermorelin 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Some doctors pause treatment after several months to reassess growth hormone and IGF-1 levels, but there is no universal protocol.",
@@ -2374,9 +2286,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "SLU-PP-332 5mg",
-        "url": "https://orbitrexpeptide.is/product/slu-pp-332/"
+        "title": "SLU-PP-332 5mg"
       },
       "compoundType": "small_molecule",
       "cyclingNotes": "Purely preclinical. No information on how long humans could safely use it.",
@@ -2424,9 +2334,7 @@
     },
     {
       "catalog": {
-        "priceText": "$79.99",
-        "title": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)",
-        "url": "https://orbitrexpeptide.is/product/somatopulse/"
+        "title": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
       },
       "compoundType": "peptide_blend_secretagogue",
       "cyclingNotes": "Follow the tesamorelin label monitoring schedule for that component. Combining two peptides adds complexity.",
@@ -2487,9 +2395,7 @@
     },
     {
       "catalog": {
-        "priceText": "$79.99 – $269.99",
-        "title": "SS-31",
-        "url": "https://orbitrexpeptide.is/product/ss-31-10mg/"
+        "title": "SS-31"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment periods are trial-defined. Not available for consumer self-dosing.",
@@ -2542,9 +2448,7 @@
     },
     {
       "catalog": {
-        "priceText": "$99.99",
-        "title": "Survodutide 10mg",
-        "url": "https://orbitrexpeptide.is/product/survodutide-10mg/"
+        "title": "Survodutide 10mg"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Supervised dose titration only. Still investigational and not available outside clinical trials.",
@@ -2594,9 +2498,7 @@
     },
     {
       "catalog": {
-        "priceText": "$59.99",
-        "title": "TB-500 10mg",
-        "url": "https://orbitrexpeptide.is/product/tb-500-10mg/"
+        "title": "TB-500 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Forum-based loading and maintenance schedules are common but not evidence-backed. Thymosin beta-4 products are banned by WADA.",
@@ -2652,9 +2554,7 @@
     },
     {
       "catalog": {
-        "priceText": "$69.99",
-        "title": "Tesa-10mg",
-        "url": "https://orbitrexpeptide.is/product/tesa-10mg-2/"
+        "title": "Tesa-10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2708,9 +2608,7 @@
     },
     {
       "catalog": {
-        "priceText": "$99.99",
-        "title": "Tesa-15mg",
-        "url": "https://orbitrexpeptide.is/product/tesa-15mg/"
+        "title": "Tesa-15mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2764,9 +2662,7 @@
     },
     {
       "catalog": {
-        "priceText": "$159.99",
-        "title": "Tesa-20mg",
-        "url": "https://orbitrexpeptide.is/product/tesa-20mg/"
+        "title": "Tesa-20mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2820,9 +2716,7 @@
     },
     {
       "catalog": {
-        "priceText": "$79.99",
-        "title": "Thymosin Alpha-1 10mg",
-        "url": "https://orbitrexpeptide.is/product/thymosin-alpha-1-10mg/"
+        "title": "Thymosin Alpha-1 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment courses are defined for specific conditions (e.g. alongside hepatitis antivirals).",
@@ -2875,9 +2769,7 @@
     },
     {
       "catalog": {
-        "priceText": "$49.99",
-        "title": "Vilon 20mg",
-        "url": "https://orbitrexpeptide.is/product/vilon-20mg/"
+        "title": "Vilon 20mg"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Short pulsed courses are described in marketing materials. The evidence is weak.",
@@ -2932,9 +2824,7 @@
     },
     {
       "catalog": {
-        "priceText": "$74.99",
-        "title": "VIP 10mg",
-        "url": "https://orbitrexpeptide.is/product/vip-10mg/"
+        "title": "VIP 10mg"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment periods are defined by research protocols.",
@@ -2978,9 +2868,7 @@
     },
     {
       "catalog": {
-        "priceText": "$89.99",
-        "title": "Wolverine 20mg",
-        "url": "https://orbitrexpeptide.is/product/wolverine-20mg/"
+        "title": "Wolverine 20mg"
       },
       "compoundType": "peptide_blend",
       "cyclingNotes": "Follow the more conservative schedule of the two components. Note that both BPC-157 and TB-500 are WADA-banned substances.",
