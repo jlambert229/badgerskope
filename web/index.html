@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Peptide Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ===== Header ===== -->
+      <header class="header">
+        <div class="header__inner">
+          <div class="brand">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <div>
+              <h1 class="brand__title">Peptide Reference</h1>
+              <p class="brand__tag">Research summaries &mdash; not medical advice</p>
+            </div>
+          </div>
+          <div class="header__actions">
+            <button
+              type="button"
+              class="btn btn--icon theme-toggle"
+              id="theme-toggle"
+              aria-label="Toggle light/dark theme"
+              title="Toggle theme (t)"
+            >
+              <span class="icon-sun" aria-hidden="true">&#9788;</span>
+              <span class="icon-moon" aria-hidden="true">&#9790;</span>
+            </button>
+            <div class="header__stats" id="stats" aria-live="polite"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== Tab navigation ===== -->
+      <nav class="tab-bar" aria-label="Main sections">
+        <div class="tab-bar__inner" role="tablist" aria-label="Content sections">
+          <button
+            type="button"
+            role="tab"
+            id="tab-browse"
+            class="tab"
+            aria-selected="true"
+            aria-controls="panel-browse"
+          >Browse</button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-compare"
+            class="tab"
+            aria-selected="false"
+            aria-controls="panel-compare"
+            tabindex="-1"
+          >Compare</button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-stats"
+            class="tab"
+            aria-selected="false"
+            aria-controls="panel-stats"
+            tabindex="-1"
+          >Stats</button>
+        </div>
+      </nav>
+
+      <!-- ===== Browse panel ===== -->
+      <div
+        role="tabpanel"
+        id="panel-browse"
+        aria-labelledby="tab-browse"
+        tabindex="0"
+      >
+        <section class="controls">
+          <label class="field">
+            <span class="field__label">Search</span>
+            <input
+              id="search"
+              class="field__input"
+              type="search"
+              placeholder="Title, summary, compound type..."
+              autocomplete="off"
+            />
+          </label>
+          <label class="field">
+            <span class="field__label">Wellness category</span>
+            <select id="category" class="field__input field__select"></select>
+          </label>
+          <label class="field">
+            <span class="field__label">Compound type</span>
+            <select id="compound" class="field__input field__select"></select>
+          </label>
+          <label class="field">
+            <span class="field__label">Known for (group)</span>
+            <select id="known-for" class="field__input field__select"></select>
+          </label>
+          <label class="field">
+            <span class="field__label">Evidence tier</span>
+            <select id="evidence-filter" class="field__input field__select">
+              <option value="">All</option>
+              <option value="Approved/labeled">Approved/labeled</option>
+              <option value="Major trials">Major trials</option>
+              <option value="Early human">Early human</option>
+              <option value="Animal only">Animal only</option>
+              <option value="Practice-based">Practice-based</option>
+            </select>
+          </label>
+          <label class="field field--narrow">
+            <span class="field__label">Sort</span>
+            <select id="sort" class="field__input field__select">
+              <option value="title">Title A&ndash;Z</option>
+              <option value="title-desc">Title Z&ndash;A</option>
+              <option value="price-asc">Price low to high</option>
+              <option value="price-desc">Price high to low</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="selection-bar" id="selection-bar" aria-label="Selection actions">
+          <span class="selection-bar__count" id="selection-count">0 selected</span>
+          <div class="selection-bar__actions">
+            <button type="button" class="btn btn--ghost" id="select-visible">Select visible</button>
+            <button type="button" class="btn btn--ghost" id="clear-selection" disabled>Clear</button>
+            <button type="button" class="btn btn--primary" id="compare-selected" disabled>Compare selected</button>
+            <button type="button" class="btn btn--primary" id="view-selected" disabled>View selected</button>
+          </div>
+        </section>
+
+        <p id="load-error" class="load-error" hidden></p>
+
+        <main class="grid" id="grid" aria-busy="true"></main>
+      </div>
+
+      <!-- ===== Compare panel ===== -->
+      <div
+        role="tabpanel"
+        id="panel-compare"
+        aria-labelledby="tab-compare"
+        tabindex="0"
+        hidden
+      >
+        <section class="compare-panel">
+          <p class="compare-panel__empty" id="compare-empty">
+            Select 2+ entries from Browse tab to compare
+          </p>
+          <div class="compare-table-wrap" id="compare-table"></div>
+        </section>
+      </div>
+
+      <!-- ===== Stats panel ===== -->
+      <div
+        role="tabpanel"
+        id="panel-stats"
+        aria-labelledby="tab-stats"
+        tabindex="0"
+        hidden
+      >
+        <section class="stats-dashboard" id="stats-dashboard">
+          <div class="stat-card" id="stat-total">
+            <h3 class="stat-card__title">Total entries</h3>
+            <p class="stat-card__value" id="stat-total-value">&mdash;</p>
+          </div>
+          <div class="stat-card" id="stat-compounds">
+            <h3 class="stat-card__title">Compound type breakdown</h3>
+            <div class="stat-card__body"></div>
+          </div>
+          <div class="stat-card" id="stat-categories">
+            <h3 class="stat-card__title">Category distribution</h3>
+            <div class="stat-card__body"></div>
+          </div>
+          <div class="stat-card" id="stat-evidence">
+            <h3 class="stat-card__title">Evidence quality overview</h3>
+            <div class="stat-card__body"></div>
+          </div>
+          <div class="stat-card" id="stat-themes">
+            <h3 class="stat-card__title">Theme distribution</h3>
+            <div class="stat-card__body"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ===== Footer ===== -->
+      <footer class="footer">
+        <p id="disclaimer" class="disclaimer"></p>
+        <p class="footer__meta" id="footer-meta"></p>
+        <p class="footer__shortcuts">
+          <kbd>?</kbd> for keyboard shortcuts
+        </p>
+      </footer>
+    </div>
+
+    <!-- ===== Detail modal ===== -->
+    <dialog class="modal" id="detail-dialog" aria-labelledby="detail-title">
+      <div class="modal__panel">
+        <div class="modal__toolbar">
+          <button
+            type="button"
+            class="btn btn--icon"
+            id="detail-bookmark"
+            aria-label="Bookmark this entry"
+            title="Bookmark (b)"
+          >&#9734;</button>
+          <button
+            type="button"
+            class="modal__close"
+            id="detail-close"
+            aria-label="Close"
+          >&times;</button>
+        </div>
+        <nav class="detail__nav" id="detail-nav" aria-label="Selected entries" hidden>
+          <button
+            type="button"
+            class="btn btn--ghost btn--small"
+            id="detail-prev"
+            aria-label="Previous entry"
+          >&larr; Previous</button>
+          <span class="detail__nav-pos" id="detail-nav-pos"></span>
+          <button
+            type="button"
+            class="btn btn--ghost btn--small"
+            id="detail-next"
+            aria-label="Next entry"
+          >Next &rarr;</button>
+        </nav>
+        <div id="detail-body"></div>
+        <p class="modal__hint">Press <kbd>Esc</kbd> to close</p>
+      </div>
+    </dialog>
+
+    <!-- ===== Keyboard shortcuts modal ===== -->
+    <dialog class="modal modal--compact" id="shortcuts-dialog" aria-labelledby="shortcuts-title">
+      <div class="modal__panel">
+        <button
+          type="button"
+          class="modal__close"
+          id="shortcuts-close"
+          aria-label="Close shortcuts"
+        >&times;</button>
+        <h2 id="shortcuts-title" class="modal__title">Keyboard shortcuts</h2>
+        <dl class="shortcuts-list">
+          <div class="shortcuts-list__item">
+            <dt><kbd>Esc</kbd></dt>
+            <dd>Close dialog</dd>
+          </div>
+          <div class="shortcuts-list__item">
+            <dt><kbd>&larr;</kbd> <kbd>&rarr;</kbd></dt>
+            <dd>Navigate entries</dd>
+          </div>
+          <div class="shortcuts-list__item">
+            <dt><kbd>/</kbd></dt>
+            <dd>Focus search</dd>
+          </div>
+          <div class="shortcuts-list__item">
+            <dt><kbd>?</kbd></dt>
+            <dd>Show shortcuts</dd>
+          </div>
+          <div class="shortcuts-list__item">
+            <dt><kbd>t</kbd></dt>
+            <dd>Toggle theme</dd>
+          </div>
+          <div class="shortcuts-list__item">
+            <dt><kbd>b</kbd></dt>
+            <dd>Bookmark current entry</dd>
+          </div>
+        </dl>
+      </div>
+    </dialog>
+
+    <!-- ===== Bookmarks bar ===== -->
+    <div class="bookmarks-bar" id="bookmarks-bar" aria-live="polite" hidden>
+      <span class="bookmarks-bar__icon" aria-hidden="true">&#9733;</span>
+      <span class="bookmarks-bar__count" id="bookmarks-count">0</span>
+      <span class="bookmarks-bar__label">bookmarked</span>
+    </div>
+
+    <!-- ===== Back to top ===== -->
+    <button
+      type="button"
+      class="back-to-top"
+      id="back-to-top"
+      aria-label="Back to top"
+      hidden
+    >&uarr;</button>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

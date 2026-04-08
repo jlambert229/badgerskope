@@ -1,0 +1,3036 @@
+{
+  "disclaimer": "For research literacy and catalog cross-reference only. Not medical advice, prescribing guidance, or an endorsement of any product. Regulatory status and indications vary by jurisdiction; many entries are not FDA-approved for human use. Verify every vial identity with certificates of analysis and licensed professionals. Reported benefits, timing, and cycling fields summarize literature, labels, or typical preclinical models only. They are not individualized instructions. Controlled drugs and prescription peptides require licensed supervision. synergisticWith links describe co-use or combination narratives in trials, labels, named stacks, or speculative mechanistic themes; they are not recommendations to combine agents. potentialApplications state person-centered benefit language for education only; evidenceNote on each line limits the claim. Not a promise of results for any catalog SKU. doseGuidelines summarize published label, trial, or animal literature about doses where effects were seen. They are not instructions to self-dose, convert animal doses, or match grey-market vials to pharmaceuticals. distinctiveQuality summarizes class reputation and discourse only; it is not a verified identity claim for grey-market SKUs, not individualized advice, and filter themes are educational groupings only. reportedBenefits lines are evidence-tier-labeled summaries from labels, trials, or bench literature; they are not individualized outcome promises for grey-market products.",
+  "meta": {
+    "basedOnCatalogFile": "orbitrex-peptides.json",
+    "builtAt": "2026-04-07T23:08:32.564Z",
+    "entryCount": 53,
+    "schemaVersion": "2.9",
+    "wellnessCategoryIndex": {
+      "appetite_satiety": "Appetite, feeling full, and eating behavior research",
+      "body_composition": "Body fat, muscle mass, and weight-related research (clinical or lab)",
+      "cardiovascular_metabolic": "Heart health, blood pressure, cholesterol, and metabolic risk research",
+      "cognitive_mood": "Memory, focus, anxiety, depression, or brain growth-factor research",
+      "energy_mitochondria": "Cellular energy production, mitochondrial health, exercise capacity, and NAD+-related metabolism",
+      "gastrointestinal": "Gut lining, digestion, and digestive organ research",
+      "immune_inflammation": "Immune system function, inflammatory signaling, or natural defense peptides",
+      "longevity_cellular_aging": "Cell aging, chromosome-tip maintenance, aging blood markers, or lifespan studies",
+      "recovery_tissue_repair": "Wound healing, muscle and joint repair, new blood vessel growth, or tissue remodeling research",
+      "reproductive_endocrine": "Reproductive hormones, fertility, sexual function, or sex-hormone pathway research",
+      "respiratory_airway": "Lung, airway lining, and breathing-related research",
+      "skin_pigmentation_aesthetics": "Skin color, tanning, skin aging, or cosmetic skin research",
+      "sleep_circadian": "Sleep quality, body clock biology, or sedation-related research",
+      "supports_accessory": "Mixing liquids, solvents, or compounding supplies without their own drug activity"
+    },
+    "synergyEvidenceLegend": {
+      "clinical_fixed_combo_development": "This combination has been studied or approved as a defined drug pairing in clinical trials or product labels.",
+      "co_packaged_definition": "These components are built into a single named product in this catalog.",
+      "named_stack_mechanism_complement": "A named retail product where the ingredients are described as working through different but complementary pathways (mostly based on lab science or theory, not large human trials).",
+      "co_packaged_or_parallel_components": "The product explicitly bundles these ingredients together or sells them as matched separate items.",
+      "vendor_blend_definition": "The vendor's marketing defines this blend in relation to other products they sell.",
+      "co_secretagogue_grey_literature": "Growth-hormone-releasing agents combined in non-mainstream wellness discussions; no proven clinical benefit outside their individual approved uses.",
+      "pituitary_axis_combination_discourse": "Discussed together for stimulating growth hormone release from the pituitary gland; quality of evidence varies.",
+      "named_stack_product": "A named combination product that pairs specific active ingredients together.",
+      "traditional_co_use_practice": "A historical pattern of using these together in certain medical traditions or communities, not part of standard Western guidelines.",
+      "hypothesized_mitochondrial_complement": "Both target cellular energy systems; very few human studies testing them as a combination.",
+      "hypothesized_redox_mitochondrial_complement": "Linked in wellness marketing narratives only; no strong combined trial evidence.",
+      "khavinson_course_marketing": "Bioregulator products bundled together commercially; limited independent clinical trial support.",
+      "immune_thymus_theme_juxtaposition": "Grouped by a shared immune-system theme, not by proven combination benefits.",
+      "innate_immunity_theme_speculative": "Both relate to the body's first-line immune defenses; whether they work better together is unclear.",
+      "wellness_adjunct_folklore": "Offered side by side on clinic menus; not proof that they work better together."
+    },
+    "potentialApplicationEvidenceLegend": {
+      "how_to_read": "The 'personCenteredBenefit' field describes the help a person might be looking for in plain language; the 'evidenceNote' field states how strong the evidence actually is so you can tell marketing apart from proof.",
+      "not_outcomes": "Listing a benefit does not mean this particular vial will produce it; what actually happens depends on product identity, dose, purity, and medical supervision."
+    },
+    "doseGuidelinesLegend": {
+      "clinical_exploratory": "Small or specialized human studies; not a consumer dosing card.",
+      "compounded_practice": "Wellness clinic or regional prescribing customs; wide variation and weak evidence for a universal effective dose.",
+      "evidence_note": "The 'minimumEffectiveDoseNotes' field summarizes where an effect first appeared in the cited evidence tier (product label, major trial, early study, or animal work). It is not your personal dose and not a substitute for a prescriber or trial protocol.",
+      "not_applicable_peptide": "This is a mixing liquid or solvent; talking about a minimum drug dose does not apply.",
+      "phase1_human": "Tested only in healthy volunteers for safety and basic effects; the effective long-term dose is usually unknown.",
+      "pivotal_trials": "Large, high-quality trials that defined the effective maintenance doses for a specific medical condition.",
+      "preclinical_animal": "Tested in animals only; translating those doses to humans is uncertain.",
+      "regulatory_label": "Official prescribing information approved by the FDA or another national drug regulator.",
+      "unknown_identity": "The active ingredient is not confirmed; a minimum effective dose cannot be stated."
+    },
+    "knownForThemeIndex": {
+      "metabolic_incretins": "Appetite, weight, and blood sugar products based on gut hormones like GLP-1, dual GIP/GLP-1, triple-action incretins, amylin, or GLP-1/glucagon combinations.",
+      "growth_hormone_axis": "Peptides that stimulate the pituitary gland to release growth hormone; includes products marketed for reducing belly fat.",
+      "tissue_healing": "Known for repair and recovery of tendons, muscles, gut lining, or wounds (usually one main mechanism per product).",
+      "multi_ingredient_stack": "A vendor-prepared blend of multiple active ingredients where the selling point is the bundle, not any single ingredient.",
+      "skin_tanning_libido": "Products for skin darkening, tanning, melanin pathways, or sexual arousal through melanocortin receptors.",
+      "mitochondria_nad_redox": "Products targeting cellular energy factories (mitochondria), NAD+ levels, or major cellular antioxidant systems.",
+      "immune_mucosal": "Natural defense peptides, thymus-derived immune modulators, gut barrier repair signals, or anti-inflammatory fragments.",
+      "neuro_mood_sleep": "Peptides marketed for thinking, anxiety relief, brain performance, or sleep improvement.",
+      "reproduction_social": "Fertility hormones, labor or breastfeeding hormones, or oxytocin-family bonding and social behavior research.",
+      "experimental_weight_adjunct": "Non-gut-hormone weight-loss helpers: lipotropic shots, growth-hormone fragment products, research chemicals, or exercise-mimicking compounds sold in metabolic wellness markets.",
+      "aging_bioregulators": "Longevity, cell-aging, or ultra-short 'bioregulator' peptides marketed for anti-aging (often with limited Western clinical trial support)."
+    },
+    "distinctiveQualityLegend": {
+      "headline_meaning": "A plain-language reputation summary: what doctors, researchers, or popular discussion most associate with this type of product. Not a promise that any specific vial delivers on that reputation.",
+      "themes_meaning": "Themes are intentionally broad groupings (about a dozen) so related products appear together in filters; one product may show up under several themes.",
+      "basisNote_meaning": "A short note on whether the reputation is backed by major human trials, mixed studies, lab science, marketing, or is simply describing what the product physically is."
+    },
+    "reportedBenefitsLegend": {
+      "prefix_clinical": "Based on major human drug-approval trials, large clinical studies, or official prescribing information for a comparable approved drug.",
+      "prefix_trial": "Based on published human clinical study groups (may be early-stage or small).",
+      "prefix_preclinical": "Based on animal, cell, or lab-dish experiments; not proof of benefit in people.",
+      "prefix_biochemistry": "Based on fundamental biology; not a claim about treatment outcomes.",
+      "prefix_practice": "Based on clinic or wellness practice patterns; controlled outcome studies are often thin.",
+      "prefix_vendor": "Based on marketing or bundled product framing without a major combined clinical trial.",
+      "prefix_human_experience": "Based on case reports, surveys, or informal human use stories (weakest evidence tier).",
+      "caveat": "Each line summarizes a reported benefit for educational purposes, not a promise that a research-use vial will reproduce clinical trial results. Product identity, purity, and medical supervision determine real outcomes."
+    }
+  },
+  "entries": [
+    {
+      "catalog": {
+        "priceText": "$69.99",
+        "title": "1G-SGT 10mg",
+        "url": "https://orbitrexpeptide.is/product/1g-sgt-10mg-pic/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Type 2 diabetes (pharmacy semaglutide)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Start at a low dose and increase every 4 weeks. Many people stay on 0.5 mg or 1 mg once weekly for blood sugar control. The starting doses are ramp-up steps, not the final effective dose. Check the current prescribing information for exact numbers."
+        },
+        {
+          "indicationOrContext": "Weight loss (pharmacy semaglutide 2.4 mg program)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Trials ramped up to 2.4 mg once weekly for maximum weight loss. Lower doses still beat placebo, but 2.4 mg weekly was the target maintenance dose after the ramp-up period."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
+      "notes": "Exact mapping of the vendor code \"1G-SGT\" to semaglutide is not confirmed in published scientific research by that string; summary describes semaglutide as the widely used GLP-1 drug class.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
+          "personCenteredBenefit": "Help people with type 2 diabetes bring blood sugar down when used as prescribed GLP-1 therapy."
+        },
+        {
+          "evidenceNote": "Strong controlled trial evidence for semaglutide; not interchangeable with unverified powders.",
+          "personCenteredBenefit": "Help some adults lose a meaningful amount of weight combined with diet and movement support."
+        },
+        {
+          "evidenceNote": "SELECT-style cardiovascular trial context for semaglutide class.",
+          "personCenteredBenefit": "May lower risk of major heart events in certain high-risk adults (trial-defined group)."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: significantly lowers blood sugar (HbA1c) in people with type 2 diabetes.",
+        "Clinical trials (STEP program): produces meaningful weight loss when combined with diet and exercise.",
+        "Heart health (SELECT trial): reduced major heart events in people with obesity and heart disease.",
+        "Also reported: modest drops in blood pressure and cholesterol in trial participants.",
+        "How it works: slows stomach emptying and reduces appetite, leading to eating less and better blood sugar control."
+      ],
+      "researchSummary": "A weekly injectable in the same family as Ozempic (semaglutide). It mimics a natural gut hormone called GLP-1 that tells your brain you are full and helps your body manage blood sugar. Large clinical trials showed meaningful weight loss and better blood sugar control. The vendor code \"1G-SGT\" is shorthand; always confirm the actual contents with a certificate of analysis.",
+      "sources": [
+        {
+          "label": "Wikipedia: Semaglutide",
+          "url": "https://en.wikipedia.org/wiki/Semaglutide"
+        },
+        {
+          "label": "PubMed: STEP 5 trial snapshot",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36216945/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Cag-10mg"
+          ],
+          "evidenceBasis": "clinical_fixed_combo_development",
+          "rationale": "Semaglutide is being combined with cagrilintide in a phase 3 drug program called CagriSema, pairing a gut-hormone drug with a fullness-signaling drug for stronger weight loss than either alone."
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a semaglutide-class weight-loss and blood-sugar drug, one of the most widely prescribed injectable peptides in the world.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on major human trials and approved drug labels; the vendor's code name is not a separate scientific claim."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$119.99",
+        "title": "1G-SGT 20mg",
+        "url": "https://orbitrexpeptide.is/product/1g-sgt-20mg-pic/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Type 2 diabetes (pharmacy semaglutide)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Start at a low dose and increase every 4 weeks. Many people stay on 0.5 mg or 1 mg once weekly for blood sugar control. The starting doses are ramp-up steps, not the final effective dose. Check the current prescribing information for exact numbers."
+        },
+        {
+          "indicationOrContext": "Weight loss (pharmacy semaglutide 2.4 mg program)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Trials ramped up to 2.4 mg once weekly for maximum weight loss. Lower doses still beat placebo, but 2.4 mg weekly was the target maintenance dose after the ramp-up period."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
+      "notes": "Exact mapping of the vendor code \"1G-SGT\" to semaglutide is not confirmed in published scientific research by that string; summary describes semaglutide as the widely used GLP-1 drug class.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
+          "personCenteredBenefit": "Help people with type 2 diabetes bring blood sugar down when used as prescribed GLP-1 therapy."
+        },
+        {
+          "evidenceNote": "Strong controlled trial evidence for semaglutide; not interchangeable with unverified powders.",
+          "personCenteredBenefit": "Help some adults lose a meaningful amount of weight combined with diet and movement support."
+        },
+        {
+          "evidenceNote": "SELECT-style cardiovascular trial context for semaglutide class.",
+          "personCenteredBenefit": "May lower risk of major heart events in certain high-risk adults (trial-defined group)."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: significantly lowers blood sugar (HbA1c) in people with type 2 diabetes.",
+        "Clinical trials (STEP program): produces meaningful weight loss when combined with diet and exercise.",
+        "Heart health (SELECT trial): reduced major heart events in people with obesity and heart disease.",
+        "Also reported: modest drops in blood pressure and cholesterol in trial participants.",
+        "How it works: slows stomach emptying and reduces appetite, leading to eating less and better blood sugar control."
+      ],
+      "researchSummary": "A weekly injectable in the same family as Ozempic (semaglutide). It mimics a natural gut hormone called GLP-1 that tells your brain you are full and helps your body manage blood sugar. Large clinical trials showed meaningful weight loss and better blood sugar control. The vendor code \"1G-SGT\" is shorthand; always confirm the actual contents with a certificate of analysis.",
+      "sources": [
+        {
+          "label": "Wikipedia: Semaglutide",
+          "url": "https://en.wikipedia.org/wiki/Semaglutide"
+        },
+        {
+          "label": "PubMed: STEP 5 trial snapshot",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36216945/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Cag-10mg"
+          ],
+          "evidenceBasis": "clinical_fixed_combo_development",
+          "rationale": "Semaglutide is being combined with cagrilintide in a phase 3 drug program called CagriSema, pairing a gut-hormone drug with a fullness-signaling drug for stronger weight loss than either alone."
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a semaglutide-class weight-loss and blood-sugar drug, one of the most widely prescribed injectable peptides in the world.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on major human trials and approved drug labels; the vendor's code name is not a separate scientific claim."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "2G-TZ 10mg",
+        "url": "https://orbitrexpeptide.is/product/2g-tz-10mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
+      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
+          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
+        },
+        {
+          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
+          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
+        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
+        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
+        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
+      ],
+      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
+      "sources": [
+        {
+          "label": "Wikipedia: Tirzepatide",
+          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
+        },
+        {
+          "label": "PubMed: tirzepatide metabolic trials (example)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$79.99",
+        "title": "2G-TZ 15mg",
+        "url": "https://orbitrexpeptide.is/product/2g-tz-15mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
+      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
+          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
+        },
+        {
+          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
+          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
+        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
+        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
+        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
+      ],
+      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
+      "sources": [
+        {
+          "label": "Wikipedia: Tirzepatide",
+          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
+        },
+        {
+          "label": "PubMed: tirzepatide metabolic trials (example)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$129.99",
+        "title": "2G-TZ 30mg",
+        "url": "https://orbitrexpeptide.is/product/2g-tz-30mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
+      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
+          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
+        },
+        {
+          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
+          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
+        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
+        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
+        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
+      ],
+      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
+      "sources": [
+        {
+          "label": "Wikipedia: Tirzepatide",
+          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
+        },
+        {
+          "label": "PubMed: tirzepatide metabolic trials (example)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$199.99",
+        "title": "2G-TZ 60mg",
+        "url": "https://orbitrexpeptide.is/product/2g-tz-60mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
+      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
+          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
+        },
+        {
+          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
+          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
+        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
+        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
+        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
+      ],
+      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
+      "sources": [
+        {
+          "label": "Wikipedia: Tirzepatide",
+          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
+        },
+        {
+          "label": "PubMed: tirzepatide metabolic trials (example)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$79.99",
+        "title": "3G-RT 10mg",
+        "url": "https://orbitrexpeptide.is/product/3g-rt-10mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Weight loss (investigational retatrutide)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Phase 2 trials used weekly doses that were slowly increased. Meaningful weight loss appeared at mid-range doses and got bigger at higher doses. No consumer dosing guide exists outside of clinical trials."
+        }
+      ],
+      "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
+      "notes": "Retail \"3G-RT\" is commonly used as shorthand for retatrutide-class triple agonists in grey-market listings.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
+          "personCenteredBenefit": "May produce large weight reductions in trial volunteers when the agent is a triple incretin under study."
+        },
+        {
+          "evidenceNote": "Development-stage; retail codes may not match trial material.",
+          "personCenteredBenefit": "May improve glucose markers alongside weight in study participants."
+        }
+      ],
+      "reportedBenefits": [
+        "Phase 2 trials: produced some of the largest average weight-loss numbers reported for any drug in this class.",
+        "Also reported: improvements in fasting blood sugar and insulin levels at higher doses.",
+        "Early data: positive shifts in triglycerides and liver enzyme markers in some participants.",
+        "Still in development: combines three hormone pathways (GIP, GLP-1, glucagon) for weight and blood sugar effects."
+      ],
+      "researchSummary": "An investigational injectable (retatrutide class) that hits three hormone receptors: GIP, GLP-1, and glucagon. Early trials reported some of the largest average weight reductions seen for any drug in this space. Still in development and not yet approved anywhere.",
+      "sources": [
+        {
+          "label": "PubMed: retatrutide obesity trial snapshot",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a next-generation triple-action weight-loss peptide still in clinical trials, with some of the largest weight-loss numbers reported so far.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$129.99",
+        "title": "3G-RT 20mg",
+        "url": "https://orbitrexpeptide.is/product/3g-rt-20mg-2/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Weight loss (investigational retatrutide)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Phase 2 trials used weekly doses that were slowly increased. Meaningful weight loss appeared at mid-range doses and got bigger at higher doses. No consumer dosing guide exists outside of clinical trials."
+        }
+      ],
+      "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
+      "notes": "Retail \"3G-RT\" is commonly used as shorthand for retatrutide-class triple agonists in grey-market listings.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
+          "personCenteredBenefit": "May produce large weight reductions in trial volunteers when the agent is a triple incretin under study."
+        },
+        {
+          "evidenceNote": "Development-stage; retail codes may not match trial material.",
+          "personCenteredBenefit": "May improve glucose markers alongside weight in study participants."
+        }
+      ],
+      "reportedBenefits": [
+        "Phase 2 trials: produced some of the largest average weight-loss numbers reported for any drug in this class.",
+        "Also reported: improvements in fasting blood sugar and insulin levels at higher doses.",
+        "Early data: positive shifts in triglycerides and liver enzyme markers in some participants.",
+        "Still in development: combines three hormone pathways (GIP, GLP-1, glucagon) for weight and blood sugar effects."
+      ],
+      "researchSummary": "An investigational injectable (retatrutide class) that hits three hormone receptors: GIP, GLP-1, and glucagon. Early trials reported some of the largest average weight reductions seen for any drug in this space. Still in development and not yet approved anywhere.",
+      "sources": [
+        {
+          "label": "PubMed: retatrutide obesity trial snapshot",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a next-generation triple-action weight-loss peptide still in clinical trials, with some of the largest weight-loss numbers reported so far.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$219.99",
+        "title": "3G-RT 36mg",
+        "url": "https://orbitrexpeptide.is/product/3g-rt-36mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Weight loss (investigational retatrutide)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Phase 2 trials used weekly doses that were slowly increased. Meaningful weight loss appeared at mid-range doses and got bigger at higher doses. No consumer dosing guide exists outside of clinical trials."
+        }
+      ],
+      "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
+      "notes": "Retail \"3G-RT\" is commonly used as shorthand for retatrutide-class triple agonists in grey-market listings.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
+          "personCenteredBenefit": "May produce large weight reductions in trial volunteers when the agent is a triple incretin under study."
+        },
+        {
+          "evidenceNote": "Development-stage; retail codes may not match trial material.",
+          "personCenteredBenefit": "May improve glucose markers alongside weight in study participants."
+        }
+      ],
+      "reportedBenefits": [
+        "Phase 2 trials: produced some of the largest average weight-loss numbers reported for any drug in this class.",
+        "Also reported: improvements in fasting blood sugar and insulin levels at higher doses.",
+        "Early data: positive shifts in triglycerides and liver enzyme markers in some participants.",
+        "Still in development: combines three hormone pathways (GIP, GLP-1, glucagon) for weight and blood sugar effects."
+      ],
+      "researchSummary": "An investigational injectable (retatrutide class) that hits three hormone receptors: GIP, GLP-1, and glucagon. Early trials reported some of the largest average weight reductions seen for any drug in this space. Still in development and not yet approved anywhere.",
+      "sources": [
+        {
+          "label": "PubMed: retatrutide obesity trial snapshot",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a next-generation triple-action weight-loss peptide still in clinical trials, with some of the largest weight-loss numbers reported so far.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99 – $159.99",
+        "title": "5-amino-1mq",
+        "url": "https://orbitrexpeptide.is/product/5-amino-1mq/"
+      },
+      "compoundType": "small_molecule",
+      "cyclingNotes": "No published human regimen. Long-term safety is unknown, and any cycling schedule would be purely speculative.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Human use",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Animal studies used weight-based doses in mice. There is no established minimum effective dose for humans."
+        }
+      ],
+      "dosingTimingNotes": "Only tested in rodents. No established human dosing schedule or timing. Oral absorption has only been studied in animals.",
+      "notes": "Human clinical trials for this scaffold were not prominent in PubMed at database build time; treat as preclinical research tool.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Almost only animal data; no proven benefit in people for this research chemical.",
+          "personCenteredBenefit": "Theoretically could bias metabolism toward less fat gain in obesity models."
+        }
+      ],
+      "reportedBenefits": [
+        "Animal studies: reduced body fat and improved blood sugar control in obese mice.",
+        "Rodent data: confirmed the compound gets absorbed into the body after dosing.",
+        "No human trials: there is no accepted clinical evidence that it works or is safe for people."
+      ],
+      "researchSummary": "A small research molecule (not actually a peptide) that targets an enzyme called NNMT, which plays a role in how fat cells handle energy. Showed promising fat-reduction results in mice, but has not been tested in proper human trials. Sold as a research chemical.",
+      "sources": [
+        {
+          "label": "PubMed: NNMT small-molecule inhibitors and diet-induced obesity (mouse)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29155147/"
+        },
+        {
+          "label": "PubMed: LC-MS/MS PK for 5-amino-1-methylquinolinium in rats",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34304009/"
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "energy_mitochondria"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as an experimental fat-metabolism research chemical that worked in mice but has no proven human weight-loss benefit.",
+        "themes": [
+          "experimental_weight_adjunct"
+        ],
+        "basisNote": "Evidence comes mainly from lab and specialty chemistry studies, not from proven results in people."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$54.99",
+        "title": "AOD-9604 5mg",
+        "url": "https://orbitrexpeptide.is/product/a9604-5mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "No standard cycle. The main development programs ended without gaining approval.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Historical oral development",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "The original trials tested daily oral doses in milligrams, but the drug did not meet its weight-loss goals. There is no widely accepted minimum effective dose for the injectable grey-market vials."
+        }
+      ],
+      "dosingTimingNotes": "The original clinical trials used oral doses, which are different from the injectable vials sold in wellness markets. No validated injection schedule exists in public labels.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Key registrational weight trials did not win broad approval; human benefit today is unproven at consumer vials.",
+          "personCenteredBenefit": "Was explored to help people lose fat without full growth-hormone exposure."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: the major human trials did not meet their weight-loss or metabolic goals.",
+        "Animal and early data: originally showed fat-burning potential tied to the growth hormone fragment theory.",
+        "Wellness market claims: positioned as a fat burner without the side effects of full growth hormone, but human evidence is weak compared to approved alternatives."
+      ],
+      "researchSummary": "A short fragment of growth hormone that was originally developed as a weight-loss drug. The company behind it did not get approval because the main clinical trials did not hit their goals. It is still sold in the wellness market with fat-burning claims, but the evidence behind those claims is weak compared to approved options.",
+      "sources": [
+        {
+          "label": "Compare: hGH fragment discussion (journal compare article)",
+          "url": "https://peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "LIPO-C with B12"
+          ],
+          "evidenceBasis": "wellness_adjunct_folklore",
+          "rationale": "Lipotropic injections and growth-hormone fragment products both target the same weight-loss wellness market; evidence that they actually work better together is weak."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a growth-hormone fragment once tested for weight loss that failed to win approval, yet remains popular in wellness circles.",
+        "themes": [
+          "experimental_weight_adjunct"
+        ],
+        "basisNote": "The weight-loss trial results for this fragment did not match the success of approved weight-loss drugs."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99",
+        "title": "ARA-290",
+        "url": "https://orbitrexpeptide.is/product/ara-290/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Treatment length is defined by clinical trial design. Self-directed cycling is not supported by evidence.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Nerve pain trials (injection)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Clinical trials used fixed daily or intermittent injection schedules at specific doses. Follow published trial designs, not online calculators."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin on schedules defined by clinical trial protocols. No universal timing recommendation.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Clinical-stage innate repair receptor peptide; not a take-home OTC cure.",
+          "personCenteredBenefit": "Aims to ease nerve-related pain and help repair small-fiber damage in development programs."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: showed signals for reducing nerve pain and improving small nerve fiber health.",
+        "Designed to activate the body's natural repair pathways without thickening the blood like the hormone it was based on (EPO).",
+        "Early data: some improvements in inflammatory and metabolic blood markers in small studies."
+      ],
+      "researchSummary": "A small peptide (also called cibinetide) designed to activate a natural repair pathway in the body without the blood-thickening effects of the hormone it was inspired by (erythropoietin). It has been tested in small human trials for nerve pain and nerve fiber damage.",
+      "sources": [
+        {
+          "label": "IUPHAR/BPS: cibinetide ligand page",
+          "url": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=9677&tab=clinical"
+        }
+      ],
+      "wellnessCategories": [
+        "immune_inflammation",
+        "longevity_cellular_aging"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as an experimental nerve-repair peptide tested in clinical trials for pain and nerve damage.",
+        "themes": [
+          "immune_mucosal"
+        ],
+        "basisNote": "Tested in specialized human trial settings; not the same as insulin or similar products."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$39.99",
+        "title": "BPC-157 10mg",
+        "url": "https://orbitrexpeptide.is/product/bpc-15710mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "No evidence-based cycling template exists. Banned in sport by WADA since 2022.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Animal injury models",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Rat studies commonly use about 10 micrograms per kilogram of body weight per dose, sometimes split into two daily injections. A validated human equivalent dose has not been established."
+        }
+      ],
+      "dosingTimingNotes": "No FDA-approved dosing. Human data is minimal. Animal studies typically use once or twice daily injections, but there is no universal human schedule.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Human proof is thin; sport bans apply; DIY use is not evidence-based medicine.",
+          "personCenteredBenefit": "Animal research suggests faster healing after tendon, muscle, or gut lining stress."
+        }
+      ],
+      "reportedBenefits": [
+        "Animal studies: speeds up healing of tendons, muscles, bones, and gut lining in multiple rodent experiments.",
+        "Animal studies: protects the stomach lining and promotes new blood vessel growth in gut injury models.",
+        "Human evidence: very limited formal clinical trials; most claims come from case reports and athlete testimonials.",
+        "Sport status: banned by WADA (World Anti-Doping Agency) since 2022."
+      ],
+      "researchSummary": "A synthetic peptide originally isolated from a protective protein in stomach juice. Animal studies show it speeds up healing of tendons, muscles, and gut lining. Extremely popular in the wellness and sports recovery world, but there are very few published human clinical trials to back up the claims. Banned in sport by WADA since 2022.",
+      "sources": [
+        {
+          "label": "Wikipedia: BPC-157",
+          "url": "https://en.wikipedia.org/wiki/BPC-157"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "GHK-Cu",
+            "GLOW 70",
+            "KLOW",
+            "TB-500 10mg",
+            "Wolverine 20mg"
+          ],
+          "evidenceBasis": "named_stack_mechanism_complement",
+          "rationale": "The Wolverine product pairs BPC-157 with TB-500 for combined tissue repair. GLOW adds GHK-Cu for skin and tissue rebuilding; KLOW further adds KPV for anti-inflammatory effects."
+        }
+      ],
+      "wellnessCategories": [
+        "gastrointestinal",
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as the most popular \"healing peptide\" in wellness culture, backed by strong animal data but very limited human proof.",
+        "themes": [
+          "tissue_healing"
+        ],
+        "basisNote": "Its popularity runs well ahead of the amount of solid human clinical proof available."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": null,
+        "title": "Bronchogen",
+        "url": "https://orbitrexpeptide.is/product/cartelax-2/"
+      },
+      "compoundType": "peptide_bioregulator",
+      "cyclingNotes": "Often described as short repeated courses by vendors. The evidence for optimal course length and rest periods is weak.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Human use",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Vendor course materials describe microgram-to-milligram short courses. No Western clinical trial has established a minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Sold in short courses, but the timing is not backed by Western clinical guidelines.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Mostly preclinical and regional literature; treat claims cautiously.",
+          "personCenteredBenefit": "Marketed narratives claim calmer airways and easier breathing in aging lungs."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian specialty literature: marketed for supporting lung tissue health during aging.",
+        "No large Western clinical trials: benefit claims should be treated as unproven hypotheses.",
+        "Evidence comes mainly from small studies in niche journals and vendor course materials."
+      ],
+      "researchSummary": "A short synthetic peptide from Russian bioregulator research, said to support lung tissue health. The evidence comes mostly from small studies in Russian journals and vendor materials. It has not been tested in large Western clinical trials.",
+      "sources": [
+        {
+          "label": "Example descriptive overview (commercial)",
+          "url": "https://pickpeptides.com/peptides/bronchogen/"
+        }
+      ],
+      "wellnessCategories": [
+        "immune_inflammation",
+        "respiratory_airway"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a Russian-origin lung-support bioregulator peptide with limited evidence outside specialty markets.",
+        "themes": [
+          "aging_bioregulators"
+        ],
+        "basisNote": "Very few large international trials compared to the volume of marketing claims."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$99.99",
+        "title": "Cag-10mg",
+        "url": "https://orbitrexpeptide.is/product/cag-10mg/"
+      },
+      "compoundType": "peptide_blend_incretin",
+      "cyclingNotes": "Should follow supervised dose increases if used medically. Informal cycling is not established.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "CagriSema combination (investigational)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Phase 3 trials describe matched weekly doses of cagrilintide and semaglutide (e.g. 2.4 mg of each once weekly after ramp-up). Retail 10 mg vials may not correspond directly to trial dosing ratios."
+        }
+      ],
+      "dosingTimingNotes": "Designed as a weekly injection, similar to other weight-loss injectables. Retail vials may not match the exact doses used in pharmaceutical trials.",
+      "notes": "Listing name \"Cag-10mg\" is a vendor shorthand; verify exact composition and mass balance on the certificate of analysis.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Phase 3 CagriSema-style development; exact retail vial must match pharmaceutical specs to mean anything similar.",
+          "personCenteredBenefit": "Designed to help people lose more weight than GLP-1 alone by adding amylin-class satiety."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: produces dose-dependent weight loss on its own as a long-acting amylin-type drug.",
+        "Combination data: adding it to a GLP-1 drug (like semaglutide) produced more weight loss than the GLP-1 drug alone.",
+        "How it works: slows stomach emptying and increases fullness signals on top of what appetite drugs already do."
+      ],
+      "researchSummary": "A long-acting version of amylin, a hormone your pancreas makes alongside insulin that tells your brain you are full. Being developed as an add-on to semaglutide (the combo is called CagriSema) to produce even more weight loss than either drug alone.",
+      "sources": [
+        {
+          "label": "Wikipedia: Cagrilintide/semaglutide",
+          "url": "https://en.wikipedia.org/wiki/Cagrilintide/semaglutide"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "1G-SGT 10mg",
+            "1G-SGT 20mg"
+          ],
+          "evidenceBasis": "clinical_fixed_combo_development",
+          "rationale": "CagriSema pairs cagrilintide with semaglutide; this product code refers to that combined development program."
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the amylin-class appetite drug being paired with semaglutide to boost weight loss beyond what either can do alone.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on the cagrilintide drug class; its combination with semaglutide is being studied under the name CagriSema."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$74.99",
+        "title": "CJC-1295 (no DAC) + IPA",
+        "url": "https://orbitrexpeptide.is/product/cjc-1295-no-dac-5mg-ipa-5mg/"
+      },
+      "compoundType": "peptide_blend_secretagogue",
+      "cyclingNotes": "Online forums suggest weeks on/off to prevent the body from becoming less responsive, but there is little human proof for the optimal schedule. Growth hormone secretagogues are restricted by WADA.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Growth hormone release (grey market)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "No FDA-approved dose exists for this combination in healthy adults. Early human studies used microgram-per-kilogram doses that successfully raised growth hormone levels, but the long-term minimum effective dose for body composition has not been established in formal trials."
+        }
+      ],
+      "dosingTimingNotes": "Ipamorelin is short-acting (about 2 hours), so some protocols call for multiple daily injections. CJC-1295 without DAC is also shorter-acting than the DAC version. Evening dosing is discussed online to mimic natural nighttime growth hormone release, but this is not guideline-backed.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Long-term benefit in healthy adults is debated; pituitary desensitization is a risk theme in science reviews.",
+          "personCenteredBenefit": "Intended to raise a person's own growth-hormone pulses for recovery or body-composition goals in grey-market use."
+        }
+      ],
+      "reportedBenefits": [
+        "Human studies (GHRH analogs): produces sustained increases in growth hormone and IGF-1 levels.",
+        "Human studies (Ipamorelin): triggers natural growth hormone pulses with fewer stress-hormone side effects than older drugs in its class.",
+        "Combined use theory: the two peptides stimulate growth hormone through different pathways for a stronger overall effect; however, long-term body-composition trial data for this retail combination is thin.",
+        "Monitoring note: may cause fluid retention, joint discomfort, and changes in insulin sensitivity that need medical oversight."
+      ],
+      "researchSummary": "A combination product pairing two growth-hormone-releasing peptides. CJC-1295 (a GHRH analog) tells your pituitary gland to make more growth hormone, while Ipamorelin (a GHRP) amplifies that signal. Commonly sold together as a \"GH stack\" in wellness clinics. Neither has an FDA-approved indication for this combined use.",
+      "sources": [
+        {
+          "label": "PubMed: CJC-1295 clinical proteomics paper",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2787983/"
+        },
+        {
+          "label": "PubMed: ipamorelin human PK/PD",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Ipamorelin 10mg"
+          ],
+          "evidenceBasis": "co_secretagogue_grey_literature",
+          "rationale": "This product is already a pre-mixed blend; the paired ipamorelin listing contains the same drug combination."
+        },
+        {
+          "catalogTitles": [
+            "Sermorelin 10mg"
+          ],
+          "evidenceBasis": "pituitary_axis_combination_discourse",
+          "rationale": "Growth-hormone-releasing peptides from different families are sometimes discussed together for boosting growth hormone; the risk of the body becoming less responsive over time is debated and not covered by standard guidelines."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "recovery_tissue_repair",
+        "reproductive_endocrine"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the classic two-peptide growth-hormone \"stack\" used in anti-aging and body-composition wellness protocols.",
+        "themes": [
+          "growth_hormone_axis",
+          "multi_ingredient_stack"
+        ],
+        "basisNote": "One product combining two growth-hormone-stimulating ingredients; evidence comes from wellness and pharmacology studies, not from a combined FDA-approved use."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "DSIP 10mg",
+        "url": "https://orbitrexpeptide.is/product/dsip-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "No standard cycle. The research base is old and has not been updated with modern sleep study methods.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Sleep research",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Small, dated studies used IV doses that produced inconsistent sleep results. There is not enough evidence to state a reliable minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Older studies used IV infusions; there is no widely accepted modern dosing schedule for sleep.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Dated human data; no modern home-use standard.",
+          "personCenteredBenefit": "Early small studies hinted at deeper, steadier sleep after IV use."
+        }
+      ],
+      "reportedBenefits": [
+        "Older human studies: showed mixed and inconsistent effects on sleep stages and sleep quality.",
+        "Animal research: various brain and hormone effects reported depending on the model.",
+        "Current standing: not enough reliable evidence to compare it to approved sleep medications."
+      ],
+      "researchSummary": "A small peptide discovered decades ago and named \"delta sleep-inducing peptide\" based on early experiments. Despite the name, modern research has not consistently shown it helps people sleep better. It remains available in peptide markets riding on its name more than strong evidence.",
+      "sources": [
+        {
+          "label": "PubMed: DSIP update review",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/3550726/"
+        }
+      ],
+      "wellnessCategories": [
+        "sleep_circadian"
+      ],
+      "distinctiveQuality": {
+        "headline": "Named after sleep but lacking strong modern proof it actually improves sleep quality in people.",
+        "themes": [
+          "neuro_mood_sleep"
+        ],
+        "basisNote": "The human evidence is mixed and outdated, despite the appealing name."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$39.99 – $139.99",
+        "title": "Epithalon",
+        "url": "https://orbitrexpeptide.is/product/epithalon/"
+      },
+      "compoundType": "peptide_bioregulator",
+      "cyclingNotes": "Often described as periodic short courses (e.g. 10-20 days) with rest periods. Evidence for the ideal schedule is very limited.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Anti-aging use",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Cell and animal studies showed telomerase activation at specific doses. Small human studies used short milligram-level injection courses. No large trial has established a minimum effective dose for longevity outcomes."
+        }
+      ],
+      "dosingTimingNotes": "Typically sold as short injection courses. Timing protocols come from specialty aging literature, not mainstream guidelines.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Mostly cells and animals; independent human replication is limited.",
+          "personCenteredBenefit": "Sold on the idea of supporting youthful cell behavior via telomerase-related biology."
+        }
+      ],
+      "reportedBenefits": [
+        "Lab and animal studies: showed activation of telomerase (the enzyme that maintains chromosome tips) and pineal gland effects.",
+        "Small human studies: mixed results on aging biomarkers; no large independent studies have confirmed the claims.",
+        "Market positioning: longevity and sleep-cycle claims are far ahead of the actual published evidence."
+      ],
+      "researchSummary": "A four-amino-acid synthetic peptide linked to the pineal gland. Popularized in longevity circles for claims about telomerase activation (the enzyme that maintains chromosome tips). Most evidence comes from cells and animals; large human trials have not been published.",
+      "sources": [
+        {
+          "label": "Wikipedia: Epitalon",
+          "url": "https://en.wikipedia.org/wiki/Epitalon"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Pinealon",
+            "Vilon 20mg"
+          ],
+          "evidenceBasis": "khavinson_course_marketing",
+          "rationale": "Bioregulator product lines often sell short peptides as complementary sets, each marketed for a different organ."
+        }
+      ],
+      "wellnessCategories": [
+        "longevity_cellular_aging",
+        "sleep_circadian"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a longevity and anti-aging peptide marketed around telomere science, with very limited human clinical proof.",
+        "themes": [
+          "aging_bioregulators"
+        ],
+        "basisNote": "Very few confirmatory human trials despite the peptide's high profile in longevity discussions."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$189.99",
+        "title": "FOXO4-DRI 10mg",
+        "url": "https://orbitrexpeptide.is/product/foxo4-dri-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Purely experimental. Any cycling protocol is speculative.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Senescent cell clearance (mouse studies)",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Mouse studies used specific weight-based doses over defined periods. There is no validated human dose or schedule."
+        }
+      ],
+      "dosingTimingNotes": "Only tested in mice. No established human dosing schedule exists.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Rodent and dish work; human geriatric use is not established.",
+          "personCenteredBenefit": "Conceptually helps tissues by clearing worn-out senescent cells."
+        }
+      ],
+      "reportedBenefits": [
+        "Mouse studies: improved physical function and reduced markers of damaged senescent cells in aging models.",
+        "No mature human trials: safety and effectiveness for people are completely undefined.",
+        "How it works: designed to trigger self-destruction of old, damaged cells that accumulate with age."
+      ],
+      "researchSummary": "A specially engineered peptide designed to clear out old, damaged \"senescent\" cells that accumulate with age. Showed promise in mouse studies for improving physical function. Still a niche research tool with no approved human use.",
+      "sources": [
+        {
+          "label": "PMC: senolytic chondrocyte paper (example)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8261234/"
+        }
+      ],
+      "wellnessCategories": [
+        "longevity_cellular_aging",
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as an anti-aging research peptide that targets damaged senescent cells in lab and animal studies.",
+        "themes": [
+          "aging_bioregulators"
+        ],
+        "basisNote": "A specialized research tool, not a mainstream approved treatment."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$39.99",
+        "title": "GHK-Cu",
+        "url": "https://orbitrexpeptide.is/product/ghk-cu/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Topical use is typically ongoing. Injectable cycling has no evidence-based schedule.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Topical skincare",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Skin care studies used creams with specific concentrations applied daily. The effective topical concentration is well-documented in cosmetic research. Injectable doses lack the same level of evidence."
+        },
+        {
+          "indicationOrContext": "Injectable use",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "No clinical trial has established a minimum effective injectable dose for GHK-Cu in humans."
+        }
+      ],
+      "dosingTimingNotes": "Topical skin products are applied once or twice daily. Injectable timing is not standardized by any clinical guideline.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Topical human data strongest; systemic vials shift the risk-benefit picture.",
+          "personCenteredBenefit": "May improve how skin looks and feels and support healing after surface injury in cosmetic science."
+        }
+      ],
+      "reportedBenefits": [
+        "Lab studies: stimulates collagen production, attracts immune cells to wounds, and promotes new blood vessel growth.",
+        "Skin care evidence: clinical data supports topical use for improving skin firmness, fine lines, and wound healing.",
+        "Injectable claims: less well-supported than topical use; most strong evidence is for skin applications."
+      ],
+      "researchSummary": "A naturally occurring copper-binding tripeptide found in blood and saliva. Widely used in skincare products for its ability to stimulate collagen production and support wound healing. The strongest evidence is for topical skin use; injectable claims are less well supported.",
+      "sources": [
+        {
+          "label": "PMC: GHK review (example)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359723/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "BPC-157 10mg",
+            "GLOW 70",
+            "KLOW",
+            "TB-500 10mg"
+          ],
+          "evidenceBasis": "named_stack_mechanism_complement",
+          "rationale": "GHK-Cu is typically the third ingredient in GLOW-type repair blends alongside BPC-157 and TB-500; KLOW adds KPV on top of that."
+        }
+      ],
+      "wellnessCategories": [
+        "recovery_tissue_repair",
+        "skin_pigmentation_aesthetics"
+      ],
+      "distinctiveQuality": {
+        "headline": "Best known as a copper peptide used in skincare and wound healing, with strong topical evidence but weaker injectable proof.",
+        "themes": [
+          "skin_tanning_libido"
+        ],
+        "basisNote": "Strongest evidence is for skin-applied use; claims about injectable benefits vary by country."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$119.99",
+        "title": "GLOW 70",
+        "url": "https://orbitrexpeptide.is/product/glow/"
+      },
+      "compoundType": "peptide_blend",
+      "cyclingNotes": "No evidence-based cycle for this combination. Each component has its own research base.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Vendor blend",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Evaluate each ingredient (BPC-157, TB-500, NAD+ components) against its own published literature. A minimum effective dose for this specific blend does not exist."
+        }
+      ],
+      "dosingTimingNotes": "Follow the most conservative timing recommendation among the individual ingredients. No unified schedule exists for the blend.",
+      "notes": "Exact milligram split must come from the vendor label; \"GLOW 70\" suggests a 70 mg total variant.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Vendor blend; human outcome trials for the exact mix do not exist.",
+          "personCenteredBenefit": "Bundles matrix repair, local healing signals, and cell-movement biology some users chase for visible recovery."
+        }
+      ],
+      "reportedBenefits": [
+        "Vendor blend: combines peptides individually studied for tissue repair (BPC-157, TB-500) and cellular support (NAD+ components).",
+        "Component-level evidence: each ingredient has its own research base, but this exact combination has never been clinically tested.",
+        "Marketed for recovery and repair: convenience of one product, but no guarantee the ingredients work better together than alone."
+      ],
+      "researchSummary": "A vendor-made blend that combines several popular peptides (typically BPC-157, TB-500, and NAD+ components) into one product aimed at recovery and tissue repair. No clinical trials exist for this exact combination; the evidence comes from each ingredient studied separately.",
+      "sources": [
+        {
+          "label": "Example blend description (retail)",
+          "url": "https://luminpeptides.com/products/ghk-cu-bpc-157-tb-500-blend/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "BPC-157 10mg",
+            "GHK-Cu",
+            "KLOW",
+            "TB-500 10mg"
+          ],
+          "evidenceBasis": "co_packaged_or_parallel_components",
+          "rationale": "GLOW is sold as a combination of GHK-Cu, BPC-157, and TB-500. KLOW is the same mix with the addition of KPV."
+        }
+      ],
+      "wellnessCategories": [
+        "recovery_tissue_repair",
+        "skin_pigmentation_aesthetics"
+      ],
+      "distinctiveQuality": {
+        "headline": "A multi-peptide recovery blend whose ingredients have individual research behind them but have never been tested as this specific mix.",
+        "themes": [
+          "multi_ingredient_stack",
+          "tissue_healing"
+        ],
+        "basisNote": "A marketing-defined blend; combining multiple ingredients adds complexity compared to the evidence available for each one alone."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "Glutathione 1500mg",
+        "url": "https://orbitrexpeptide.is/product/glutathione-1500mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Some clinics offer weekly or monthly IV series. Chronic oral supplementation also exists. The evidence quality depends on the specific medical condition.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "IV wellness infusions",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Clinic protocols range from hundreds of milligrams to several grams per infusion. There is no standardized minimum effective dose for general wellness claims."
+        }
+      ],
+      "dosingTimingNotes": "IV infusions vary widely across clinics. Oral supplements have much lower absorption than IV. Timing is not standardized.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "IV wellness benefit varies by person and protocol; oral absorption limits differ.",
+          "personCenteredBenefit": "Supports the body's main antioxidant buffer so cells handle stress and toxins better."
+        }
+      ],
+      "reportedBenefits": [
+        "Medical use: studied for people with genuine deficiency states like cystic fibrosis, HIV, and certain cancers where oxidative stress is high.",
+        "IV wellness use: temporarily raises antioxidant levels in blood tests, but lasting health benefits for healthy adults are inconsistent in studies.",
+        "Biology: the body's most important internal antioxidant and detoxification helper, found in virtually every cell."
+      ],
+      "researchSummary": "The body's most important natural antioxidant, found inside nearly every cell. It neutralizes damaging molecules, helps detoxify harmful substances, and supports immune function. Popular as an IV drip in wellness clinics; clinically meaningful in people with genuine deficiency states.",
+      "sources": [
+        {
+          "label": "Wikipedia: Glutathione",
+          "url": "https://en.wikipedia.org/wiki/Glutathione"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "LIPO-C with B12",
+            "NAD+ 500mg"
+          ],
+          "evidenceBasis": "wellness_adjunct_folklore",
+          "rationale": "IV wellness clinics often pair antioxidant drips with fat-metabolism injection series."
+        }
+      ],
+      "wellnessCategories": [
+        "energy_mitochondria",
+        "immune_inflammation"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the body's master antioxidant, used medically for deficiency states and in IV wellness drips for general health claims.",
+        "themes": [
+          "mitochondria_nad_redox"
+        ],
+        "basisNote": "The medical evidence for treating actual deficiency is different from generic 'wellness IV drip' marketing claims."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "Ipamorelin 10mg",
+        "url": "https://orbitrexpeptide.is/product/ipa-10mg/"
+      },
+      "compoundType": "peptide_secretagogue",
+      "cyclingNotes": "Online protocols commonly suggest periods on and off to maintain sensitivity. Formal human proof for the optimal schedule is limited.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Growth hormone release (healthy volunteers)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Published studies used weight-based injection doses that successfully raised growth hormone levels in the short term. The minimum effective dose for long-term body composition changes has not been established."
+        }
+      ],
+      "dosingTimingNotes": "Short-acting (about 2 hours), so some protocols suggest multiple daily injections. Evening dosing is discussed to align with natural nighttime growth hormone release, but this is not guideline-backed.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Phase I exists; chronic body-composition or anti-aging benefit in lay use is unproven.",
+          "personCenteredBenefit": "Briefly boosts natural GH release with selective pituitary signaling in study settings."
+        }
+      ],
+      "reportedBenefits": [
+        "Human studies: triggers the pituitary gland to release growth hormone in natural pulses.",
+        "Considered \"cleaner\" than older drugs in its class because it causes less of a spike in cortisol (stress hormone) and prolactin.",
+        "Used in wellness clinics for body composition, recovery, and anti-aging goals, though long-term outcome data is limited."
+      ],
+      "researchSummary": "A growth-hormone-releasing peptide that triggers your pituitary gland to release natural growth hormone in pulses. Considered \"cleaner\" than older drugs in its class because it causes less of a spike in stress hormones like cortisol. Used in wellness clinics for body composition and recovery goals.",
+      "sources": [
+        {
+          "label": "PubMed: ipamorelin human PK/PD",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "CJC-1295 (no DAC) + IPA",
+            "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
+          ],
+          "evidenceBasis": "co_secretagogue_or_fixed_ratio",
+          "rationale": "Ipamorelin is bundled with CJC-1295 (no DAC) in one product and with tesamorelin in SomatoPulse-style products."
+        },
+        {
+          "catalogTitles": [
+            "Tesa-10mg",
+            "Tesa-15mg",
+            "Tesa-20mg"
+          ],
+          "evidenceBasis": "named_stack_product",
+          "rationale": "SomatoPulse pairs a lower dose of ipamorelin with tesamorelin in a single named product line."
+        },
+        {
+          "catalogTitles": [
+            "Sermorelin 10mg"
+          ],
+          "evidenceBasis": "pituitary_axis_combination_discourse",
+          "rationale": "Combining these two types of growth-hormone-releasing peptides appears in non-mainstream literature; it has not been proven to work better than using one alone for wellness goals."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a gentler growth-hormone-releasing peptide popular in anti-aging clinics for recovery and body composition.",
+        "themes": [
+          "growth_hormone_axis"
+        ],
+        "basisNote": "Official medical claims differ from grey-market use; how well your pituitary gland works still determines the results."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$69.99",
+        "title": "Kisspeptin",
+        "url": "https://orbitrexpeptide.is/product/kisspeptin-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Not a consumer supplement. Dosing is entirely research-protocol-dependent.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Fertility and hormone research",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Research infusions use microgram-per-kilogram doses to stimulate LH release. Whether the infusion is pulsed or continuous changes the outcome. The minimum effective dose depends entirely on the specific research question."
+        }
+      ],
+      "dosingTimingNotes": "Used as timed IV infusions in research settings. The dosing pattern (pulsed vs. continuous) changes the biological effect.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Not a DIY fertility drug; dosing is protocol-driven.",
+          "personCenteredBenefit": "Can restore or probe normal fertility hormone timing in research clinic infusions."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical research: acts as the master on-switch for the entire reproductive hormone chain (GnRH, LH, FSH).",
+        "Fertility medicine: being studied as a tool to trigger egg maturation and diagnose reproductive hormone disorders.",
+        "Biology: the brain's gatekeeper for puberty timing and ongoing fertility signaling."
+      ],
+      "researchSummary": "A naturally occurring hormone that acts as the master switch for the reproductive hormone cascade. It triggers the brain to release GnRH, which then stimulates LH and FSH, the hormones that drive fertility. Used in specialist research and fertility medicine.",
+      "sources": [
+        {
+          "label": "PMC: kisspeptin signaling review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4678402/"
+        }
+      ],
+      "wellnessCategories": [
+        "reproductive_endocrine"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the master trigger for reproductive hormones, used in fertility research and specialist clinical settings.",
+        "themes": [
+          "reproduction_social"
+        ],
+        "basisNote": "Used in research and specialist clinical settings; not a standard drug available from every doctor."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$129.99",
+        "title": "KLOW",
+        "url": "https://orbitrexpeptide.is/product/klow-80-blend/"
+      },
+      "compoundType": "peptide_blend",
+      "cyclingNotes": "No evidence-based cycle. Each component has its own considerations.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Vendor blend",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Check the certificate of analysis for the milligram split between ingredients, then compare each to its own published research. A combined minimum effective dose does not exist."
+        }
+      ],
+      "dosingTimingNotes": "Follow the most conservative schedule among the individual ingredients. No unified timing exists for the blend.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Four-peptide blend; evidence is mechanistic storytelling plus animal parts.",
+          "personCenteredBenefit": "Targets both quieting inflammation and speeding tissue remodeling in marketing copy."
+        }
+      ],
+      "reportedBenefits": [
+        "Vendor blend: extends the GLOW formula by adding KPV (an anti-inflammatory peptide) to the repair peptide mix.",
+        "Component-level evidence: each ingredient (BPC-157, TB-500, GHK-Cu, KPV) has individual research, but no trial exists for this exact combination.",
+        "Marketed for combined healing and anti-inflammatory benefits in one product."
+      ],
+      "researchSummary": "A vendor blend that extends the \"GLOW\" formula by adding KPV (an anti-inflammatory peptide fragment). Typically contains BPC-157, TB-500, GHK-Cu, and KPV in one product. Designed for combined repair and anti-inflammatory goals. No trials exist for the exact blend.",
+      "sources": [
+        {
+          "label": "Example blend breakdown (retail blog)",
+          "url": "https://klow-peptide.com/en/articles/klow-peptide/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "BPC-157 10mg",
+            "GHK-Cu",
+            "GLOW 70",
+            "KPV",
+            "TB-500 10mg"
+          ],
+          "evidenceBasis": "vendor_blend_definition",
+          "rationale": "KLOW is marketed as the GLOW repair blend plus an anti-inflammatory ingredient (KPV)."
+        }
+      ],
+      "wellnessCategories": [
+        "immune_inflammation",
+        "recovery_tissue_repair",
+        "skin_pigmentation_aesthetics"
+      ],
+      "distinctiveQuality": {
+        "headline": "A multi-peptide blend combining healing and anti-inflammatory ingredients; evidence exists per component, not for the combo.",
+        "themes": [
+          "multi_ingredient_stack",
+          "tissue_healing",
+          "skin_tanning_libido"
+        ],
+        "basisNote": "A vendor-made bundle; the evidence for each ingredient should be evaluated on its own."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$69.99",
+        "title": "KPV",
+        "url": "https://orbitrexpeptide.is/product/kpv-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Animal studies used limited treatment windows. There is no proven human cycling protocol.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Gut inflammation (animal models)",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Animal studies used microgram-to-milligram per kilogram doses depending on the route. The human minimum effective dose has not been determined."
+        }
+      ],
+      "dosingTimingNotes": "Tested in animals via injection and oral routes. Human dosing timing has not been established.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Human IBD or dermatology benefit not nailed down for this tripeptide alone.",
+          "personCenteredBenefit": "May calm gut or skin inflammation pathways in animal inflammation models."
+        }
+      ],
+      "reportedBenefits": [
+        "Animal studies: reduced gut inflammation and protected the intestinal lining in colitis models.",
+        "How it works: a three-amino-acid fragment of a natural anti-inflammatory hormone (alpha-MSH) that retains its calming effects.",
+        "Human translation: still early; no approved use for inflammatory bowel conditions yet."
+      ],
+      "researchSummary": "A three-amino-acid fragment from alpha-MSH (a natural anti-inflammatory hormone). Studied in animal models of gut inflammation where it reduced damage to the intestinal lining. Being explored for inflammatory bowel conditions but is still early in human translation.",
+      "sources": [
+        {
+          "label": "PubMed: KPV anti-inflammatory dissection",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/12750433/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "BPC-157 10mg",
+            "GHK-Cu",
+            "GLOW 70",
+            "KLOW",
+            "TB-500 10mg"
+          ],
+          "evidenceBasis": "vendor_blend_definition",
+          "rationale": "KPV is the extra anti-inflammatory ingredient that sets KLOW apart from GLOW; the other repair ingredients are the same."
+        }
+      ],
+      "wellnessCategories": [
+        "gastrointestinal",
+        "immune_inflammation"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a short anti-inflammatory peptide fragment studied for gut inflammation and intestinal health in animal models.",
+        "themes": [
+          "immune_mucosal"
+        ],
+        "basisNote": "Still early in human testing compared to older drugs in the same family."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$69.99",
+        "title": "LIPO-C with B12",
+        "url": "https://orbitrexpeptide.is/product/lipo-c/"
+      },
+      "compoundType": "blend_injection",
+      "cyclingNotes": "Clinic-specific series, often weekly for a set number of weeks. Stop if side effects occur.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Wellness clinic injections",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Clinic protocols use standard injection volumes with a mix of MIC nutrients plus B12. No controlled trial has established a minimum effective dose for weight loss with this combination."
+        }
+      ],
+      "dosingTimingNotes": "Typically given as a weekly intramuscular injection at wellness clinics. Not standardized like a prescription drug.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Weight-loss controlled trial quality for the exact cocktail is weak compared with approved drugs.",
+          "personCenteredBenefit": "Clinics pitch easier fat processing in the liver, steadier energy, and vitamin B12 support."
+        }
+      ],
+      "reportedBenefits": [
+        "Ingredients are well-known nutrients (methionine, inositol, choline, B12) involved in fat metabolism.",
+        "Clinic popularity: widely offered as a \"fat-burning shot\" in weight-loss programs.",
+        "Evidence: limited controlled trials showing the injectable combination is more effective than diet alone for weight loss."
+      ],
+      "researchSummary": "A clinic-compounded injection combining lipotropic nutrients (methionine, inositol, choline, often with carnitine) plus vitamin B12. Marketed as a fat-metabolism booster in weight-loss clinics. The individual ingredients are well-known nutrients, but the injectable combination has limited controlled trial evidence for weight loss.",
+      "sources": [
+        {
+          "label": "Example clinical explainer (compounding clinic)",
+          "url": "https://www.defymedical.com/blog/what-is-in-lipo-c/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "AOD-9604 5mg",
+            "Glutathione 1500mg"
+          ],
+          "evidenceBasis": "wellness_adjunct_folklore",
+          "rationale": "Clinic menus may bundle fat-metabolism shots with antioxidant or detox shots; there is no proof they work better together."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "energy_mitochondria"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a lipotropic \"fat-burning shot\" popular in weight-loss clinics, with limited clinical trial support for the combination.",
+        "themes": [
+          "experimental_weight_adjunct"
+        ],
+        "basisNote": "Evidence quality is mixed and relies heavily on clinic practice patterns rather than controlled trials."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99",
+        "title": "LL-37 5mg",
+        "url": "https://orbitrexpeptide.is/product/cartelax-4/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Only theoretical intermittent use has been discussed. The safe dosing range in humans is unclear.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Research use",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Animal infection studies used localized microgram doses with a narrow safety window. There is no defined minimum effective human dose, and the margin between helpful and harmful amounts is unclear."
+        }
+      ],
+      "dosingTimingNotes": "Research reagent only. Human therapeutic dosing has not been established. Too much may actually increase inflammation.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Therapeutic use in people is experimental; wrong dose could inflame tissues.",
+          "personCenteredBenefit": "Nature uses it to fight bacteria and coordinate wound repair."
+        }
+      ],
+      "reportedBenefits": [
+        "Lab studies: kills a wide range of bacteria, viruses, and fungi on contact at effective concentrations.",
+        "Immune signaling: also activates the body's defense systems including wound-healing and barrier-repair pathways.",
+        "Caution: too much LL-37 is linked to inflammatory skin conditions in some people, so context matters."
+      ],
+      "researchSummary": "The only antimicrobial peptide of its kind that humans naturally produce. It kills bacteria, viruses, and fungi on contact and also signals the immune system to respond to threats. Studied for infections and wound healing, but too much of it can worsen inflammatory skin conditions.",
+      "sources": [
+        {
+          "label": "Wikipedia: LL-37",
+          "url": "https://en.wikipedia.org/wiki/LL-37"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Thymosin Alpha-1 10mg"
+          ],
+          "evidenceBasis": "innate_immunity_theme_speculative",
+          "rationale": "Antimicrobial peptides and thymus peptides overlap in immune-defense theory; evidence for combining them is limited."
+        }
+      ],
+      "wellnessCategories": [
+        "immune_inflammation",
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the human body's own antimicrobial peptide, studied for fighting infections and supporting wound defense.",
+        "themes": [
+          "immune_mucosal"
+        ],
+        "basisNote": "Studied both for fighting infections and for understanding when inflammation goes wrong."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99 – $139.99",
+        "title": "MOTS-c",
+        "url": "https://orbitrexpeptide.is/product/mots-c-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "The research field is too early for any established cycling protocol. Current schedules are speculative.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Metabolic research (animal models)",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Mouse studies used weight-based injection doses given over days to weeks. Converting these to human equivalents is speculative, and no formal human minimum effective dose exists."
+        }
+      ],
+      "dosingTimingNotes": "Animal studies use repeated daily or multi-day injection schedules. Human dosing timing is still experimental.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Translation to humans is early; no OTC miracle dose.",
+          "personCenteredBenefit": "Mouse data suggest better insulin sensitivity, exercise-like metabolism, and healthier aging trajectories."
+        }
+      ],
+      "reportedBenefits": [
+        "Animal studies: improved insulin sensitivity, stress resistance, and exercise performance in multiple experiments.",
+        "Small human studies: early-phase data showing metabolic and exercise-related biomarker changes.",
+        "How it works: a naturally occurring signal from mitochondria that helps regulate how muscles and fat use energy."
+      ],
+      "researchSummary": "A small peptide naturally made by mitochondria (the energy factories in your cells). Animal studies suggest it improves how the body uses energy during exercise and helps with insulin sensitivity. Sometimes called an \"exercise-in-a-peptide\" in wellness marketing, though human proof is still early.",
+      "sources": [
+        {
+          "label": "PMC: MOTS-c review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9570330/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "NAD+ 500mg",
+            "SS-31"
+          ],
+          "evidenceBasis": "hypothesized_mitochondrial_complement",
+          "rationale": "MOTS-c, NAD+, and SS-31-type peptides are sometimes grouped together in discussions about mitochondria and aging; human evidence for combining them is very thin."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "energy_mitochondria",
+        "longevity_cellular_aging"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a mitochondrial \"exercise mimetic\" peptide that may improve energy use and insulin response, mostly proven in animals.",
+        "themes": [
+          "mitochondria_nad_redox"
+        ],
+        "basisNote": "Based on lab studies and small human pharmacology reports; long-term outcome claims vary widely."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$39.99",
+        "title": "MT-1",
+        "url": "https://orbitrexpeptide.is/product/mt-1/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "The implant replacement schedule is defined by the product label for the approved medical condition.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Sun sensitivity disorder (approved implant)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "The approved dose is a 16 mg implant placed under the skin about every 60 days for people with erythropoietic protoporphyria. This is not a daily microdosing regimen."
+        }
+      ],
+      "dosingTimingNotes": "The approved form is a slow-release implant placed under the skin every 60 days, not a daily injection.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Afamelanotide is FDA-approved for EPP, not casual tanning.",
+          "personCenteredBenefit": "Gives people with certain light-allergy blood disorders safer sun tolerance via implant."
+        },
+        {
+          "evidenceNote": "Cosmetic tanning use is off-label or unapproved depending on region.",
+          "personCenteredBenefit": "Can deepen skin pigment in research tanning contexts."
+        }
+      ],
+      "reportedBenefits": [
+        "Approved abroad: used as a slow-release implant for people with a rare sun-sensitivity disorder (EPP) to increase sun tolerance.",
+        "How it works: strongly stimulates melanin production in skin cells, causing tanning without UV exposure.",
+        "Off-label use: popular for cosmetic tanning, but requires monitoring for mole changes and blood pressure effects."
+      ],
+      "researchSummary": "A synthetic version of the body's natural tanning hormone (alpha-MSH). Approved in some countries as a slow-release implant for people with a rare sun sensitivity disorder. Also used off-label for cosmetic tanning. Works by stimulating melanin production in skin cells.",
+      "sources": [
+        {
+          "label": "Wikipedia: Afamelanotide",
+          "url": "https://en.wikipedia.org/wiki/Afamelanotide"
+        }
+      ],
+      "wellnessCategories": [
+        "skin_pigmentation_aesthetics"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a clinical tanning peptide approved abroad for sun-sensitivity conditions and used off-label for cosmetic darkening.",
+        "themes": [
+          "skin_tanning_libido"
+        ],
+        "basisNote": "Regulated differently in different countries; unapproved cosmetic use still happens."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$39.99",
+        "title": "MT-II",
+        "url": "https://orbitrexpeptide.is/product/mt-2/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Tanning communities describe intermittent low-dose protocols, but no medical standard exists.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Cosmetic tanning (unapproved use)",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "User reports describe very small microgram injections under the skin because higher amounts cause strong nausea. There is no approved minimum effective dose for cosmetic use."
+        }
+      ],
+      "dosingTimingNotes": "No approved dosing schedule. The line between an effective tanning dose and nausea is very thin.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Not approved for cosmetic use; nausea and cardiovascular concerns exist.",
+          "personCenteredBenefit": "Darkens skin with less UV and affects appetite and arousal pathways in animal and anecdotal human use."
+        }
+      ],
+      "reportedBenefits": [
+        "User reports: produces strong skin tanning, nausea, blood pressure changes, and increased sexual arousal.",
+        "Pharmacology: activates melanocortin receptors broadly across the body, causing widespread effects beyond just tanning.",
+        "Safety concerns: can cause lasting skin color changes and cardiovascular effects; not approved for any medical use."
+      ],
+      "researchSummary": "A more potent and less selective version of MT-1. Produces strong skin tanning but also triggers side effects across many body systems including nausea, blood pressure changes, and sexual arousal. Popular in underground tanning culture despite significant safety concerns including potential changes to moles.",
+      "sources": [
+        {
+          "label": "Wikipedia: Melanotan II",
+          "url": "https://en.wikipedia.org/wiki/Melanotan_II"
+        }
+      ],
+      "wellnessCategories": [
+        "skin_pigmentation_aesthetics",
+        "reproductive_endocrine"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the potent but risky tanning-and-libido peptide, widely used in grey markets despite notable side effects.",
+        "themes": [
+          "skin_tanning_libido"
+        ],
+        "basisNote": "Side effects including nausea, blood pressure changes, and mole darkening appear in medical case reports."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99",
+        "title": "N-acetyl Selank Amidate 10mg",
+        "url": "https://orbitrexpeptide.is/product/selank-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Usually described as 2-4 week courses. Strong clinical trial evidence for the ideal cycle is limited.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Anti-anxiety (regional nasal products)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Russian product packaging describes hundreds of micrograms per day divided into multiple nasal doses. No Western clinical trial has established a minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Typically used as a nasal spray twice daily in Russian prescribing. The N-acetyl version follows similar timing.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Regional prescribing history; Western confirmatory trials are sparse.",
+          "personCenteredBenefit": "Aims to take the edge off anxiety and stress reactivity like parent selank."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian clinical data: small trials showing reduced anxiety and improved cognitive performance under stress.",
+        "How it works: appears to influence serotonin and GABA systems (the brain's main calming pathways) in animal models.",
+        "Modified form: the N-acetyl version is marketed as longer-lasting; Western clinical confirmation is very limited."
+      ],
+      "researchSummary": "A modified version of Selank, a Russian-developed anti-anxiety peptide. The N-acetyl modification is said to make it more stable and longer-lasting. Used in Russia and CIS countries for anxiety and stress. Western clinical trials are very limited.",
+      "sources": [
+        {
+          "label": "Frontiers: Selank molecular review (example)",
+          "url": "https://www.frontiersin.org/articles/10.3389/fphar.2016.00031"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "N-acetyl Semax Amidate 10mg",
+            "Selank 10mg",
+            "Semax 10mg"
+          ],
+          "evidenceBasis": "traditional_co_use_practice",
+          "rationale": "Stabilized versions of selank are discussed interchangeably with the original selank, often paired with semax."
+        }
+      ],
+      "wellnessCategories": [
+        "cognitive_mood",
+        "immune_inflammation"
+      ],
+      "distinctiveQuality": {
+        "headline": "A stabilized version of a Russian anti-anxiety peptide used abroad for stress relief, with minimal Western clinical data.",
+        "themes": [
+          "neuro_mood_sleep"
+        ],
+        "basisNote": "Western clinical confirmation is much thinner than the reputation in its home market."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99",
+        "title": "N-acetyl Semax Amidate 10mg",
+        "url": "https://orbitrexpeptide.is/product/semax-30mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Given in treatment courses of defined length, not open-ended continuous use.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Cognitive support (regional nasal products)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Similar microgram-per-day divided nasal doses as the parent compound (Semax), based on Russian product information. No US FDA-pathway dosing exists."
+        }
+      ],
+      "dosingTimingNotes": "Used as a nasal spray multiple times daily in Russia. The N-acetyl version is marketed as more stable and longer-lasting.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Stability variant of semax; core evidence is regional and mostly from lab and animal studies.",
+          "personCenteredBenefit": "Marketed for sharper focus and quicker cognitive bounce-back after stress or fatigue."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian clinical use: prescribed there for stroke recovery and cognitive support with brain-growth-factor claims.",
+        "Animal studies: increases BDNF (a key brain growth protein) after nasal delivery in lab experiments.",
+        "Modified form: the N-acetyl version is marketed as more stable; not part of any US FDA approval pathway."
+      ],
+      "researchSummary": "A modified version of Semax, a Russian-developed brain-boosting peptide based on a fragment of the stress hormone ACTH. Used in Russia for stroke recovery and cognitive support. The N-acetyl form is marketed as more stable. Very limited evidence from Western clinical trials.",
+      "sources": [
+        {
+          "label": "PMC: Semax transcriptome ischemia study (example)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7350263/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "N-acetyl Selank Amidate 10mg",
+            "Selank 10mg",
+            "Semax 10mg"
+          ],
+          "evidenceBasis": "traditional_co_use_practice",
+          "rationale": "Stabilized versions of semax follow the same pairing logic as the original semax combined with selank."
+        }
+      ],
+      "wellnessCategories": [
+        "cognitive_mood"
+      ],
+      "distinctiveQuality": {
+        "headline": "A stabilized version of a Russian nootropic peptide used for focus and brain recovery, with minimal Western trial evidence.",
+        "themes": [
+          "neuro_mood_sleep"
+        ],
+        "basisNote": "Most clinical experience comes from Russia and neighboring countries, with limited English-language trial coverage."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "NAD+ 500mg",
+        "url": "https://orbitrexpeptide.is/product/n-adenine-d-500-mg/"
+      },
+      "compoundType": "cofactor",
+      "cyclingNotes": "Wellness IV treatments are often given weekly or monthly. The ideal frequency has not been established by strong clinical evidence.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "IV wellness infusions",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Clinic infusion doses range widely from hundreds of milligrams to over a gram. There is no consensus minimum effective dose for anti-aging or general wellness outcomes."
+        }
+      ],
+      "dosingTimingNotes": "IV sessions at wellness clinics vary widely in dose and frequency. Oral precursors (NR, NMN) have different absorption and timing.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "IV wellness trends outpace uniform trial proof; precursors (NR, NMN) have more published human data than raw NAD+ for many goals.",
+          "personCenteredBenefit": "Replenishes a cellular fuel molecule tied to energy, DNA repair enzymes, and stress resistance."
+        }
+      ],
+      "reportedBenefits": [
+        "Supplement studies (NR, NMN precursors): reliably raise NAD+ levels in blood and tissues.",
+        "Anti-aging results: mixed evidence for muscle performance, insulin sensitivity, and blood pressure in healthy adults.",
+        "Biology: an essential molecule in every cell for converting food to energy and repairing DNA."
+      ],
+      "researchSummary": "A coenzyme found in every living cell that is essential for turning food into energy and repairing DNA. NAD+ levels decline with age, which has made it a centerpiece of anti-aging research. Delivered by IV drip in wellness clinics. Oral precursors (NR, NMN) are more common supplements.",
+      "sources": [
+        {
+          "label": "Wikipedia: NAD+",
+          "url": "https://en.wikipedia.org/wiki/Nicotinamide_adenine_dinucleotide"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Glutathione 1500mg",
+            "MOTS-c"
+          ],
+          "evidenceBasis": "hypothesized_redox_mitochondrial_complement",
+          "rationale": "NAD+ and antioxidant products often appear together on IV wellness menus; adding MOTS-c to the group is speculative."
+        }
+      ],
+      "wellnessCategories": [
+        "energy_mitochondria",
+        "longevity_cellular_aging"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a core energy molecule that declines with age, popular in IV anti-aging wellness treatments.",
+        "themes": [
+          "mitochondria_nad_redox"
+        ],
+        "basisNote": "How well it absorbs and what conditions it helps depend on the specific product form."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$129.99",
+        "title": "Orbitzen 40",
+        "url": "https://orbitrexpeptide.is/product/orbtizen40/"
+      },
+      "compoundType": "unknown_blend",
+      "cyclingNotes": "Unknown without full ingredient disclosure.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Vendor blend (unknown formula)",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Cannot determine a minimum effective dose without confirmed active ingredients and their amounts."
+        }
+      ],
+      "dosingTimingNotes": "Vendor-specific, not publicly disclosed in detail. Check with the supplier.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Cannot state personal benefit without identity and trials.",
+          "personCenteredBenefit": "Unknown until the seller publishes exactly what is in the vial."
+        }
+      ],
+      "reportedBenefits": [
+        "Vendor blend: benefits depend entirely on which components are actually included and at what doses (check the certificate of analysis).",
+        "Marketing: positioned as a multi-receptor weight-management product combining several active ingredients in one vial.",
+        "No standalone clinical trials: this exact mix has not been tested as a combined product in any formal study."
+      ],
+      "researchSummary": "A vendor-specific blend name that combines multiple weight-management peptide components into one product. The exact ratio and composition are defined by the supplier rather than by clinical trial design. Evaluate each component's evidence individually.",
+      "sources": [
+        {
+          "label": "Vendor product shell (login required for detail)",
+          "url": "https://orbitrexpeptide.is/product/orbtizen40/"
+        }
+      ],
+      "wellnessCategories": [],
+      "distinctiveQuality": {
+        "headline": "A vendor-blended weight-management product combining multiple active ingredients; no standalone clinical trials for the mix.",
+        "themes": [
+          "metabolic_incretins",
+          "multi_ingredient_stack"
+        ],
+        "basisNote": "The blend's identity and stability are vendor claims; compare carefully to the clinical evidence for each ingredient alone."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$29.99",
+        "title": "Oxytocin 2mg",
+        "url": "https://orbitrexpeptide.is/product/oxytocin-2mg/"
+      },
+      "compoundType": "peptide_hormone",
+      "cyclingNotes": "Not a supplement to cycle. Medical uses are episode-specific (childbirth, breastfeeding, research sessions).",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Labor induction (IV, approved)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Hospital protocols use carefully titrated IV infusions measured in milliunits per minute. This is not a self-administered dose."
+        },
+        {
+          "indicationOrContext": "Social/mood research (nasal spray)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Behavioral studies typically use a single nasal dose in the range of 20-40 international units. Results have been inconsistent across studies."
+        }
+      ],
+      "dosingTimingNotes": "For labor: given as a controlled IV drip in a hospital. For research: typically a single nasal spray dose.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "IV uterotonic label use is established.",
+          "personCenteredBenefit": "Helps childbirth progress safely under hospital protocols."
+        },
+        {
+          "evidenceNote": "Replication is mixed; not a solo fix for mental health.",
+          "personCenteredBenefit": "Research explores trust, bonding, and mood after nasal spray in some studies."
+        }
+      ],
+      "reportedBenefits": [
+        "Approved medical use: induces labor contractions and controls postpartum bleeding in hospital settings.",
+        "Social/mood research: nasal spray studies on trust, social bonding, and autism-related behaviors show small and inconsistent effects across reviews.",
+        "Breastfeeding: supports the milk let-down reflex in nursing mothers."
+      ],
+      "researchSummary": "A natural hormone produced in the brain, most famously involved in childbirth contractions and breastfeeding. Also widely studied for its role in social bonding, trust, and emotional connection. Used medically to induce labor; nasal spray versions have been explored for social and mood benefits with mixed results.",
+      "sources": [
+        {
+          "label": "Wikipedia: Oxytocin",
+          "url": "https://en.wikipedia.org/wiki/Oxytocin"
+        }
+      ],
+      "wellnessCategories": [
+        "cognitive_mood",
+        "reproductive_endocrine"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as the \"bonding hormone\" used medically for labor and studied for social connection, trust, and mood effects.",
+        "themes": [
+          "reproduction_social"
+        ],
+        "basisNote": "The hype around nasal-spray use runs ahead of reliably reproduced results from human trials."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$34.99",
+        "title": "Pinealon",
+        "url": "https://orbitrexpeptide.is/product/pinealon-10mg/"
+      },
+      "compoundType": "peptide_bioregulator",
+      "cyclingNotes": "Described as short repeated courses by vendors. The evidence for this approach is thin.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Brain health (bioregulator marketing)",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Vendor materials describe short sublingual courses at microgram-to-milligram levels. No clinical trial has locked down a minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Sold as sublingual (under-the-tongue) doses. Timing is not verified by Western clinical guidelines.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Human controlled trial backup is thin.",
+          "personCenteredBenefit": "Sold for clearer thinking, better sleep rhythm, and calmer stress perception in bioregulator marketing."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian bioregulator marketing: positioned for brain health and cognitive aging support.",
+        "Published human outcomes: very limited compared to the volume of marketing claims.",
+        "Evidence comes from niche journals and vendor materials; independent Western confirmation is absent."
+      ],
+      "researchSummary": "A three-amino-acid bioregulator peptide from Russian longevity research, marketed for brain and pineal gland support. Evidence comes from specialty journals and vendor materials. It has not been evaluated in large Western clinical trials.",
+      "sources": [
+        {
+          "label": "Springer Biogerontology (epithalon family context)",
+          "url": "https://link.springer.com/article/10.1007/s10522-025-10315-x"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Epithalon",
+            "Vilon 20mg"
+          ],
+          "evidenceBasis": "khavinson_course_marketing",
+          "rationale": "Brain and immune bioregulator peptides are marketed alongside epithalon as a complementary organ-support set."
+        }
+      ],
+      "wellnessCategories": [
+        "cognitive_mood",
+        "sleep_circadian"
+      ],
+      "distinctiveQuality": {
+        "headline": "A Russian-origin brain bioregulator peptide marketed for cognitive aging, with very limited clinical evidence.",
+        "themes": [
+          "aging_bioregulators",
+          "neuro_mood_sleep"
+        ],
+        "basisNote": "Part of the same longevity marketing world as epithalon and similar bioregulator products."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99",
+        "title": "PT-141",
+        "url": "https://orbitrexpeptide.is/product/pt-141-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Not for daily continuous use. Nausea limits how frequently most people can use it. Follow the label's maximum frequency guidance.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Low sexual desire (FDA-approved autoinjector)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "The approved dose is 1.75 mg injected under the skin as needed, at least 45 minutes before sex, with frequency limits. This is a flat dose, not a dose that needs to be gradually increased."
+        }
+      ],
+      "dosingTimingNotes": "Inject under the skin at least 45 minutes before anticipated sexual activity. There are limits on how often it can be used per the product label.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Nausea is common; timing follows the Vyleesi label.",
+          "personCenteredBenefit": "Can restore sexual desire in premenopausal women with HSDD when used as FDA-approved bremelanotide."
+        }
+      ],
+      "reportedBenefits": [
+        "FDA-approved (as Vyleesi): improved sexual desire scores in premenopausal women with clinically low sexual desire in registration trials.",
+        "Common side effects: nausea, flushing, temporary blood pressure changes, and occasional skin darkening at injection sites.",
+        "How it works: activates melanocortin receptors in the brain to increase arousal, a completely different pathway from blood-flow drugs like Viagra."
+      ],
+      "researchSummary": "Also known as bremelanotide (brand name Vyleesi), this is an FDA-approved on-demand injection for low sexual desire in premenopausal women. It works through melanocortin receptors in the brain rather than blood-flow pathways like Viagra. Common side effects include nausea and temporary blood pressure changes.",
+      "sources": [
+        {
+          "label": "Wikipedia: Bremelanotide",
+          "url": "https://en.wikipedia.org/wiki/Bremelanotide"
+        }
+      ],
+      "wellnessCategories": [
+        "reproductive_endocrine"
+      ],
+      "distinctiveQuality": {
+        "headline": "The only FDA-approved on-demand peptide for low sexual desire, working through brain pathways rather than blood flow.",
+        "themes": [
+          "skin_tanning_libido"
+        ],
+        "basisNote": "Blood pressure increase and nausea are listed concerns; grey-market vials may differ from the approved product."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$29.99",
+        "title": "Selank 10mg",
+        "url": "https://orbitrexpeptide.is/product/selank-30mg-copy/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Typically used in multi-week treatment courses rather than indefinitely.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Anxiety (regional nasal/injectable products)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Commercial products abroad describe divided microgram or low-milligram daily totals. The minimum effective dose has not been harmonized across different countries."
+        }
+      ],
+      "dosingTimingNotes": "Given as daily divided doses (nasal or injection) in Russian clinical practice.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Russian approval context; export-level evidence differs.",
+          "personCenteredBenefit": "May ease anxiety and improve day-to-day stress coping in regimens used abroad."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian clinical use: prescribed for generalized anxiety and stress-related complaints in small domestic trials.",
+        "Animal studies: shows anti-anxiety behavior plus some immune-modulating effects.",
+        "Immune research: early lab studies suggest it may influence inflammatory signaling, but this is not yet clinically established."
+      ],
+      "researchSummary": "A synthetic anti-anxiety peptide developed in Russia, based on a natural immune-system fragment called tuftsin. Used clinically in Russia for generalized anxiety, stress, and mild cognitive complaints. Also shows some immune-modulating effects. Limited clinical data outside Russian and CIS medical literature.",
+      "sources": [
+        {
+          "label": "PubMed: Selank depression model (example)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/18661785/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "N-acetyl Selank Amidate 10mg",
+            "N-acetyl Semax Amidate 10mg",
+            "Semax 10mg"
+          ],
+          "evidenceBasis": "traditional_co_use_practice",
+          "rationale": "Selank and Semax are frequently paired in Russian peptide practice: selank for calming anxiety and semax for sharpening thinking."
+        }
+      ],
+      "wellnessCategories": [
+        "cognitive_mood",
+        "immune_inflammation"
+      ],
+      "distinctiveQuality": {
+        "headline": "A Russian-developed anti-anxiety and mild cognitive-support peptide with limited evidence outside Eastern Europe.",
+        "themes": [
+          "neuro_mood_sleep"
+        ],
+        "basisNote": "Exported and compounded versions may not match the original clinical formulations used in Russia."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$29.99",
+        "title": "Semax 10mg",
+        "url": "https://orbitrexpeptide.is/product/semax-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Used in defined treatment courses, not as a lifelong daily supplement.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Cognitive and stroke recovery (regional nasal products)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Russian product inserts describe divided microgram-per-day nasal schedules during treatment courses. Check the national label for the specific country's dosing."
+        }
+      ],
+      "dosingTimingNotes": "Given as nasal drops multiple times daily according to Russian prescribing practice.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Regional practice patterns; US FDA path is not the same.",
+          "personCenteredBenefit": "Used in some health systems after stroke or for attention and mental stamina support."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian clinical use: prescribed there as an add-on therapy for stroke recovery and cognitive support.",
+        "Animal studies: protected brain tissue after simulated strokes and increased brain growth factor (BDNF) levels.",
+        "Delivery: given as a nasal spray; based on a fragment of ACTH but without the strong hormonal side effects of full ACTH."
+      ],
+      "researchSummary": "A synthetic brain-boosting peptide developed in Russia from a fragment of ACTH (a stress-related hormone). Used clinically there for stroke recovery, cognitive support, and focus enhancement. It promotes brain growth factors like BDNF. Delivered as a nasal spray. Minimal Western clinical trial data.",
+      "sources": [
+        {
+          "label": "PubMed: Semax neurochemical journal article",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/19139978/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "N-acetyl Selank Amidate 10mg",
+            "N-acetyl Semax Amidate 10mg",
+            "Selank 10mg"
+          ],
+          "evidenceBasis": "traditional_co_use_practice",
+          "rationale": "Using Semax and Selank together is a long-standing practice in certain countries and in online communities from those regions."
+        }
+      ],
+      "wellnessCategories": [
+        "cognitive_mood"
+      ],
+      "distinctiveQuality": {
+        "headline": "A Russian-developed cognitive peptide used for brain recovery and focus, delivered as a nasal spray.",
+        "themes": [
+          "neuro_mood_sleep"
+        ],
+        "basisNote": "Approval status and product strength differ between countries."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$79.99",
+        "title": "Sermorelin 10mg",
+        "url": "https://orbitrexpeptide.is/product/sermorelin-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Some doctors pause treatment after several months to reassess growth hormone and IGF-1 levels, but there is no universal protocol.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Growth hormone deficiency (historical US label)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "The original US label used nightly weight-based injection doses for children. Adult anti-aging protocols are off-label and do not have a single agreed minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Typically injected nightly under the skin to align with the body's natural nighttime growth hormone pulse.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Pediatric product discontinued commercially in the US; adult benefit and safety need individualized medicine.",
+          "personCenteredBenefit": "Encourages the pituitary to release more GH for growth in children historically, and for vitality goals in some adult clinics."
+        }
+      ],
+      "reportedBenefits": [
+        "Human studies: raises growth hormone and IGF-1 levels over weeks of nightly use in aging and GH-deficient adults.",
+        "Side effects: flushing, headache, and injection-site reactions reported in trials; rare allergic reactions possible.",
+        "Important limitation: only works if your pituitary gland still has the capacity to produce growth hormone."
+      ],
+      "researchSummary": "One of the earliest growth-hormone-releasing peptides, mimicking a natural brain signal (GHRH) that tells the pituitary gland to release growth hormone. Once FDA-approved for children with growth-hormone deficiency. Now widely used off-label in anti-aging clinics. Only works if your pituitary gland is still functional.",
+      "sources": [
+        {
+          "label": "Wikipedia: Sermorelin",
+          "url": "https://en.wikipedia.org/wiki/Sermorelin"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "CJC-1295 (no DAC) + IPA",
+            "Ipamorelin 10mg"
+          ],
+          "evidenceBasis": "pituitary_axis_combination_discourse",
+          "rationale": "This older growth-hormone-releasing peptide is discussed alongside newer growth-hormone-stimulating peptides in unapproved adult wellness contexts."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "The original growth-hormone-releasing peptide, now a staple of anti-aging clinics for natural GH stimulation.",
+        "themes": [
+          "growth_hormone_axis"
+        ],
+        "basisNote": "Still widely offered in anti-aging clinics; results depend on how well your pituitary gland still works."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "SLU-PP-332 5mg",
+        "url": "https://orbitrexpeptide.is/product/slu-pp-332/"
+      },
+      "compoundType": "small_molecule",
+      "cyclingNotes": "Purely preclinical. No information on how long humans could safely use it.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Endurance research (mouse models)",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Mouse studies used oral weight-based doses that activated endurance-related pathways. The human equivalent dose is unknown."
+        }
+      ],
+      "dosingTimingNotes": "Only tested in animals. Human absorption and timing are publicly unknown.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Human translation and safety are unknown publicly.",
+          "personCenteredBenefit": "In mice, mimics some benefits of exercise on endurance and fat mass."
+        }
+      ],
+      "reportedBenefits": [
+        "Mouse studies: improved running endurance and shifted muscle fibers toward endurance types.",
+        "Lab studies: increased expression of fat-burning genes in muscle cell experiments.",
+        "No human data: a pure research compound with no approved use and unknown safety in people."
+      ],
+      "researchSummary": "An experimental research compound (not a peptide) that activates receptors involved in endurance exercise adaptation. In mice, it improved running performance and shifted muscle fibers toward endurance types. Not tested in humans and not approved for any use.",
+      "sources": [
+        {
+          "label": "Wikipedia: SLU-PP-332",
+          "url": "https://en.wikipedia.org/wiki/SLU-PP-332"
+        },
+        {
+          "label": "PubMed: metabolism paper",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37739806/"
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "energy_mitochondria"
+      ],
+      "distinctiveQuality": {
+        "headline": "An experimental \"exercise in a pill\" research compound that improved mouse endurance but has no human safety or efficacy data.",
+        "themes": [
+          "experimental_weight_adjunct"
+        ],
+        "basisNote": "Based on animal and lab-dish studies; human use is not supported by any medical guidelines."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$79.99",
+        "title": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)",
+        "url": "https://orbitrexpeptide.is/product/somatopulse/"
+      },
+      "compoundType": "peptide_blend_secretagogue",
+      "cyclingNotes": "Follow the tesamorelin label monitoring schedule for that component. Combining two peptides adds complexity.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Combined tesamorelin + ipamorelin (retail blend)",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "The listing contains 10 mg tesamorelin plus 3 mg ipamorelin per vendor. Compare each to its own solo label or published data. A minimum effective dose for the combined product has not been established in clinical trials."
+        }
+      ],
+      "dosingTimingNotes": "Would follow each ingredient's own schedule: tesamorelin is normally a daily injection, while ipamorelin is short-acting and sometimes given multiple times daily.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Named retail blend; monitor glucose and IGF-1 themes from tesamorelin pharmacology if real.",
+          "personCenteredBenefit": "Pairs belly-fat targeting GHRH action with a GH pulse secretagogue for combined axis drive."
+        }
+      ],
+      "reportedBenefits": [
+        "Tesamorelin component: FDA-approved for reducing belly fat in HIV lipodystrophy; raises growth hormone and IGF-1.",
+        "Ipamorelin component: triggers clean growth hormone pulses with fewer stress-hormone side effects than older alternatives.",
+        "Combined product: stacks two growth-hormone mechanisms in one vial, but this exact pairing has no combined clinical trial data."
+      ],
+      "researchSummary": "A retail product that combines tesamorelin (a growth-hormone-releasing peptide) with ipamorelin (another GH-releasing peptide) in one vial. The idea is to stimulate growth hormone release from two different angles. Each component has its own evidence base, but this exact pairing has not been tested in a combined clinical trial.",
+      "sources": [
+        {
+          "label": "MedlinePlus: tesamorelin drug info",
+          "url": "https://medlineplus.gov/druginfo/meds/a611035.html"
+        },
+        {
+          "label": "PubMed: ipamorelin human PK/PD",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Ipamorelin 10mg",
+            "Tesa-10mg",
+            "Tesa-15mg",
+            "Tesa-20mg"
+          ],
+          "evidenceBasis": "co_packaged_definition",
+          "rationale": "This product is defined as a combination of tesamorelin and ipamorelin."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "A two-in-one growth-hormone product combining tesamorelin and ipamorelin, each studied separately but not together.",
+        "themes": [
+          "growth_hormone_axis",
+          "multi_ingredient_stack"
+        ],
+        "basisNote": "One product combining two mechanisms; the evidence story follows each ingredient separately."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$79.99 – $269.99",
+        "title": "SS-31",
+        "url": "https://orbitrexpeptide.is/product/ss-31-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Treatment periods are trial-defined. Not available for consumer self-dosing.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Mitochondrial disease (clinical trials)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Trial protocols use weight-based or flat milligram daily doses for specific mitochondrial conditions. There is no self-administration dosing guide outside clinical studies."
+        }
+      ],
+      "dosingTimingNotes": "Given as IV infusions or injections on schedules defined by clinical trial protocols.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Elamipretide development; benefit tied to trial population, not general wellness vials.",
+          "personCenteredBenefit": "Tries to make mitochondria produce energy more cleanly in rare disease and heart stress trials."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical development: being tested for Barth syndrome (a rare mitochondrial disease) and heart failure.",
+        "How it works: binds to a specific fat molecule inside mitochondria to stabilize energy production in stressed cells.",
+        "Trial data: some improvements in walking distance and oxygen use in patients with mitochondrial diseases."
+      ],
+      "researchSummary": "A small peptide (also called elamipretide) designed to protect mitochondria, the energy powerhouses inside cells. It binds to a specific fat molecule on the inner mitochondrial membrane to stabilize energy production. Being developed for rare mitochondrial diseases and heart failure.",
+      "sources": [
+        {
+          "label": "PubMed: SS-31 ANT aged mitochondria",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37462785/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "MOTS-c"
+          ],
+          "evidenceBasis": "hypothesized_mitochondrial_complement",
+          "rationale": "Pairing an energy-factory protector (SS-31) with a mitochondrial signaling peptide (MOTS-c) is a theoretical combination from lab research, not an approved pairing."
+        }
+      ],
+      "wellnessCategories": [
+        "energy_mitochondria",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a mitochondria-protecting peptide in clinical development for rare energy-production diseases and heart conditions.",
+        "themes": [
+          "mitochondria_nad_redox"
+        ],
+        "basisNote": "Clinical development focuses on specific rare diseases; it is too early to generalize claims to cosmetic or wellness use."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$99.99",
+        "title": "Survodutide 10mg",
+        "url": "https://orbitrexpeptide.is/product/survodutide-10mg/"
+      },
+      "compoundType": "peptide_incretin",
+      "cyclingNotes": "Supervised dose titration only. Still investigational and not available outside clinical trials.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Weight loss and liver disease (Phase 2 trials)",
+          "evidenceBasis": "pivotal_trials",
+          "minimumEffectiveDoseNotes": "Trial participants received gradually increasing weekly doses, with effective doses in the mid-to-high milligram range. Follow the published trial protocol, not retail vial calculations."
+        }
+      ],
+      "dosingTimingNotes": "Weekly injection with gradual dose increases in clinical trials to manage gut side effects.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Dual GLP-1/glucagon agonist still under company development outside personal import.",
+          "personCenteredBenefit": "Cuts weight and improves sugar control while also helping fatty liver scores in phase 2 reports."
+        }
+      ],
+      "reportedBenefits": [
+        "Clinical trials: showed significant weight loss and blood sugar improvements versus placebo.",
+        "How it works: the GLP-1 side reduces appetite while the glucagon side increases calorie burning, attacking weight from both directions.",
+        "Development stage: still in trials and not yet approved; being compared against other next-generation weight-loss drugs."
+      ],
+      "researchSummary": "An investigational injectable that activates both the GLP-1 and glucagon receptors. GLP-1 reduces appetite while glucagon increases energy burning, potentially offering weight loss from both sides. In early trials it showed significant weight reduction. Not yet approved.",
+      "sources": [
+        {
+          "label": "PubMed: survodutide obesity phase 2",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38330987/"
+        },
+        {
+          "label": "NEJM: MASH phase 2 surrogate",
+          "url": "https://www.nejm.org/doi/abs/10.1056/NEJMoa2401755"
+        }
+      ],
+      "wellnessCategories": [
+        "appetite_satiety",
+        "body_composition",
+        "cardiovascular_metabolic",
+        "gastrointestinal"
+      ],
+      "distinctiveQuality": {
+        "headline": "A next-generation dual-action weight-loss peptide that reduces appetite and increases calorie burning simultaneously.",
+        "themes": [
+          "metabolic_incretins"
+        ],
+        "basisNote": "Based on pharmaceutical company clinical trial reports; not the same as claims made by grey-market vial sellers."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$59.99",
+        "title": "TB-500 10mg",
+        "url": "https://orbitrexpeptide.is/product/tb-500-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Forum-based loading and maintenance schedules are common but not evidence-backed. Thymosin beta-4 products are banned by WADA.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Tissue repair (animal models)",
+          "evidenceBasis": "preclinical_animal",
+          "minimumEffectiveDoseNotes": "Animal studies using the thymosin beta-4 family vary widely in dosing per kilogram. The TB-500 fragment does not have a published human minimum effective dose like a drug label."
+        }
+      ],
+      "dosingTimingNotes": "Online protocols describe a \"loading phase\" with more frequent injections followed by less frequent \"maintenance\" doses. This comes from forums, not clinical trials.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Human TB-500-specific trials are scarce versus parent thymosin beta-4 drug programs.",
+          "personCenteredBenefit": "Animal and user narratives claim faster bounce-back from muscle strain, surgery sites, or overuse."
+        }
+      ],
+      "reportedBenefits": [
+        "Animal studies: faster wound healing and new blood vessel growth in rodent and large animal injury models.",
+        "How it works: related to thymosin beta-4, a natural protein that helps cells move to injury sites for repair.",
+        "Human evidence: very limited formal clinical trials; popular in sports recovery but flagged by anti-doping agencies."
+      ],
+      "researchSummary": "A synthetic version of a fragment from thymosin beta-4, a natural protein involved in cell movement and tissue repair. Popular in sports recovery for claims about faster healing of injuries. Animal evidence is solid, but human clinical trials are scarce. Flagged in anti-doping contexts.",
+      "sources": [
+        {
+          "label": "PMC: Thymosin β4 function review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8724243/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "BPC-157 10mg",
+            "GHK-Cu",
+            "GLOW 70",
+            "KLOW",
+            "Wolverine 20mg"
+          ],
+          "evidenceBasis": "named_stack_mechanism_complement",
+          "rationale": "TB-500 is combined with BPC-157 in Wolverine products and with GHK-Cu in GLOW/KLOW blends for complementary tissue-repair and skin-rebuilding purposes."
+        }
+      ],
+      "wellnessCategories": [
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "Known as a tissue-repair peptide popular in sports recovery, with strong animal data but limited human clinical proof.",
+        "themes": [
+          "tissue_healing"
+        ],
+        "basisNote": "Anti-doping agencies test for and regulate peptides related to thymosin beta-4."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$69.99",
+        "title": "Tesa-10mg",
+        "url": "https://orbitrexpeptide.is/product/tesa-10mg-2/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "HIV-related belly fat (FDA-approved)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "The approved dose is 2 mg injected into the abdomen once daily. This is the tested effective dose, not a starting point for gradual increase."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin of the abdomen once daily per the FDA label. IGF-1 and blood sugar levels should be monitored during use.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Daily monitoring themes on glucose and IGF-1; off-label cosmetic visceral fat claims are weaker.",
+          "personCenteredBenefit": "Shrinks dangerous deep belly fat in people with HIV lipodystrophy when used as labeled tesamorelin."
+        }
+      ],
+      "reportedBenefits": [
+        "FDA-approved: significantly reduces belly fat in people with HIV-related lipodystrophy versus placebo.",
+        "Monitoring required: can raise blood sugar and insulin resistance, so regular lab work is needed during use.",
+        "Off-label use: popular in anti-aging clinics for body composition goals, but that use lacks the same level of clinical evidence."
+      ],
+      "researchSummary": "Tesamorelin is an FDA-approved growth-hormone-releasing peptide specifically indicated for reducing excess belly fat in people with HIV-related lipodystrophy. It works by signaling the pituitary gland to produce more growth hormone. Used off-label in anti-aging clinics for body composition goals.",
+      "sources": [
+        {
+          "label": "PMC: tesamorelin HIV lipodystrophy review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Ipamorelin 10mg",
+            "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
+          ],
+          "evidenceBasis": "named_stack_product",
+          "rationale": "Tesamorelin and ipamorelin are combined in SomatoPulse to stimulate growth hormone release through two different pathways."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "An FDA-approved growth-hormone peptide for HIV-related belly fat, also used off-label for body-composition goals.",
+        "themes": [
+          "growth_hormone_axis"
+        ],
+        "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$99.99",
+        "title": "Tesa-15mg",
+        "url": "https://orbitrexpeptide.is/product/tesa-15mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "HIV-related belly fat (FDA-approved)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "The approved dose is 2 mg injected into the abdomen once daily. This is the tested effective dose, not a starting point for gradual increase."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin of the abdomen once daily per the FDA label. IGF-1 and blood sugar levels should be monitored during use.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Daily monitoring themes on glucose and IGF-1; off-label cosmetic visceral fat claims are weaker.",
+          "personCenteredBenefit": "Shrinks dangerous deep belly fat in people with HIV lipodystrophy when used as labeled tesamorelin."
+        }
+      ],
+      "reportedBenefits": [
+        "FDA-approved: significantly reduces belly fat in people with HIV-related lipodystrophy versus placebo.",
+        "Monitoring required: can raise blood sugar and insulin resistance, so regular lab work is needed during use.",
+        "Off-label use: popular in anti-aging clinics for body composition goals, but that use lacks the same level of clinical evidence."
+      ],
+      "researchSummary": "Tesamorelin is an FDA-approved growth-hormone-releasing peptide specifically indicated for reducing excess belly fat in people with HIV-related lipodystrophy. It works by signaling the pituitary gland to produce more growth hormone. Used off-label in anti-aging clinics for body composition goals.",
+      "sources": [
+        {
+          "label": "PMC: tesamorelin HIV lipodystrophy review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Ipamorelin 10mg",
+            "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
+          ],
+          "evidenceBasis": "named_stack_product",
+          "rationale": "Tesamorelin and ipamorelin are combined in SomatoPulse to stimulate growth hormone release through two different pathways."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "An FDA-approved growth-hormone peptide for HIV-related belly fat, also used off-label for body-composition goals.",
+        "themes": [
+          "growth_hormone_axis"
+        ],
+        "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$159.99",
+        "title": "Tesa-20mg",
+        "url": "https://orbitrexpeptide.is/product/tesa-20mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "HIV-related belly fat (FDA-approved)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "The approved dose is 2 mg injected into the abdomen once daily. This is the tested effective dose, not a starting point for gradual increase."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin of the abdomen once daily per the FDA label. IGF-1 and blood sugar levels should be monitored during use.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Daily monitoring themes on glucose and IGF-1; off-label cosmetic visceral fat claims are weaker.",
+          "personCenteredBenefit": "Shrinks dangerous deep belly fat in people with HIV lipodystrophy when used as labeled tesamorelin."
+        }
+      ],
+      "reportedBenefits": [
+        "FDA-approved: significantly reduces belly fat in people with HIV-related lipodystrophy versus placebo.",
+        "Monitoring required: can raise blood sugar and insulin resistance, so regular lab work is needed during use.",
+        "Off-label use: popular in anti-aging clinics for body composition goals, but that use lacks the same level of clinical evidence."
+      ],
+      "researchSummary": "Tesamorelin is an FDA-approved growth-hormone-releasing peptide specifically indicated for reducing excess belly fat in people with HIV-related lipodystrophy. It works by signaling the pituitary gland to produce more growth hormone. Used off-label in anti-aging clinics for body composition goals.",
+      "sources": [
+        {
+          "label": "PMC: tesamorelin HIV lipodystrophy review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Ipamorelin 10mg",
+            "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
+          ],
+          "evidenceBasis": "named_stack_product",
+          "rationale": "Tesamorelin and ipamorelin are combined in SomatoPulse to stimulate growth hormone release through two different pathways."
+        }
+      ],
+      "wellnessCategories": [
+        "body_composition",
+        "cardiovascular_metabolic"
+      ],
+      "distinctiveQuality": {
+        "headline": "An FDA-approved growth-hormone peptide for HIV-related belly fat, also used off-label for body-composition goals.",
+        "themes": [
+          "growth_hormone_axis"
+        ],
+        "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$79.99",
+        "title": "Thymosin Alpha-1 10mg",
+        "url": "https://orbitrexpeptide.is/product/thymosin-alpha-1-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Treatment courses are defined for specific conditions (e.g. alongside hepatitis antivirals).",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Hepatitis B/C immune support (non-US labels)",
+          "evidenceBasis": "regulatory_label",
+          "minimumEffectiveDoseNotes": "Many national labels prescribe about 1.6 mg injected under the skin twice weekly alongside standard antiviral therapy. Check the specific country's prescribing information."
+        }
+      ],
+      "dosingTimingNotes": "Injected under the skin twice weekly in many countries where it is approved. The US does not have an approved version.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "US FDA path differed; immune tuning not a casual immune booster for healthy people in guidelines.",
+          "personCenteredBenefit": "Helps some hepatitis patients clear virus better with standard drugs in countries where it is approved."
+        }
+      ],
+      "reportedBenefits": [
+        "Approved in multiple countries: used as a vaccine booster and immune support for chronic hepatitis B.",
+        "Cancer research: explored as an immune-system add-on in various cancer treatment studies with mixed but encouraging results.",
+        "COVID era: used compassionately in some settings, but not adopted as a standard antiviral treatment in major guidelines."
+      ],
+      "researchSummary": "A natural immune-system peptide produced by the thymus gland. Approved in several countries as a vaccine enhancer and immune booster, particularly for hepatitis B. Also explored as immune support in cancer and chronic infections. Not FDA-approved in the US but available through compounding.",
+      "sources": [
+        {
+          "label": "PMC: thymosin alpha-1 comprehensive review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7747025/"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "LL-37 5mg",
+            "Vilon 20mg"
+          ],
+          "evidenceBasis": "innate_immunity_theme_speculative",
+          "rationale": "LL-37 (a natural antimicrobial peptide) and thymus-derived immune peptides are sometimes mentioned together in immune-system research reviews."
+        }
+      ],
+      "wellnessCategories": [
+        "immune_inflammation"
+      ],
+      "distinctiveQuality": {
+        "headline": "A thymus-derived immune peptide approved in multiple countries for hepatitis support and vaccine enhancement.",
+        "themes": [
+          "immune_mucosal"
+        ],
+        "basisNote": "Approval varies by country; grey-market supply carries risks of contamination and counterfeits."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$49.99",
+        "title": "Vilon 20mg",
+        "url": "https://orbitrexpeptide.is/product/vilon-20mg/"
+      },
+      "compoundType": "peptide_bioregulator",
+      "cyclingNotes": "Short pulsed courses are described in marketing materials. The evidence is weak.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Immune aging (bioregulator marketing)",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Vendor materials describe low-milligram short courses taken orally or by injection. No Western clinical trial has established a minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Described as short courses of low doses by vendors. Timing is not verified by Western clinical data.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Rodent-heavy; Western confirmatory trials minimal.",
+          "personCenteredBenefit": "Bioregulator story targets stronger immune resilience in aging."
+        }
+      ],
+      "reportedBenefits": [
+        "Russian bioregulator marketing: positioned for thymus and immune aging support.",
+        "Western clinical evidence: very limited; treat benefit claims as speculative.",
+        "Evidence comes from niche Russian-language journals and vendor peptide course materials."
+      ],
+      "researchSummary": "A two-amino-acid peptide from Russian bioregulator research, marketed for thymus and immune support during aging. Evidence comes mainly from Russian specialty journals and peptide vendor course materials. Not tested in large Western trials.",
+      "sources": [
+        {
+          "label": "Khavinson bioregulator explainer (secondary)",
+          "url": "https://calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "Epithalon",
+            "Pinealon",
+            "Thymosin Alpha-1 10mg"
+          ],
+          "evidenceBasis": "immune_thymus_theme_juxtaposition",
+          "rationale": "The bioregulator marketing story overlaps with thymosin alpha-1 immune science, though they work through different mechanisms."
+        }
+      ],
+      "wellnessCategories": [
+        "immune_inflammation",
+        "longevity_cellular_aging"
+      ],
+      "distinctiveQuality": {
+        "headline": "A Russian dipeptide bioregulator marketed for immune aging support, with very limited clinical evidence outside Russia.",
+        "themes": [
+          "aging_bioregulators"
+        ],
+        "basisNote": "The depth of clinical evidence is uneven compared to the volume of testimonials from users of vendor courses."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$74.99",
+        "title": "VIP 10mg",
+        "url": "https://orbitrexpeptide.is/product/vip-10mg/"
+      },
+      "compoundType": "peptide",
+      "cyclingNotes": "Treatment periods are defined by research protocols.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Investigational (inflammation and gut barrier research)",
+          "evidenceBasis": "phase1_human",
+          "minimumEffectiveDoseNotes": "Doses are protocol-specific, using microgram-per-kilogram infusions in some inflammation trials. There is no consumer dosing guide."
+        }
+      ],
+      "dosingTimingNotes": "Given as IV infusions or inhaled in clinical research settings. The route and timing are highly specific to the condition being studied.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Investigational; formulation and route decide whether any benefit appears.",
+          "personCenteredBenefit": "Explored to cool overactive immunity in gut and lung disease while protecting tissue barriers."
+        }
+      ],
+      "reportedBenefits": [
+        "Medical relevance: used to understand and treat VIPoma tumors that overproduce this hormone, causing severe diarrhea and electrolyte imbalances.",
+        "Lung research: shows anti-inflammatory effects in animal models of lung injury and has been explored for severe asthma.",
+        "Gut barrier: lab studies suggest it helps stabilize the protective lining of the intestine."
+      ],
+      "researchSummary": "Vasoactive intestinal peptide is a natural 28-amino-acid hormone involved in gut function, blood vessel dilation, and immune regulation. Clinically relevant in VIPoma tumors that overproduce it. Being researched for lung inflammation and gut barrier protection.",
+      "sources": [
+        {
+          "label": "PMC: VIP physiology review",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6743256/"
+        }
+      ],
+      "wellnessCategories": [
+        "gastrointestinal",
+        "immune_inflammation"
+      ],
+      "distinctiveQuality": {
+        "headline": "A natural gut-and-immune hormone studied for lung inflammation and intestinal barrier health, known from VIPoma biology.",
+        "themes": [
+          "immune_mucosal"
+        ],
+        "basisNote": "Injecting it into the body is very different from the experimental airway-focused delivery studied in labs."
+      }
+    },
+    {
+      "catalog": {
+        "priceText": "$89.99",
+        "title": "Wolverine 20mg",
+        "url": "https://orbitrexpeptide.is/product/wolverine-20mg/"
+      },
+      "compoundType": "peptide_blend",
+      "cyclingNotes": "Follow the more conservative schedule of the two components. Note that both BPC-157 and TB-500 are WADA-banned substances.",
+      "doseGuidelines": [
+        {
+          "indicationOrContext": "Retail blend (BPC-157 + TB-500)",
+          "evidenceBasis": "compounded_practice",
+          "minimumEffectiveDoseNotes": "Check the certificate of analysis for the actual milligram split between ingredients, then compare each to its own published research. There is no combined minimum effective dose."
+        }
+      ],
+      "dosingTimingNotes": "Combines two short-acting peptides with different timing needs. No unified evidence-based schedule exists for the combination.",
+      "potentialApplications": [
+        {
+          "evidenceNote": "Mechanism stack only; both parts are banned in many sports and not FDA lifestyle drugs.",
+          "personCenteredBenefit": "Popular for athletes wanting layered repair signals after joint, muscle, or connective tissue stress."
+        }
+      ],
+      "reportedBenefits": [
+        "Combines BPC-157 and TB-500: each has its own animal evidence for tissue repair and healing.",
+        "Vendor marketing: positioned as a maximum-recovery product for athletes and injury recovery.",
+        "No combined trial data: the side effects and interactions of these two peptides together at high doses have not been formally studied."
+      ],
+      "researchSummary": "A vendor-named product that combines high doses of BPC-157 and TB-500, two popular tissue-repair peptides, in one vial. Named for the pop-culture reference to rapid healing. Each ingredient has animal evidence individually, but the combination has no clinical trial data as a pair.",
+      "sources": [
+        {
+          "label": "Neutral explainer (educational vendor)",
+          "url": "https://www.peptidedeck.com/blog/what-is-the-wolverine-stack"
+        }
+      ],
+      "synergisticWith": [
+        {
+          "catalogTitles": [
+            "BPC-157 10mg",
+            "TB-500 10mg"
+          ],
+          "evidenceBasis": "named_stack_mechanism_complement",
+          "rationale": "Wolverine products pair BPC-157 with TB-500, combining two different repair mechanisms in one recovery-focused product."
+        }
+      ],
+      "wellnessCategories": [
+        "recovery_tissue_repair"
+      ],
+      "distinctiveQuality": {
+        "headline": "A high-dose healing peptide combo (BPC-157 + TB-500) named after pop culture, with no clinical data for the combined product.",
+        "themes": [
+          "multi_ingredient_stack",
+          "tissue_healing"
+        ],
+        "basisNote": "Named after a pop-culture healing reference; clinical evidence exists for each ingredient separately, not for the combination."
+      }
+    }
+  ]
+}

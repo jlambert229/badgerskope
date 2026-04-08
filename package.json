@@ -1,0 +1,8 @@
+{
+  "name": "peptides-reference-ui",
+  "private": true,
+  "description": "Local static server for web/ UI and peptide-info-database.json",
+  "scripts": {
+    "web": "npx --yes serve . -l 5173"
+  }
+}
