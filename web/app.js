@@ -114,6 +114,61 @@ function wellnessLabel(index, key) {
   return { short, full: full || key };
 }
 
+/* ---- Grouping helpers ---- */
+
+const GROUP_THEME_LABELS = {
+  metabolic_incretins: "Weight & Blood Sugar (Incretins)",
+  growth_hormone_axis: "Growth Hormone",
+  tissue_healing: "Tissue Repair & Healing",
+  multi_ingredient_stack: "Multi-Ingredient Blends",
+  skin_tanning_libido: "Skin, Tanning & Libido",
+  mitochondria_nad_redox: "Mitochondria, NAD+ & Antioxidants",
+  immune_mucosal: "Immune & Mucosal Defense",
+  neuro_mood_sleep: "Brain, Mood & Sleep",
+  reproduction_social: "Reproductive & Social Hormones",
+  experimental_weight_adjunct: "Experimental Weight Aids",
+  aging_bioregulators: "Aging & Bioregulators",
+};
+
+const GROUP_EVIDENCE_LABELS = {
+  approved: "FDA / Regulator Approved",
+  pivotal: "Major Clinical Trials",
+  phase1: "Early Human Studies",
+  preclinical: "Animal Research Only",
+  practice: "Practice-Based",
+  unknown: "Unknown / Unconfirmed",
+};
+
+function getGroupKey(entry, groupBy) {
+  if (groupBy === "theme") {
+    return (entry.distinctiveQuality?.themes || [])[0] || "other";
+  }
+  if (groupBy === "compound") {
+    return entry.compoundType || "unknown";
+  }
+  if (groupBy === "evidence") {
+    return highestTier(entry).tier;
+  }
+  if (groupBy === "category") {
+    return (entry.wellnessCategories || [])[0] || "other";
+  }
+  return "";
+}
+
+function getGroupLabel(key, groupBy) {
+  if (groupBy === "theme") return GROUP_THEME_LABELS[key] || key.replace(/_/g, " ");
+  if (groupBy === "compound") return formatCompoundType(key);
+  if (groupBy === "evidence") return GROUP_EVIDENCE_LABELS[key] || key;
+  if (groupBy === "category") return key.replace(/_/g, " ");
+  return key;
+}
+
+function getGroupOrder(groupBy) {
+  if (groupBy === "theme") return Object.keys(GROUP_THEME_LABELS);
+  if (groupBy === "evidence") return ["approved", "pivotal", "phase1", "preclinical", "practice", "unknown"];
+  return null; // sort alphabetically
+}
+
 /* ------------------------------------------------------------------ */
 /*  DOM element references                                             */
 /* ------------------------------------------------------------------ */
@@ -512,11 +567,46 @@ function render() {
     }
   }
 
+  const groupBy = document.getElementById("group-by")?.value || "";
+
   if (list.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty";
     empty.textContent = "No peptides match your current filters. Try broadening your search.";
     frag.appendChild(empty);
+  } else if (groupBy) {
+    /* Grouped rendering */
+    const groups = new Map();
+    for (const e of list) {
+      const key = getGroupKey(e, groupBy);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(e);
+    }
+    /* Sort groups by predefined order or alphabetically */
+    const order = getGroupOrder(groupBy);
+    const sortedKeys = order
+      ? [...groups.keys()].sort((a, b) => {
+          const ia = order.indexOf(a);
+          const ib = order.indexOf(b);
+          return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+        })
+      : [...groups.keys()].sort();
+
+    let cardIdx = 0;
+    for (const key of sortedKeys) {
+      const items = groups.get(key);
+      const header = document.createElement("div");
+      header.className = "group-header";
+      header.innerHTML = `<h2 class="group-header__title">${escapeHtml(getGroupLabel(key, groupBy))}</h2><span class="group-header__count">${items.length} compound${items.length !== 1 ? "s" : ""}</span>`;
+      frag.appendChild(header);
+
+      const groupGrid = document.createElement("div");
+      groupGrid.className = "group-grid";
+      for (const e of items) {
+        groupGrid.appendChild(renderCard(e, catIndex, cardIdx++));
+      }
+      frag.appendChild(groupGrid);
+    }
   } else {
     list.forEach((e, i) => frag.appendChild(renderCard(e, catIndex, i)));
   }
@@ -1334,6 +1424,8 @@ async function init() {
   if (els.knownFor) els.knownFor.addEventListener("change", render);
   if (els.sort) els.sort.addEventListener("change", render);
   if (els.evidenceFilter) els.evidenceFilter.addEventListener("change", render);
+  const groupByEl = document.getElementById("group-by");
+  if (groupByEl) groupByEl.addEventListener("change", render);
 
   const resetBtn = document.getElementById("reset-filters");
   if (resetBtn) {

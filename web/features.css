@@ -401,3 +401,43 @@
   transition: width 0.1s linear;
   pointer-events: none;
 }
+
+/* ---- Group headers ---- */
+.group-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 1.5rem 0 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+}
+
+.group-header:first-child {
+  padding-top: 0;
+}
+
+.group-header__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.group-header__count {
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  background: var(--surface);
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
