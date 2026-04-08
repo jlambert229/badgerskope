@@ -555,7 +555,7 @@ a:hover { text-decoration: underline; }
   animation-delay: var(--delay, 0ms);
 }
 
-/* Evidence tier left stripe */
+/* Evidence tier left stripe (uses --evidence-color set by JS) */
 .card::before {
   content: "";
   position: absolute;
@@ -564,15 +564,8 @@ a:hover { text-decoration: underline; }
   bottom: 0.75rem;
   width: 3px;
   border-radius: 2px;
-  background: var(--border);
+  background: var(--evidence-color, var(--border));
 }
-
-.card[data-evidence="approved"]::before    { background: var(--ev-approved); }
-.card[data-evidence="pivotal"]::before     { background: var(--ev-pivotal); }
-.card[data-evidence="phase1"]::before      { background: var(--ev-phase1); }
-.card[data-evidence="preclinical"]::before { background: var(--ev-preclinical); }
-.card[data-evidence="practice"]::before    { background: var(--ev-practice); }
-.card[data-evidence="unknown"]::before     { background: var(--ev-unknown); opacity: 0.5; }
 
 /* Staggered fade-in */
 .card:nth-child(1)  { animation-delay: 0s; }
@@ -787,8 +780,14 @@ a:hover { text-decoration: underline; }
 
 .card__hint {
   margin: 0.75rem 0 0;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity var(--speed);
+}
+
+.card:hover .card__hint {
+  opacity: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -805,6 +804,7 @@ a:hover { text-decoration: underline; }
   border-radius: 9999px;
   white-space: nowrap;
   line-height: 1.4;
+  color: #fff;
 }
 
 .evidence--approved {

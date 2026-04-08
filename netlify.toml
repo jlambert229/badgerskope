@@ -2,6 +2,11 @@
   publish = "."
 
 [[redirects]]
+  from = "/"
+  to = "/web/"
+  status = 302
+
+[[redirects]]
   from = "/web/*"
   to = "/web/:splat"
   status = 200

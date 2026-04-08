@@ -418,7 +418,7 @@ function renderCard(entry, catIndex, cardIndex) {
     ${headline ? `<p class="card__distinctive" title="${escapeHtml(headline)}">Known for: ${escapeHtml(headline)}</p>` : ""}
     <p class="card__summary">${escapeHtml(summary)}</p>
     <div class="card__chips">${chips}</div>
-    <p class="card__hint">Open full detail</p>
+    <p class="card__hint">View details \u2192</p>
   `;
   main.addEventListener("click", () => openDetail(entry));
 
