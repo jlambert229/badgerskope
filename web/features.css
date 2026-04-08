@@ -301,3 +301,103 @@
   margin-top: 0.15rem;
   font-style: italic;
 }
+
+/* ---- Dashboard hero cards ---- */
+.stat-card--hero {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 2px solid var(--accent);
+}
+
+.stat-hero__number {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.stat-hero__label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+.stat-hero__sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+  margin-top: 0.25rem;
+  font-family: var(--mono);
+}
+
+/* ---- Clickable stat bars ---- */
+.stat-bar--clickable {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.25rem 0.35rem;
+  margin: 0 -0.35rem;
+  transition: background 0.15s;
+}
+
+.stat-bar--clickable:hover {
+  background: var(--accent-soft);
+}
+
+.stat-bar__pct {
+  flex: 0 0 2.5rem;
+  font-size: 0.68rem;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  text-align: right;
+  opacity: 0.6;
+}
+
+.stat-bar__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+
+/* ---- Stats grid layout improvement ---- */
+.stats-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card--hero {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .stats-dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stats-dashboard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat-card--hero:first-of-type {
+    grid-column: 1;
+  }
+}
+
+/* ---- Scroll progress bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), #7c5cff);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}

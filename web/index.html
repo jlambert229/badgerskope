@@ -202,24 +202,36 @@
         <section class="stats-dashboard" id="stats-dashboard">
           <div class="info-banner" style="grid-column:1/-1">
             <span class="info-banner__icon" aria-hidden="true">&#128202;</span>
-            <div>Overview of what's in the BadgerSkope database — compound types, wellness categories, evidence quality, and research themes across all 53 entries.</div>
+            <div>Overview of what's in the BadgerSkope database. Click any bar to filter the Browse tab by that value.</div>
           </div>
-          <div class="stat-card" id="stat-total">
-            <h3 class="stat-card__title">Database size</h3>
-            <p class="stat-card__value" id="stat-total-value">&mdash;</p>
+
+          <div class="stat-card stat-card--hero" id="stat-total">
+            <div class="stat-hero__number" id="stat-total-value">&mdash;</div>
+            <div class="stat-hero__label">compounds in the library</div>
+            <div class="stat-hero__sub" id="stat-total-sub"></div>
           </div>
-          <div class="stat-card" id="stat-compounds">
-            <h3 class="stat-card__title">By compound type</h3>
-            <div class="stat-card__body"></div>
+
+          <div class="stat-card stat-card--hero" id="stat-price-range">
+            <div class="stat-hero__sub" id="stat-price-low"></div>
+            <div class="stat-hero__number" id="stat-price-label">&mdash;</div>
+            <div class="stat-hero__sub" id="stat-price-high"></div>
           </div>
-          <div class="stat-card" id="stat-categories">
-            <h3 class="stat-card__title">By wellness category</h3>
-            <div class="stat-card__body"></div>
-          </div>
+
           <div class="stat-card" id="stat-evidence">
             <h3 class="stat-card__title">By evidence quality</h3>
             <div class="stat-card__body"></div>
           </div>
+
+          <div class="stat-card" id="stat-compounds">
+            <h3 class="stat-card__title">By compound type</h3>
+            <div class="stat-card__body"></div>
+          </div>
+
+          <div class="stat-card" id="stat-categories">
+            <h3 class="stat-card__title">By wellness category</h3>
+            <div class="stat-card__body"></div>
+          </div>
+
           <div class="stat-card" id="stat-themes">
             <h3 class="stat-card__title">By research theme</h3>
             <div class="stat-card__body"></div>

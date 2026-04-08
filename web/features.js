@@ -272,6 +272,83 @@
       .replace(/"/g, "&quot;");
   }
 
+  /* ---- scroll progress indicator ---- */
+  function addScrollProgress() {
+    const bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    document.body.prepend(bar);
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight * 100) : 0;
+      bar.style.width = pct + "%";
+    }, { passive: true });
+  }
+
+  /* ---- active filter count badge on Browse tab ---- */
+  function trackActiveFilters() {
+    const browseTab = document.getElementById("tab-browse");
+    if (!browseTab) return;
+
+    const check = () => {
+      let count = 0;
+      const s = document.getElementById("search");
+      if (s && s.value.trim()) count++;
+      ["category", "compound", "known-for", "evidence-filter"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.value) count++;
+      });
+      if (count > 0) {
+        browseTab.textContent = `Browse (${count} filter${count > 1 ? 's' : ''})`;
+      } else {
+        browseTab.textContent = "Browse";
+      }
+    };
+
+    // Poll since we can't easily hook into all filter changes
+    setInterval(check, 500);
+  }
+
+  /* ---- smooth card count transition ---- */
+  function addCountAnimation() {
+    const stats = document.getElementById("stats");
+    if (!stats) return;
+    const observer = new MutationObserver(() => {
+      stats.style.transform = "scale(1.05)";
+      stats.style.transition = "transform 0.2s";
+      setTimeout(() => { stats.style.transform = ""; }, 200);
+    });
+    observer.observe(stats, { childList: true, characterData: true, subtree: true });
+  }
+
+  /* ---- keyboard navigation for cards ---- */
+  function addCardKeyNav() {
+    const grid = document.getElementById("grid");
+    if (!grid) return;
+
+    grid.addEventListener("keydown", (e) => {
+      if (!["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(e.key)) return;
+      const cards = [...grid.querySelectorAll(".card__main")];
+      const current = document.activeElement;
+      const idx = cards.indexOf(current);
+      if (idx === -1) return;
+
+      e.preventDefault();
+      let next = idx;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = Math.min(idx + 1, cards.length - 1);
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = Math.max(idx - 1, 0);
+      cards[next]?.focus();
+    });
+  }
+
+  /* ---- auto-close mobile nav on hash change ---- */
+  function autoCloseNav() {
+    window.addEventListener("hashchange", () => {
+      const toggle = document.getElementById("nav-toggle");
+      if (toggle && toggle.checked) toggle.checked = false;
+    });
+  }
+
   /* ---- init ---- */
   function init() {
     addBookmarksToggle();
@@ -281,6 +358,11 @@
     trackRecentViews();
     addSearchHighlighting();
     renderRecentBar();
+    addScrollProgress();
+    trackActiveFilters();
+    addCountAnimation();
+    addCardKeyNav();
+    autoCloseNav();
 
     // Keyboard shortcut: "f" toggles bookmarks filter
     document.addEventListener("keydown", (e) => {
