@@ -645,6 +645,22 @@ function render() {
     list.forEach((e, i) => frag.appendChild(renderCard(e, catIndex, i)));
   }
   els.grid.replaceChildren(frag);
+
+  /* Show category intro when a single category is active */
+  const catIntro = document.getElementById("category-intro");
+  if (catIntro) catIntro.remove();
+  if (cat && !q && !comp && !known && !ev && !groupBy) {
+    const catName = FRIENDLY_CATEGORIES[cat] || cat.replace(/_/g, " ");
+    const catDesc = db.meta.wellnessCategoryIndex?.[cat] || "";
+    if (catDesc) {
+      const intro = document.createElement("div");
+      intro.id = "category-intro";
+      intro.className = "category-intro";
+      intro.innerHTML = `<h2 class="category-intro__title">${escapeHtml(catName)}</h2><p class="category-intro__desc">${escapeHtml(catDesc)}</p>`;
+      els.grid.prepend(intro);
+    }
+  }
+
   updateHashFromState();
 }
 
@@ -1006,6 +1022,35 @@ function renderComparisonTable() {
         <tbody>${bodyRows}</tbody>
       </table>
     </div>`;
+
+  /* Highlight winners in comparison rows */
+  els.compareTable.querySelectorAll("tbody tr").forEach(tr => {
+    const label = tr.querySelector("th")?.textContent?.trim();
+    const cells = [...tr.querySelectorAll("td")];
+    if (cells.length < 2) return;
+
+    if (label === "Price") {
+      // Lowest price wins
+      let minVal = Infinity, minIdx = -1;
+      cells.forEach((td, i) => {
+        const price = parseFloat(td.textContent.replace(/[^0-9.]/g, ""));
+        if (!isNaN(price) && price < minVal) { minVal = price; minIdx = i; }
+      });
+      if (minIdx >= 0) cells[minIdx].classList.add("compare-winner");
+    }
+
+    if (label === "Evidence") {
+      // Strongest evidence wins (look for approved > strong > early > animal > clinic)
+      const tierRank = { "FDA approved": 0, "Strong human trials": 1, "Early human studies": 2, "Animal studies only": 3, "Clinic practice": 4, "Unknown": 5 };
+      let bestRank = 999, bestIdx = -1;
+      cells.forEach((td, i) => {
+        const text = td.textContent.trim();
+        const rank = tierRank[text] ?? 999;
+        if (rank < bestRank) { bestRank = rank; bestIdx = i; }
+      });
+      if (bestIdx >= 0 && bestRank < 5) cells[bestIdx].classList.add("compare-winner");
+    }
+  });
 
   els.compareTable.querySelectorAll(".compare-remove").forEach((btn) => {
     btn.addEventListener("click", () => {

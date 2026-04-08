@@ -632,8 +632,221 @@
     if (dialog) observer.observe(dialog, { childList: true, subtree: true });
   }
 
+  /* ---- search autocomplete dropdown ---- */
+  function addSearchAutocomplete() {
+    const search = document.getElementById("search");
+    if (!search) return;
+
+    const dropdown = document.createElement("div");
+    dropdown.className = "search-autocomplete";
+    dropdown.hidden = true;
+    search.parentNode.style.position = "relative";
+    search.parentNode.appendChild(dropdown);
+
+    let debounceTimer;
+    search.addEventListener("input", () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const q = search.value.trim().toLowerCase();
+        if (q.length < 2) { dropdown.hidden = true; return; }
+
+        const allCards = document.querySelectorAll(".card");
+        const matches = [];
+        allCards.forEach(card => {
+          const title = card.querySelector(".card__title")?.textContent || "";
+          const type = card.querySelector(".card__type")?.textContent || "";
+          const evidence = card.querySelector(".card__evidence-badge")?.textContent || "";
+          if (title.toLowerCase().includes(q) || type.toLowerCase().includes(q)) {
+            matches.push({ title, type, evidence, id: card.dataset.entryId });
+          }
+        });
+
+        if (matches.length === 0 || matches.length > 8) { dropdown.hidden = true; return; }
+
+        dropdown.innerHTML = matches.slice(0, 6).map(m =>
+          `<button type="button" class="search-autocomplete__item" data-entry-title="${escapeAttr(m.title)}">
+            <span class="search-autocomplete__title">${escapeAttr(m.title)}</span>
+            <span class="search-autocomplete__meta">${escapeAttr(m.type)} · ${escapeAttr(m.evidence)}</span>
+          </button>`
+        ).join("");
+        dropdown.hidden = false;
+
+        dropdown.querySelectorAll(".search-autocomplete__item").forEach(item => {
+          item.addEventListener("click", () => {
+            dropdown.hidden = true;
+            window.location.hash = "entry=" + encodeURIComponent(item.dataset.entryTitle);
+          });
+        });
+      }, 200);
+    });
+
+    search.addEventListener("blur", () => {
+      setTimeout(() => { dropdown.hidden = true; }, 200);
+    });
+
+    search.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") dropdown.hidden = true;
+    });
+  }
+
+  /* ---- card quick preview on hover ---- */
+  function addQuickPreview() {
+    const grid = document.getElementById("grid");
+    if (!grid) return;
+
+    let previewEl = document.createElement("div");
+    previewEl.className = "quick-preview";
+    previewEl.hidden = true;
+    document.body.appendChild(previewEl);
+
+    let hoverTimer = null;
+    let currentCard = null;
+
+    grid.addEventListener("mouseover", (e) => {
+      const card = e.target.closest(".card");
+      if (!card || card === currentCard) return;
+      clearTimeout(hoverTimer);
+      currentCard = card;
+
+      hoverTimer = setTimeout(() => {
+        const title = card.querySelector(".card__title")?.textContent || "";
+        const type = card.querySelector(".card__type")?.textContent || "";
+        const evidence = card.querySelector(".card__evidence-badge")?.textContent || "";
+        const summary = card.querySelector(".card__summary")?.textContent || "";
+        const chips = [...card.querySelectorAll(".chip")].map(c => c.textContent).join(", ");
+        const price = card.querySelector(".card__price")?.textContent || "";
+        const isRead = card.classList.contains("card--read");
+
+        previewEl.innerHTML = `
+          <div class="quick-preview__header">
+            <strong>${escapeAttr(title)}</strong>
+            ${price ? `<span class="quick-preview__price">${escapeAttr(price)}</span>` : ""}
+          </div>
+          <div class="quick-preview__meta">${escapeAttr(type)} · ${escapeAttr(evidence)}${isRead ? ' · Read' : ''}</div>
+          <p class="quick-preview__summary">${escapeAttr(summary.slice(0, 200))}${summary.length > 200 ? '...' : ''}</p>
+          ${chips ? `<div class="quick-preview__chips">${escapeAttr(chips)}</div>` : ""}
+          <span class="quick-preview__hint">Click card to view full details</span>
+        `;
+
+        const rect = card.getBoundingClientRect();
+        const left = Math.min(rect.left, window.innerWidth - 320);
+        previewEl.style.top = (rect.bottom + window.scrollY + 8) + "px";
+        previewEl.style.left = Math.max(8, left) + "px";
+        previewEl.hidden = false;
+      }, 600);
+    });
+
+    grid.addEventListener("mouseout", (e) => {
+      const card = e.target.closest(".card");
+      if (card === currentCard) {
+        clearTimeout(hoverTimer);
+        currentCard = null;
+        previewEl.hidden = true;
+      }
+    });
+
+    // Hide on scroll
+    window.addEventListener("scroll", () => {
+      previewEl.hidden = true;
+      clearTimeout(hoverTimer);
+      currentCard = null;
+    }, { passive: true });
+  }
+
+  /* ---- report issue button ---- */
+  function addReportIssue() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".report-issue-btn")) return;
+      const title = document.getElementById("detail-title")?.textContent;
+      if (!title) return;
+
+      const actions = detailBody.querySelector(".detail__hero-actions");
+      if (!actions) return;
+
+      const btn = document.createElement("a");
+      btn.className = "report-issue-btn";
+      btn.href = "https://github.com/jlambert229/badgerskope/issues/new?title=" +
+        encodeURIComponent("Issue with entry: " + title) +
+        "&body=" + encodeURIComponent("Entry: " + title + "\n\nDescribe the issue:\n\n");
+      btn.target = "_blank";
+      btn.rel = "noopener noreferrer";
+      btn.textContent = "Report issue";
+      btn.title = "Report a problem with this entry on GitHub";
+      actions.appendChild(btn);
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- toast notifications with undo ---- */
+  function showToast(message, undoFn) {
+    let existing = document.querySelector(".toast");
+    if (existing) existing.remove();
+
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = `<span>${escapeAttr(message)}</span>${undoFn ? '<button type="button" class="toast__undo">Undo</button>' : ''}`;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => toast.classList.add("toast--visible"));
+
+    const undoBtn = toast.querySelector(".toast__undo");
+    if (undoBtn && undoFn) {
+      undoBtn.addEventListener("click", () => {
+        undoFn();
+        toast.remove();
+      });
+    }
+
+    setTimeout(() => {
+      toast.classList.remove("toast--visible");
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+  }
+
+  /* ---- swipe navigation on mobile ---- */
+  function addSwipeNav() {
+    const dialog = document.getElementById("detail-dialog");
+    if (!dialog) return;
+
+    let startX = 0;
+    let startY = 0;
+
+    dialog.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    dialog.addEventListener("touchend", (e) => {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) < 80 || Math.abs(dy) > Math.abs(dx)) return;
+
+      const prev = document.getElementById("detail-prev");
+      const next = document.getElementById("detail-next");
+      if (dx > 0 && prev && !prev.disabled) prev.click();
+      if (dx < 0 && next && !next.disabled) next.click();
+    }, { passive: true });
+  }
+
+  /* ---- dark/light auto-detect on first visit ---- */
+  function autoDetectTheme() {
+    const saved = localStorage.getItem("peptide-theme");
+    if (saved) return; // User already chose
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  }
+
   /* ---- init ---- */
   function init() {
+    autoDetectTheme();
+    addSearchAutocomplete();
+    addQuickPreview();
+    addReportIssue();
+    addSwipeNav();
     addBookmarksToggle();
     addChipFiltering();
     addShareButton();

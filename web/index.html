@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
     <meta name="description" content="BadgerSkope is an open peptide research library with plain-English summaries, evidence grading, and comparison tools. Not medical advice." />
+    <meta property="og:title" content="BadgerSkope — Peptide Research Library" />
+    <meta property="og:description" content="53 peptide compounds with plain-English summaries, evidence grading, and comparison tools. Free and open." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://badgerskope.netlify.app/web/" />
+    <meta property="og:image" content="https://badgerskope.netlify.app/web/logo-hero.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BadgerSkope — Peptide Research Library" />
+    <meta name="twitter:description" content="53 peptide compounds. Plain English. Evidence-graded. Free." />
+    <meta name="twitter:image" content="https://badgerskope.netlify.app/web/logo-hero.png" />
     <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/png" href="./favicon.png" />
@@ -367,6 +376,11 @@
     >&uarr;</button>
 
     <script src="./app.js" type="module"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      }
+    </script>
     <script src="./features.js" defer></script>
   </body>
 </html>
