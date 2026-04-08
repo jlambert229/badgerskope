@@ -840,6 +840,205 @@
     }
   }
 
+  /* ---- "Build My Stack" synergy map ---- */
+  function addStackBuilder() {
+    const observer = new MutationObserver(() => {
+      const compareTable = document.getElementById("compare-table");
+      if (!compareTable || compareTable.querySelector(".stack-map")) return;
+      const table = compareTable.querySelector("table");
+      if (!table) return;
+
+      // Get selected entry titles from table headers
+      const titles = [...table.querySelectorAll("thead th")].slice(1).map(th => th.textContent.replace("×","").trim());
+      if (titles.length < 2) return;
+
+      // Find synergy connections from the grid cards' data
+      // We'll parse the "Pairs with" row for connections
+      const pairsRow = [...table.querySelectorAll("tbody tr")].find(tr => {
+        const label = tr.querySelector("th")?.textContent?.trim();
+        return label === "Pairs with";
+      });
+
+      const connections = [];
+      if (pairsRow) {
+        const cells = [...pairsRow.querySelectorAll("td")];
+        cells.forEach((td, i) => {
+          const pairText = td.textContent;
+          titles.forEach((other, j) => {
+            if (i !== j && pairText.includes(other)) {
+              connections.push({ from: titles[i], to: other });
+            }
+          });
+        });
+      }
+
+      const map = document.createElement("div");
+      map.className = "stack-map";
+      map.innerHTML = `
+        <h3 class="stack-map__title">Stack Synergy Map</h3>
+        <p class="stack-map__help">Lines show which compounds in your selection are discussed together in research or product lines.</p>
+        <div class="stack-map__entries">
+          ${titles.map((t, i) => `<div class="stack-map__node" style="--idx:${i};--total:${titles.length}">${escapeAttr(t)}</div>`).join("")}
+        </div>
+        ${connections.length > 0
+          ? `<div class="stack-map__connections">
+              ${connections.map(c => `<div class="stack-map__link">${escapeAttr(c.from)} <span class="stack-map__arrow">↔</span> ${escapeAttr(c.to)}</div>`).join("")}
+            </div>`
+          : '<p class="stack-map__none">No documented synergy connections between these compounds in the database.</p>'
+        }
+        <p class="stack-map__disclaimer">Synergy links reflect research discussions and product pairings, not proven combination benefits. Not a recommendation to combine.</p>
+      `;
+
+      compareTable.prepend(map);
+    });
+
+    const panel = document.getElementById("panel-compare");
+    if (panel) observer.observe(panel, { childList: true, subtree: true });
+  }
+
+  /* ---- price per mg calculator ---- */
+  function addPricePerMg() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".price-per-mg")) return;
+      const titleEl = document.getElementById("detail-title");
+      const priceEl = detailBody.querySelector(".detail__price");
+      if (!titleEl || !priceEl) return;
+
+      const title = titleEl.textContent;
+      const priceText = priceEl.textContent;
+      const price = parseFloat(priceText.replace(/[^0-9.]/g, ""));
+      if (isNaN(price)) return;
+
+      // Extract mg from title
+      const mgMatch = title.match(/(\d+\.?\d*)\s*mg/i);
+      if (!mgMatch) return;
+      const mg = parseFloat(mgMatch[1]);
+      if (isNaN(mg) || mg <= 0) return;
+
+      const perMg = (price / mg).toFixed(2);
+      const badge = document.createElement("span");
+      badge.className = "price-per-mg";
+      badge.textContent = `$${perMg}/mg`;
+      badge.title = `${price.toFixed(2)} ÷ ${mg}mg = $${perMg} per milligram`;
+      priceEl.after(badge);
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- WADA/Doping status indicator ---- */
+  const WADA_BANNED = {
+    "BPC-157": "Banned by WADA since 2022",
+    "TB-500": "Banned by WADA (thymosin beta-4 related)",
+    "Ipamorelin": "Growth hormone secretagogue — banned in sport",
+    "Sermorelin": "Growth hormone releasing factor — banned in sport",
+    "CJC-1295": "GHRH analog — banned in sport",
+    "GHRP": "Growth hormone releasing peptide — banned in sport",
+    "SomatoPulse": "Contains banned GH secretagogues",
+    "Tesa": "Tesamorelin — growth hormone axis, monitored in sport",
+    "MT-II": "Melanotan II — not approved, safety concerns flagged by regulators",
+    "SLU-PP-332": "Exercise mimetic — not approved for any use",
+    "FOXO4-DRI": "Experimental senolytic — no approved human use",
+  };
+
+  function addDopingIndicator() {
+    // On cards
+    const applyToCards = () => {
+      document.querySelectorAll(".card").forEach(card => {
+        if (card.querySelector(".doping-flag")) return;
+        const title = card.querySelector(".card__title")?.textContent || "";
+        for (const [key, reason] of Object.entries(WADA_BANNED)) {
+          if (title.includes(key)) {
+            const flag = document.createElement("span");
+            flag.className = "doping-flag";
+            flag.textContent = "⚠ Sport ban";
+            flag.title = reason;
+            const metaRow = card.querySelector(".card__meta-row");
+            if (metaRow) metaRow.appendChild(flag);
+            break;
+          }
+        }
+      });
+    };
+
+    const grid = document.getElementById("grid");
+    if (grid) {
+      const obs = new MutationObserver(applyToCards);
+      obs.observe(grid, { childList: true });
+      applyToCards();
+    }
+
+    // On detail modal
+    const detailObs = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".doping-banner")) return;
+      const title = document.getElementById("detail-title")?.textContent || "";
+      for (const [key, reason] of Object.entries(WADA_BANNED)) {
+        if (title.includes(key)) {
+          const banner = document.createElement("div");
+          banner.className = "doping-banner";
+          banner.innerHTML = `<strong>⚠ Sport/Doping notice:</strong> ${escapeAttr(reason)}`;
+          const heroBar = detailBody.querySelector(".detail__hero-bar");
+          if (heroBar) heroBar.after(banner);
+          break;
+        }
+      }
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) detailObs.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- goal-based quick filters ---- */
+  function addGoalFilters() {
+    const grid = document.getElementById("grid");
+    const controls = document.querySelector(".controls");
+    if (!controls || !grid) return;
+
+    const goals = [
+      { label: "Weight loss", filter: "known-for", value: "metabolic_incretins", icon: "⚖️" },
+      { label: "Healing & repair", filter: "known-for", value: "tissue_healing", icon: "🩹" },
+      { label: "Brain & mood", filter: "known-for", value: "neuro_mood_sleep", icon: "🧠" },
+      { label: "Immune support", filter: "known-for", value: "immune_mucosal", icon: "🛡️" },
+      { label: "Anti-aging", filter: "known-for", value: "aging_bioregulators", icon: "⏳" },
+      { label: "Growth hormone", filter: "known-for", value: "growth_hormone_axis", icon: "💪" },
+      { label: "Skin & tanning", filter: "known-for", value: "skin_tanning_libido", icon: "✨" },
+      { label: "Cell energy", filter: "known-for", value: "mitochondria_nad_redox", icon: "⚡" },
+    ];
+
+    const bar = document.createElement("div");
+    bar.className = "goal-bar";
+    bar.innerHTML = '<span class="goal-bar__label">Quick find:</span>' +
+      goals.map(g =>
+        `<button type="button" class="goal-btn" data-filter="${g.filter}" data-value="${g.value}">${g.icon} ${g.label}</button>`
+      ).join("");
+
+    controls.after(bar);
+
+    bar.querySelectorAll(".goal-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filterEl = document.getElementById(btn.dataset.filter);
+        if (filterEl) {
+          filterEl.value = btn.dataset.value;
+          filterEl.dispatchEvent(new Event("change"));
+        }
+        // Highlight active
+        bar.querySelectorAll(".goal-btn").forEach(b => b.classList.remove("goal-btn--active"));
+        btn.classList.add("goal-btn--active");
+      });
+    });
+
+    // Clear active when filters reset
+    const resetBtn = document.getElementById("reset-filters");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        bar.querySelectorAll(".goal-btn").forEach(b => b.classList.remove("goal-btn--active"));
+      });
+    }
+  }
+
   /* ---- init ---- */
   function init() {
     autoDetectTheme();
@@ -865,6 +1064,10 @@
     addSimilarCompounds();
     addReadTracking();
     addUnitHelper();
+    addStackBuilder();
+    addPricePerMg();
+    addDopingIndicator();
+    addGoalFilters();
 
     // Keyboard shortcut: "f" toggles bookmarks filter
     document.addEventListener("keydown", (e) => {

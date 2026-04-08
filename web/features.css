@@ -1034,3 +1034,281 @@
   color: var(--text-muted);
   line-height: 1.6;
 }
+
+/* ---- Stack synergy map ---- */
+.stack-map {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--accent-soft), rgba(124,92,255,0.06));
+  border: 1px solid rgba(76, 157, 255, 0.15);
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+
+.stack-map__title {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stack-map__help {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+}
+
+.stack-map__entries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stack-map__node {
+  padding: 0.5rem 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stack-map__connections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.stack-map__link {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 0.4rem 0.75rem;
+  background: var(--surface);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stack-map__arrow {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.stack-map__none {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 0.75rem;
+}
+
+.stack-map__disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+  margin: 0;
+}
+
+/* ---- Price per mg ---- */
+.price-per-mg {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  cursor: help;
+}
+
+/* ---- WADA / Doping indicators ---- */
+.doping-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--warning);
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  cursor: help;
+  white-space: nowrap;
+}
+
+.doping-banner {
+  padding: 0.75rem 1rem;
+  background: rgba(245, 166, 35, 0.08);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.doping-banner strong {
+  color: var(--warning);
+}
+
+/* ---- Goal-based quick filters ---- */
+.goal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.goal-bar::-webkit-scrollbar { display: none; }
+
+.goal-bar__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.goal-btn {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.goal-btn:hover {
+  background: var(--accent-soft);
+  border-color: rgba(76, 157, 255, 0.3);
+  color: var(--text);
+}
+
+.goal-btn--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---- Evidence comparison chart ---- */
+.ev-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.ev-compare__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+}
+
+.ev-compare__bar--current {
+  font-weight: 700;
+}
+
+.ev-compare__label {
+  flex: 0 0 140px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.ev-compare__bar--current .ev-compare__label {
+  color: var(--text);
+}
+
+.ev-compare__track {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.ev-compare__fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.ev-compare__count {
+  flex: 0 0 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-muted);
+}
+
+.ev-compare__verdict {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ---- Source quality indicator ---- */
+.source-quality {
+  margin-bottom: 0.75rem;
+}
+
+.source-quality__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.source-quality__label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  flex: 0 0 95px;
+}
+
+.source-quality__track {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.source-quality__fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.source-quality__pct {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  flex: 0 0 2.5rem;
+  text-align: right;
+}
+
+.source-quality__breakdown {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  font-family: var(--mono);
+}
