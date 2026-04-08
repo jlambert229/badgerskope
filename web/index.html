@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
-    <title>Peptide Reference</title>
+    <meta name="description" content="BadgerSkope is an open peptide research library with plain-English summaries, evidence grading, and comparison tools. Not medical advice." />
+    <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦡</text></svg>" />
+    <title>BadgerSkope — Peptide Research Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,10 +23,10 @@
       <header class="header">
         <div class="header__inner">
           <div class="brand">
-            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__mark" aria-hidden="true">🦡</span>
             <div>
-              <h1 class="brand__title">Peptide Reference</h1>
-              <p class="brand__tag">Research summaries &mdash; not medical advice</p>
+              <h1 class="brand__title">BadgerSkope</h1>
+              <p class="brand__tag">Peptide research library &mdash; plain English, not medical advice</p>
             </div>
           </div>
           <div class="header__actions">
@@ -87,24 +91,24 @@
               id="search"
               class="field__input"
               type="search"
-              placeholder="Title, summary, compound type..."
+              placeholder="Search peptides, compounds, benefits..."
               autocomplete="off"
             />
           </label>
           <label class="field">
-            <span class="field__label">Wellness category</span>
+            <span class="field__label">Category</span>
             <select id="category" class="field__input field__select"></select>
           </label>
           <label class="field">
-            <span class="field__label">Compound type</span>
+            <span class="field__label">Type</span>
             <select id="compound" class="field__input field__select"></select>
           </label>
           <label class="field">
-            <span class="field__label">Known for (group)</span>
+            <span class="field__label">Known for</span>
             <select id="known-for" class="field__input field__select"></select>
           </label>
           <label class="field">
-            <span class="field__label">Evidence tier</span>
+            <span class="field__label">Evidence</span>
             <select id="evidence-filter" class="field__input field__select">
               <option value="">All</option>
               <option value="Approved/labeled">Approved/labeled</option>
@@ -128,10 +132,10 @@
         <section class="selection-bar" id="selection-bar" aria-label="Selection actions">
           <span class="selection-bar__count" id="selection-count">0 selected</span>
           <div class="selection-bar__actions">
-            <button type="button" class="btn btn--ghost" id="select-visible">Select visible</button>
+            <button type="button" class="btn btn--ghost" id="select-visible">Select all</button>
             <button type="button" class="btn btn--ghost" id="clear-selection" disabled>Clear</button>
-            <button type="button" class="btn btn--primary" id="compare-selected" disabled>Compare selected</button>
-            <button type="button" class="btn btn--primary" id="view-selected" disabled>View selected</button>
+            <button type="button" class="btn btn--primary" id="compare-selected" disabled>Compare</button>
+            <button type="button" class="btn btn--primary" id="view-selected" disabled>View details</button>
           </div>
         </section>
 
@@ -149,9 +153,11 @@
         hidden
       >
         <section class="compare-panel">
-          <p class="compare-panel__empty" id="compare-empty">
-            Select 2+ entries from Browse tab to compare
-          </p>
+          <div class="compare-panel__empty" id="compare-empty">
+            <span class="compare-panel__empty-icon" aria-hidden="true">&#x2696;</span>
+            <p class="compare-panel__empty-title">Nothing to compare yet</p>
+            <p class="compare-panel__empty-hint">Select 2 or more entries from the Browse tab, then come back here.</p>
+          </div>
           <div class="compare-table-wrap" id="compare-table"></div>
         </section>
       </div>
@@ -166,23 +172,23 @@
       >
         <section class="stats-dashboard" id="stats-dashboard">
           <div class="stat-card" id="stat-total">
-            <h3 class="stat-card__title">Total entries</h3>
+            <h3 class="stat-card__title">Database size</h3>
             <p class="stat-card__value" id="stat-total-value">&mdash;</p>
           </div>
           <div class="stat-card" id="stat-compounds">
-            <h3 class="stat-card__title">Compound type breakdown</h3>
+            <h3 class="stat-card__title">By compound type</h3>
             <div class="stat-card__body"></div>
           </div>
           <div class="stat-card" id="stat-categories">
-            <h3 class="stat-card__title">Category distribution</h3>
+            <h3 class="stat-card__title">By wellness category</h3>
             <div class="stat-card__body"></div>
           </div>
           <div class="stat-card" id="stat-evidence">
-            <h3 class="stat-card__title">Evidence quality overview</h3>
+            <h3 class="stat-card__title">By evidence quality</h3>
             <div class="stat-card__body"></div>
           </div>
           <div class="stat-card" id="stat-themes">
-            <h3 class="stat-card__title">Theme distribution</h3>
+            <h3 class="stat-card__title">By research theme</h3>
             <div class="stat-card__body"></div>
           </div>
         </section>
@@ -192,6 +198,7 @@
       <footer class="footer">
         <p id="disclaimer" class="disclaimer"></p>
         <p class="footer__meta" id="footer-meta"></p>
+        <p class="footer__brand">BadgerSkope &mdash; open peptide research literacy</p>
         <p class="footer__shortcuts">
           <kbd>?</kbd> for keyboard shortcuts
         </p>
@@ -232,7 +239,7 @@
           >Next &rarr;</button>
         </nav>
         <div id="detail-body"></div>
-        <p class="modal__hint">Press <kbd>Esc</kbd> to close</p>
+        <p class="modal__hint">Press <kbd>Esc</kbd> to close &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> to navigate</p>
       </div>
     </dialog>
 
@@ -245,7 +252,7 @@
           id="shortcuts-close"
           aria-label="Close shortcuts"
         >&times;</button>
-        <h2 id="shortcuts-title" class="modal__title">Keyboard shortcuts</h2>
+        <h2 id="shortcuts-title" class="modal__title">Keyboard shortcuts &mdash; BadgerSkope</h2>
         <dl class="shortcuts-list">
           <div class="shortcuts-list__item">
             <dt><kbd>Esc</kbd></dt>

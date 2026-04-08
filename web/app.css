@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Peptide Reference — Design System
+   BadgerSkope — Design System
    Dark-first, light mode via [data-theme="light"]
    IBM Plex Sans / Mono
    ========================================================================== */
@@ -241,9 +241,15 @@ a:hover { text-decoration: underline; }
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: linear-gradient(145deg, var(--accent), #7c5cff);
+  background: linear-gradient(145deg, #7c5cff, var(--accent));
   flex-shrink: 0;
   box-shadow: 0 8px 24px rgba(76, 157, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.65rem;
+  line-height: 1;
+  user-select: none;
 }
 
 .brand__title {
@@ -251,6 +257,10 @@ a:hover { text-decoration: underline; }
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent), #7c5cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .brand__tag {
@@ -476,11 +486,12 @@ a:hover { text-decoration: underline; }
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 1rem;
   margin-bottom: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  border: 1px solid rgba(76, 157, 255, 0.25);
   border-radius: var(--radius-sm);
+  backdrop-filter: blur(8px);
 }
 
 .selection-bar__count {
@@ -507,6 +518,21 @@ a:hover { text-decoration: underline; }
   align-items: stretch;
 }
 
+.grid[aria-busy="true"]::before {
+  content: "";
+  grid-column: 1 / -1;
+  height: 200px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-hover) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* --------------------------------------------------------------------------
    12. Cards
    -------------------------------------------------------------------------- */
@@ -526,6 +552,7 @@ a:hover { text-decoration: underline; }
   color: inherit;
   width: 100%;
   animation: fadeInUp 0.3s ease both;
+  animation-delay: var(--delay, 0ms);
 }
 
 /* Evidence tier left stripe */
@@ -564,7 +591,7 @@ a:hover { text-decoration: underline; }
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -573,9 +600,9 @@ a:hover { text-decoration: underline; }
 }
 
 .card:hover {
+  border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-  border-color: var(--surface-hover);
+  box-shadow: var(--shadow-hover);
 }
 
 .card--selected {
@@ -1013,6 +1040,12 @@ a:hover { text-decoration: underline; }
   font-variant-numeric: tabular-nums;
 }
 
+.stats-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
 /* Card evidence badge */
 .card__evidence-badge {
   display: inline-block;
@@ -1257,8 +1290,29 @@ table.compare tbody tr:last-child td {
 
 .compare-panel__empty {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 4rem 1.5rem;
   color: var(--text-muted);
+}
+
+.compare-panel__empty-icon {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+}
+
+.compare-panel__empty-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.compare-panel__empty-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  max-width: 340px;
+  margin-inline: auto;
 }
 
 /* Detail header */
@@ -1679,6 +1733,14 @@ kbd {
   font-size: 0.78rem;
   line-height: 1.55;
   color: var(--text-muted);
+}
+
+.footer__brand {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
 .footer__meta {

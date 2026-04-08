@@ -300,6 +300,12 @@ function updateSelectionToolbar() {
   if (els.clearSelection) els.clearSelection.disabled = n === 0;
   if (els.viewSelected) els.viewSelected.disabled = n === 0;
   if (els.compareSelected) els.compareSelected.disabled = n < 2;
+  const compareBadge = els.tabCompare;
+  if (compareBadge && n >= 2) {
+    compareBadge.textContent = `Compare (${n})`;
+  } else if (compareBadge) {
+    compareBadge.textContent = "Compare";
+  }
 }
 
 function selectedEntriesSorted() {
@@ -348,7 +354,7 @@ function renderCard(entry, catIndex, cardIndex) {
     (selected ? " card--selected" : "") +
     (isBookmarked ? " card--bookmarked" : "");
   article.dataset.entryId = id;
-  article.style.setProperty("--delay", `${cardIndex * 30}ms`);
+  article.style.setProperty("--delay", `${Math.min(cardIndex * 40, 600)}ms`);
   article.style.setProperty("--evidence-color", tier.color);
   if (tier.tier === "unknown") {
     article.classList.add("card--evidence-dashed");
@@ -448,13 +454,13 @@ function render() {
   const frag = document.createDocumentFragment();
   const selN = selectedIds.size;
   if (els.stats) {
-    els.stats.textContent = `${list.length} of ${db.entries.length} shown${selN ? " \u00b7 " + selN + " selected" : ""}`;
+    els.stats.textContent = `Showing ${list.length} of ${db.entries.length}${selN ? ` \u00b7 ${selN} selected` : ""}`;
   }
 
   if (list.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty";
-    empty.textContent = "No entries match your filters.";
+    empty.textContent = "No peptides match your current filters. Try broadening your search.";
     frag.appendChild(empty);
   } else {
     list.forEach((e, i) => frag.appendChild(renderCard(e, catIndex, i)));
@@ -657,6 +663,7 @@ function openDetail(entry, opts = {}) {
   }
   showDetailAt(detailIndex);
   els.dialog.showModal();
+  els.dialog.querySelector(".modal__panel")?.scrollTo(0, 0);
 }
 
 function closeDetail() {
@@ -903,6 +910,7 @@ function switchTab(tab) {
   if (tab === "compare") renderComparisonTable();
   if (tab === "stats") renderStatsDashboard();
   updateHashFromState();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 /* ------------------------------------------------------------------ */
@@ -1129,21 +1137,22 @@ async function init() {
     if (els.loadError) {
       els.loadError.hidden = false;
       els.loadError.textContent =
-        "Could not load data. Run a static server from the peptides folder (parent of web/). " + (err.message || err);
+        `Could not load the peptide database. ${err.message || err}`;
     }
     if (els.grid) els.grid.removeAttribute("aria-busy");
     return;
   }
 
+  document.title = `BadgerSkope — ${db.entries.length} Peptides`;
   doseLegend = db.meta?.doseGuidelinesLegend || {};
   if (els.disclaimer) els.disclaimer.textContent = db.disclaimer || "";
   if (els.footerMeta) {
     const built = db.meta?.builtAt || "";
     const ver = db.meta?.schemaVersion || "";
     els.footerMeta.textContent = [
-      db.meta?.basedOnCatalogFile ? "Based on: " + db.meta.basedOnCatalogFile : "",
-      ver ? "Schema " + ver : "",
-      built ? "Built " + built : "",
+      `${db.entries.length} entries`,
+      ver ? `v${ver}` : "",
+      built ? `Updated ${new Date(built).toLocaleDateString()}` : "",
     ]
       .filter(Boolean)
       .join(" \u00b7 ");
