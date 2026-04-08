@@ -633,3 +633,183 @@
     gap: 0.75rem;
   }
 }
+
+/* ---- Personal notes ---- */
+.user-notes__input {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.75rem;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  line-height: 1.55;
+}
+
+.user-notes__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.user-notes__input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.user-notes__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.user-notes__save,
+.user-notes__clear {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+  border: 1px solid var(--border);
+}
+
+.user-notes__save {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.user-notes__save:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.user-notes__save--done {
+  background: var(--success);
+}
+
+.user-notes__clear {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.user-notes__clear:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---- Print button ---- */
+.print-btn {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.print-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+/* ---- Read tracking ---- */
+.card--read {
+  position: relative;
+}
+
+.card--read::after {
+  content: '';
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Shift the bookmark button over when read dot is present */
+.card--read .card__bookmark {
+  right: 1.6rem;
+}
+
+/* ---- Unit tooltips ---- */
+.unit-tip {
+  border-bottom: 1px dotted var(--text-muted);
+  cursor: help;
+  transition: color 0.15s;
+}
+
+.unit-tip:hover {
+  color: var(--accent);
+}
+
+/* ---- Print styles for detail ---- */
+@media print {
+  body > *:not(.modal) {
+    display: none !important;
+  }
+  .modal {
+    position: static;
+    display: block !important;
+  }
+  .modal::backdrop {
+    display: none;
+  }
+  .modal__panel {
+    width: 100%;
+    max-height: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .modal__toolbar,
+  .modal__hint,
+  .detail__hero-actions,
+  .detail__bookmark-btn,
+  .share-btn,
+  .print-btn,
+  .user-notes,
+  .similar-compounds,
+  .related-entries {
+    display: none !important;
+  }
+  .detail__hero-bar {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+  .detail__section {
+    break-inside: avoid;
+  }
+  .detail__collapsible {
+    border: none;
+    padding: 0;
+  }
+  .detail__collapsible[open] > summary {
+    display: none;
+  }
+  .detail__collapsible > :not(summary) {
+    padding: 0;
+  }
+}
+
+/* ---- Export button disabled state ---- */
+#export-csv:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

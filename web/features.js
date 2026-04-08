@@ -349,6 +349,289 @@
     });
   }
 
+  /* ---- personal notes per entry (localStorage) ---- */
+  const NOTES_KEY = "peptide-notes";
+  let userNotes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
+
+  function saveNotes() {
+    localStorage.setItem(NOTES_KEY, JSON.stringify(userNotes));
+  }
+
+  function addNotesFeature() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".user-notes")) return;
+      const bookmarkBtn = detailBody.querySelector(".detail__bookmark-btn");
+      const entryId = bookmarkBtn?.dataset.entryId;
+      if (!entryId) return;
+
+      const section = document.createElement("div");
+      section.className = "detail__section user-notes";
+      const existing = userNotes[entryId] || "";
+      section.innerHTML = `
+        <h3>Your private notes</h3>
+        <p class="detail__help">Only stored on this device. Never sent anywhere.</p>
+        <textarea class="user-notes__input" placeholder="Add your own notes about this compound..." rows="3">${escapeAttr(existing)}</textarea>
+        <div class="user-notes__actions">
+          <button type="button" class="user-notes__save">Save note</button>
+          ${existing ? '<button type="button" class="user-notes__clear">Clear</button>' : ''}
+        </div>
+      `;
+
+      const disclaimer = detailBody.querySelector(".detail__disclaimer");
+      if (disclaimer) detailBody.insertBefore(section, disclaimer);
+      else detailBody.appendChild(section);
+
+      const textarea = section.querySelector("textarea");
+      const saveBtn = section.querySelector(".user-notes__save");
+      const clearBtn = section.querySelector(".user-notes__clear");
+
+      saveBtn.addEventListener("click", () => {
+        const val = textarea.value.trim();
+        if (val) {
+          userNotes[entryId] = val;
+        } else {
+          delete userNotes[entryId];
+        }
+        saveNotes();
+        saveBtn.textContent = "Saved!";
+        saveBtn.classList.add("user-notes__save--done");
+        setTimeout(() => {
+          saveBtn.textContent = "Save note";
+          saveBtn.classList.remove("user-notes__save--done");
+        }, 1500);
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          textarea.value = "";
+          delete userNotes[entryId];
+          saveNotes();
+          clearBtn.remove();
+        });
+      }
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- export selected entries as CSV ---- */
+  function addExportFeature() {
+    const selBar = document.getElementById("selection-bar");
+    if (!selBar) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn--ghost";
+    btn.textContent = "Export CSV";
+    btn.title = "Download selected entries as a CSV file";
+    btn.disabled = true;
+    btn.id = "export-csv";
+
+    selBar.querySelector(".selection-bar__actions")?.appendChild(btn);
+
+    // Watch selection count to enable/disable
+    const observer = new MutationObserver(() => {
+      const count = document.getElementById("selection-count");
+      const n = parseInt(count?.textContent) || 0;
+      btn.disabled = n === 0;
+    });
+    const countEl = document.getElementById("selection-count");
+    if (countEl) observer.observe(countEl, { childList: true, characterData: true, subtree: true });
+
+    btn.addEventListener("click", () => {
+      const cards = document.querySelectorAll(".card--selected, .card[class*=selected]");
+      if (cards.length === 0) return;
+
+      const rows = [["Title", "Price", "Type", "Evidence", "Categories", "Summary"]];
+
+      cards.forEach(card => {
+        const title = card.querySelector(".card__title")?.textContent || "";
+        const price = card.querySelector(".card__price")?.textContent || "";
+        const type = card.querySelector(".card__type")?.textContent || "";
+        const evidence = card.querySelector(".card__evidence-badge")?.textContent || "";
+        const chips = [...card.querySelectorAll(".chip")].map(c => c.textContent).join("; ");
+        const summary = card.querySelector(".card__summary")?.textContent || "";
+        rows.push([title, price, type, evidence, chips, summary]);
+      });
+
+      const csv = rows.map(r => r.map(c => '"' + c.replace(/"/g, '""') + '"').join(",")).join("\n");
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "badgerskope-export.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  /* ---- print current detail view ---- */
+  function addPrintButton() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".print-btn")) return;
+      const header = detailBody.querySelector(".detail__hero-actions") || detailBody.querySelector(".detail__header");
+      if (!header) return;
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "print-btn";
+      btn.textContent = "Print";
+      btn.title = "Print this entry";
+      btn.addEventListener("click", () => {
+        window.print();
+      });
+      header.appendChild(btn);
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- similar compounds at bottom of detail ---- */
+  function addSimilarCompounds() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".similar-compounds")) return;
+      const title = document.getElementById("detail-title")?.textContent;
+      if (!title) return;
+
+      const allCards = document.querySelectorAll(".card");
+      const currentChips = new Set(
+        [...(detailBody.querySelectorAll(".detail__cats .detail__badge") || [])].map(b => b.textContent.trim())
+      );
+      const currentThemes = new Set(
+        [...(detailBody.querySelectorAll(".detail__section--highlight .detail__badge") || [])].map(b => b.textContent.trim())
+      );
+
+      if (currentChips.size === 0 && currentThemes.size === 0) return;
+
+      const scored = [];
+      allCards.forEach(card => {
+        const cardTitle = card.querySelector(".card__title")?.textContent;
+        if (!cardTitle || cardTitle === title) return;
+        const cardChips = new Set([...card.querySelectorAll(".chip")].map(c => c.textContent.trim()));
+        let score = 0;
+        currentChips.forEach(c => { if (cardChips.has(c)) score += 2; });
+        const distinctive = card.querySelector(".card__distinctive")?.textContent || "";
+        currentThemes.forEach(t => { if (distinctive.toLowerCase().includes(t.toLowerCase())) score += 1; });
+        if (score > 0) scored.push({ title: cardTitle, score, id: card.dataset.entryId });
+      });
+
+      scored.sort((a, b) => b.score - a.score);
+      const top = scored.slice(0, 4);
+      if (top.length === 0) return;
+
+      const section = document.createElement("div");
+      section.className = "detail__section similar-compounds";
+      section.innerHTML = `<h3>Similar compounds</h3>
+        <p class="detail__help">Other entries in similar categories. Click to view.</p>
+        <div class="related-grid">${top.map(s =>
+          `<button type="button" class="related-card" data-title="${escapeAttr(s.title)}">
+            <span class="related-card__title">${escapeAttr(s.title)}</span>
+            <span class="related-card__arrow">&rarr;</span>
+          </button>`
+        ).join("")}</div>`;
+
+      const disclaimer = detailBody.querySelector(".detail__disclaimer");
+      if (disclaimer) detailBody.insertBefore(section, disclaimer);
+      else detailBody.appendChild(section);
+
+      section.querySelectorAll(".related-card").forEach(card => {
+        card.addEventListener("click", () => {
+          window.location.hash = "entry=" + encodeURIComponent(card.dataset.title);
+        });
+      });
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- reading list — mark entries as "read" ---- */
+  const READ_KEY = "peptide-read";
+  let readEntries = new Set(JSON.parse(localStorage.getItem(READ_KEY) || "[]"));
+
+  function saveReadList() {
+    localStorage.setItem(READ_KEY, JSON.stringify([...readEntries]));
+  }
+
+  function addReadTracking() {
+    const dialog = document.getElementById("detail-dialog");
+    if (!dialog) return;
+
+    const observer = new MutationObserver(() => {
+      if (!dialog.open) return;
+      const bookmarkBtn = document.getElementById("detail-body")?.querySelector(".detail__bookmark-btn");
+      const entryId = bookmarkBtn?.dataset.entryId;
+      if (entryId && !readEntries.has(entryId)) {
+        readEntries.add(entryId);
+        saveReadList();
+        const card = document.querySelector(`.card[data-entry-id="${CSS.escape(entryId)}"]`);
+        if (card) card.classList.add("card--read");
+        updateReadCount();
+      }
+    });
+    observer.observe(dialog, { attributes: true, attributeFilter: ["open"] });
+
+    applyReadState();
+
+    const grid = document.getElementById("grid");
+    if (grid) {
+      const gridObserver = new MutationObserver(applyReadState);
+      gridObserver.observe(grid, { childList: true });
+    }
+  }
+
+  function applyReadState() {
+    document.querySelectorAll(".card").forEach(card => {
+      if (readEntries.has(card.dataset.entryId)) {
+        card.classList.add("card--read");
+      }
+    });
+    updateReadCount();
+  }
+
+  function updateReadCount() {
+    const stats = document.getElementById("stats");
+    if (!stats) return;
+    const total = document.querySelectorAll(".card").length;
+    const read = document.querySelectorAll(".card--read").length;
+    if (read > 0 && total > 0) {
+      const existing = stats.textContent;
+      if (!existing.includes("read")) {
+        stats.textContent = existing + ` \u00b7 ${read} read`;
+      }
+    }
+  }
+
+  /* ---- quick unit reference tooltip ---- */
+  function addUnitHelper() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.dataset.unitsProcessed) return;
+      detailBody.dataset.unitsProcessed = "true";
+
+      const prose = detailBody.querySelectorAll(".detail__prose, .doses td");
+      prose.forEach(el => {
+        el.innerHTML = el.innerHTML
+          .replace(/(\d+\.?\d*)\s*(mcg|µg)/gi, '<span class="unit-tip" title="micrograms — one millionth of a gram">$1 $2</span>')
+          .replace(/(\d+\.?\d*)\s*mg\b/gi, '<span class="unit-tip" title="milligrams — one thousandth of a gram">$1 mg</span>')
+          .replace(/(\d+\.?\d*)\s*IU\b/g, '<span class="unit-tip" title="International Units — a standardized measure of biological activity">$1 IU</span>')
+          .replace(/\bsubcutaneous\b/gi, '<span class="unit-tip" title="Injected under the skin (not into muscle or vein)">subcutaneous</span>')
+          .replace(/\bintramuscular\b/gi, '<span class="unit-tip" title="Injected into a muscle">intramuscular</span>')
+          .replace(/\bHbA1c\b/g, '<span class="unit-tip" title="A blood test showing average blood sugar over 2-3 months">HbA1c</span>')
+          .replace(/\bIGF-1\b/g, '<span class="unit-tip" title="Insulin-like Growth Factor 1 — a hormone that mediates growth hormone effects">IGF-1</span>')
+          .replace(/\bBDNF\b/g, '<span class="unit-tip" title="Brain-Derived Neurotrophic Factor — a protein that supports brain cell growth and survival">BDNF</span>');
+      });
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
   /* ---- init ---- */
   function init() {
     addBookmarksToggle();
@@ -363,6 +646,12 @@
     addCountAnimation();
     addCardKeyNav();
     autoCloseNav();
+    addNotesFeature();
+    addExportFeature();
+    addPrintButton();
+    addSimilarCompounds();
+    addReadTracking();
+    addUnitHelper();
 
     // Keyboard shortcut: "f" toggles bookmarks filter
     document.addEventListener("keydown", (e) => {
