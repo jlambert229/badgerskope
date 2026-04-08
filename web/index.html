@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="dark light" />
     <meta name="description" content="BadgerSkope is an open peptide research library with plain-English summaries, evidence grading, and comparison tools. Not medical advice." />
     <meta property="og:title" content="BadgerSkope — Peptide Research Library" />
@@ -148,8 +148,6 @@
             <select id="sort" class="field__input field__select">
               <option value="title">Title A&ndash;Z</option>
               <option value="title-desc">Title Z&ndash;A</option>
-              <option value="price-asc">Price low to high</option>
-              <option value="price-desc">Price high to low</option>
               <option value="evidence">Best evidence first</option>
               <option value="type">By compound type</option>
             </select>
@@ -232,12 +230,6 @@
             <div class="stat-hero__number" id="stat-total-value">&mdash;</div>
             <div class="stat-hero__label">compounds in the library</div>
             <div class="stat-hero__sub" id="stat-total-sub"></div>
-          </div>
-
-          <div class="stat-card stat-card--hero" id="stat-price-range">
-            <div class="stat-hero__sub" id="stat-price-low"></div>
-            <div class="stat-hero__number" id="stat-price-label">&mdash;</div>
-            <div class="stat-hero__sub" id="stat-price-high"></div>
           </div>
 
           <div class="stat-card" id="stat-evidence">
@@ -378,7 +370,7 @@
             </div>
             <div class="help-item">
               <dt>Filter dropdowns</dt>
-              <dd><strong>Category:</strong> Filter by wellness area (weight, brain, immune, etc.). <strong>Type:</strong> Filter by compound class. <strong>Known for:</strong> Filter by research theme. <strong>Evidence:</strong> Show only entries at a specific evidence level. <strong>Sort:</strong> Reorder by name, price, evidence strength, or type.</dd>
+              <dd><strong>Category:</strong> Filter by wellness area (weight, brain, immune, etc.). <strong>Type:</strong> Filter by compound class. <strong>Known for:</strong> Filter by research theme. <strong>Evidence:</strong> Show only entries at a specific evidence level. <strong>Sort:</strong> Reorder by name, evidence strength, or type.</dd>
             </div>
             <div class="help-item">
               <dt>Quick find buttons</dt>
@@ -404,7 +396,7 @@
           <dl class="help-list">
             <div class="help-item">
               <dt>Opening details</dt>
-              <dd>Click any card to open its full detail view. You&rsquo;ll see the compound name, type, price, and evidence level in a header bar.</dd>
+              <dd>Click any card to open its full detail view. You&rsquo;ll see the compound name, type, and evidence level in a header bar.</dd>
             </div>
             <div class="help-item">
               <dt>Evidence badges</dt>
@@ -421,10 +413,6 @@
             <div class="help-item">
               <dt>Unit tooltips</dt>
               <dd>Hover over units like mg, mcg, IU, or terms like HbA1c, IGF-1, BDNF to see plain-English definitions.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Price per mg</dt>
-              <dd>When a clear mg amount and price are available, a $/mg badge appears so you can compare value across dose sizes.</dd>
             </div>
             <div class="help-item">
               <dt>Sport/doping flags</dt>
@@ -446,7 +434,7 @@
             </div>
             <div class="help-item">
               <dt>Compare tab</dt>
-              <dd>With 2+ entries selected, switch to the Compare tab to see them side by side. Differences are highlighted. &ldquo;Best&rdquo; badges mark the lowest price and strongest evidence.</dd>
+              <dd>With 2+ entries selected, switch to the Compare tab to see them side by side. Differences are highlighted. &ldquo;Best&rdquo; badges mark the strongest evidence.</dd>
             </div>
             <div class="help-item">
               <dt>Stack synergy map</dt>
@@ -494,7 +482,7 @@
           <dl class="help-list">
             <div class="help-item">
               <dt>Overview</dt>
-              <dd>The Stats tab shows the database at a glance — total compounds, price range, and distribution charts for compound types, categories, evidence quality, and themes.</dd>
+              <dd>The Stats tab shows the database at a glance — total compounds and distribution charts for compound types, categories, evidence quality, and themes.</dd>
             </div>
             <div class="help-item">
               <dt>Click to filter</dt>
@@ -559,12 +547,11 @@
       hidden
     >&uarr;</button>
 
-    <script src="./app.js" type="module"></script>
+    <script src="./src/main.js" type="module"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js").catch(() => {});
       }
     </script>
-    <script src="./features.js" defer></script>
   </body>
 </html>

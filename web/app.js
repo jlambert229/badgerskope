@@ -397,10 +397,6 @@ function sortEntries(entries, mode) {
     out.sort((a, b) => (a.catalog?.title || "").localeCompare(b.catalog?.title || ""));
   } else if (mode === "title-desc") {
     out.sort((a, b) => (b.catalog?.title || "").localeCompare(a.catalog?.title || ""));
-  } else if (mode === "price-asc") {
-    out.sort((a, b) => (parsePrice(a.catalog?.priceText) || 999) - (parsePrice(b.catalog?.priceText) || 999));
-  } else if (mode === "price-desc") {
-    out.sort((a, b) => (parsePrice(b.catalog?.priceText) || 0) - (parsePrice(a.catalog?.priceText) || 0));
   } else if (mode === "evidence") {
     out.sort((a, b) => highestTier(a).rank - highestTier(b).rank);
   } else if (mode === "type") {
@@ -453,8 +449,6 @@ function formatEvidenceBasis(key) {
 
 function renderCard(entry, catIndex, cardIndex) {
   const title = entry.catalog?.title || "Untitled";
-  const price = entry.catalog?.priceText || "";
-  const cleanPrice = price.replace(/Price range:.*$/, '').trim();
   const type = formatCompoundType(entry.compoundType);
   const summary = entry.researchSummary || "";
   const headline = entry.distinctiveQuality?.headline || "";
@@ -519,12 +513,6 @@ function renderCard(entry, catIndex, cardIndex) {
   h2.className = "card__title";
   h2.textContent = title;
   headText.appendChild(h2);
-  if (price) {
-    const priceEl = document.createElement("span");
-    priceEl.className = "card__price";
-    priceEl.textContent = cleanPrice;
-    headText.appendChild(priceEl);
-  }
 
   head.appendChild(label);
   head.appendChild(headText);
@@ -690,8 +678,6 @@ function renderDetailHtml(entry) {
   const catIndex = db.meta.wellnessCategoryIndex || {};
   const kfIdx = db.meta.knownForThemeIndex || {};
   const title = entry.catalog?.title || "Entry";
-  const url = entry.catalog?.url;
-  const price = entry.catalog?.priceText;
   const id = getEntryId(entry);
   const isBookmarked = bookmarks.has(id);
   const tier = highestTier(entry);
@@ -752,7 +738,6 @@ function renderDetailHtml(entry) {
           ${entry.compoundType ? `<span class="detail__compound-type" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
         </div>
         <div class="detail__hero-right">
-          ${price ? `<span class="detail__price">${escapeHtml(price)}</span>` : ""}
           <span class="detail__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
         </div>
       </div>
@@ -760,7 +745,6 @@ function renderDetailHtml(entry) {
         <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
           ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
         </button>
-        ${url ? `<a class="detail__link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">View catalog listing \u2192</a>` : ""}
       </div>
     </div>
 
@@ -999,10 +983,6 @@ function renderComparisonTable() {
       fn: (e) => escapeHtml(e.catalog?.title || ""),
     },
     {
-      label: "Price",
-      fn: (e) => escapeHtml(e.catalog?.priceText || "N/A"),
-    },
-    {
       label: "Compound type",
       fn: (e) => escapeHtml(formatCompoundType(e.compoundType)),
     },
@@ -1105,16 +1085,6 @@ function renderComparisonTable() {
     const cells = [...tr.querySelectorAll("td")];
     if (cells.length < 2) return;
 
-    if (label === "Price") {
-      // Lowest price wins
-      let minVal = Infinity, minIdx = -1;
-      cells.forEach((td, i) => {
-        const price = parseFloat(td.textContent.replace(/[^0-9.]/g, ""));
-        if (!isNaN(price) && price < minVal) { minVal = price; minIdx = i; }
-      });
-      if (minIdx >= 0) cells[minIdx].classList.add("compare-winner");
-    }
-
     if (label === "Evidence") {
       // Strongest evidence wins (look for approved > strong > early > animal > clinic)
       const tierRank = { "FDA approved": 0, "Strong human trials": 1, "Early human studies": 2, "Animal studies only": 3, "Clinic practice": 4, "Unknown": 5 };
@@ -1173,20 +1143,6 @@ function renderStatsDashboard() {
   if (totalSubEl) {
     const withSources = entries.filter(e => (e.sources || []).length > 0).length;
     totalSubEl.textContent = `${withSources} with linked sources`;
-  }
-
-  /* Price range */
-  const prices = entries.map(e => parsePrice(e.catalog?.priceText)).filter(p => !isNaN(p));
-  const priceLowEl = document.getElementById("stat-price-low");
-  const priceHighEl = document.getElementById("stat-price-high");
-  const priceLabelEl = document.getElementById("stat-price-label");
-  if (prices.length && priceLowEl && priceHighEl && priceLabelEl) {
-    const low = Math.min(...prices);
-    const high = Math.max(...prices);
-    const avg = (prices.reduce((a, b) => a + b, 0) / prices.length).toFixed(0);
-    priceLowEl.textContent = `From $${low.toFixed(2)}`;
-    priceLabelEl.textContent = `$${avg} avg`;
-    priceHighEl.textContent = `Up to $${high.toFixed(2)}`;
   }
 
   /* Compound types */

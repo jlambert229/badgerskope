@@ -1,6 +1,6 @@
 /* ============================================================
    BADGERSKOPE — Marketing Landing Page
-   Dark theme · SaaS-style · Production CSS
+   Dark theme · Production CSS
    ============================================================ */
 
 /* ---------- Custom Properties ---------- */
@@ -25,11 +25,7 @@
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-xl: 20px;
-  --radius-pill: 9999px;
-
-  --shadow-glow-accent: 0 0 40px rgba(76, 157, 255, 0.15);
-  --shadow-glow-purple: 0 0 40px rgba(124, 92, 255, 0.12);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2);
 
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
@@ -59,11 +55,6 @@ body {
   line-height: 1.6;
   color: var(--text);
   background-color: var(--bg);
-  background-image:
-    radial-gradient(ellipse 60% 50% at 10% 5%, rgba(76, 157, 255, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 90% 5%, rgba(124, 92, 255, 0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 35% at 50% 100%, rgba(91, 214, 166, 0.05) 0%, transparent 50%);
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -133,13 +124,12 @@ h2 {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
+  background: var(--accent);
   color: #fff;
   font-family: var(--font-sans);
   font-weight: 800;
   font-size: 0.8rem;
   line-height: 1;
-  box-shadow: 0 0 16px rgba(76, 157, 255, 0.35);
   flex-shrink: 0;
   user-select: none;
 }
@@ -148,8 +138,7 @@ h2 {
   width: 48px;
   height: 48px;
   font-size: 1.15rem;
-  border-radius: 14px;
-  box-shadow: 0 0 24px rgba(76, 157, 255, 0.3);
+  border-radius: 10px;
 }
 
 .monogram--sm,
@@ -175,11 +164,10 @@ h2 {
   font-size: 1.05rem;
   color: #fff;
   text-decoration: none;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
-  box-shadow: 0 4px 20px rgba(76, 157, 255, 0.35);
+  background: var(--accent);
   transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
   white-space: nowrap;
   line-height: 1.4;
   border: none;
@@ -187,8 +175,7 @@ h2 {
 }
 
 .btn-big:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(76, 157, 255, 0.5);
+  opacity: 0.9;
   text-decoration: none;
 }
 
@@ -196,20 +183,8 @@ h2 {
   transform: translateY(0) scale(0.98);
 }
 
-.btn-glow {
-  animation: btnPulse 2s ease-in-out infinite;
-}
-
-@keyframes btnPulse {
-  0%, 100% {
-    box-shadow: 0 4px 20px rgba(76, 157, 255, 0.35);
-  }
-  50% {
-    box-shadow:
-      0 4px 40px rgba(76, 157, 255, 0.6),
-      0 0 80px rgba(124, 92, 255, 0.15);
-  }
-}
+/* btn-glow class kept for HTML compat but no longer animates */
+.btn-glow {}
 
 .btn-outline {
   display: inline-flex;
@@ -250,10 +225,8 @@ h2 {
   position: sticky;
   top: 0;
   z-index: 200;
-  background: rgba(12, 15, 20, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(76, 157, 255, 0.08);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav {
@@ -319,18 +292,15 @@ h2 {
 .nav-cta {
   padding: 0.45rem 1.1rem;
   border-radius: 8px;
-  background: rgba(76, 157, 255, 0.12);
-  border: 1px solid rgba(76, 157, 255, 0.25);
+  background: var(--surface);
+  border: 1px solid var(--border);
   color: var(--accent) !important;
   font-weight: 600;
-  transition:
-    background var(--transition-fast),
-    box-shadow var(--transition-base);
+  transition: background var(--transition-fast);
 }
 
 .nav-cta:hover {
-  background: rgba(76, 157, 255, 0.2);
-  box-shadow: 0 0 20px rgba(76, 157, 255, 0.15);
+  background: var(--bg-elevated);
 }
 
 .nav-cta::after {
@@ -366,12 +336,11 @@ h2 {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 6rem 1.5rem 4rem;
+  padding: 4rem 1.5rem 3rem;
   overflow: hidden;
 }
 
@@ -381,84 +350,8 @@ h2 {
   pointer-events: none;
 }
 
-/* Animated orbs */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: orbDrift 12s ease-in-out infinite alternate;
-}
-
-.orb-1 {
-  width: 600px;
-  height: 600px;
-  top: -20%;
-  left: 30%;
-  background: radial-gradient(circle, rgba(76, 157, 255, 0.25), transparent 70%);
-}
-
-.orb-2 {
-  width: 500px;
-  height: 500px;
-  bottom: -10%;
-  right: 10%;
-  background: radial-gradient(circle, rgba(124, 92, 255, 0.2), transparent 70%);
-  animation-delay: -4s;
-  animation-duration: 15s;
-}
-
-.orb-3 {
-  width: 400px;
-  height: 400px;
-  top: 40%;
-  left: -10%;
-  background: radial-gradient(circle, rgba(91, 214, 166, 0.12), transparent 70%);
-  animation-delay: -8s;
-  animation-duration: 18s;
-}
-
-@keyframes orbDrift {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(30px, -20px) scale(1.05); }
-  66%  { transform: translate(-20px, 15px) scale(0.95); }
-  100% { transform: translate(10px, -10px) scale(1.02); }
-}
-
-/* Helix rings */
-.helix {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  border-radius: 50%;
-  border: 1px solid rgba(76, 157, 255, 0.06);
-  animation: helixSpin 60s linear infinite;
-}
-
-.helix::before,
-.helix::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(124, 92, 255, 0.04);
-}
-
-.helix::before {
-  inset: 60px;
-}
-
-.helix::after {
-  inset: 140px;
-  border-color: rgba(91, 214, 166, 0.03);
-}
-
-@keyframes helixSpin {
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
+/* Orbs and helix removed — decorative elements hidden */
+.orb, .helix { display: none; }
 
 /* Hero content */
 .hero-content {
@@ -471,10 +364,7 @@ h2 {
   width: clamp(200px, 35vw, 320px);
   height: auto;
   margin: 0 auto 2rem;
-  filter:
-    drop-shadow(0 0 80px rgba(76, 157, 255, 0.5))
-    drop-shadow(0 0 160px rgba(124, 92, 255, 0.2));
-  animation: fadeInUp 0.8s ease both;
+  animation: fadeInUp 0.5s ease both;
 }
 
 .hero-h1 {
@@ -488,10 +378,7 @@ h2 {
 }
 
 .grad-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 40%, var(--green) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent);
 }
 
 .hero-p {
@@ -540,7 +427,7 @@ h2 {
    BANDS (Section containers)
    ============================================================ */
 .band {
-  padding: 6rem 0;
+  padding: 3.5rem 0;
 }
 
 .band-dark {
@@ -615,7 +502,7 @@ h2 {
 }
 
 .noise-card:hover {
-  transform: rotate(0deg) scale(1.02);
+  transform: rotate(0deg);
 }
 
 .nc-1 { --rot: -1.5deg; }
@@ -645,11 +532,7 @@ h2 {
   padding: 1.5rem;
   border-radius: 14px;
   background: rgba(18, 24, 33, 0.8);
-  border: 1px solid rgba(76, 157, 255, 0.15);
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(76, 157, 255, 0.05);
-  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
 }
 
 .sc-head {
@@ -763,9 +646,7 @@ h2 {
 }
 
 .how-step:hover {
-  transform: translateY(-4px);
-  border-color: rgba(76, 157, 255, 0.2);
-  box-shadow: 0 12px 40px rgba(76, 157, 255, 0.06);
+  border-color: var(--accent);
 }
 
 .how-num {
@@ -775,12 +656,11 @@ h2 {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
+  background: var(--accent);
   color: #fff;
   font-weight: 800;
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  box-shadow: 0 0 24px rgba(76, 157, 255, 0.3);
 }
 
 .how-step h3 {
@@ -965,34 +845,23 @@ h2 {
 .cta-end {
   position: relative;
   overflow: hidden;
-  padding: 6rem 1.5rem;
+  padding: 3.5rem 1.5rem;
   text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(18, 24, 33, 0.9) 0%,
-    rgba(30, 22, 48, 0.4) 50%,
-    rgba(16, 24, 36, 0.9) 100%
-  );
-  border-radius: var(--radius-xl);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   margin: 2rem 1.5rem;
 }
 
 .cta-end::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 40% 50% at 20% 50%, rgba(76, 157, 255, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 80% 50%, rgba(124, 92, 255, 0.06) 0%, transparent 60%);
-  pointer-events: none;
+  display: none;
 }
 
 .cta-logo {
   width: 96px;
   height: 96px;
   margin: 0 auto 1.5rem;
-  border-radius: var(--radius-xl);
-  filter: drop-shadow(0 0 40px rgba(76, 157, 255, 0.3));
+  border-radius: var(--radius-lg);
   position: relative;
 }
 
@@ -1017,7 +886,7 @@ h2 {
 }
 
 .cta-end .btn-big:hover {
-  box-shadow: 0 8px 40px rgba(76, 157, 255, 0.5);
+  opacity: 0.9;
 }
 
 /* ============================================================
@@ -1126,16 +995,7 @@ h2 {
   to   { opacity: 1; }
 }
 
-@keyframes heroGlow {
-  0% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
-}
+/* heroGlow animation removed */
 
 /* Scroll-triggered animation base state */
 .animate-on-scroll {
@@ -1164,10 +1024,7 @@ h2 {
    UTILITY CLASSES
    ============================================================ */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 .text-center { text-align: center; }
@@ -1249,21 +1106,15 @@ h2 {
   }
 
   .hero {
-    min-height: auto;
-    padding: 5rem 1.5rem 3.5rem;
+    padding: 3rem 1.5rem 2.5rem;
   }
 
   .hero-logo {
     width: clamp(180px, 30vw, 260px);
   }
 
-  .helix {
-    width: 500px;
-    height: 500px;
-  }
-
   .band {
-    padding: 5rem 0;
+    padding: 3rem 0;
   }
 
   .footer-grid {
@@ -1287,10 +1138,8 @@ h2 {
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: rgba(12, 15, 20, 0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(76, 157, 255, 0.08);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease;
@@ -1328,8 +1177,7 @@ h2 {
 
   /* Hero mobile */
   .hero {
-    min-height: auto;
-    padding: 3.5rem 1.25rem 2.5rem;
+    padding: 2.5rem 1.25rem 2rem;
   }
 
   .hero-logo {
@@ -1355,15 +1203,6 @@ h2 {
     max-width: 300px;
     text-align: center;
   }
-
-  .helix {
-    width: 300px;
-    height: 300px;
-  }
-
-  .orb-1 { width: 300px; height: 300px; }
-  .orb-2 { width: 250px; height: 250px; }
-  .orb-3 { width: 200px; height: 200px; }
 
   /* Layout */
   .split,
@@ -1451,8 +1290,47 @@ h2 {
   }
 
   .cta-end {
-    padding: 3rem 1rem;
-    margin: 0.75rem 0.5rem;
+    padding: 2.5rem 1rem;
+    margin: 1rem 0.5rem;
+  }
+
+  .hero {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .hero-h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .hero-p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-big {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .band {
+    padding: 2.5rem 0;
+  }
+
+  .how-step {
+    min-width: 100%;
+    padding: 1.25rem 1rem;
+  }
+
+  .ev-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .split {
+    gap: 2rem;
   }
 
   .faq summary {
