@@ -35,18 +35,18 @@ export function initKeyboard() {
 
     if (inInput) return;
 
-    if (e.key === "/") {
-      e.preventDefault();
-      if (els.search) els.search.focus();
-      return;
-    }
-
-    if (e.key === "?") {
+    if (e.key === "?" || (e.key === "/" && e.shiftKey)) {
       e.preventDefault();
       if (els.shortcutsDialog) {
         if (els.shortcutsDialog.open) els.shortcutsDialog.close();
         else els.shortcutsDialog.showModal();
       }
+      return;
+    }
+
+    if (e.key === "/") {
+      e.preventDefault();
+      if (els.search) els.search.focus();
       return;
     }
 
