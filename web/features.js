@@ -85,22 +85,21 @@
 
     const cb = toggle.querySelector("input");
     cb.addEventListener("change", () => {
-      document.querySelectorAll(".card").forEach((card) => {
-        if (cb.checked && !card.classList.contains("card--bookmarked")) {
-          card.style.display = "none";
-        } else {
-          card.style.display = "";
-        }
-      });
-      // Update count
-      const total = document.querySelectorAll(".card").length;
-      const visible = document.querySelectorAll('.card:not([style*="display: none"])').length;
-      const stats = document.getElementById("stats");
-      if (stats && cb.checked) {
-        stats.textContent = `Showing ${visible} of ${total} (bookmarked only)`;
-      } else if (stats) {
-        stats.textContent = `Showing ${total} of ${total}`;
+      const grid = document.getElementById("grid");
+      if (grid) {
+        grid.classList.toggle("grid--bookmarks-only", cb.checked);
       }
+      // Update visible count
+      setTimeout(() => {
+        const allCards = document.querySelectorAll(".card");
+        const visibleCards = cb.checked
+          ? document.querySelectorAll(".card.card--bookmarked")
+          : allCards;
+        const stats = document.getElementById("stats");
+        if (stats && cb.checked) {
+          stats.textContent = `Showing ${visibleCards.length} bookmarked of ${allCards.length}`;
+        }
+      }, 50);
     });
   }
 
@@ -220,13 +219,14 @@
 
     const observer = new MutationObserver(() => {
       if (!dialog.open) return;
-      const title = document.getElementById("detail-title");
-      if (!title) return;
-      const entryTitle = title.textContent;
-      // Find the entry ID from the detail body
-      const bookmarkBtn = document.getElementById("detail-body")?.querySelector(".detail__bookmark-btn");
-      const id = bookmarkBtn?.dataset.entryId || entryTitle;
-      saveRecent(id, entryTitle);
+      setTimeout(() => {
+        const title = document.getElementById("detail-title");
+        if (!title) return;
+        const entryTitle = title.textContent;
+        const bookmarkBtn = document.getElementById("detail-body")?.querySelector(".detail__bookmark-btn");
+        const id = bookmarkBtn?.dataset.entryId || entryTitle;
+        saveRecent(id, entryTitle);
+      }, 100);
     });
 
     observer.observe(dialog, { attributes: true, attributeFilter: ["open"] });
@@ -235,32 +235,44 @@
   /* ---- search highlighting ---- */
   function addSearchHighlighting() {
     const search = document.getElementById("search");
-    if (!search) return;
+    const grid = document.getElementById("grid");
+    if (!search || !grid) return;
 
-    let lastQ = "";
-    const highlightInterval = setInterval(() => {
+    function applyHighlight() {
       const q = search.value.trim().toLowerCase();
-      if (q === lastQ) return;
-      lastQ = q;
-
-      document.querySelectorAll(".card__summary, .card__distinctive").forEach((el) => {
-        // Reset to original text
+      grid.querySelectorAll(".card__summary, .card__distinctive").forEach((el) => {
+        // Restore original text
         if (el.dataset.original) {
           el.textContent = el.dataset.original;
         }
         if (!q || q.length < 2) return;
-
         if (!el.dataset.original) el.dataset.original = el.textContent;
+
         const text = el.textContent;
-        const idx = text.toLowerCase().indexOf(q);
+        const words = q.split(/\s+/).filter(w => w.length >= 2);
+        if (words.length === 0) return;
+
+        // Only highlight the first matching word to keep it simple
+        const word = words[0];
+        const idx = text.toLowerCase().indexOf(word);
         if (idx === -1) return;
 
         const before = text.slice(0, idx);
-        const match = text.slice(idx, idx + q.length);
-        const after = text.slice(idx + q.length);
-        el.innerHTML = escapeAttr(before) + '<mark class="search-hl">' + escapeAttr(match) + "</mark>" + escapeAttr(after);
+        const match = text.slice(idx, idx + word.length);
+        const after = text.slice(idx + word.length);
+        el.innerHTML = escapeAttr(before) + '<mark class="search-hl">' + escapeAttr(match) + '</mark>' + escapeAttr(after);
       });
-    }, 300);
+    }
+
+    // Listen for grid re-renders
+    const observer = new MutationObserver(() => {
+      requestAnimationFrame(applyHighlight);
+    });
+    observer.observe(grid, { childList: true });
+
+    search.addEventListener("input", () => {
+      requestAnimationFrame(applyHighlight);
+    });
   }
 
   /* ---- helpers ---- */

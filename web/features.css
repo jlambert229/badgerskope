@@ -1387,3 +1387,100 @@
     gap: 0.15rem;
   }
 }
+
+/* ---- Bookmarks-only grid filter ---- */
+.grid--bookmarks-only .card:not(.card--bookmarked) {
+  display: none;
+}
+
+/* ---- Mobile improvements ---- */
+@media (max-width: 768px) {
+  .goal-bar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .goal-btn {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .quick-preview {
+    display: none !important;
+  }
+
+  .recent-bar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .recent-bar__item {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .search-autocomplete {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 12px 12px 0 0;
+    max-height: 50vh;
+    z-index: 200;
+  }
+
+  .help-item {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .stack-map__entries {
+    flex-direction: column;
+  }
+
+  .ev-compare__label {
+    flex: 0 0 100px;
+    font-size: 0.72rem;
+  }
+
+  .source-quality__label {
+    flex: 0 0 75px;
+    font-size: 0.72rem;
+  }
+
+  .detail__hero-top {
+    flex-direction: column;
+  }
+
+  .detail__hero-right {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .detail__hero-actions {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .card__select input {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
+
+/* ---- Touch-friendly card checkbox ---- */
+@media (pointer: coarse) {
+  .card__select {
+    padding: 0.25rem;
+  }
+
+  .card__select input {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .card__bookmark {
+    opacity: 1;
+    font-size: 1.2rem;
+  }
+}
