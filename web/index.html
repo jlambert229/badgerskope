@@ -7,7 +7,8 @@
     <meta name="description" content="BadgerSkope is an open peptide research library with plain-English summaries, evidence grading, and comparison tools. Not medical advice." />
     <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦡</text></svg>" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>BadgerSkope — Peptide Research Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +24,7 @@
       <header class="header">
         <div class="header__inner">
           <div class="brand">
-            <span class="brand__mark" aria-hidden="true">🦡</span>
+            <img class="brand__logo" src="./logo.png" alt="BadgerSkope logo" width="56" height="56" />
             <div>
               <h1 class="brand__title">BadgerSkope</h1>
               <p class="brand__tag">Peptide research library &mdash; plain English, not medical advice</p>
@@ -198,7 +199,10 @@
       <footer class="footer">
         <p id="disclaimer" class="disclaimer"></p>
         <p class="footer__meta" id="footer-meta"></p>
-        <p class="footer__brand">BadgerSkope &mdash; open peptide research literacy</p>
+        <div class="footer__brand">
+          <img class="footer__logo" src="./logo.png" alt="" width="28" height="28" />
+          <span>BadgerSkope &mdash; open peptide research literacy</span>
+        </div>
         <p class="footer__shortcuts">
           <kbd>?</kbd> for keyboard shortcuts
         </p>
