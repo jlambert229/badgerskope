@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peptide Glossary — BadgerSkope</title>
+  <meta name="description" content="A searchable dictionary of peptide and medical terms, translated into plain English. No jargon, no gatekeeping.">
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Custom Properties ---------- */
+    :root {
+      --bg: #07090d;
+      --bg-elevated: #0e1219;
+      --surface: #141a24;
+      --border: #2a3545;
+      --text: #e6eaef;
+      --text-muted: #9aa8b8;
+      --accent: #4c9dff;
+      --purple: #7c5cff;
+      --green: #5bd6a6;
+      --warning: #f5a623;
+      --orange: #e87740;
+      --danger: #ef4444;
+      --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+      --font-mono: "IBM Plex Mono", "Fira Code", monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-pill: 9999px;
+      --shadow-glow-accent: 0 0 40px rgba(76, 157, 255, 0.15);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+    }
+
+    /* ---------- Reset & Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) var(--bg);
+    }
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 60% 50% at 10% 5%, rgba(76, 157, 255, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 5%, rgba(124, 92, 255, 0.05) 0%, transparent 55%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition-fast); }
+    a:hover { text-decoration: none; }
+    ul, ol { list-style: none; }
+    h1, h2, h3, h4, h5, h6 { letter-spacing: -0.02em; font-weight: 700; line-height: 1.15; color: #fff; }
+
+    /* ---------- Layout ---------- */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .wrap-narrow { max-width: 820px; }
+
+    /* ---------- Monogram ---------- */
+    .monogram {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: #fff; font-family: var(--font-sans); font-weight: 800;
+      font-size: 0.8rem; line-height: 1;
+      box-shadow: 0 0 16px rgba(76, 157, 255, 0.35);
+      flex-shrink: 0; user-select: none;
+    }
+    .monogram-sm { width: 26px; height: 26px; font-size: 0.7rem; border-radius: 6px; }
+
+    /* ---------- Sticky Nav (frosted glass) ---------- */
+    .site-header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(7, 9, 13, 0.78);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(76, 157, 255, 0.08);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 0.7rem 1.5rem;
+      position: relative;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+    .wordmark { font-weight: 700; color: #fff; font-size: 1rem; letter-spacing: -0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.88rem; font-weight: 500; color: var(--text-muted);
+      transition: color var(--transition-fast); position: relative;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a::after {
+      content: ""; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--accent);
+      border-radius: 1px; transition: width var(--transition-base);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: #fff; }
+    .nav-links a.active::after { width: 100%; }
+    .nav-cta {
+      padding: 0.45rem 1.1rem; border-radius: 8px;
+      background: rgba(76, 157, 255, 0.12);
+      border: 1px solid rgba(76, 157, 255, 0.25);
+      color: var(--accent) !important; font-weight: 600;
+      transition: background var(--transition-fast), box-shadow var(--transition-base);
+    }
+    .nav-cta:hover { background: rgba(76, 157, 255, 0.2); box-shadow: 0 0 20px rgba(76, 157, 255, 0.15); }
+    .nav-cta::after { display: none; }
+
+    /* Hamburger */
+    .nav-toggle { display: none; }
+    .nav-hamburger {
+      display: none; cursor: pointer; flex-direction: column; gap: 5px;
+      padding: 0.4rem; background: none; border: none;
+    }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-muted); border-radius: 2px; transition: all var(--transition-base); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 5rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .grad-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 40%, var(--green) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ---------- Search ---------- */
+    .search-wrap {
+      max-width: 580px;
+      margin: 0 auto 1rem;
+      position: relative;
+    }
+    .search-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); pointer-events: none; font-size: 1.1rem;
+    }
+    .search-input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.8rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+    .search-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(76, 157, 255, 0.15), var(--shadow-glow-accent);
+    }
+    .search-count {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2rem;
+      min-height: 1.3em;
+    }
+
+    /* ---------- Letter Anchors ---------- */
+    .letter-nav {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.4rem; margin-bottom: 3rem;
+      max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+    .letter-nav a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-weight: 500; font-size: 0.85rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      transition: all var(--transition-fast);
+    }
+    .letter-nav a:hover {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(76, 157, 255, 0.1);
+    }
+    .letter-nav a.disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    /* ---------- Glossary Sections ---------- */
+    .glossary-section { margin-bottom: 3rem; }
+    .glossary-section:last-child { margin-bottom: 0; }
+    .letter-heading {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+      scroll-margin-top: 80px;
+    }
+
+    /* ---------- Term Cards ---------- */
+    .term-card {
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 0.75rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .term-card:hover {
+      border-color: rgba(76, 157, 255, 0.25);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+    }
+    .term-card.hidden { display: none; }
+    .term-name {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .term-abbr {
+      color: var(--accent);
+    }
+    .term-def {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ---------- No results ---------- */
+    .no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      display: none;
+    }
+    .no-results.visible { display: block; }
+    .no-results span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4rem;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+    }
+    .footer-left { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--text-muted); font-size: 0.88rem; transition: color var(--transition-fast); }
+    .footer-links a:hover { color: #fff; }
+    .footer-right { text-align: right; }
+    .footer-right p { font-size: 0.78rem; color: var(--text-muted); opacity: 0.5; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(7, 9, 13, 0.95);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 1.5rem; gap: 0.8rem;
+      }
+      .nav-toggle:checked ~ .nav-links { display: flex; }
+      .nav-toggle:checked ~ .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle:checked ~ .nav-hamburger span:nth-child(2) { opacity: 0; }
+      .nav-toggle:checked ~ .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .hero { padding: 3.5rem 1rem 2.5rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .letter-nav a { width: 32px; height: 32px; font-size: 0.78rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-right { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAV ====== -->
+  <header class="site-header">
+    <nav class="nav">
+      <a href="/" class="nav-logo">
+        <span class="monogram">BS</span>
+        <span class="wordmark">BadgerSkope</span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="nav-hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/web/">Library</a></li>
+        <li><a href="/glossary.html" class="active">Glossary</a></li>
+        <li><a href="/web/" class="nav-cta">Open Library &rarr;</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+      <h1>Peptide Glossary &mdash; <span class="grad-text">terms you'll actually understand</span></h1>
+      <p>Every confusing acronym, every gatekept medical term, translated into plain English. Search or browse by letter.</p>
+
+      <!-- ====== SEARCH ====== -->
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">&#x1F50D;</span>
+        <input type="text" class="search-input" id="glossary-search" placeholder="Search terms (e.g. GLP-1, bioavailability, placebo...)" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="search-count" id="search-count"></div>
+    </section>
+
+    <!-- ====== LETTER NAV ====== -->
+    <div class="wrap wrap-narrow">
+      <div class="letter-nav" id="letter-nav"></div>
+
+      <!-- ====== GLOSSARY TERMS ====== -->
+      <div id="glossary-container"></div>
+
+      <!-- ====== NO RESULTS ====== -->
+      <div class="no-results" id="no-results">
+        <span>&#x1F9D0;</span>
+        No terms match your search. Try a different keyword.
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="monogram monogram-sm">BS</span>
+        <span class="wordmark">BadgerSkope</span>
+      </div>
+      <nav class="footer-links">
+        <a href="/web/">Library</a>
+        <a href="/glossary.html">Glossary</a>
+        <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank" rel="noopener">Report Issue</a>
+      </nav>
+      <div class="footer-right">
+        <p>Not medical advice. For research literacy only.</p>
+        <p>&copy; 2026 BadgerSkope</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ---- Term data ----
+      var terms = [
+        { term: 'ACTH', full: 'Adrenocorticotropic Hormone', def: 'A stress-related hormone produced by the pituitary gland. It signals the adrenal glands to release cortisol, which helps your body respond to stress.' },
+        { term: 'Amino acid', full: '', def: 'The basic building blocks of proteins and peptides. There are 20 standard amino acids that combine in different sequences to form every protein in your body.' },
+        { term: 'Amylin', full: '', def: 'A hormone made by the pancreas alongside insulin that signals fullness to the brain. It slows stomach emptying and helps regulate blood sugar after meals.' },
+        { term: 'Anabolic', full: '', def: 'Relating to the building up of complex molecules in the body, especially muscle tissue. The opposite of catabolic (breaking down).' },
+        { term: 'Bioavailability', full: '', def: 'How much of a substance actually gets absorbed into your bloodstream and reaches its target. A peptide injected subcutaneously typically has higher bioavailability than one taken orally.' },
+        { term: 'Bioregulator', full: '', def: 'A very short peptide (2\u20134 amino acids) marketed for organ-specific support, often originating from Russian research (Khavinson peptides). Evidence is limited and mostly preclinical.' },
+        { term: 'BPC', full: 'Body Protection Compound', def: 'A peptide fragment originally found in human stomach juice. BPC-157 is the most studied variant, researched for its potential effects on gut healing and tissue repair, mostly in animal models.' },
+        { term: 'Catabolic', full: '', def: 'Relating to the breakdown of complex molecules into simpler ones, often releasing energy. Muscle wasting and fat loss are catabolic processes.' },
+        { term: 'Certificate of Analysis', full: 'COA', def: 'A document from an independent lab confirming what is actually in a vial and its purity. A legitimate COA should come from a third-party lab, not the vendor itself.' },
+        { term: 'Clinical trial', full: '', def: 'A formal study testing a drug or treatment in human volunteers. Trials follow strict protocols and are registered publicly (e.g., on ClinicalTrials.gov).' },
+        { term: 'Compounding pharmacy', full: '', def: 'A pharmacy that custom-mixes medications to order, sometimes used to prepare peptides. Quality and regulation vary significantly between compounding pharmacies.' },
+        { term: 'Cytokine', full: '', def: 'Small signaling proteins released by cells that regulate inflammation and immune responses. Some peptides are studied for their effects on cytokine levels.' },
+        { term: 'Double-blind', full: '', def: 'A study design where neither the participants nor the researchers know who got the real treatment versus placebo. This reduces bias and is considered more reliable than open-label studies.' },
+        { term: 'Dose titration', full: '', def: 'Gradually increasing a dose over time to find the right amount and manage side effects. Most peptide protocols start low and titrate up over days or weeks.' },
+        { term: 'Endogenous', full: '', def: 'Produced naturally inside the body. For example, growth hormone is endogenous \u2014 your pituitary gland makes it. Contrast with exogenous (introduced from outside).' },
+        { term: 'Exogenous', full: '', def: 'Introduced from outside the body. Injecting a peptide is administering an exogenous substance, even if the body naturally produces something similar.' },
+        { term: 'FDA', full: 'Food and Drug Administration', def: 'The US federal agency responsible for approving drugs, biologics, and medical devices. FDA approval means a substance has passed rigorous safety and efficacy testing.' },
+        { term: 'GH', full: 'Growth Hormone', def: 'A hormone produced by the pituitary gland that affects growth, body composition, and metabolism. Also called somatotropin. Levels naturally decline with age.' },
+        { term: 'GHRH', full: 'Growth Hormone Releasing Hormone', def: 'A brain signal (hypothalamic hormone) that tells the pituitary gland to release growth hormone. Some research peptides like CJC-1295 are GHRH analogs.' },
+        { term: 'GHRP', full: 'Growth Hormone Releasing Peptide', def: 'A synthetic peptide that triggers growth hormone release by activating the ghrelin receptor. Examples include GHRP-2 and GHRP-6. Not the same mechanism as GHRH.' },
+        { term: 'GLP-1', full: 'Glucagon-Like Peptide-1', def: 'A gut hormone (incretin) that reduces appetite and helps control blood sugar. Semaglutide and liraglutide are GLP-1 receptor agonists \u2014 the drugs behind Ozempic and Wegovy.' },
+        { term: 'GIP', full: 'Glucose-dependent Insulinotropic Peptide', def: 'Another gut hormone that works alongside GLP-1 to regulate insulin and blood sugar. Tirzepatide (Mounjaro) targets both GLP-1 and GIP receptors.' },
+        { term: 'Grey market', full: '', def: 'Products sold legally but outside official pharmaceutical channels, with uncertain quality and authenticity. Most "research peptides" fall into this category.' },
+        { term: 'Half-life', full: '', def: 'How long it takes for half of a substance to be eliminated from your body. A peptide with a 6-hour half-life means roughly half is gone after 6 hours. This determines dosing frequency.' },
+        { term: 'HbA1c', full: 'Glycated Hemoglobin', def: 'A blood test measuring average blood sugar levels over 2\u20133 months. It is the standard metric for long-term blood sugar control in diabetes management.' },
+        { term: 'Homeostasis', full: '', def: 'The body\u2019s tendency to maintain stable internal conditions (temperature, pH, blood sugar, etc.). Many peptides work by nudging the body back toward homeostatic balance.' },
+        { term: 'IGF-1', full: 'Insulin-like Growth Factor 1', def: 'A hormone produced mainly by the liver that mediates many effects of growth hormone. When GH goes up, IGF-1 typically follows. It is often measured as a proxy for GH activity.' },
+        { term: 'Incretin', full: '', def: 'A gut hormone that helps control blood sugar and appetite by stimulating insulin release after eating. GLP-1 and GIP are the two main incretins. The "incretin effect" explains why oral glucose triggers more insulin than IV glucose.' },
+        { term: 'In vitro', full: '', def: 'Experiments done in a test tube or petri dish, outside a living organism. "It worked in vitro" means it worked in a lab dish \u2014 not necessarily in a living body.' },
+        { term: 'In vivo', full: '', def: 'Experiments done in a living organism (animal or human). More relevant than in vitro, but animal in vivo results don\u2019t always translate to humans.' },
+        { term: 'Lipodystrophy', full: '', def: 'Abnormal fat distribution in the body. Can be a side effect of certain medications (including some HIV drugs) or repeated injections in the same spot.' },
+        { term: 'Lyophilized', full: '', def: 'Freeze-dried \u2014 how most research peptides are stored before reconstitution. The powder is mixed with bacteriostatic water before injection. Lyophilized peptides are more stable than liquid form.' },
+        { term: 'MCG / \u00b5g', full: 'Micrograms', def: 'One millionth of a gram. 1,000 mcg equals 1 mg. Many peptides are dosed in micrograms because they are active at very small amounts.' },
+        { term: 'Melanocortin', full: '', def: 'A family of brain receptors (MC1R through MC5R) involved in skin pigmentation, appetite regulation, and sexual function. PT-141 (bremelanotide) and melanotan target melanocortin receptors.' },
+        { term: 'MG', full: 'Milligrams', def: 'One thousandth of a gram. Most peptide vials are measured in milligrams (e.g., a 5 mg vial), while individual doses are often in micrograms.' },
+        { term: 'Mitochondria', full: '', def: 'The energy-producing structures inside every cell, often called the "powerhouses" of cells. They convert nutrients into ATP, the molecule your cells use for energy. Some peptides like SS-31 target mitochondrial function.' },
+        { term: 'NAD+', full: 'Nicotinamide Adenine Dinucleotide', def: 'A coenzyme found in every living cell, essential for converting food into energy and repairing DNA. NAD+ levels decline with age, which has made it a target for longevity research.' },
+        { term: 'Neuropeptide', full: '', def: 'A peptide that acts as a signaling molecule in the nervous system. Examples include oxytocin, vasopressin, and various opioid peptides. They influence mood, pain, and behavior.' },
+        { term: 'Off-label', full: '', def: 'Using an FDA-approved drug for a purpose, population, or dose it was not officially approved for. This is legal and common in medicine \u2014 doctors do it all the time \u2014 but the evidence base may be thinner.' },
+        { term: 'Peptide', full: '', def: 'A short chain of amino acids (the building blocks of proteins), typically 2\u201350 amino acids long. Shorter than a full protein. Your body produces thousands of natural peptides as hormones and signaling molecules.' },
+        { term: 'Phase 1 trial', full: '', def: 'The first stage of testing a drug in humans. Primarily checks safety and dosing in a small group of healthy volunteers (typically 20\u201380 people). Not designed to prove the drug works.' },
+        { term: 'Phase 2 trial', full: '', def: 'Testing effectiveness in a small group of patients (typically 100\u2013300) who actually have the target condition. Also continues to monitor safety. Many drugs fail at this stage.' },
+        { term: 'Phase 3 trial', full: '', def: 'Large-scale testing (typically 1,000\u20133,000+ participants) that can lead to drug approval. These are the big, expensive trials that regulatory agencies require before approving a new drug.' },
+        { term: 'Pituitary gland', full: '', def: 'A pea-sized gland at the base of the brain that produces many important hormones, including growth hormone, ACTH, and thyroid-stimulating hormone. Often called the "master gland" of the endocrine system.' },
+        { term: 'Placebo', full: '', def: 'An inactive treatment (sugar pill or saline injection) used as a comparison in studies. The "placebo effect" is the real, measurable improvement some people experience from believing they received treatment.' },
+        { term: 'Preclinical', full: '', def: 'Research done in animals or lab dishes before any human testing begins. Promising preclinical results are necessary but not sufficient \u2014 many compounds that work in mice fail in humans.' },
+        { term: 'Proteolysis', full: '', def: 'The breakdown of proteins or peptides by enzymes. One reason oral peptides have low bioavailability \u2014 stomach enzymes destroy them before they can be absorbed.' },
+        { term: 'RCT', full: 'Randomized Controlled Trial', def: 'The gold standard of medical research. Participants are randomly assigned to receive either the treatment or a placebo, reducing bias. Double-blind RCTs are the most reliable study design.' },
+        { term: 'Receptor agonist', full: '', def: 'A substance that binds to a cell receptor and activates it, mimicking the natural signal. Semaglutide is a GLP-1 receptor agonist \u2014 it activates the same receptor as natural GLP-1.' },
+        { term: 'Receptor antagonist', full: '', def: 'A substance that binds to a cell receptor and blocks it, preventing the natural signal. The opposite of an agonist.' },
+        { term: 'Reconstitution', full: '', def: 'The process of mixing a lyophilized (freeze-dried) peptide with sterile water to create an injectable solution. Proper reconstitution technique affects peptide stability and dosing accuracy.' },
+        { term: 'Secretagogue', full: '', def: 'A substance that triggers the body to release a specific hormone rather than replacing the hormone directly. Growth hormone secretagogues stimulate your own pituitary to produce more GH.' },
+        { term: 'Senescent cells', full: '', def: 'Old, damaged cells that stop dividing but refuse to die. They accumulate with aging and secrete inflammatory signals that damage neighboring cells. Senolytics are drugs designed to clear them.' },
+        { term: 'Subcutaneous', full: '', def: 'Injected under the skin into the fat layer, not into muscle or veins. This is the most common injection route for peptides. Abbreviated as "subQ" or "SC."' },
+        { term: 'Tachyphylaxis', full: '', def: 'A rapid decrease in response to a drug after repeated doses. Some peptides lose effectiveness if used continuously without breaks, which is why cycling protocols exist.' },
+        { term: 'Telomere', full: '', def: 'Protective caps on the ends of chromosomes that shorten each time a cell divides. Shorter telomeres are associated with aging and age-related disease.' },
+        { term: 'Telomerase', full: '', def: 'An enzyme that can rebuild telomeres, counteracting their natural shortening. Associated with longevity research, though the relationship between telomerase activity and lifespan is complex.' },
+        { term: 'Thymus', full: '', def: 'A gland behind the breastbone that is critical for immune system development, especially T-cell maturation. It shrinks significantly after puberty. Thymosin peptides are derived from thymus extracts.' },
+        { term: 'Vasoconstriction', full: '', def: 'The narrowing of blood vessels, which increases blood pressure. Some peptides can cause vasoconstriction as a side effect.' },
+        { term: 'Vasodilation', full: '', def: 'The widening of blood vessels, which decreases blood pressure and increases blood flow. BPC-157 is studied for potential vasodilatory effects.' },
+        { term: 'WADA', full: 'World Anti-Doping Agency', def: 'The international organization that decides which substances are banned in sport. Most research peptides, including GH secretagogues and SARMs, are on the WADA prohibited list.' }
+      ];
+
+      // ---- Build glossary ----
+      var container = document.getElementById('glossary-container');
+      var letterNav = document.getElementById('letter-nav');
+      var searchInput = document.getElementById('glossary-search');
+      var searchCount = document.getElementById('search-count');
+      var noResults = document.getElementById('no-results');
+
+      // Group terms by first letter
+      var grouped = {};
+      terms.forEach(function (t) {
+        var letter = t.term.charAt(0).toUpperCase();
+        // Normalize special chars (MCG/micrograms starts with M)
+        if (!/[A-Z]/.test(letter)) letter = '#';
+        if (!grouped[letter]) grouped[letter] = [];
+        grouped[letter].push(t);
+      });
+
+      // Build letter nav
+      var allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      var activeLetters = Object.keys(grouped);
+      allLetters.forEach(function (l) {
+        var a = document.createElement('a');
+        a.textContent = l;
+        a.href = '#letter-' + l;
+        if (activeLetters.indexOf(l) === -1) {
+          a.classList.add('disabled');
+          a.removeAttribute('href');
+        }
+        letterNav.appendChild(a);
+      });
+
+      // Build term sections
+      var sortedLetters = Object.keys(grouped).sort();
+      sortedLetters.forEach(function (letter) {
+        var section = document.createElement('section');
+        section.classList.add('glossary-section');
+        section.setAttribute('data-letter', letter);
+
+        var heading = document.createElement('h2');
+        heading.classList.add('letter-heading');
+        heading.id = 'letter-' + letter;
+        heading.textContent = letter;
+        section.appendChild(heading);
+
+        grouped[letter].forEach(function (t) {
+          var card = document.createElement('div');
+          card.classList.add('term-card');
+          card.setAttribute('data-search', (t.term + ' ' + t.full + ' ' + t.def).toLowerCase());
+
+          var nameEl = document.createElement('div');
+          nameEl.classList.add('term-name');
+          if (t.full) {
+            nameEl.innerHTML = '<span class="term-abbr">' + escapeHtml(t.term) + '</span> &mdash; ' + escapeHtml(t.full);
+          } else {
+            nameEl.textContent = t.term;
+          }
+
+          var defEl = document.createElement('div');
+          defEl.classList.add('term-def');
+          defEl.textContent = t.def;
+
+          card.appendChild(nameEl);
+          card.appendChild(defEl);
+          section.appendChild(card);
+        });
+
+        container.appendChild(section);
+      });
+
+      // Initial count
+      updateCount(terms.length);
+
+      // ---- Search filtering ----
+      searchInput.addEventListener('input', function () {
+        var query = this.value.trim().toLowerCase();
+        var cards = container.querySelectorAll('.term-card');
+        var sections = container.querySelectorAll('.glossary-section');
+        var visibleCount = 0;
+
+        cards.forEach(function (card) {
+          var text = card.getAttribute('data-search');
+          var match = !query || text.indexOf(query) !== -1;
+          card.classList.toggle('hidden', !match);
+          if (match) visibleCount++;
+        });
+
+        // Hide empty letter sections
+        sections.forEach(function (sec) {
+          var visibleCards = sec.querySelectorAll('.term-card:not(.hidden)');
+          sec.style.display = visibleCards.length === 0 ? 'none' : '';
+        });
+
+        // Update letter nav active state
+        var navLinks = letterNav.querySelectorAll('a');
+        navLinks.forEach(function (a) {
+          var letter = a.textContent;
+          var sec = container.querySelector('[data-letter="' + letter + '"]');
+          if (sec) {
+            var hasVisible = sec.querySelectorAll('.term-card:not(.hidden)').length > 0;
+            a.classList.toggle('disabled', !hasVisible);
+            if (hasVisible) {
+              a.href = '#letter-' + letter;
+            } else {
+              a.removeAttribute('href');
+            }
+          }
+        });
+
+        updateCount(visibleCount);
+        noResults.classList.toggle('visible', visibleCount === 0);
+      });
+
+      function updateCount(n) {
+        if (searchInput.value.trim()) {
+          searchCount.textContent = n + ' term' + (n !== 1 ? 's' : '') + ' found';
+        } else {
+          searchCount.textContent = terms.length + ' terms in the glossary';
+        }
+      }
+
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+      }
+    })();
+  </script>
+
+</body>
+</html>

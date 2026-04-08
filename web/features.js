@@ -1088,6 +1088,208 @@
     }
   }
 
+  /* ---- "Start here" smart recommendation ---- */
+  function addStartHere() {
+    const grid = document.getElementById("grid");
+    if (!grid) return;
+
+    // Only show if user hasn't viewed many entries yet
+    const readCount = JSON.parse(localStorage.getItem("peptide-read") || "[]").length;
+    if (readCount > 5) return;
+
+    const shown = localStorage.getItem("peptide-start-dismissed");
+    if (shown) return;
+
+    const banner = document.createElement("div");
+    banner.className = "start-here";
+    banner.innerHTML = `
+      <div class="start-here__content">
+        <strong class="start-here__title">New here? Start with the strongest evidence.</strong>
+        <p class="start-here__desc">These compounds have FDA approval or major clinical trial data — the most reliable entries in the library.</p>
+        <div class="start-here__actions">
+          <button type="button" class="start-here__btn" data-action="approved">Show FDA approved</button>
+          <button type="button" class="start-here__btn" data-action="trials">Show strong trials</button>
+          <button type="button" class="start-here__btn start-here__btn--dismiss" data-action="dismiss">Got it, dismiss</button>
+        </div>
+      </div>
+    `;
+
+    const controls = document.querySelector(".controls");
+    if (controls) controls.after(banner);
+
+    banner.querySelectorAll("[data-action]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const action = btn.dataset.action;
+        if (action === "dismiss") {
+          localStorage.setItem("peptide-start-dismissed", "1");
+          banner.remove();
+          return;
+        }
+        const evFilter = document.getElementById("evidence-filter");
+        if (evFilter) {
+          evFilter.value = action === "approved" ? "regulatory_label" : "pivotal_trials";
+          evFilter.dispatchEvent(new Event("change"));
+        }
+        banner.remove();
+        localStorage.setItem("peptide-start-dismissed", "1");
+      });
+    });
+  }
+
+  /* ---- random entry button ---- */
+  function addRandomEntry() {
+    const navBar = document.querySelector(".nav-bar__inner");
+    if (!navBar) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn--ghost btn--small random-btn";
+    btn.textContent = "Random";
+    btn.title = "Open a random entry (r)";
+
+    const helpBtn = document.getElementById("open-help");
+    if (helpBtn) helpBtn.before(btn);
+    else navBar.appendChild(btn);
+
+    btn.addEventListener("click", openRandomEntry);
+
+    // "r" keyboard shortcut
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
+      if (document.querySelector("dialog[open]")) return;
+      if (e.key === "r") {
+        e.preventDefault();
+        openRandomEntry();
+      }
+    });
+
+    function openRandomEntry() {
+      const cards = document.querySelectorAll(".card");
+      if (cards.length === 0) return;
+      const randomCard = cards[Math.floor(Math.random() * cards.length)];
+      const title = randomCard.querySelector(".card__title")?.textContent;
+      if (title) {
+        window.location.hash = "entry=" + encodeURIComponent(title);
+      }
+    }
+  }
+
+  /* ---- detail table of contents ---- */
+  function addDetailToc() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".detail-toc")) return;
+
+      const sections = detailBody.querySelectorAll(".detail__section h3, .detail__collapsible summary h3");
+      if (sections.length < 4) return;
+
+      const toc = document.createElement("nav");
+      toc.className = "detail-toc";
+      toc.innerHTML = '<span class="detail-toc__label">Jump to:</span>' +
+        [...sections].map((h3, i) => {
+          const id = "detail-section-" + i;
+          const parent = h3.closest(".detail__section") || h3.closest(".detail__collapsible");
+          if (parent) parent.id = id;
+          return `<a href="#${id}" class="detail-toc__link" onclick="event.preventDefault();document.getElementById('${id}')?.scrollIntoView({behavior:'smooth',block:'start'})">${h3.textContent.trim()}</a>`;
+        }).join("");
+
+      const heroBar = detailBody.querySelector(".detail__hero-bar");
+      if (heroBar) heroBar.after(toc);
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- export all notes ---- */
+  function addExportNotes() {
+    const navBar = document.querySelector(".nav-bar__inner");
+    if (!navBar) return;
+
+    // Only show if user has notes
+    const notes = JSON.parse(localStorage.getItem("peptide-notes") || "{}");
+    if (Object.keys(notes).length === 0) return;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn--ghost btn--small";
+    btn.textContent = "Export notes";
+    btn.title = "Download all your personal notes";
+
+    const helpBtn = document.getElementById("open-help");
+    if (helpBtn) helpBtn.before(btn);
+    else navBar.appendChild(btn);
+
+    btn.addEventListener("click", () => {
+      const notes = JSON.parse(localStorage.getItem("peptide-notes") || "{}");
+      if (Object.keys(notes).length === 0) {
+        if (typeof showToast === "function") showToast("No notes to export");
+        return;
+      }
+      let text = "BadgerSkope — Personal Notes Export\n";
+      text += "Exported: " + new Date().toLocaleString() + "\n";
+      text += "=".repeat(50) + "\n\n";
+      for (const [id, note] of Object.entries(notes)) {
+        // Try to get a friendly title
+        const card = document.querySelector(`.card[data-entry-id="${CSS.escape(id)}"]`);
+        const title = card?.querySelector(".card__title")?.textContent || id;
+        text += "## " + title + "\n";
+        text += note + "\n\n";
+        text += "-".repeat(40) + "\n\n";
+      }
+      const blob = new Blob([text], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "badgerskope-notes.txt";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  /* ---- entry navigation links (prev/next) ---- */
+  function addEntryNavLinks() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".entry-nav")) return;
+      const titleEl = document.getElementById("detail-title");
+      if (!titleEl) return;
+      const currentTitle = titleEl.textContent;
+
+      // Get sorted list from visible cards
+      const cards = [...document.querySelectorAll(".card")];
+      const titles = cards.map(c => c.querySelector(".card__title")?.textContent).filter(Boolean);
+      const idx = titles.indexOf(currentTitle);
+      if (idx === -1 || titles.length < 2) return;
+
+      const prev = idx > 0 ? titles[idx - 1] : null;
+      const next = idx < titles.length - 1 ? titles[idx + 1] : null;
+
+      if (!prev && !next) return;
+
+      const nav = document.createElement("div");
+      nav.className = "entry-nav";
+      nav.innerHTML = `
+        ${prev ? `<button type="button" class="entry-nav__btn entry-nav__prev" data-title="${escapeAttr(prev)}">&larr; ${escapeAttr(prev)}</button>` : '<span></span>'}
+        <span class="entry-nav__pos">${idx + 1} of ${titles.length}</span>
+        ${next ? `<button type="button" class="entry-nav__btn entry-nav__next" data-title="${escapeAttr(next)}">${escapeAttr(next)} &rarr;</button>` : '<span></span>'}
+      `;
+
+      const disclaimer = detailBody.querySelector(".detail__disclaimer");
+      if (disclaimer) detailBody.insertBefore(nav, disclaimer);
+      else detailBody.appendChild(nav);
+
+      nav.querySelectorAll(".entry-nav__btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          window.location.hash = "entry=" + encodeURIComponent(btn.dataset.title);
+        });
+      });
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
   /* ---- init ---- */
   function init() {
     autoDetectTheme();
@@ -1118,6 +1320,11 @@
     addDopingIndicator();
     addGoalFilters();
     addHelpDialog();
+    addStartHere();
+    addRandomEntry();
+    addDetailToc();
+    addExportNotes();
+    addEntryNavLinks();
 
     // Keyboard shortcut: "f" toggles bookmarks filter
     document.addEventListener("keydown", (e) => {
