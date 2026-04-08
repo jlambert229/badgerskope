@@ -276,16 +276,8 @@ export function renderDetailHtml(entry) {
       const barColor = pct >= 75 ? "#22c55e" : pct >= 50 ? "#14b8a6" : pct >= 25 ? "#f59e0b" : "#9ca3af";
 
       return `<div class="detail__section">
-        <h3>Verify it yourself</h3>
-        <p class="detail__help">Published references you can check.</p>
-        <div class="source-quality">
-          <div class="source-quality__bar">
-            <span class="source-quality__label">Source quality</span>
-            <div class="source-quality__track"><div class="source-quality__fill" style="width:${pct}%;background:${barColor}"></div></div>
-            <span class="source-quality__pct">${pct}%</span>
-          </div>
-          <span class="source-quality__breakdown">${qualityParts.join(" \u00b7 ")}</span>
-        </div>
+        <h3>Sources</h3>
+        <p class="detail__help">${qualityParts.join(" \u00b7 ")}</p>
         <ul class="detail__sources">${sources}</ul>
       </div>`;
     })()}

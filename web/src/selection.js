@@ -7,6 +7,8 @@ import { els } from './dom.js';
 
 export function updateSelectionToolbar() {
   const n = state.selectedIds.size;
+  const bar = document.getElementById("selection-bar");
+  if (bar) bar.hidden = n === 0;
   if (els.selectionCount) {
     els.selectionCount.textContent = n === 1 ? "1 selected" : `${n} selected`;
   }

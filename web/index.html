@@ -8,12 +8,12 @@
     <meta property="og:title" content="BadgerSkope — Peptide Research Library" />
     <meta property="og:description" content="53 peptide compounds with plain-English summaries, evidence grading, and comparison tools. Free and open." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://badgerskope.netlify.app/web/" />
-    <meta property="og:image" content="https://badgerskope.netlify.app/web/logo-hero.png" />
+    <meta property="og:url" content="https://www.badgerskope.com/web/" />
+    <meta property="og:image" content="https://www.badgerskope.com/web/logo-hero.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="BadgerSkope — Peptide Research Library" />
     <meta name="twitter:description" content="53 peptide compounds. Plain English. Evidence-graded. Free." />
-    <meta name="twitter:image" content="https://badgerskope.netlify.app/web/logo-hero.png" />
+    <meta name="twitter:image" content="https://www.badgerskope.com/web/logo-hero.png" />
     <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/png" href="./favicon.png" />
@@ -33,7 +33,7 @@
     <section class="hero">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__inner">
-        <img class="hero__logo" src="./logo-hero.png" alt="BadgerSkope logo" width="180" height="180" />
+        <img class="hero__logo" src="./logo-hero.png" alt="BadgerSkope logo" width="80" height="80" />
         <h1 class="hero__title">Badger<span class="hero__title-accent">Skope</span></h1>
         <p class="hero__sub">Peptide research library &mdash; plain English, evidence-graded, not medical advice</p>
         <div class="hero__stats" id="stats" aria-live="polite"></div>
@@ -61,39 +61,12 @@
           <a href="/" class="nav-bar__home" title="Back to homepage">Home</a>
           <a href="/glossary.html" class="nav-bar__link" title="Peptide glossary">Glossary</a>
           <a href="/evidence-guide.html" class="nav-bar__link" title="Evidence guide">Evidence</a>
-          <button type="button" class="btn btn--ghost btn--small" id="open-help" title="Help guide (h)">Help</button>
-        </div>
-      </nav>
-
-      <!-- ===== Tab navigation ===== -->
-      <nav class="tab-bar" aria-label="Main sections">
-        <div class="tab-bar__inner" role="tablist" aria-label="Content sections">
-          <button
-            type="button"
-            role="tab"
-            id="tab-browse"
-            class="tab"
-            aria-selected="true"
-            aria-controls="panel-browse"
-          >Browse</button>
-          <button
-            type="button"
-            role="tab"
-            id="tab-compare"
-            class="tab"
-            aria-selected="false"
-            aria-controls="panel-compare"
-            tabindex="-1"
-          >Compare</button>
-          <button
-            type="button"
-            role="tab"
-            id="tab-stats"
-            class="tab"
-            aria-selected="false"
-            aria-controls="panel-stats"
-            tabindex="-1"
-          >Stats</button>
+          <button type="button" class="nav-bar__link" id="open-help" title="Help guide (h)">Help</button>
+          <div class="nav-bar__tabs" role="tablist" aria-label="Content sections">
+            <button type="button" role="tab" id="tab-browse" class="tab" aria-selected="true" aria-controls="panel-browse">Browse</button>
+            <button type="button" role="tab" id="tab-compare" class="tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">Compare</button>
+            <button type="button" role="tab" id="tab-stats" class="tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">Stats</button>
+          </div>
         </div>
       </nav>
 
@@ -173,7 +146,7 @@
           </label>
         </section>
 
-        <section class="selection-bar" id="selection-bar" aria-label="Selection actions">
+        <section class="selection-bar" id="selection-bar" hidden aria-label="Selection actions">
           <span class="selection-bar__count" id="selection-count">0 selected</span>
           <div class="selection-bar__actions">
             <button type="button" class="btn btn--ghost" id="select-visible">Select all</button>
@@ -185,14 +158,6 @@
 
         <p id="load-error" class="load-error" hidden></p>
         <p class="result-count" id="result-count" hidden></p>
-
-        <div class="info-banner">
-          <span class="info-banner__icon" aria-hidden="true">&#9432;</span>
-          <div>
-            <strong>Research literacy tool.</strong> BadgerSkope summarizes published science in plain English. It is not medical advice, a prescribing guide, or an endorsement of any product.
-            Evidence tiers tell you how strong each claim is — from FDA-approved to animal-only. <a href="/#evidence">Learn about evidence tiers</a>.
-          </div>
-        </div>
 
         <main class="grid" id="grid" aria-busy="true"></main>
       </div>
@@ -281,13 +246,6 @@
     <dialog class="modal" id="detail-dialog" aria-labelledby="detail-title">
       <div class="modal__panel">
         <div class="modal__toolbar">
-          <button
-            type="button"
-            class="btn btn--icon"
-            id="detail-bookmark"
-            aria-label="Bookmark this entry"
-            title="Bookmark (b)"
-          >&#9734;</button>
           <button
             type="button"
             class="modal__close"

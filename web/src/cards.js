@@ -38,7 +38,7 @@ export function renderCard(entry, catIndex, cardIndex) {
     (selected ? " card--selected" : "") +
     (isBookmarked ? " card--bookmarked" : "");
   article.dataset.entryId = id;
-  article.style.setProperty("--delay", `${Math.min(cardIndex * 40, 600)}ms`);
+  article.style.setProperty("--delay", `${Math.min(cardIndex * 20, 300)}ms`);
   article.style.setProperty("--evidence-color", tier.color);
   if (tier.tier === "unknown") {
     article.classList.add("card--evidence-dashed");

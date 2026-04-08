@@ -38,8 +38,8 @@ function addShareButton() {
       }
     });
 
-    const header = detailBody.querySelector(".detail__header");
-    if (header) header.appendChild(btn);
+    const actions = detailBody.querySelector(".detail__answer-actions");
+    if (actions) actions.appendChild(btn);
     else title.after(btn);
   });
 
@@ -51,7 +51,7 @@ function addPrintButton() {
   const observer = new MutationObserver(() => {
     const detailBody = document.getElementById("detail-body");
     if (!detailBody || detailBody.querySelector(".print-btn")) return;
-    const header = detailBody.querySelector(".detail__hero-actions") || detailBody.querySelector(".detail__header");
+    const header = detailBody.querySelector(".detail__answer-actions") || detailBody.querySelector(".detail__header");
     if (!header) return;
 
     const btn = document.createElement("button");
