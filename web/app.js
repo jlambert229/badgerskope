@@ -333,6 +333,7 @@ function formatEvidenceBasis(key) {
 function renderCard(entry, catIndex, cardIndex) {
   const title = entry.catalog?.title || "Untitled";
   const price = entry.catalog?.priceText || "";
+  const cleanPrice = price.replace(/Price range:.*$/, '').trim();
   const type = formatCompoundType(entry.compoundType);
   const summary = entry.researchSummary || "";
   const headline = entry.distinctiveQuality?.headline || "";
@@ -400,7 +401,7 @@ function renderCard(entry, catIndex, cardIndex) {
   if (price) {
     const priceEl = document.createElement("span");
     priceEl.className = "card__price";
-    priceEl.textContent = price;
+    priceEl.textContent = cleanPrice;
     headText.appendChild(priceEl);
   }
 
@@ -415,12 +416,18 @@ function renderCard(entry, catIndex, cardIndex) {
   main.innerHTML = `
     ${type ? `<span class="card__type">${escapeHtml(type)}</span>` : ""}
     <span class="card__evidence-badge" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
-    ${headline ? `<p class="card__distinctive" title="${escapeHtml(headline)}">Known for: ${escapeHtml(headline)}</p>` : ""}
+    ${headline ? `<p class="card__distinctive" title="${escapeHtml(headline)}">${escapeHtml(headline)}</p>` : ""}
     <p class="card__summary">${escapeHtml(summary)}</p>
     <div class="card__chips">${chips}</div>
     <p class="card__hint">View details \u2192</p>
   `;
-  main.addEventListener("click", () => openDetail(entry));
+  main.addEventListener("click", () => {
+    article.style.transform = "scale(0.98)";
+    setTimeout(() => {
+      article.style.transform = "";
+      openDetail(entry);
+    }, 100);
+  });
 
   article.appendChild(head);
   article.appendChild(main);
@@ -455,6 +462,20 @@ function render() {
   const selN = selectedIds.size;
   if (els.stats) {
     els.stats.textContent = `Showing ${list.length} of ${db.entries.length}${selN ? ` \u00b7 ${selN} selected` : ""}`;
+  }
+
+  const hasFilters = q || cat || comp || known || ev;
+  const resetBtn = document.getElementById("reset-filters");
+  if (resetBtn) resetBtn.hidden = !hasFilters;
+
+  const resultCount = document.getElementById("result-count");
+  if (resultCount) {
+    if (hasFilters) {
+      resultCount.textContent = `${list.length} result${list.length !== 1 ? 's' : ''}`;
+      resultCount.hidden = false;
+    } else {
+      resultCount.hidden = true;
+    }
   }
 
   if (list.length === 0) {
@@ -579,10 +600,10 @@ function renderDetailHtml(entry) {
 
     ${entry.notes ? `<div class="detail__section"><h3>Notes</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
 
-    ${benefits ? `<div class="detail__section"><h3>Reported benefits</h3><ul>${benefits}</ul></div>` : ""}
+    ${benefits ? `<div class="detail__section"><h3>What people report</h3><ul>${benefits}</ul></div>` : ""}
 
     <div class="detail__section">
-      <h3>Dosing and timing</h3>
+      <h3>Dosing &amp; timing notes</h3>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "Not specified.")}</p>
     </div>
 
@@ -593,7 +614,7 @@ function renderDetailHtml(entry) {
 
     ${doseRows
       ? `<div class="detail__section">
-      <h3>Dose guidelines (literature context)</h3>
+      <h3>Published dose info</h3>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>Context</th><th>Evidence basis</th><th>Notes</th></tr></thead>
@@ -604,8 +625,8 @@ function renderDetailHtml(entry) {
       : ""
     }
 
-    ${apps ? `<div class="detail__section"><h3>Potential applications</h3><ul>${apps}</ul></div>` : ""}
-    ${synergy ? `<div class="detail__section"><h3>Synergistic with (catalog context)</h3><ul class="synergy-list">${synergy}</ul></div>` : ""}
+    ${apps ? `<div class="detail__section"><h3>What it's used for</h3><ul>${apps}</ul></div>` : ""}
+    ${synergy ? `<div class="detail__section"><h3>Often paired with</h3><ul class="synergy-list">${synergy}</ul></div>` : ""}
     ${sources ? `<div class="detail__section"><h3>Sources</h3><ul>${sources}</ul></div>` : ""}
   `;
 }
@@ -614,7 +635,7 @@ function syncDetailNav() {
   const multi = detailQueue.length > 1;
   els.detailNav.hidden = !multi;
   if (!multi) return;
-  els.detailNavPos.textContent = `${detailIndex + 1} / ${detailQueue.length}`;
+  els.detailNavPos.textContent = `${detailIndex + 1} of ${detailQueue.length}`;
   els.detailPrev.disabled = detailIndex <= 0;
   els.detailNext.disabled = detailIndex >= detailQueue.length - 1;
 }
@@ -704,36 +725,36 @@ function renderComparisonTable() {
       fn: (e) => escapeHtml(formatCompoundType(e.compoundType)),
     },
     {
-      label: "Distinctive reputation",
+      label: "Known for",
       fn: (e) => escapeHtml(e.distinctiveQuality?.headline || ""),
     },
     {
-      label: "Research summary",
+      label: "Summary",
       fn: (e) => `<span class="compare-prose">${escapeHtml(e.researchSummary || "")}</span>`,
     },
     {
-      label: "Reported benefits",
+      label: "Benefits",
       fn: (e) => {
         const items = (e.reportedBenefits || []).map((b) => `<li>${escapeHtml(b)}</li>`).join("");
         return items ? `<ul class="compare-list">${items}</ul>` : "";
       },
     },
     {
-      label: "Wellness categories",
+      label: "Categories",
       fn: (e) =>
         (e.wellnessCategories || [])
           .map((k) => escapeHtml(wellnessLabel(catIndex, k).short))
           .join(", "),
     },
     {
-      label: "Evidence level",
+      label: "Evidence",
       fn: (e) => {
         const t = highestTier(e);
         return `<span class="evidence-pill" style="background:${t.color}">${escapeHtml(t.label)}</span>`;
       },
     },
     {
-      label: "Dose guidelines",
+      label: "Dosing",
       fn: (e) =>
         (e.doseGuidelines || [])
           .map((d) => {
@@ -745,11 +766,11 @@ function renderComparisonTable() {
           .join(""),
     },
     {
-      label: "Cycling notes",
+      label: "Cycling",
       fn: (e) => escapeHtml(e.cyclingNotes || "Not specified."),
     },
     {
-      label: "Synergistic with",
+      label: "Pairs with",
       fn: (e) =>
         (e.synergisticWith || [])
           .map((s) => escapeHtml((s.catalogTitles || []).join(", ")))
@@ -1171,6 +1192,19 @@ async function init() {
   if (els.knownFor) els.knownFor.addEventListener("change", render);
   if (els.sort) els.sort.addEventListener("change", render);
   if (els.evidenceFilter) els.evidenceFilter.addEventListener("change", render);
+
+  const resetBtn = document.getElementById("reset-filters");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      els.search.value = "";
+      els.category.value = "";
+      els.compound.value = "";
+      els.knownFor.value = "";
+      if (els.evidenceFilter) els.evidenceFilter.value = "";
+      els.sort.value = "title";
+      render();
+    });
+  }
 
   /* Selection actions */
   if (els.selectVisible) {

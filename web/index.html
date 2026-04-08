@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./features.css" />
   </head>
   <body>
     <!-- ===== Hero ===== -->
@@ -48,6 +49,7 @@
             <span class="icon-sun" aria-hidden="true">&#9788;</span>
             <span class="icon-moon" aria-hidden="true">&#9790;</span>
           </button>
+          <a href="/" class="nav-bar__home" title="Back to homepage">Home</a>
         </div>
       </nav>
 
@@ -133,6 +135,9 @@
               <option value="price-desc">Price high to low</option>
             </select>
           </label>
+          <div class="controls__reset">
+            <button type="button" class="controls__reset-btn" id="reset-filters" hidden>Reset filters</button>
+          </div>
         </section>
 
         <section class="selection-bar" id="selection-bar" aria-label="Selection actions">
@@ -146,6 +151,7 @@
         </section>
 
         <p id="load-error" class="load-error" hidden></p>
+        <p class="result-count" id="result-count" hidden></p>
 
         <main class="grid" id="grid" aria-busy="true"></main>
       </div>
@@ -313,5 +319,6 @@
     >&uarr;</button>
 
     <script src="./app.js" type="module"></script>
+    <script src="./features.js" defer></script>
   </body>
 </html>

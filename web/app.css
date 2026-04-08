@@ -337,14 +337,19 @@ a:hover { text-decoration: underline; }
 
 .tab-bar {
   margin-bottom: 1.5rem;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  padding: 0.25rem;
 }
 
 .tab-bar__inner,
 .nav-tabs {
   display: flex;
   gap: 0;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.5rem;
+  border-bottom: none;
+  margin-bottom: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -387,11 +392,13 @@ a:hover { text-decoration: underline; }
 .tab--active,
 .nav-tab--active {
   color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
 }
 
 .tab--active::after,
 .nav-tab--active::after {
-  background: var(--accent);
+  display: none;
 }
 
 .tab-panel {
@@ -589,6 +596,32 @@ a:hover { text-decoration: underline; }
   padding-right: 2rem;
 }
 
+.controls__reset {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.65rem;
+}
+
+.controls__reset-btn {
+  font: inherit;
+  font-size: 0.78rem;
+  color: var(--danger);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--speed);
+}
+
+.controls__reset-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.controls__reset-btn[hidden] {
+  display: none;
+}
+
 /* Active filter indicator dot */
 .field--active .field__label::after {
   content: "";
@@ -733,6 +766,7 @@ a:hover { text-decoration: underline; }
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 1rem;
   align-items: stretch;
+  min-height: 200px;
 }
 
 .grid[aria-busy="true"]::before {
@@ -910,7 +944,7 @@ a:hover { text-decoration: underline; }
   align-items: stretch;
   width: 100%;
   margin: 0 -0.15rem;
-  padding: 0.35rem 0.15rem;
+  padding: 0.5rem 0.25rem;
   border: none;
   background: transparent;
   font: inherit;
@@ -955,6 +989,10 @@ a:hover { text-decoration: underline; }
   padding: 0.2rem 0.5rem;
   background: rgba(91, 214, 166, 0.1);
   border-radius: 6px;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 [data-theme="light"] .card__price {
@@ -973,13 +1011,14 @@ a:hover { text-decoration: underline; }
 
 .card__distinctive {
   margin: 0 0 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   line-height: 1.45;
   color: var(--text);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-style: italic;
 }
 
 .card__summary {
@@ -1039,6 +1078,7 @@ a:hover { text-decoration: underline; }
   white-space: nowrap;
   line-height: 1.4;
   color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .evidence--approved {
@@ -1172,13 +1212,15 @@ a:hover { text-decoration: underline; }
 }
 
 .stat-card {
-  padding: 1rem 1.15rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
+  padding: 1.25rem 1.15rem;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  border-top: 2px solid var(--accent);
 }
 
 .stat-card__number {
@@ -1644,16 +1686,18 @@ table.compare tbody tr:last-child td {
 
 /* Sections */
 .detail__section {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .detail__section h3 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.6rem;
   font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--accent);
 }
 
 .detail__section--highlight {
@@ -1679,7 +1723,25 @@ table.compare tbody tr:last-child td {
 
 .detail__section ul {
   margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.detail__section li {
+  position: relative;
   padding-left: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.detail__section li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .detail__prose {

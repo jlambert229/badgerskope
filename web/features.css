@@ -1,0 +1,175 @@
+/* ============================================================
+   BadgerSkope — Feature Enhancements
+   ============================================================ */
+
+/* ---- Recently viewed bar ---- */
+.recent-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.recent-bar::-webkit-scrollbar { display: none; }
+
+.recent-bar__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.recent-bar__item {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(76, 157, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.15s;
+}
+.recent-bar__item:hover {
+  background: rgba(76, 157, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ---- Bookmarks toggle ---- */
+.bookmarks-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding-right: 0.75rem;
+  border-right: 1px solid var(--border);
+  margin-right: 0.25rem;
+}
+.bookmarks-toggle input {
+  accent-color: var(--warning);
+  cursor: pointer;
+}
+.bookmarks-toggle span {
+  white-space: nowrap;
+}
+
+/* ---- Share button ---- */
+.share-btn {
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(76, 157, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.share-btn:hover {
+  background: rgba(76, 157, 255, 0.2);
+}
+.share-btn--done {
+  background: rgba(91, 214, 166, 0.15);
+  color: var(--success);
+  border-color: rgba(91, 214, 166, 0.25);
+}
+
+/* ---- Related entries grid ---- */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.5rem;
+}
+
+.related-card {
+  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  text-align: left;
+}
+.related-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateX(2px);
+}
+.related-card__title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.related-card__arrow {
+  color: var(--accent);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ---- Search highlighting ---- */
+.search-hl {
+  background: rgba(76, 157, 255, 0.25);
+  color: var(--text);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ---- Clickable chips ---- */
+.chip {
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.chip:hover {
+  background: rgba(76, 157, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* ---- Result count ---- */
+.result-count {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+/* ---- Nav home link ---- */
+.nav-bar__home {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-bar__home:hover {
+  color: var(--text);
+  background: var(--surface);
+  text-decoration: none;
+}
