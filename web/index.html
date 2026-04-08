@@ -29,46 +29,38 @@
     <link rel="stylesheet" href="./features.css" />
   </head>
   <body>
-    <!-- ===== Hero ===== -->
-    <section class="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <img class="hero__logo" src="./logo-hero.png" alt="BadgerSkope logo" width="80" height="80" />
-        <h1 class="hero__title">Badger<span class="hero__title-accent">Skope</span></h1>
-        <p class="hero__sub">Peptide research library &mdash; plain English, evidence-graded, not medical advice</p>
-        <div class="hero__stats" id="stats" aria-live="polite"></div>
-      </div>
-    </section>
-
     <div class="app">
-      <!-- ===== Sticky nav bar ===== -->
+      <!-- ===== Sticky nav bar (the only header) ===== -->
       <nav class="nav-bar" aria-label="Main sections">
         <div class="nav-bar__inner">
-          <div class="nav-bar__brand">
-            <span class="monogram" aria-hidden="true">BS</span>
+          <a href="/" class="nav-bar__brand" title="Back to homepage">
+            <img src="./logo-hero.png" alt="" class="nav-bar__logo" width="28" height="28" />
             <span class="nav-bar__name">BadgerSkope</span>
-          </div>
-          <button
-            type="button"
-            class="btn btn--icon theme-toggle"
-            id="theme-toggle"
-            aria-label="Toggle light/dark theme"
-            title="Toggle theme (t)"
-          >
-            <span class="icon-sun" aria-hidden="true">&#9788;</span>
-            <span class="icon-moon" aria-hidden="true">&#9790;</span>
-          </button>
-          <a href="/" class="nav-bar__home" title="Back to homepage">Home</a>
-          <a href="/glossary.html" class="nav-bar__link" title="Peptide glossary">Glossary</a>
-          <a href="/evidence-guide.html" class="nav-bar__link" title="Evidence guide">Evidence</a>
-          <button type="button" class="nav-bar__link" id="open-help" title="Help guide (h)">Help</button>
+          </a>
           <div class="nav-bar__tabs" role="tablist" aria-label="Content sections">
             <button type="button" role="tab" id="tab-browse" class="tab" aria-selected="true" aria-controls="panel-browse">Browse</button>
             <button type="button" role="tab" id="tab-compare" class="tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">Compare</button>
             <button type="button" role="tab" id="tab-stats" class="tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">Stats</button>
           </div>
+          <div class="nav-bar__end">
+            <a href="/glossary.html" class="nav-bar__link">Glossary</a>
+            <a href="/evidence-guide.html" class="nav-bar__link">Evidence</a>
+            <button type="button" class="nav-bar__link" id="open-help" title="Help (h)">Help</button>
+            <button
+              type="button"
+              class="btn btn--icon theme-toggle"
+              id="theme-toggle"
+              aria-label="Toggle light/dark theme"
+              title="Toggle theme (t)"
+            >
+              <span class="icon-sun" aria-hidden="true">&#9788;</span>
+              <span class="icon-moon" aria-hidden="true">&#9790;</span>
+            </button>
+          </div>
         </div>
       </nav>
+
+      <div class="hero__stats" id="stats" aria-live="polite"></div>
 
       <!-- ===== Browse panel ===== -->
       <div
@@ -77,28 +69,23 @@
         aria-labelledby="tab-browse"
         tabindex="0"
       >
-        <section class="controls">
-          <label class="field field--search">
-            <span class="field__label">Search</span>
-            <input
-              id="search"
-              class="field__input"
-              type="search"
-              placeholder="Search peptides, compounds, benefits..."
-              autocomplete="off"
-            />
-            <span class="field__help">Matches title, summary, benefits, and more</span>
-          </label>
-          <div class="controls__reset">
-            <button type="button" class="controls__reset-btn" id="reset-filters" hidden>Reset filters</button>
-          </div>
-        </section>
+        <div class="search-zone">
+          <input
+            id="search"
+            class="search-zone__input"
+            type="search"
+            placeholder="Search peptides, compounds, benefits..."
+            autocomplete="off"
+          />
+          <button type="button" class="search-zone__reset" id="reset-filters" hidden>Clear</button>
+        </div>
 
-        <div class="filters-toggle-wrap">
+        <div class="browse-toolbar">
           <button type="button" class="filters-toggle" id="filters-toggle">
-            More filters
+            Filters
             <span class="filters-toggle__icon" aria-hidden="true">+</span>
           </button>
+          <span class="browse-toolbar__count" id="result-count"></span>
         </div>
 
         <section class="controls controls--advanced" id="advanced-filters" hidden>
@@ -117,7 +104,7 @@
           <label class="field">
             <span class="field__label">Evidence</span>
             <select id="evidence-filter" class="field__input field__select">
-              <option value="">All</option>
+              <option value="">All evidence</option>
               <option value="Approved/labeled">Approved/labeled</option>
               <option value="Major trials">Major trials</option>
               <option value="Early human">Early human</option>
@@ -157,7 +144,6 @@
         </section>
 
         <p id="load-error" class="load-error" hidden></p>
-        <p class="result-count" id="result-count" hidden></p>
 
         <main class="grid" id="grid" aria-busy="true"></main>
       </div>

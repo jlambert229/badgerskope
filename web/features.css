@@ -237,32 +237,15 @@
   padding-left: 0.25rem;
 }
 
-/* ---- Nav home link ---- */
-.nav-bar__home {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-decoration: none;
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  transition: color 0.15s, background 0.15s;
-}
-.nav-bar__home:hover {
-  color: var(--text);
-  background: var(--surface);
-  text-decoration: none;
-}
-
 /* ---- Help text ---- */
 .detail__help {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   font-style: italic;
-  margin: -0.3rem 0 0.75rem;
-  padding-left: 0.6rem;
-  border-left: 2px solid var(--border);
-  line-height: 1.5;
-  opacity: 0.8;
+  margin: -0.2rem 0 0.65rem;
+  padding-left: 0;
+  border-left: none;
+  line-height: 1.45;
 }
 
 .stat-help {
@@ -449,45 +432,50 @@
 
 /* ---- Detail answer zone (replaces hero bar) ---- */
 .detail__answer-zone {
-  padding: 1.5rem 1.75rem;
-  background: var(--surface);
-  border-radius: 14px;
-  margin-bottom: 1.5rem;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  border-left: none !important;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .detail__what-it-is {
-  margin: 0.25rem 0 0.75rem;
-  font-size: 0.88rem;
+  margin: 0.15rem 0 0.5rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .detail__evidence-block {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
 }
 
 .detail__evidence-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   font-family: var(--mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.3rem 0.75rem;
-  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
   white-space: nowrap;
 }
 
 .detail__evidence-subtitle {
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
 .detail__known-for {
-  margin: 0 0 0.75rem;
-  font-size: 1.1rem;
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.5;
   color: var(--text);
@@ -495,18 +483,16 @@
 
 .detail__summary-prose {
   margin: 0;
-  font-size: 0.95rem;
-  color: var(--text);
-  line-height: 1.7;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 .detail__answer-actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-top: 1rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border);
+  margin-top: 0.75rem;
 }
 
 /* Legacy compat */
@@ -519,8 +505,8 @@
 .detail__cats {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.25rem;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
 }
 
 /* ---- Detail prose large ---- */
@@ -532,45 +518,40 @@
 
 /* ---- Safety & status section ---- */
 .detail__section--safety {
-  padding: 1rem 1.25rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
   margin-bottom: 1.25rem;
 }
 
-.detail__section--safety h3 {
-  border-left-color: var(--success);
-}
+/* safety h3 inherits plain style from .detail__section h3 */
 
 .safety-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.35rem;
 }
 
 .safety-list li {
-  padding: 0.4rem 0;
-  font-size: 0.88rem;
+  padding: 0.15rem 0;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
-}
-
-.safety-list li:last-child {
-  border-bottom: none;
 }
 
 .safety-list strong {
   color: var(--text);
+  font-weight: 600;
 }
 
 /* ---- Note section ---- */
 .detail__section--note {
-  background: rgba(245, 166, 35, 0.06);
-  border: 1px solid rgba(245, 166, 35, 0.15);
-  border-left: 3px solid var(--warning);
-  border-radius: var(--radius-sm);
-  padding: 1rem;
+  background: none;
+  border: none;
+  border-left: 2px solid var(--warning);
+  border-radius: 0;
+  padding: 0 0 0 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .detail__section--note h3 {
@@ -580,10 +561,10 @@
 /* ---- Benefits list ---- */
 .detail__benefits li {
   position: relative;
-  padding-left: 1.2rem;
-  margin-bottom: 0.65rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
   color: var(--text-muted);
 }
 
@@ -592,26 +573,32 @@
   position: absolute;
   left: 0;
   top: 0.6em;
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--text-muted);
 }
 
 /* ---- Applications list ---- */
 .detail__apps li {
-  margin-bottom: 0.85rem;
-  padding: 0.75rem;
-  background: var(--surface);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  margin-bottom: 0.65rem;
+  padding: 0 0 0.65rem;
+  background: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail__apps li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .detail__apps li strong {
   display: block;
   color: var(--text);
-  font-size: 0.92rem;
-  margin-bottom: 0.3rem;
+  font-size: 0.88rem;
+  margin-bottom: 0.15rem;
 }
 
 /* ---- Sources list ---- */
@@ -621,7 +608,7 @@
 }
 
 .detail__sources li {
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -630,10 +617,10 @@
 }
 
 .detail__sources a {
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 
 .detail__sources a::before {
@@ -644,18 +631,19 @@
 
 /* ---- Disclaimer at bottom of detail ---- */
 .detail__disclaimer {
-  margin-top: 1.5rem;
-  padding: 0.85rem 1rem;
-  background: rgba(239, 68, 68, 0.05);
-  border: 1px solid rgba(239, 68, 68, 0.12);
-  border-radius: var(--radius-sm);
-  font-size: 0.78rem;
+  margin-top: 1.25rem;
+  padding: 0.65rem 0 0;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  font-size: 0.72rem;
   color: var(--text-muted);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .detail__disclaimer strong {
-  color: var(--danger);
+  color: var(--text);
 }
 
 /* ---- Card meta row ---- */
@@ -1218,57 +1206,49 @@
 .goal-bar {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  padding: 1rem 1.25rem;
-  margin-bottom: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  gap: 0.35rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem 0.5rem;
 }
 
 .goal-bar__label {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.01em;
+  display: none;
 }
 
 .goal-bar__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .goal-bar__desc {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  padding: 0.5rem 0.75rem;
-  background: var(--bg);
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  line-height: 1.4;
+  padding: 0.35rem 0.5rem;
+  background: var(--surface);
+  border-radius: 6px;
 }
 
 .goal-btn {
   font: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.3rem 0.75rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: background var(--speed), border-color var(--speed), color var(--speed), transform var(--speed);
+  transition: background var(--speed), border-color var(--speed), color var(--speed);
 }
 
 .goal-btn:hover {
-  background: var(--surface-hover);
-  border-color: var(--accent);
   color: var(--text);
-  transform: translateY(-1px);
+  border-color: var(--text-muted);
 }
 
 .goal-btn--active {
@@ -1279,22 +1259,23 @@
 
 /* ---- Filters toggle ---- */
 .filters-toggle-wrap {
-  margin-bottom: 0.75rem;
+  display: none;
 }
 
 .filters-toggle {
   font: inherit;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--text-muted);
   background: none;
-  border: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0;
-  transition: color var(--speed);
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  transition: color var(--speed), border-color var(--speed);
 }
 
 .filters-toggle:hover {
@@ -1377,7 +1358,7 @@
 }
 
 .ev-compare__verdict {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 600;
   margin: 0;
 }
