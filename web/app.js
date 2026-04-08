@@ -242,11 +242,15 @@ function matchesSearch(entry, q) {
     entry.distinctiveQuality?.headline,
     themeWords,
     ...(entry.reportedBenefits || []),
+    ...(entry.potentialApplications || []).map(a => a.personCenteredBenefit),
+    entry.cyclingNotes,
+    entry.dosingTimingNotes,
   ]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
-  return hay.includes(q);
+  const words = q.split(/\s+/).filter(Boolean);
+  return words.every((w) => hay.includes(w));
 }
 
 function matchesKnownFor(entry, themeKey) {
@@ -264,26 +268,26 @@ function matchesCompound(entry, c) {
   return entry.compoundType === c;
 }
 
-function matchesEvidence(entry, ev) {
-  if (!ev) return true;
-  return (entry.doseGuidelines || []).some((g) => g.evidenceBasis === ev);
+function matchesEvidence(entry, filterKey) {
+  if (!filterKey) return true;
+  const t = highestTier(entry);
+  return t.key === filterKey;
 }
 
 function sortEntries(entries, mode) {
   const out = [...entries];
-  switch (mode) {
-    case "title":
-      out.sort((a, b) => (a.catalog?.title || "").localeCompare(b.catalog?.title || ""));
-      break;
-    case "title-desc":
-      out.sort((a, b) => (b.catalog?.title || "").localeCompare(a.catalog?.title || ""));
-      break;
-    case "price-asc":
-      out.sort((a, b) => parsePrice(a.catalog?.priceText) - parsePrice(b.catalog?.priceText));
-      break;
-    case "price-desc":
-      out.sort((a, b) => parsePrice(b.catalog?.priceText) - parsePrice(a.catalog?.priceText));
-      break;
+  if (mode === "title") {
+    out.sort((a, b) => (a.catalog?.title || "").localeCompare(b.catalog?.title || ""));
+  } else if (mode === "title-desc") {
+    out.sort((a, b) => (b.catalog?.title || "").localeCompare(a.catalog?.title || ""));
+  } else if (mode === "price-asc") {
+    out.sort((a, b) => (parsePrice(a.catalog?.priceText) || 999) - (parsePrice(b.catalog?.priceText) || 999));
+  } else if (mode === "price-desc") {
+    out.sort((a, b) => (parsePrice(b.catalog?.priceText) || 0) - (parsePrice(a.catalog?.priceText) || 0));
+  } else if (mode === "evidence") {
+    out.sort((a, b) => highestTier(a).rank - highestTier(b).rank);
+  } else if (mode === "type") {
+    out.sort((a, b) => (a.compoundType || "zzz").localeCompare(b.compoundType || "zzz"));
   }
   return out;
 }
@@ -607,21 +611,21 @@ function renderDetailHtml(entry) {
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "Not specified.")}</p>
     </div>
 
-    <div class="detail__section">
-      <h3>Cycling</h3>
+    <details class="detail__section detail__collapsible">
+      <summary><h3>Cycling</h3></summary>
       <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "Not specified.")}</p>
-    </div>
+    </details>
 
     ${doseRows
-      ? `<div class="detail__section">
-      <h3>Published dose info</h3>
+      ? `<details class="detail__section detail__collapsible">
+      <summary><h3>Published dose info</h3></summary>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>Context</th><th>Evidence basis</th><th>Notes</th></tr></thead>
           <tbody>${doseRows}</tbody>
         </table>
       </div>
-    </div>`
+    </details>`
       : ""
     }
 
@@ -712,6 +716,10 @@ function renderComparisonTable() {
   const catIndex = db.meta.wellnessCategoryIndex || {};
 
   const rows = [
+    {
+      label: "",
+      fn: (e) => `<button type="button" class="synergy-pill" data-synergy-title="${escapeHtml(e.catalog?.title || "")}" style="font-size:.78rem">Open &rarr;</button>`,
+    },
     {
       label: "Title",
       fn: (e) => escapeHtml(e.catalog?.title || ""),
@@ -825,6 +833,14 @@ function renderComparisonTable() {
       render();
     });
   });
+
+  els.compareTable.querySelectorAll(".synergy-pill").forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const t = pill.dataset.synergyTitle;
+      const entry = getEntryByTitle(t);
+      if (entry) openDetail(entry);
+    });
+  });
 }
 
 /* ------------------------------------------------------------------ */
@@ -849,6 +865,8 @@ function renderStatsDashboard() {
   const totalEl = els.statsDashboard.querySelector(".stat-total") || document.createElement("p");
   totalEl.className = "stat-total";
   totalEl.textContent = "Total entries: " + entries.length;
+  const totalValEl = document.getElementById("stat-total-value");
+  if (totalValEl) totalValEl.textContent = entries.length;
 
   /* Compound types */
   const compoundCounts = {};
@@ -859,8 +877,8 @@ function renderStatsDashboard() {
   const compSorted = Object.entries(compoundCounts).sort((a, b) => b[1] - a[1]);
   const compMax = compSorted.length ? compSorted[0][1] : 1;
   if (els.statCompounds) {
-    els.statCompounds.innerHTML = "<h3>Compound types</h3>" +
-      compSorted.map(([k, c]) => renderBar(formatCompoundType(k), c, compMax)).join("");
+    const compBody = els.statCompounds.querySelector(".stat-card__body") || els.statCompounds;
+    compBody.innerHTML = compSorted.map(([k, c]) => renderBar(formatCompoundType(k), c, compMax)).join("");
   }
 
   /* Wellness categories */
@@ -873,8 +891,8 @@ function renderStatsDashboard() {
   const catSorted = Object.entries(catCounts).sort((a, b) => b[1] - a[1]);
   const catMax = catSorted.length ? catSorted[0][1] : 1;
   if (els.statCategories) {
-    els.statCategories.innerHTML = "<h3>Wellness categories</h3>" +
-      catSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, catMax)).join("");
+    const catBody = els.statCategories.querySelector(".stat-card__body") || els.statCategories;
+    catBody.innerHTML = catSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, catMax)).join("");
   }
 
   /* Evidence tiers */
@@ -886,8 +904,18 @@ function renderStatsDashboard() {
   const evSorted = Object.entries(evCounts).sort((a, b) => b[1] - a[1]);
   const evMax = evSorted.length ? evSorted[0][1] : 1;
   if (els.statEvidence) {
-    els.statEvidence.innerHTML = "<h3>Highest evidence tier</h3>" +
-      evSorted.map(([k, c]) => renderBar(k, c, evMax)).join("");
+    const evBody = els.statEvidence.querySelector(".stat-card__body") || els.statEvidence;
+    evBody.innerHTML = evSorted.map(([k, c]) => {
+      const tier = EVIDENCE_TIERS.find(t => t.label === k);
+      const color = tier ? tier.color : "#9ca3af";
+      return `<div class="stat-bar">
+        <span class="stat-bar__label">${escapeHtml(k)}</span>
+        <div class="stat-bar__track">
+          <div class="stat-bar__fill" style="--pct:${((c / evMax) * 100).toFixed(1)}%;background:${color}"></div>
+        </div>
+        <span class="stat-bar__count">${c}</span>
+      </div>`;
+    }).join("");
   }
 
   /* Themes */
@@ -900,8 +928,8 @@ function renderStatsDashboard() {
   const themeSorted = Object.entries(themeCounts).sort((a, b) => b[1] - a[1]);
   const themeMax = themeSorted.length ? themeSorted[0][1] : 1;
   if (els.statThemes) {
-    els.statThemes.innerHTML = "<h3>Known-for themes</h3>" +
-      themeSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, themeMax)).join("");
+    const themeBody = els.statThemes.querySelector(".stat-card__body") || els.statThemes;
+    themeBody.innerHTML = themeSorted.map(([k, c]) => renderBar(k.replace(/_/g, " "), c, themeMax)).join("");
   }
 
   if (!els.statsDashboard.contains(totalEl)) {

@@ -59,20 +59,16 @@
             `<button type="button" class="recent-bar__item" data-recent-id="${escapeAttr(r.id)}">${escapeAttr(r.title)}</button>`
         )
         .join("");
+    bar.innerHTML += '<button type="button" class="recent-bar__clear" title="Clear history">&times;</button>';
     bar.querySelectorAll(".recent-bar__item").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const id = btn.dataset.recentId;
-        // Try to find and open the entry
-        const cards = document.querySelectorAll(".card");
-        for (const card of cards) {
-          if (card.dataset.entryId === id) {
-            card.querySelector(".card__main")?.click();
-            return;
-          }
-        }
-        // If not visible, try hash navigation
         window.location.hash = "entry=" + encodeURIComponent(btn.textContent);
       });
+    });
+    bar.querySelector(".recent-bar__clear").addEventListener("click", () => {
+      recentIds = [];
+      localStorage.removeItem(RECENT_KEY);
+      renderRecentBar();
     });
   }
 
@@ -97,10 +93,13 @@
         }
       });
       // Update count
+      const total = document.querySelectorAll(".card").length;
       const visible = document.querySelectorAll('.card:not([style*="display: none"])').length;
       const stats = document.getElementById("stats");
       if (stats && cb.checked) {
-        stats.textContent = `Showing ${visible} bookmarked`;
+        stats.textContent = `Showing ${visible} of ${total} (bookmarked only)`;
+      } else if (stats) {
+        stats.textContent = `Showing ${total} of ${total}`;
       }
     });
   }
@@ -119,6 +118,8 @@
           if (opt.value === catKey) {
             catSelect.value = catKey;
             catSelect.dispatchEvent(new Event("change"));
+            catSelect.style.outline = "2px solid var(--accent)";
+            setTimeout(() => { catSelect.style.outline = ""; }, 1500);
             // Scroll to top of grid
             document.getElementById("grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
             return;
@@ -143,14 +144,19 @@
       btn.title = "Copy shareable link to this entry";
       btn.addEventListener("click", () => {
         const url = window.location.origin + window.location.pathname + "#entry=" + encodeURIComponent(title.textContent);
-        navigator.clipboard.writeText(url).then(() => {
+        function done() {
           btn.textContent = "Copied!";
           btn.classList.add("share-btn--done");
-          setTimeout(() => {
-            btn.textContent = "Copy link";
-            btn.classList.remove("share-btn--done");
-          }, 2000);
-        });
+          setTimeout(() => { btn.textContent = "Copy link"; btn.classList.remove("share-btn--done"); }, 2000);
+        }
+        function fallback(u) {
+          prompt("Copy this link:", u);
+        }
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(done).catch(() => fallback(url));
+        } else {
+          fallback(url);
+        }
       });
 
       // Insert after the title or bookmark btn
@@ -275,5 +281,15 @@
     trackRecentViews();
     addSearchHighlighting();
     renderRecentBar();
+
+    // Keyboard shortcut: "f" toggles bookmarks filter
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;
+      if (document.querySelector("dialog[open]")) return;
+      if (e.key === "f") {
+        const cb = document.getElementById("bookmarks-only");
+        if (cb) { cb.checked = !cb.checked; cb.dispatchEvent(new Event("change")); }
+      }
+    });
   }
 })();

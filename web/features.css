@@ -47,6 +47,24 @@
   transform: translateY(-1px);
 }
 
+.recent-bar__clear {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+.recent-bar__clear:hover {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
 /* ---- Bookmarks toggle ---- */
 .bookmarks-toggle {
   display: flex;
@@ -139,14 +157,70 @@
   padding: 0 2px;
 }
 
+/* ---- Collapsible detail sections ---- */
+.detail__collapsible {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0;
+}
+.detail__collapsible summary {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.detail__collapsible summary::after {
+  content: '+';
+  font-size: 1.1rem;
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+.detail__collapsible[open] summary::after {
+  content: '\2212';
+}
+.detail__collapsible summary::-webkit-details-marker { display: none; }
+.detail__collapsible summary h3 {
+  margin: 0;
+  border-left: none;
+  padding-left: 0;
+}
+.detail__collapsible > :not(summary) {
+  padding: 0 1rem 1rem;
+}
+
 /* ---- Clickable chips ---- */
 .chip {
   cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  position: relative;
 }
 .chip:hover {
-  background: rgba(76, 157, 255, 0.25);
-  transform: scale(1.05);
+  background: rgba(76, 157, 255, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(76, 157, 255, 0.2);
+}
+.chip::after {
+  content: 'Filter';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  font-size: 0.6rem;
+  padding: 0.15rem 0.35rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.chip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 /* ---- Result count ---- */
