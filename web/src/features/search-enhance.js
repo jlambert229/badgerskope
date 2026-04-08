@@ -30,9 +30,11 @@ function addSearchAutocomplete() {
       const matches = [];
       allCards.forEach(card => {
         const title = card.querySelector(".card__title")?.textContent || "";
-        const type = card.querySelector(".card__type")?.textContent || "";
-        if (title.toLowerCase().includes(q) || type.toLowerCase().includes(q)) {
-          matches.push({ title, type, evidence: card.querySelector(".card__evidence-badge")?.textContent || "", id: card.dataset.entryId });
+        const category = card.querySelector(".card__category")?.textContent || "";
+        const evidence = card.querySelector(".card__evidence-label")?.textContent || "";
+        const summary = card.querySelector(".card__summary")?.textContent || "";
+        if (title.toLowerCase().includes(q) || category.toLowerCase().includes(q) || summary.toLowerCase().includes(q)) {
+          matches.push({ title, type: category, evidence, id: card.dataset.entryId });
         }
       });
 
@@ -71,7 +73,7 @@ function addSearchHighlighting() {
 
   function applyHighlight() {
     const q = search.value.trim().toLowerCase();
-    grid.querySelectorAll(".card__summary, .card__distinctive").forEach((el) => {
+    grid.querySelectorAll(".card__summary").forEach((el) => {
       if (el.dataset.original) {
         el.textContent = el.dataset.original;
       }

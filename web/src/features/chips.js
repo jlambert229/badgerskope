@@ -7,15 +7,15 @@ export function initChips() {
   if (!grid) return;
 
   grid.addEventListener("click", (e) => {
-    const chip = e.target.closest(".chip");
+    const chip = e.target.closest(".chip, .card__category");
     if (!chip) return;
     e.stopPropagation();
-    const catKey = chip.textContent.trim().replace(/\s+/g, "_");
+    const chipText = chip.textContent.trim().toLowerCase();
     const catSelect = document.getElementById("category");
     if (catSelect) {
       for (const opt of catSelect.options) {
-        if (opt.value === catKey) {
-          catSelect.value = catKey;
+        if (opt.text.trim().toLowerCase() === chipText || opt.value === chipText.replace(/\s+/g, "_")) {
+          catSelect.value = opt.value;
           catSelect.dispatchEvent(new Event("change"));
           catSelect.style.outline = "2px solid var(--accent)";
           setTimeout(() => { catSelect.style.outline = ""; }, 1500);

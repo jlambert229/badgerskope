@@ -1467,6 +1467,7 @@ table.compare tbody tr:last-child td {
   margin: auto;
   padding: 1.5rem 1.75rem;
   background: var(--bg-elevated);
+  color: var(--text);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -1644,6 +1645,7 @@ table.compare tbody tr:last-child td {
 }
 
 /* Nav between detail items */
+.detail__nav[hidden] { display: none; }
 .detail__nav {
   display: flex;
   align-items: center;

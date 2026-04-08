@@ -48,6 +48,7 @@ function addNotesFeature() {
         delete userNotes[entryId];
       }
       saveNotes();
+      updateExportVisibility();
       saveBtn.textContent = "Saved!";
       saveBtn.classList.add("user-notes__save--done");
       setTimeout(() => {
@@ -61,6 +62,7 @@ function addNotesFeature() {
         textarea.value = "";
         delete userNotes[entryId];
         saveNotes();
+        updateExportVisibility();
         clearBtn.remove();
       });
     }
@@ -70,24 +72,32 @@ function addNotesFeature() {
   if (dialog) observer.observe(dialog, { childList: true, subtree: true });
 }
 
-function addExportNotes() {
-  const navBar = document.querySelector(".nav-bar__inner");
-  if (!navBar) return;
+let exportBtn = null;
 
+function updateExportVisibility() {
+  if (!exportBtn) return;
   const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
-  if (Object.keys(notes).length === 0) return;
+  exportBtn.hidden = Object.keys(notes).length === 0;
+}
 
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "btn btn--ghost btn--small";
-  btn.textContent = "Export notes";
-  btn.title = "Download all your personal notes";
+function addExportNotes() {
+  const navEnd = document.querySelector(".nav-bar__end");
+  if (!navEnd) return;
+
+  exportBtn = document.createElement("button");
+  exportBtn.type = "button";
+  exportBtn.className = "nav-bar__link";
+  exportBtn.textContent = "Export notes";
+  exportBtn.title = "Download all your personal notes";
+  exportBtn.id = "export-notes";
 
   const helpBtn = document.getElementById("open-help");
-  if (helpBtn) helpBtn.before(btn);
-  else navBar.appendChild(btn);
+  if (helpBtn) helpBtn.before(exportBtn);
+  else navEnd.appendChild(exportBtn);
 
-  btn.addEventListener("click", () => {
+  updateExportVisibility();
+
+  exportBtn.addEventListener("click", () => {
     const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
     if (Object.keys(notes).length === 0) return;
     let text = "BadgerSkope \u2014 Personal Notes Export\n";

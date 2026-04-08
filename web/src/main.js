@@ -327,9 +327,28 @@ async function init() {
     });
   }
 
+  // Help dialog
+  const helpDialog = document.getElementById("help-dialog");
+  const openHelp = document.getElementById("open-help");
+  const helpClose = document.getElementById("help-close");
+  if (openHelp && helpDialog) {
+    openHelp.addEventListener("click", () => helpDialog.showModal());
+  }
+  if (helpClose && helpDialog) {
+    helpClose.addEventListener("click", () => helpDialog.close());
+  }
+  if (helpDialog) {
+    helpDialog.addEventListener("click", (e) => {
+      if (e.target === helpDialog) helpDialog.close();
+    });
+  }
+
   // Hash change
   window.addEventListener("hashchange", () => {
     const params = readHashParams();
+    if (params.tab) {
+      switchTab(params.tab);
+    }
     if (params.entry) {
       const entry = getEntryByTitle(params.entry);
       if (entry) openDetail(entry);
