@@ -617,8 +617,8 @@
 .card__meta-row {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
   flex-wrap: wrap;
 }
 
