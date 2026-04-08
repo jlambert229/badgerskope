@@ -19,32 +19,37 @@
     <link rel="stylesheet" href="./app.css" />
   </head>
   <body>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <img class="hero__logo" src="./logo.png" alt="BadgerSkope logo" width="140" height="140" />
+        <h1 class="hero__title">Badger<span class="hero__title-accent">Skope</span></h1>
+        <p class="hero__sub">Peptide research library &mdash; plain English, evidence-graded, not medical advice</p>
+        <div class="hero__stats" id="stats" aria-live="polite"></div>
+      </div>
+    </section>
+
     <div class="app">
-      <!-- ===== Header ===== -->
-      <header class="header">
-        <div class="header__inner">
-          <div class="brand">
-            <img class="brand__logo" src="./logo.png" alt="BadgerSkope logo" width="56" height="56" />
-            <div>
-              <h1 class="brand__title">BadgerSkope</h1>
-              <p class="brand__tag">Peptide research library &mdash; plain English, not medical advice</p>
-            </div>
+      <!-- ===== Sticky nav bar ===== -->
+      <nav class="nav-bar" aria-label="Main sections">
+        <div class="nav-bar__inner">
+          <div class="nav-bar__brand">
+            <img src="./logo.png" alt="" width="28" height="28" class="nav-bar__logo" />
+            <span class="nav-bar__name">BadgerSkope</span>
           </div>
-          <div class="header__actions">
-            <button
-              type="button"
-              class="btn btn--icon theme-toggle"
-              id="theme-toggle"
-              aria-label="Toggle light/dark theme"
-              title="Toggle theme (t)"
-            >
-              <span class="icon-sun" aria-hidden="true">&#9788;</span>
-              <span class="icon-moon" aria-hidden="true">&#9790;</span>
-            </button>
-            <div class="header__stats" id="stats" aria-live="polite"></div>
-          </div>
+          <button
+            type="button"
+            class="btn btn--icon theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle light/dark theme"
+            title="Toggle theme (t)"
+          >
+            <span class="icon-sun" aria-hidden="true">&#9788;</span>
+            <span class="icon-moon" aria-hidden="true">&#9790;</span>
+          </button>
         </div>
-      </header>
+      </nav>
 
       <!-- ===== Tab navigation ===== -->
       <nav class="tab-bar" aria-label="Main sections">
@@ -197,15 +202,20 @@
 
       <!-- ===== Footer ===== -->
       <footer class="footer">
-        <p id="disclaimer" class="disclaimer"></p>
-        <p class="footer__meta" id="footer-meta"></p>
-        <div class="footer__brand">
-          <img class="footer__logo" src="./logo.png" alt="" width="28" height="28" />
-          <span>BadgerSkope &mdash; open peptide research literacy</span>
+        <div class="footer__top">
+          <img class="footer__logo" src="./logo.png" alt="BadgerSkope" width="48" height="48" />
+          <div>
+            <p class="footer__brand-name">BadgerSkope</p>
+            <p class="footer__brand-tag">Open peptide research literacy</p>
+          </div>
         </div>
-        <p class="footer__shortcuts">
-          <kbd>?</kbd> for keyboard shortcuts
-        </p>
+        <p id="disclaimer" class="disclaimer"></p>
+        <div class="footer__bottom">
+          <p class="footer__meta" id="footer-meta"></p>
+          <p class="footer__shortcuts">
+            <kbd>?</kbd> keyboard shortcuts
+          </p>
+        </div>
       </footer>
     </div>
 

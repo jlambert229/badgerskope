@@ -1256,6 +1256,19 @@ async function init() {
   });
 
   if (els.grid) els.grid.removeAttribute("aria-busy");
+
+  /* Card mouse-tracking glow */
+  if (els.grid) {
+    els.grid.addEventListener("mousemove", (e) => {
+      const card = e.target.closest(".card");
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(0);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(0);
+      card.style.setProperty("--mouse-x", x + "%");
+      card.style.setProperty("--mouse-y", y + "%");
+    });
+  }
 }
 
 init();
