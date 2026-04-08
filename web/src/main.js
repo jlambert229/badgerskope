@@ -226,6 +226,19 @@ async function init() {
   const groupByEl = document.getElementById("group-by");
   if (groupByEl) groupByEl.addEventListener("change", render);
 
+  // Advanced filters toggle
+  const filtersToggle = document.getElementById("filters-toggle");
+  const advancedFilters = document.getElementById("advanced-filters");
+  if (filtersToggle && advancedFilters) {
+    filtersToggle.addEventListener("click", () => {
+      const isHidden = advancedFilters.hidden;
+      advancedFilters.hidden = !isHidden;
+      filtersToggle.classList.toggle("filters-toggle--open", isHidden);
+      const icon = filtersToggle.querySelector(".filters-toggle__icon");
+      if (icon) icon.textContent = isHidden ? "\u2212" : "+";
+    });
+  }
+
   const resetBtn = document.getElementById("reset-filters");
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
@@ -235,6 +248,7 @@ async function init() {
       els.knownFor.value = "";
       if (els.evidenceFilter) els.evidenceFilter.value = "";
       els.sort.value = "title";
+      if (groupByEl) groupByEl.value = "";
       render();
     });
   }

@@ -121,18 +121,26 @@ export function renderDetailHtml(entry) {
     })
     .join("");
 
+  const compoundDesc = entry.compoundType ? compoundTypeExplainer(entry.compoundType) : "";
+
   return `
-    <div class="detail__hero-bar" style="border-left: 4px solid ${tier.color}">
-      <div class="detail__hero-top">
-        <div>
-          <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
-          ${entry.compoundType ? `<span class="detail__compound-type" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
-        </div>
-        <div class="detail__hero-right">
-          <span class="detail__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
-        </div>
+    <div class="detail__answer-zone" style="border-left: 4px solid ${tier.color}">
+      <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
+      ${compoundDesc ? `<p class="detail__what-it-is">${escapeHtml(compoundDesc)}</p>` : ""}
+
+      <div class="detail__evidence-block">
+        <span class="detail__evidence-badge" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
+        <span class="detail__evidence-subtitle">${escapeHtml(tier.subtitle || "")}</span>
       </div>
-      <div class="detail__hero-actions">
+
+      ${dq?.headline
+        ? `<p class="detail__known-for">${escapeHtml(dq.headline)}</p>`
+        : ""
+      }
+
+      <p class="detail__summary-prose">${escapeHtml(entry.researchSummary || "")}</p>
+
+      <div class="detail__answer-actions">
         <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
           ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
         </button>
@@ -141,20 +149,27 @@ export function renderDetailHtml(entry) {
 
     ${cats ? `<div class="detail__cats">${cats}</div>` : ""}
 
-    ${dq?.headline
-      ? `<div class="detail__section detail__section--highlight">
-      <h3>What it's known for</h3>
-      <p class="detail__prose detail__prose--lg">${escapeHtml(dq.headline)}</p>
-      ${dqThemes ? `<div class="detail__row">${dqThemes}</div>` : ""}
-      ${dq.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
-    </div>`
-      : ""
-    }
+    ${(() => {
+      const fdaStatus = tier.tier === "approved" ? "FDA approved" :
+        tier.tier === "pivotal" ? "Not FDA-approved (in clinical trials)" :
+        tier.tier === "phase1" ? "Not FDA-approved (early research)" :
+        tier.tier === "preclinical" ? "Not FDA-approved (animal studies only)" :
+        tier.tier === "practice" ? "Not FDA-approved (clinic use only)" : "Unknown regulatory status";
+      const dopingFlag = entry.dopingStatus?.prohibited ? "Prohibited by WADA/sport agencies" : "";
+      const srcCount = (entry.sources || []).length;
 
-    <div class="detail__section">
-      <h3>In plain English</h3>
-      <p class="detail__prose">${escapeHtml(entry.researchSummary || "")}</p>
-    </div>
+      return `<div class="detail__section detail__section--safety">
+        <h3>Safety & status</h3>
+        <ul class="safety-list">
+          <li><strong>Regulatory:</strong> ${escapeHtml(fdaStatus)}</li>
+          ${dopingFlag ? `<li><strong>Sport:</strong> ${escapeHtml(dopingFlag)}</li>` : ""}
+          <li><strong>Sources:</strong> ${srcCount} published reference${srcCount !== 1 ? "s" : ""} linked below</li>
+        </ul>
+        <p class="detail__muted">Here's what we know. Talk to your doctor about what it means for you.</p>
+      </div>`;
+    })()}
+
+    ${entry.notes ? `<div class="detail__section detail__section--note"><h3>Heads up</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
 
     ${(() => {
       const primaryCat = (entry.wellnessCategories || [])[0];
@@ -169,7 +184,6 @@ export function renderDetailHtml(entry) {
       });
       const thisTier = tier;
       const betterCount = catEntries.filter(e => highestTier(e).rank < thisTier.rank).length;
-      const sameCount = catEntries.filter(e => highestTier(e).rank === thisTier.rank).length;
       const totalInCat = catEntries.length;
       const position = betterCount === 0 ? "the strongest" : betterCount < totalInCat / 2 ? "above average" : "below average";
 
@@ -187,23 +201,25 @@ export function renderDetailHtml(entry) {
         }).join("");
 
       return `<div class="detail__section">
-        <h3>Evidence in context</h3>
-        <p class="detail__help">How this compound's evidence compares to the ${totalInCat} other entries in "${escapeHtml(catName)}".</p>
+        <h3>How strong is the evidence?</h3>
+        <p class="detail__help">Compared to the ${totalInCat} other entries in "${escapeHtml(catName)}".</p>
         <p class="ev-compare__verdict" style="color:${thisTier.color}">This entry has <strong>${escapeHtml(position)}</strong> evidence for its category (${escapeHtml(thisTier.label)}).</p>
         <div class="ev-compare">${barHtml}</div>
       </div>`;
     })()}
 
-    ${entry.notes ? `<div class="detail__section detail__section--note"><h3>Important note</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
-
     ${benefits ? `<div class="detail__section">
-      <h3>What the research shows</h3>
-      <p class="detail__help">Each line is tagged by the type of evidence behind it.</p>
+      <h3>What researchers found</h3>
       <ul class="detail__benefits">${benefits}</ul>
     </div>` : ""}
 
+    ${apps ? `<div class="detail__section">
+      <h3>People research this for</h3>
+      <ul class="detail__apps">${apps}</ul>
+    </div>` : ""}
+
     <div class="detail__section">
-      <h3>How it's typically used</h3>
+      <h3>How people use it</h3>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
     </div>
 
@@ -214,8 +230,8 @@ export function renderDetailHtml(entry) {
 
     ${doseRows
       ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Published doses from the literature</h3></summary>
-      <p class="detail__help">These are doses that appeared in published research. They are not personal dosing instructions.</p>
+      <summary><h3>Doses from published research</h3></summary>
+      <p class="detail__help">These appeared in published studies. They are not personal dosing instructions.</p>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
@@ -226,17 +242,13 @@ export function renderDetailHtml(entry) {
       : ""
     }
 
-    ${apps ? `<div class="detail__section">
-      <h3>Potential uses people explore</h3>
-      <p class="detail__help">What people are looking for when they research this compound, with evidence quality noted.</p>
-      <ul class="detail__apps">${apps}</ul>
-    </div>` : ""}
-
     ${synergy ? `<div class="detail__section">
-      <h3>Often discussed alongside</h3>
-      <p class="detail__help">These appear together in research, product lines, or practice patterns \u2014 not a recommendation to combine.</p>
+      <h3>Often mentioned alongside</h3>
+      <p class="detail__help">These appear together in research or product lines. Not a recommendation to combine.</p>
       <ul class="synergy-list">${synergy}</ul>
     </div>` : ""}
+
+    ${dqThemes ? `<div class="detail__section"><h3>Research themes</h3><div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}</div>` : ""}
 
     ${(() => {
       const srcList = entry.sources || [];

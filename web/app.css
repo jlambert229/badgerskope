@@ -23,9 +23,10 @@
   --warning: #f5a623;
   --danger: #ef4444;
 
-  /* Radii */
-  --radius: 8px;
-  --radius-sm: 6px;
+  /* Radii (aligned with marketing page) */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 20px;
 
   /* Shadows */
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -501,16 +502,26 @@ a:hover { text-decoration: underline; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   padding: 1rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 12px;
+}
+
+.controls:has(.field--search) {
+  grid-template-columns: 1fr auto;
+  align-items: end;
+}
+
+.controls--advanced {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 1100px) {
-  .controls {
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.1fr auto;
+  .controls--advanced {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -530,13 +541,13 @@ a:hover { text-decoration: underline; }
 
 .field__input {
   width: 100%;
-  padding: 0.6rem 0.85rem;
+  padding: 0.65rem 0.9rem;
   font: inherit;
   font-size: 0.88rem;
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   outline: none;
   transition: border-color var(--speed-md), box-shadow var(--speed-md), background var(--speed);
 }
@@ -744,7 +755,7 @@ a:hover { text-decoration: underline; }
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 1.15rem 1.15rem 1.15rem calc(1.15rem + 4px);
+  padding: 1.25rem 1.25rem 1.25rem calc(1.25rem + 4px);
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -797,6 +808,7 @@ a:hover { text-decoration: underline; }
 
 .card:hover {
   border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card--selected {
@@ -924,9 +936,9 @@ a:hover { text-decoration: underline; }
 
 .card__title {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.3;
 }
 
@@ -972,14 +984,15 @@ a:hover { text-decoration: underline; }
 
 .chip {
   font-size: 0.68rem;
-  padding: 0.2rem 0.45rem;
-  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
   background: var(--accent-soft);
   color: var(--accent);
   max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  opacity: 0.75;
 }
 
 .card__hint {
@@ -1262,14 +1275,13 @@ a:hover { text-decoration: underline; }
 /* Card evidence badge */
 .card__evidence-badge {
   display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill, 20px);
   white-space: nowrap;
-  cursor: help;
 }
 
 .card--evidence-dashed {
@@ -1431,10 +1443,10 @@ table.compare tbody tr:last-child td {
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   margin: auto;
-  padding: 2rem;
+  padding: 2rem 2.25rem;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: 16px;
   box-shadow: var(--shadow);
 }
 
@@ -1550,8 +1562,10 @@ table.compare tbody tr:last-child td {
 
 /* Detail header */
 .detail__title {
-  margin: 0 0 0.25rem;
-  font-size: 1.35rem;
+  margin: 0 0 0.15rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   padding-right: 2rem;
 }
 
@@ -1654,14 +1668,14 @@ table.compare tbody tr:last-child td {
 }
 
 .detail__section h3 {
-  margin: 0 0 0.6rem;
-  font-size: 0.72rem;
-  font-weight: 600;
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
-  padding-left: 0.6rem;
-  border-left: 2px solid var(--accent);
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--accent);
 }
 
 .detail__section--highlight {

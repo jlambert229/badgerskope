@@ -3,8 +3,8 @@
  */
 
 import { state, getEntryId } from './state.js';
-import { escapeHtml, formatCompoundType, wellnessLabel } from './utils.js';
-import { highestTier, evidenceTierExplainer } from './constants.js';
+import { escapeHtml, wellnessLabel } from './utils.js';
+import { highestTier } from './constants.js';
 import { toggleBookmark } from './bookmarks.js';
 
 /* Late-bound callbacks injected by main.js to avoid circular deps */
@@ -18,7 +18,6 @@ export function setCardCallbacks({ openDetail, updateSelectionToolbar }) {
 
 export function renderCard(entry, catIndex, cardIndex) {
   const title = entry.catalog?.title || "Untitled";
-  const type = formatCompoundType(entry.compoundType);
   const summary = entry.researchSummary || "";
   const headline = entry.distinctiveQuality?.headline || "";
   const id = getEntryId(entry);
@@ -92,14 +91,13 @@ export function renderCard(entry, catIndex, cardIndex) {
   main.className = "card__main";
   main.setAttribute("aria-label", `View details for ${title}`);
   main.innerHTML = `
-    <div class="card__meta-row">
-      ${type ? `<span class="card__type">${escapeHtml(type)}</span>` : ""}
-      <span class="card__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
+    <div class="card__evidence-row">
+      <span class="card__evidence-badge" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
+      <span class="card__evidence-subtitle">${escapeHtml(tier.subtitle || "")}</span>
     </div>
     ${headline ? `<p class="card__distinctive">${escapeHtml(headline)}</p>` : ""}
     <p class="card__summary">${escapeHtml(summary)}</p>
     <div class="card__chips">${chips}</div>
-    <span class="card__hint">View details \u2192</span>
   `;
   main.addEventListener("click", () => {
     article.style.transform = "scale(0.98)";

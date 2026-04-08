@@ -626,17 +626,31 @@
       if (!detailBody || detailBody.dataset.unitsProcessed) return;
       detailBody.dataset.unitsProcessed = "true";
 
-      const prose = detailBody.querySelectorAll(".detail__prose, .doses td");
+      const prose = detailBody.querySelectorAll(".detail__prose, .detail__summary-prose, .detail__what-it-is, .doses td, .detail__benefits li, .detail__apps li");
       prose.forEach(el => {
         el.innerHTML = el.innerHTML
           .replace(/(\d+\.?\d*)\s*(mcg|µg)/gi, '<span class="unit-tip" title="micrograms — one millionth of a gram">$1 $2</span>')
           .replace(/(\d+\.?\d*)\s*mg\b/gi, '<span class="unit-tip" title="milligrams — one thousandth of a gram">$1 mg</span>')
           .replace(/(\d+\.?\d*)\s*IU\b/g, '<span class="unit-tip" title="International Units — a standardized measure of biological activity">$1 IU</span>')
-          .replace(/\bsubcutaneous\b/gi, '<span class="unit-tip" title="Injected under the skin (not into muscle or vein)">subcutaneous</span>')
+          .replace(/\bsubcutaneous\b/gi, '<span class="unit-tip" title="Injected under the skin into the fat layer, not into muscle">subcutaneous</span>')
           .replace(/\bintramuscular\b/gi, '<span class="unit-tip" title="Injected into a muscle">intramuscular</span>')
           .replace(/\bHbA1c\b/g, '<span class="unit-tip" title="A blood test showing average blood sugar over 2-3 months">HbA1c</span>')
           .replace(/\bIGF-1\b/g, '<span class="unit-tip" title="Insulin-like Growth Factor 1 — a hormone that mediates growth hormone effects">IGF-1</span>')
-          .replace(/\bBDNF\b/g, '<span class="unit-tip" title="Brain-Derived Neurotrophic Factor — a protein that supports brain cell growth and survival">BDNF</span>');
+          .replace(/\bBDNF\b/g, '<span class="unit-tip" title="Brain-Derived Neurotrophic Factor — supports brain cell growth and survival">BDNF</span>')
+          .replace(/\bGLP-1\b/g, '<span class="unit-tip" title="A gut hormone that reduces appetite and controls blood sugar. Ozempic and Wegovy target this.">GLP-1</span>')
+          .replace(/\bGIP\b/g, '<span class="unit-tip" title="A gut hormone that works with GLP-1 to regulate insulin and blood sugar">GIP</span>')
+          .replace(/\bGHRH\b/g, '<span class="unit-tip" title="Growth Hormone Releasing Hormone — tells the pituitary to release growth hormone">GHRH</span>')
+          .replace(/\bGHRP\b/g, '<span class="unit-tip" title="Growth Hormone Releasing Peptide — triggers growth hormone release via the ghrelin receptor">GHRP</span>')
+          .replace(/\bbioavailability\b/gi, '<span class="unit-tip" title="How much of a substance actually reaches your bloodstream">bioavailability</span>')
+          .replace(/\bsecretagogue\b/gi, '<span class="unit-tip" title="A substance that triggers your body to release its own hormones">secretagogue</span>')
+          .replace(/\bincretin\b/gi, '<span class="unit-tip" title="A gut hormone that controls blood sugar and appetite after eating">incretin</span>')
+          .replace(/\bhalf-life\b/gi, '<span class="unit-tip" title="How long until half the substance is eliminated from your body">half-life</span>')
+          .replace(/\blyophilized\b/gi, '<span class="unit-tip" title="Freeze-dried — mixed with water before use">lyophilized</span>')
+          .replace(/\breconstitution\b/gi, '<span class="unit-tip" title="Mixing a freeze-dried peptide with sterile water to create an injectable solution">reconstitution</span>')
+          .replace(/\bNAD\+?\b/g, '<span class="unit-tip" title="A coenzyme in every cell, essential for energy production and DNA repair. Declines with age.">NAD+</span>')
+          .replace(/\bpreclinical\b/gi, '<span class="unit-tip" title="Tested in animals or lab dishes, not yet in humans">preclinical</span>')
+          .replace(/\bin vitro\b/gi, '<span class="unit-tip" title="Done in a test tube or petri dish, not in a living body">in vitro</span>')
+          .replace(/\bin vivo\b/gi, '<span class="unit-tip" title="Done in a living organism (animal or human)">in vivo</span>');
       });
     });
 

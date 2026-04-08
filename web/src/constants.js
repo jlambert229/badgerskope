@@ -19,12 +19,12 @@ export const KNOWN_FOR_THEME_ORDER = [
 ];
 
 export const EVIDENCE_TIERS = [
-  { key: "regulatory_label", tier: "approved", color: "#22c55e", label: "FDA approved", rank: 0 },
-  { key: "pivotal_trials", tier: "pivotal", color: "#14b8a6", label: "Strong human trials", rank: 1 },
-  { key: "phase1_human", tier: "phase1", color: "#f59e0b", label: "Early human studies", rank: 2 },
-  { key: "preclinical_animal", tier: "preclinical", color: "#f97316", label: "Animal studies only", rank: 3 },
-  { key: "compounded_practice", tier: "practice", color: "#9ca3af", label: "Clinic practice", rank: 4 },
-  { key: "unknown_identity", tier: "unknown", color: "#9ca3af", label: "Unknown", rank: 5 },
+  { key: "regulatory_label", tier: "approved", color: "#22c55e", label: "FDA approved", subtitle: "Regulators reviewed the data and said yes", rank: 0 },
+  { key: "pivotal_trials", tier: "pivotal", color: "#14b8a6", label: "Strong human trials", subtitle: "Tested on thousands of people in controlled studies", rank: 1 },
+  { key: "phase1_human", tier: "phase1", color: "#f59e0b", label: "Early human studies", subtitle: "Small studies on people, but not conclusive yet", rank: 2 },
+  { key: "preclinical_animal", tier: "preclinical", color: "#f97316", label: "Animal studies only", subtitle: "Only tested on animals so far", rank: 3 },
+  { key: "compounded_practice", tier: "practice", color: "#9ca3af", label: "Clinic practice", subtitle: "Used by some clinics, but little controlled research", rank: 4 },
+  { key: "unknown_identity", tier: "unknown", color: "#9ca3af", label: "Unknown", subtitle: "Not enough data to grade", rank: 5 },
 ];
 
 export function tierForKey(key) {
