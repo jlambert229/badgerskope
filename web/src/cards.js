@@ -25,13 +25,10 @@ export function renderCard(entry, catIndex, cardIndex) {
   const isBookmarked = state.bookmarks.has(id);
   const tier = highestTier(entry);
 
-  const chips = (entry.wellnessCategories || [])
-    .slice(0, 4)
-    .map((k) => {
-      const w = wellnessLabel(catIndex, k);
-      return `<span class="chip" title="${escapeHtml(w.full)}">${escapeHtml(w.short)}</span>`;
-    })
-    .join("");
+  const topChip = (entry.wellnessCategories || [])[0];
+  const chipHtml = topChip
+    ? `<span class="card__category">${escapeHtml(wellnessLabel(catIndex, topChip).short)}</span>`
+    : "";
 
   const article = document.createElement("article");
   article.className = "card" +
@@ -91,13 +88,12 @@ export function renderCard(entry, catIndex, cardIndex) {
   main.className = "card__main";
   main.setAttribute("aria-label", `View details for ${title}`);
   main.innerHTML = `
-    <div class="card__evidence-row">
-      <span class="card__evidence-badge" style="background:${tier.color}">${escapeHtml(tier.label)}</span>
-      <span class="card__evidence-subtitle">${escapeHtml(tier.subtitle || "")}</span>
+    <div class="card__meta">
+      <span class="card__evidence-dot" style="background:${tier.color}" title="${escapeHtml(tier.label)}"></span>
+      <span class="card__evidence-label">${escapeHtml(tier.label)}</span>
+      ${chipHtml ? `<span class="card__meta-sep">&middot;</span>${chipHtml}` : ""}
     </div>
-    ${headline ? `<p class="card__distinctive">${escapeHtml(headline)}</p>` : ""}
     <p class="card__summary">${escapeHtml(summary)}</p>
-    <div class="card__chips">${chips}</div>
   `;
   main.addEventListener("click", () => {
     article.style.transform = "scale(0.98)";
