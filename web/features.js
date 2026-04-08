@@ -1290,6 +1290,277 @@
     if (dialog) observer.observe(dialog, { childList: true, subtree: true });
   }
 
+  /* ---- compound timeline view ---- */
+  function addTimelineView() {
+    const groupByEl = document.getElementById("group-by");
+    if (!groupByEl) return;
+
+    // Add timeline option to group-by dropdown
+    const opt = document.createElement("option");
+    opt.value = "timeline";
+    opt.textContent = "Development timeline";
+    groupByEl.appendChild(opt);
+  }
+
+  function addTimelineOverride() {
+    const groupByEl = document.getElementById("group-by");
+    if (!groupByEl) return;
+
+    groupByEl.addEventListener("change", () => {
+      if (groupByEl.value !== "timeline") return;
+
+      // Wait for render to complete, then re-organize
+      setTimeout(() => {
+        const grid = document.getElementById("grid");
+        if (!grid) return;
+
+        const stages = [
+          { key: "approved", label: "Approved & on the market", desc: "FDA or regulator-approved compounds with official prescribing information", color: "#22c55e" },
+          { key: "trials", label: "In clinical trials", desc: "Currently being tested in humans — Phase 1, 2, or 3", color: "#14b8a6" },
+          { key: "preclinical", label: "Preclinical / animal research", desc: "Tested in animals or lab dishes — not yet proven in people", color: "#f97316" },
+          { key: "experimental", label: "Experimental & unclassified", desc: "Research chemicals, vendor blends, or bioregulators with limited formal study", color: "#9ca3af" },
+        ];
+
+        const cards = [...grid.querySelectorAll(".card")];
+        const frag = document.createDocumentFragment();
+
+        for (const stage of stages) {
+          const stageCards = cards.filter(card => {
+            const badge = card.querySelector(".card__evidence-badge")?.textContent?.trim() || "";
+            if (stage.key === "approved") return badge === "FDA approved";
+            if (stage.key === "trials") return badge === "Strong human trials" || badge === "Early human studies";
+            if (stage.key === "preclinical") return badge === "Animal studies only";
+            return badge === "Clinic practice" || badge === "Unknown";
+          });
+
+          if (stageCards.length === 0) continue;
+
+          const header = document.createElement("div");
+          header.className = "timeline-header";
+          header.innerHTML = `
+            <div class="timeline-marker" style="background:${stage.color}"></div>
+            <div>
+              <h2 class="timeline-header__title">${stage.label}</h2>
+              <p class="timeline-header__desc">${stage.desc}</p>
+              <span class="group-header__count">${stageCards.length} compound${stageCards.length !== 1 ? 's' : ''}</span>
+            </div>
+          `;
+          frag.appendChild(header);
+
+          const groupGrid = document.createElement("div");
+          groupGrid.className = "group-grid";
+          stageCards.forEach(c => groupGrid.appendChild(c));
+          frag.appendChild(groupGrid);
+        }
+
+        grid.replaceChildren(frag);
+      }, 100);
+    });
+  }
+
+  /* ---- compound interaction checker ---- */
+  function addInteractionChecker() {
+    const observer = new MutationObserver(() => {
+      const detailBody = document.getElementById("detail-body");
+      if (!detailBody || detailBody.querySelector(".interaction-check")) return;
+
+      const titleEl = document.getElementById("detail-title");
+      if (!titleEl) return;
+      const currentTitle = titleEl.textContent;
+
+      // Get current entry's categories
+      const currentCats = new Set(
+        [...detailBody.querySelectorAll(".detail__cats .detail__badge")].map(b => b.textContent.trim())
+      );
+      const currentType = detailBody.querySelector(".detail__compound-type")?.textContent?.trim() || "";
+
+      // Get bookmarked entries from cards
+      const bookmarkedCards = document.querySelectorAll(".card.card--bookmarked");
+      if (bookmarkedCards.length === 0) return;
+
+      const overlaps = [];
+      bookmarkedCards.forEach(card => {
+        const title = card.querySelector(".card__title")?.textContent;
+        if (!title || title === currentTitle) return;
+        const cardType = card.querySelector(".card__type")?.textContent?.trim() || "";
+        const cardChips = new Set([...card.querySelectorAll(".chip")].map(c => c.textContent.trim()));
+
+        // Check for same compound type (mechanism overlap)
+        if (currentType && cardType && currentType === cardType) {
+          overlaps.push({ title, reason: `Same type: ${cardType}` });
+          return;
+        }
+
+        // Check for significant category overlap
+        let shared = 0;
+        currentCats.forEach(c => { if (cardChips.has(c)) shared++; });
+        if (shared >= 2) {
+          overlaps.push({ title, reason: `${shared} shared categories` });
+        }
+      });
+
+      if (overlaps.length === 0) return;
+
+      const section = document.createElement("div");
+      section.className = "detail__section interaction-check";
+      section.innerHTML = `
+        <h3>Heads up — overlapping bookmarks</h3>
+        <p class="detail__help">These bookmarked compounds share mechanisms or categories with this entry. Overlapping compounds may have additive effects or redundancies worth understanding.</p>
+        <ul class="interaction-list">
+          ${overlaps.map(o => `<li><strong>${escapeAttr(o.title)}</strong> <span class="interaction-reason">${escapeAttr(o.reason)}</span></li>`).join("")}
+        </ul>
+        <p class="detail__muted">This is not an interaction warning — just a heads-up that these compounds work in similar areas.</p>
+      `;
+
+      const disclaimer = detailBody.querySelector(".detail__disclaimer");
+      if (disclaimer) detailBody.insertBefore(section, disclaimer);
+    });
+
+    const dialog = document.getElementById("detail-dialog");
+    if (dialog) observer.observe(dialog, { childList: true, subtree: true });
+  }
+
+  /* ---- data freshness indicator ---- */
+  function addDataFreshness() {
+    const footerMeta = document.getElementById("footer-meta");
+    if (!footerMeta) return;
+
+    // The footer meta already shows build date. Add a visual freshness indicator.
+    const text = footerMeta.textContent;
+    const dateMatch = text.match(/Updated\s+(.+)/);
+    if (!dateMatch) return;
+
+    const updateDate = new Date(dateMatch[1]);
+    const now = new Date();
+    const daysSince = Math.floor((now - updateDate) / (1000 * 60 * 60 * 24));
+
+    let freshness, color;
+    if (daysSince <= 7) { freshness = "Fresh"; color = "#22c55e"; }
+    else if (daysSince <= 30) { freshness = "Recent"; color = "#f59e0b"; }
+    else { freshness = "May be outdated"; color = "#ef4444"; }
+
+    const badge = document.createElement("span");
+    badge.className = "freshness-badge";
+    badge.style.color = color;
+    badge.style.borderColor = color;
+    badge.textContent = freshness;
+    badge.title = `Database last updated ${daysSince} day${daysSince !== 1 ? 's' : ''} ago`;
+    footerMeta.appendChild(document.createTextNode(" "));
+    footerMeta.appendChild(badge);
+  }
+
+  /* ---- compound count per filter option ---- */
+  function addFilterCounts() {
+    // Add counts to the category dropdown
+    const catSelect = document.getElementById("category");
+    if (catSelect) {
+      const cards = document.querySelectorAll(".card");
+      const counts = {};
+      cards.forEach(card => {
+        card.querySelectorAll(".chip").forEach(chip => {
+          const text = chip.textContent.trim();
+          counts[text] = (counts[text] || 0) + 1;
+        });
+      });
+
+      [...catSelect.options].forEach(opt => {
+        if (!opt.value) return;
+        const label = opt.textContent;
+        const count = counts[label] || 0;
+        if (count > 0) opt.textContent = `${label} (${count})`;
+      });
+    }
+
+    // Add counts to evidence dropdown
+    const evSelect = document.getElementById("evidence-filter");
+    if (evSelect) {
+      const cards = document.querySelectorAll(".card");
+      const counts = {};
+      cards.forEach(card => {
+        const badge = card.querySelector(".card__evidence-badge")?.textContent?.trim() || "";
+        counts[badge] = (counts[badge] || 0) + 1;
+      });
+
+      [...evSelect.options].forEach(opt => {
+        if (!opt.value) return;
+        const label = opt.textContent;
+        const count = counts[label] || 0;
+        if (count > 0) opt.textContent = `${label} (${count})`;
+      });
+    }
+  }
+
+  /* ---- local data backup/restore ---- */
+  function addDataBackup() {
+    const navBar = document.querySelector(".nav-bar__inner");
+    if (!navBar) return;
+
+    // Only show the restore option, backup is in help menu
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn--ghost btn--small";
+    btn.textContent = "Backup";
+    btn.title = "Backup or restore your local data";
+
+    const helpBtn = document.getElementById("open-help");
+    if (helpBtn) helpBtn.before(btn);
+    else navBar.appendChild(btn);
+
+    btn.addEventListener("click", () => {
+      const data = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        bookmarks: JSON.parse(localStorage.getItem("peptide-bookmarks") || "[]"),
+        notes: JSON.parse(localStorage.getItem("peptide-notes") || "{}"),
+        readList: JSON.parse(localStorage.getItem("peptide-read") || "[]"),
+        recent: JSON.parse(localStorage.getItem("peptide-recent") || "[]"),
+        theme: localStorage.getItem("peptide-theme") || "dark",
+      };
+
+      const action = confirm(
+        "Backup: Download your data as a file.\nCancel: Import from a backup file."
+      );
+
+      if (action) {
+        // Export
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "badgerskope-backup.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      } else {
+        // Import
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".json";
+        input.addEventListener("change", () => {
+          const file = input.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const imported = JSON.parse(reader.result);
+              if (imported.version !== 1) throw new Error("Unknown format");
+              if (imported.bookmarks) localStorage.setItem("peptide-bookmarks", JSON.stringify(imported.bookmarks));
+              if (imported.notes) localStorage.setItem("peptide-notes", JSON.stringify(imported.notes));
+              if (imported.readList) localStorage.setItem("peptide-read", JSON.stringify(imported.readList));
+              if (imported.recent) localStorage.setItem("peptide-recent", JSON.stringify(imported.recent));
+              if (imported.theme) localStorage.setItem("peptide-theme", imported.theme);
+              alert("Data restored! Reloading...");
+              location.reload();
+            } catch (e) {
+              alert("Invalid backup file: " + e.message);
+            }
+          };
+          reader.readAsText(file);
+        });
+        input.click();
+      }
+    });
+  }
+
   /* ---- init ---- */
   function init() {
     autoDetectTheme();
@@ -1325,6 +1596,12 @@
     addDetailToc();
     addExportNotes();
     addEntryNavLinks();
+    addTimelineView();
+    addTimelineOverride();
+    addInteractionChecker();
+    addDataFreshness();
+    addFilterCounts();
+    addDataBackup();
 
     // Keyboard shortcut: "f" toggles bookmarks filter
     document.addEventListener("keydown", (e) => {
