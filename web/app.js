@@ -24,11 +24,11 @@ const KNOWN_FOR_THEME_ORDER = [
 ];
 
 const EVIDENCE_TIERS = [
-  { key: "regulatory_label", tier: "approved", color: "#22c55e", label: "Approved", rank: 0 },
-  { key: "pivotal_trials", tier: "pivotal", color: "#14b8a6", label: "Pivotal trials", rank: 1 },
-  { key: "phase1_human", tier: "phase1", color: "#f59e0b", label: "Phase 1", rank: 2 },
-  { key: "preclinical_animal", tier: "preclinical", color: "#f97316", label: "Preclinical", rank: 3 },
-  { key: "compounded_practice", tier: "practice", color: "#9ca3af", label: "Practice", rank: 4 },
+  { key: "regulatory_label", tier: "approved", color: "#22c55e", label: "FDA approved", rank: 0 },
+  { key: "pivotal_trials", tier: "pivotal", color: "#14b8a6", label: "Strong human trials", rank: 1 },
+  { key: "phase1_human", tier: "phase1", color: "#f59e0b", label: "Early human studies", rank: 2 },
+  { key: "preclinical_animal", tier: "preclinical", color: "#f97316", label: "Animal studies only", rank: 3 },
+  { key: "compounded_practice", tier: "practice", color: "#9ca3af", label: "Clinic practice", rank: 4 },
   { key: "unknown_identity", tier: "unknown", color: "#9ca3af", label: "Unknown", rank: 5 },
 ];
 
@@ -88,9 +88,24 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+const FRIENDLY_COMPOUND_TYPES = {
+  peptide: "Peptide",
+  peptide_incretin: "Weight & appetite peptide",
+  peptide_secretagogue: "Growth hormone booster",
+  peptide_blend: "Peptide blend",
+  peptide_blend_secretagogue: "GH booster blend",
+  peptide_blend_incretin: "Weight peptide blend",
+  peptide_bioregulator: "Bioregulator peptide",
+  peptide_hormone: "Hormone",
+  small_molecule: "Research chemical",
+  cofactor: "Nutrient / cofactor",
+  blend_injection: "Nutrient injection",
+  unknown_blend: "Vendor blend (unknown)",
+};
+
 function formatCompoundType(raw) {
   if (!raw) return "";
-  return String(raw).replace(/_/g, " ");
+  return FRIENDLY_COMPOUND_TYPES[raw] || String(raw).replace(/_/g, " ");
 }
 
 function parsePrice(priceText) {
@@ -107,36 +122,53 @@ function debounce(fn, ms) {
   };
 }
 
+const FRIENDLY_CATEGORIES = {
+  appetite_satiety: "Appetite & fullness",
+  body_composition: "Weight & body fat",
+  cardiovascular_metabolic: "Heart & metabolism",
+  cognitive_mood: "Brain & mood",
+  energy_mitochondria: "Energy & mitochondria",
+  gastrointestinal: "Gut & digestion",
+  immune_inflammation: "Immune system",
+  longevity_cellular_aging: "Aging & longevity",
+  recovery_tissue_repair: "Healing & recovery",
+  reproductive_endocrine: "Hormones & fertility",
+  respiratory_airway: "Lungs & airways",
+  skin_pigmentation_aesthetics: "Skin & appearance",
+  sleep_circadian: "Sleep",
+  supports_accessory: "Supplies & solvents",
+};
+
 function wellnessLabel(index, key) {
   if (!key) return { short: "", full: "" };
   const full = index[key];
-  const short = key.replace(/_/g, " ");
+  const short = FRIENDLY_CATEGORIES[key] || key.replace(/_/g, " ");
   return { short, full: full || key };
 }
 
 /* ---- Grouping helpers ---- */
 
 const GROUP_THEME_LABELS = {
-  metabolic_incretins: "Weight & Blood Sugar (Incretins)",
-  growth_hormone_axis: "Growth Hormone",
-  tissue_healing: "Tissue Repair & Healing",
-  multi_ingredient_stack: "Multi-Ingredient Blends",
-  skin_tanning_libido: "Skin, Tanning & Libido",
-  mitochondria_nad_redox: "Mitochondria, NAD+ & Antioxidants",
-  immune_mucosal: "Immune & Mucosal Defense",
-  neuro_mood_sleep: "Brain, Mood & Sleep",
-  reproduction_social: "Reproductive & Social Hormones",
-  experimental_weight_adjunct: "Experimental Weight Aids",
-  aging_bioregulators: "Aging & Bioregulators",
+  metabolic_incretins: "Weight loss & blood sugar",
+  growth_hormone_axis: "Growth hormone boosters",
+  tissue_healing: "Healing & tissue repair",
+  multi_ingredient_stack: "Multi-ingredient blends",
+  skin_tanning_libido: "Skin, tanning & sexual health",
+  mitochondria_nad_redox: "Cell energy & antioxidants",
+  immune_mucosal: "Immune support & defense",
+  neuro_mood_sleep: "Brain, mood & sleep",
+  reproduction_social: "Fertility & hormones",
+  experimental_weight_adjunct: "Experimental weight aids",
+  aging_bioregulators: "Anti-aging & longevity",
 };
 
 const GROUP_EVIDENCE_LABELS = {
-  approved: "FDA / Regulator Approved",
-  pivotal: "Major Clinical Trials",
-  phase1: "Early Human Studies",
-  preclinical: "Animal Research Only",
-  practice: "Practice-Based",
-  unknown: "Unknown / Unconfirmed",
+  approved: "FDA approved \u2014 strongest evidence",
+  pivotal: "Strong human trials",
+  phase1: "Early human studies \u2014 promising but small",
+  preclinical: "Animal studies only \u2014 unproven in people",
+  practice: "Used in clinics \u2014 limited formal proof",
+  unknown: "Unknown or unconfirmed",
 };
 
 function getGroupKey(entry, groupBy) {
@@ -159,7 +191,7 @@ function getGroupLabel(key, groupBy) {
   if (groupBy === "theme") return GROUP_THEME_LABELS[key] || key.replace(/_/g, " ");
   if (groupBy === "compound") return formatCompoundType(key);
   if (groupBy === "evidence") return GROUP_EVIDENCE_LABELS[key] || key;
-  if (groupBy === "category") return key.replace(/_/g, " ");
+  if (groupBy === "category") return FRIENDLY_CATEGORIES[key] || key.replace(/_/g, " ");
   return key;
 }
 
@@ -1055,7 +1087,7 @@ function renderStatsDashboard() {
         .map(
           ([k, c]) =>
             `<div class="stat-bar stat-bar--clickable" data-filter-type="category" data-filter-value="${escapeHtml(k)}">
-              <span class="stat-bar__label">${escapeHtml(k.replace(/_/g, " "))}</span>
+              <span class="stat-bar__label">${escapeHtml(FRIENDLY_CATEGORIES[k] || k.replace(/_/g, " "))}</span>
               <div class="stat-bar__track">
                 <div class="stat-bar__fill" style="--pct:${((c / catMax) * 100).toFixed(1)}%"></div>
               </div>
@@ -1115,7 +1147,7 @@ function renderStatsDashboard() {
         .map(
           ([k, c]) =>
             `<div class="stat-bar stat-bar--clickable" data-filter-type="known-for" data-filter-value="${escapeHtml(k)}">
-              <span class="stat-bar__label">${escapeHtml(k.replace(/_/g, " "))}</span>
+              <span class="stat-bar__label">${escapeHtml(GROUP_THEME_LABELS[k] || k.replace(/_/g, " "))}</span>
               <div class="stat-bar__track">
                 <div class="stat-bar__fill" style="--pct:${((c / themeMax) * 100).toFixed(1)}%"></div>
               </div>
@@ -1334,11 +1366,11 @@ function populateFilters() {
   const kf = db.meta.knownForThemeIndex || {};
 
   if (els.knownFor) {
-    els.knownFor.innerHTML = '<option value="">All groups</option>';
+    els.knownFor.innerHTML = '<option value="">All themes</option>';
     for (const k of sortKnownForKeys(kf)) {
       const opt = document.createElement("option");
       opt.value = k;
-      opt.textContent = k.replace(/_/g, " ");
+      opt.textContent = GROUP_THEME_LABELS[k] || k.replace(/_/g, " ");
       opt.title = kf[k];
       els.knownFor.appendChild(opt);
     }
@@ -1346,10 +1378,14 @@ function populateFilters() {
 
   if (els.category) {
     els.category.innerHTML = '<option value="">All categories</option>';
-    for (const k of Object.keys(index).sort((a, b) => a.localeCompare(b))) {
+    for (const k of Object.keys(index).sort((a, b) => {
+      const la = FRIENDLY_CATEGORIES[a] || a;
+      const lb = FRIENDLY_CATEGORIES[b] || b;
+      return la.localeCompare(lb);
+    })) {
       const opt = document.createElement("option");
       opt.value = k;
-      opt.textContent = k.replace(/_/g, " ");
+      opt.textContent = FRIENDLY_CATEGORIES[k] || k.replace(/_/g, " ");
       els.category.appendChild(opt);
     }
   }
