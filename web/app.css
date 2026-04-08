@@ -141,17 +141,11 @@
 }
 
 .hero__logo {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 32px rgba(76, 157, 255, 0.4));
-  animation: logoFloat 4s ease-in-out infinite;
-  margin-bottom: 1.25rem;
-}
-
-@keyframes logoFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
+  filter: drop-shadow(0 12px 40px rgba(76, 157, 255, 0.45));
+  margin-bottom: 1.5rem;
 }
 
 .hero__title {
@@ -243,6 +237,45 @@
   font-size: 0.9rem;
   color: var(--text);
   letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   BS MONOGRAM
+   -------------------------------------------------------------------------- */
+
+.monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), #7c5cff);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: -0.03em;
+  font-family: var(--font);
+  flex-shrink: 0;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(76, 157, 255, 0.3);
+}
+
+.monogram--lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  font-size: 1.35rem;
+  box-shadow: 0 6px 24px rgba(76, 157, 255, 0.35);
+  margin-bottom: 1rem;
+}
+
+.monogram--footer {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 16px rgba(76, 157, 255, 0.25);
 }
 
 /* --------------------------------------------------------------------------
