@@ -6,14 +6,17 @@
 .recent-bar {
   display: none;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  margin-bottom: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  margin-bottom: 0.35rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   overflow-x: auto;
   scrollbar-width: none;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .recent-bar:not([hidden]) {
@@ -22,30 +25,32 @@
 .recent-bar::-webkit-scrollbar { display: none; }
 
 .recent-bar__label {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
   white-space: nowrap;
   flex-shrink: 0;
+  opacity: 0.6;
 }
 
 .recent-bar__item {
   font: inherit;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-soft);
+  color: var(--text-muted);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 0.3rem 0.65rem;
+  padding: 0.2rem 0.5rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: background var(--speed);
+  transition: background var(--speed), color var(--speed);
 }
 .recent-bar__item:hover {
   background: var(--surface-hover);
+  color: var(--accent);
 }
 
 .recent-bar__clear {
@@ -678,9 +683,9 @@
 /* ---- Card evidence row (with subtitle) ---- */
 .card__evidence-row {
   display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  margin-bottom: 0.4rem;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -689,7 +694,8 @@
   color: var(--text-muted);
   line-height: 1.35;
   flex-basis: 100%;
-  margin-top: -0.1rem;
+  margin-top: 0.1rem;
+  opacity: 0.75;
 }
 
 /* ---- Responsive detail ---- */
@@ -1234,10 +1240,10 @@
 .goal-bar {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.5rem;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1rem 0.5rem;
+  padding: 0.25rem 1rem 0.75rem;
 }
 
 .goal-bar__label {
@@ -1255,7 +1261,7 @@
 .goal-bar__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .goal-bar__desc {
@@ -1270,21 +1276,22 @@
 
 .goal-btn {
   font: inherit;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
-  background: transparent;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: background var(--speed), border-color var(--speed), color var(--speed);
+  transition: background var(--speed), border-color var(--speed), color var(--speed), transform var(--speed);
 }
 
 .goal-btn:hover {
   color: var(--text);
   border-color: var(--text-muted);
+  transform: translateY(-1px);
 }
 
 .goal-btn--active {
@@ -1620,16 +1627,17 @@
   color: var(--text-muted);
   background: none;
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
   padding: 0.55rem 0;
   min-height: 44px;
-  margin-top: 0.35rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
   cursor: pointer;
   text-align: center;
   width: 100%;
-  transition: color var(--speed), background var(--speed);
+  transition: color var(--speed), background var(--speed), opacity var(--speed);
   border-radius: 0 0 var(--radius) var(--radius);
-  opacity: 0;
+  opacity: 0.35;
 }
 
 .card:hover .card__compare-btn,
@@ -1764,21 +1772,15 @@
     gap: 0.5rem;
   }
 
-  .card__select input {
-    width: 1.3rem;
-    height: 1.3rem;
+  .card__select {
+    display: none;
   }
 }
 
-/* ---- Touch-friendly card checkbox ---- */
+/* ---- Touch-friendly card controls ---- */
 @media (pointer: coarse) {
   .card__select {
-    padding: 0.25rem;
-  }
-
-  .card__select input {
-    width: 1.4rem;
-    height: 1.4rem;
+    display: none;
   }
 
   .card__bookmark {
