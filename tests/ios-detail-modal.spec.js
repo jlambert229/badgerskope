@@ -54,7 +54,7 @@ test.describe("Detail modal on iOS", () => {
 
     // Should have at minimum these sections
     expect(sections.length).toBeGreaterThan(2);
-    expect(sections).toContain("In plain English");
+    expect(sections).toContain("What researchers found");
   });
 
   test("synergy pills navigate to other entries", async ({ page }) => {
@@ -67,10 +67,10 @@ test.describe("Detail modal on iOS", () => {
       await page.locator(".synergy-pill").first().click();
       await page.waitForTimeout(400);
 
-      const detailTitle = await page.evaluate(() =>
-        document.getElementById("detail-title")?.textContent
+      const catalogSku = await page.evaluate(() =>
+        document.getElementById("detail-title")?.dataset?.catalogTitle?.trim()
       );
-      expect(detailTitle).toBe(targetTitle.trim());
+      expect(catalogSku).toBe(targetTitle.trim());
     }
   });
 

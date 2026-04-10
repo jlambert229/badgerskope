@@ -25,26 +25,37 @@ test.describe("Navigation and state — bugs that lose user context", () => {
   });
 
   test("deep link to entry opens detail modal", async ({ page }) => {
-    await page.goto("/web/#entry=Semaglutide");
-    // Wait for data load + render + modal open
+    // Catalog title must match getEntryByTitle() (case-insensitive)
+    await page.goto("/web/#entry=1G-SGT%2010mg");
     await page.waitForSelector(".card", { timeout: 10_000 });
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(500);
 
     const open = await page.evaluate(() =>
       document.getElementById("detail-dialog")?.open
     );
-    // Deep link only works if the title matches exactly in the DB
-    if (open) {
-      const title = await page.evaluate(() =>
-        document.getElementById("detail-title")?.textContent?.trim()
-      );
-      expect(title?.toLowerCase()).toContain("semaglutide");
-    } else {
-      // Entry may not exist with that exact title — test the mechanism
-      // by verifying hash was parsed
-      const hash = await page.evaluate(() => location.hash);
-      expect(hash).toContain("Semaglutide");
-    }
+    expect(open).toBe(true);
+    const title = await page.evaluate(() =>
+      document.getElementById("detail-title")?.textContent?.trim()
+    );
+    expect(title?.toLowerCase()).toContain("semaglutide");
+    const catalogSku = await page.evaluate(() =>
+      document.getElementById("detail-title")?.dataset?.catalogTitle?.trim()
+    );
+    expect(catalogSku?.toLowerCase()).toContain("1g-sgt");
+    const hash = await page.evaluate(() => location.hash);
+    expect(hash).toContain("entry=");
+  });
+
+  test("deep link by common drug name opens same entry", async ({ page }) => {
+    await page.goto(
+      "/web/#entry=" + encodeURIComponent("Semaglutide (10 mg)")
+    );
+    await page.waitForSelector(".card", { timeout: 10_000 });
+    await page.waitForTimeout(500);
+    const sku = await page.evaluate(() =>
+      document.getElementById("detail-title")?.dataset?.catalogTitle?.trim()
+    );
+    expect(sku).toBe("1G-SGT 10mg");
   });
 
   test("back button does not break after modal close", async ({ page }) => {
@@ -114,7 +125,10 @@ test.describe("Navigation and state — bugs that lose user context", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
-    // Set multiple filters
+    // Category lives in collapsed advanced filters
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+
     await page.fill("#search", "test");
     await page.locator("#category").selectOption({ index: 1 });
     await page.waitForTimeout(300);

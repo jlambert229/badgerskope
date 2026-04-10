@@ -4,6 +4,7 @@
 
 import { state, getEntryById } from './state.js';
 import { els } from './dom.js';
+import { getDisplayName } from './utils.js';
 
 export function updateSelectionToolbar() {
   const n = state.selectedIds.size;
@@ -27,5 +28,5 @@ export function selectedEntriesSorted() {
   return [...state.selectedIds]
     .map((id) => getEntryById(id))
     .filter(Boolean)
-    .sort((a, b) => (a.catalog?.title || "").localeCompare(b.catalog?.title || ""));
+    .sort((a, b) => getDisplayName(a).localeCompare(getDisplayName(b)));
 }

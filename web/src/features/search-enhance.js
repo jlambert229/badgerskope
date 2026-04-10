@@ -30,18 +30,20 @@ function addSearchAutocomplete() {
       const matches = [];
       allCards.forEach(card => {
         const title = card.querySelector(".card__title")?.textContent || "";
+        const catalogTitle = card.dataset.catalogTitle || "";
         const category = card.querySelector(".card__category")?.textContent || "";
         const evidence = card.querySelector(".card__evidence-label")?.textContent || "";
         const summary = card.querySelector(".card__summary")?.textContent || "";
-        if (title.toLowerCase().includes(q) || category.toLowerCase().includes(q) || summary.toLowerCase().includes(q)) {
-          matches.push({ title, type: category, evidence, id: card.dataset.entryId });
+        const hay = `${title} ${catalogTitle}`.toLowerCase();
+        if (hay.includes(q) || category.toLowerCase().includes(q) || summary.toLowerCase().includes(q)) {
+          matches.push({ title, catalogTitle, type: category, evidence, id: card.dataset.entryId });
         }
       });
 
       if (matches.length === 0 || matches.length > 8) { dropdown.hidden = true; return; }
 
       dropdown.innerHTML = matches.slice(0, 6).map(m =>
-        `<button type="button" class="search-autocomplete__item" data-entry-title="${escapeHtml(m.title)}">
+        `<button type="button" class="search-autocomplete__item" data-entry-catalog="${escapeHtml(m.catalogTitle)}">
           <span class="search-autocomplete__title">${escapeHtml(m.title)}</span>
           <span class="search-autocomplete__meta">${escapeHtml(m.type)} · ${escapeHtml(m.evidence)}</span>
         </button>`
@@ -51,7 +53,8 @@ function addSearchAutocomplete() {
       dropdown.querySelectorAll(".search-autocomplete__item").forEach(item => {
         item.addEventListener("click", () => {
           dropdown.hidden = true;
-          window.location.hash = "entry=" + encodeURIComponent(item.dataset.entryTitle);
+          const cat = item.dataset.entryCatalog || "";
+          window.location.hash = "entry=" + encodeURIComponent(cat);
         });
       });
     }, 200);

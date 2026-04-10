@@ -16,10 +16,10 @@ test.describe("Data integrity — silent data bugs users notice", () => {
     expect(bad).toEqual([]);
   });
 
-  test("every card has an evidence badge", async ({ page }) => {
+  test("every card shows evidence tier in meta", async ({ page }) => {
     const cards = await page.locator(".card").count();
-    const badges = await page.locator(".card__evidence-badge").count();
-    expect(badges).toBe(cards);
+    const labels = await page.locator(".card__evidence-label").count();
+    expect(labels).toBe(cards);
   });
 
   test("no duplicate card titles in the grid", async ({ page }) => {
@@ -71,6 +71,9 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   test("filter counts are accurate after filtering", async ({ page }) => {
     const totalCards = await page.locator(".card").count();
 
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+
     // Apply a category filter
     await page.locator("#category").selectOption({ index: 1 });
     await page.waitForTimeout(300);
@@ -85,16 +88,18 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   });
 
   test("evidence filter returns only matching tiers", async ({ page }) => {
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
     await page.locator("#evidence-filter").selectOption("regulatory_label");
     await page.waitForTimeout(300);
 
-    const badges = await page.evaluate(() =>
-      [...document.querySelectorAll(".card__evidence-badge")]
+    const labels = await page.evaluate(() =>
+      [...document.querySelectorAll(".card__evidence-label")]
         .map((el) => el.textContent.trim())
     );
 
-    for (const badge of badges) {
-      expect(badge).toBe("FDA approved");
+    for (const label of labels) {
+      expect(label).toBe("FDA approved");
     }
   });
 });

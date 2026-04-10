@@ -8,9 +8,9 @@ const RECENT_KEY = "peptide-recent";
 const MAX_RECENT = 6;
 let recentIds = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
 
-function saveRecent(id, title) {
+function saveRecent(id, catalogTitle, displayLabel) {
   recentIds = recentIds.filter((r) => r.id !== id);
-  recentIds.unshift({ id, title, ts: Date.now() });
+  recentIds.unshift({ id, catalogTitle, displayLabel, ts: Date.now() });
   if (recentIds.length > MAX_RECENT) recentIds.length = MAX_RECENT;
   localStorage.setItem(RECENT_KEY, JSON.stringify(recentIds));
   renderRecentBar();
@@ -33,15 +33,17 @@ function renderRecentBar() {
   bar.innerHTML =
     '<span class="recent-bar__label">Recently viewed</span>' +
     recentIds
-      .map(
-        (r) =>
-          `<button type="button" class="recent-bar__item" data-recent-id="${escapeHtml(r.id)}">${escapeHtml(r.title)}</button>`
-      )
+      .map((r) => {
+        const ct = escapeHtml(r.catalogTitle || r.title || "");
+        const label = escapeHtml(r.displayLabel || r.title || "");
+        return `<button type="button" class="recent-bar__item" data-recent-id="${escapeHtml(r.id)}" data-catalog-title="${ct}">${label}</button>`;
+      })
       .join("");
   bar.innerHTML += '<button type="button" class="recent-bar__clear" title="Clear history">&times;</button>';
   bar.querySelectorAll(".recent-bar__item").forEach((btn) => {
     btn.addEventListener("click", () => {
-      window.location.hash = "entry=" + encodeURIComponent(btn.textContent);
+      const cat = btn.dataset.catalogTitle || btn.textContent || "";
+      window.location.hash = "entry=" + encodeURIComponent(cat.trim());
     });
   });
   bar.querySelector(".recent-bar__clear").addEventListener("click", () => {
@@ -60,10 +62,11 @@ function trackRecentViews() {
     setTimeout(() => {
       const title = document.getElementById("detail-title");
       if (!title) return;
-      const entryTitle = title.textContent;
+      const catalogTitle = title.dataset.catalogTitle || title.textContent || "";
+      const displayLabel = title.textContent || "";
       const bookmarkBtn = document.getElementById("detail-body")?.querySelector(".detail__bookmark-btn");
-      const id = bookmarkBtn?.dataset.entryId || entryTitle;
-      saveRecent(id, entryTitle);
+      const id = bookmarkBtn?.dataset.entryId || catalogTitle;
+      saveRecent(id, catalogTitle.trim(), displayLabel.trim());
     }, 100);
   });
 

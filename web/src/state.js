@@ -21,8 +21,17 @@ export function getEntryById(id) {
   return state.db.entries.find((e) => getEntryId(e) === id);
 }
 
+function normLookup(s) {
+  return (s || "").trim().toLowerCase();
+}
+
+/** Resolve by catalog title or common drug name (case-insensitive). */
 export function getEntryByTitle(title) {
-  return state.db.entries.find(
-    (e) => (e.catalog?.title || "").toLowerCase() === title.toLowerCase()
-  );
+  const q = normLookup(title);
+  if (!q) return undefined;
+  return state.db.entries.find((e) => {
+    const t = normLookup(e.catalog?.title);
+    const c = normLookup(e.catalog?.commonDrugName);
+    return t === q || c === q;
+  });
 }

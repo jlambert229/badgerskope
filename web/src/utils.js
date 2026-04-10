@@ -10,6 +10,18 @@ export function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+/** Stable catalog SKU; used for bookmarks and #entry= URLs. */
+export function getCatalogTitle(entry) {
+  return String(entry?.catalog?.title || "").trim();
+}
+
+/** Primary visible label: INN-style or common research name when present. */
+export function getDisplayName(entry) {
+  const title = getCatalogTitle(entry);
+  const common = String(entry?.catalog?.commonDrugName || "").trim();
+  return common || title || "Untitled";
+}
+
 export const FRIENDLY_COMPOUND_TYPES = {
   peptide: "Peptide",
   peptide_incretin: "Weight & appetite peptide",

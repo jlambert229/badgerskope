@@ -1,5 +1,10 @@
 import { test, expect } from "@playwright/test";
 
+async function openAdvancedFilters(page) {
+  await page.click("#filters-toggle");
+  await page.locator("#advanced-filters").waitFor({ state: "visible" });
+}
+
 test.describe("Edge cases — the bugs users find first", () => {
   test("search with no results shows helpful message", async ({ page }) => {
     await page.goto("/web/");
@@ -39,6 +44,8 @@ test.describe("Edge cases — the bugs users find first", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
+    await openAdvancedFilters(page);
+
     // Rapidly change filters
     for (let i = 0; i < 5; i++) {
       await page.locator("#category").selectOption({ index: (i % 3) + 1 });
@@ -56,8 +63,8 @@ test.describe("Edge cases — the bugs users find first", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
-    // Type quickly then wait for debounce (150ms) + render
-    await page.locator("#search").pressSequentially("bpc157", { delay: 30 });
+    // Type quickly then wait for debounce (150ms) + render (match catalog text "bpc-157")
+    await page.locator("#search").pressSequentially("bpc-157", { delay: 30 });
     await page.waitForTimeout(800);
 
     const cards = await page.locator(".card").count();
@@ -118,6 +125,8 @@ test.describe("Edge cases — the bugs users find first", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
+    await openAdvancedFilters(page);
+
     const totalBefore = await page.locator(".card").count();
 
     await page.locator("#group-by").selectOption("theme");
@@ -136,6 +145,8 @@ test.describe("Edge cases — the bugs users find first", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
+    await openAdvancedFilters(page);
+
     const countBefore = await page.locator(".card").count();
 
     await page.locator("#sort").selectOption("evidence");
@@ -148,6 +159,8 @@ test.describe("Edge cases — the bugs users find first", () => {
   test("combining all filters together works", async ({ page }) => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
+
+    await openAdvancedFilters(page);
 
     // Stack multiple filters
     await page.fill("#search", "peptide");

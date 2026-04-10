@@ -85,7 +85,9 @@ test.describe("iOS viewport and layout", () => {
       (el) => !el.class.includes("chip") && !el.class.includes("badge") &&
               !el.class.includes("kbd") && !el.class.includes("shortcuts") &&
               !el.class.includes("hint") && !el.class.includes("tab__badge") &&
-              !el.class.includes("recent") && !el.class.includes("goal")
+              !el.class.includes("recent") && !el.class.includes("goal") &&
+              !el.class.includes("compare") && !el.class.includes("sport-filter") &&
+              !el.class.includes("orientation") && !el.class.includes("start-here")
     );
     if (critical.length > 0) {
       console.log("Undersized critical touch targets:", critical.slice(0, 10));

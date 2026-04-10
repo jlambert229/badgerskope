@@ -72,14 +72,16 @@ export function applyHashOnLoad() {
   if (params["known-for"] && els.knownFor) els.knownFor.value = params["known-for"];
   if (params.evidence && els.evidenceFilter) els.evidenceFilter.value = params.evidence;
 
+  // Open deep-linked entry before switchTab/render. Otherwise updateHashFromState()
+  // runs while the dialog is still closed and drops entry= from the URL.
+  if (params.entry && _openDetail) {
+    const entry = getEntryByTitle(params.entry);
+    if (entry) _openDetail(entry);
+  }
+
   if ((params.tab === "compare" || params.tab === "stats") && _switchTab) {
     _switchTab(params.tab);
   }
 
   if (_render) _render();
-
-  if (params.entry) {
-    const entry = getEntryByTitle(params.entry);
-    if (entry && _openDetail) _openDetail(entry);
-  }
 }

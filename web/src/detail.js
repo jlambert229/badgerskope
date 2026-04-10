@@ -6,7 +6,7 @@ import { state, getEntryId, getEntryByTitle } from './state.js';
 import { els } from './dom.js';
 import {
   escapeHtml, formatCompoundType, wellnessLabel,
-  FRIENDLY_CATEGORIES
+  FRIENDLY_CATEGORIES, getDisplayName, getCatalogTitle,
 } from './utils.js';
 import {
   highestTier, evidenceTierExplainer, compoundTypeExplainer,
@@ -68,7 +68,8 @@ export function renderSynergyPills(synergyList) {
 export function renderDetailHtml(entry) {
   const catIndex = state.db.meta.wellnessCategoryIndex || {};
   const kfIdx = state.db.meta.knownForThemeIndex || {};
-  const title = entry.catalog?.title || "Entry";
+  const catalogTitle = getCatalogTitle(entry);
+  const displayName = getDisplayName(entry);
   const id = getEntryId(entry);
   const isBookmarked = state.bookmarks.has(id);
   const tier = highestTier(entry);
@@ -125,7 +126,11 @@ export function renderDetailHtml(entry) {
 
   return `
     <div class="detail__answer-zone" style="border-left: 4px solid ${tier.color}">
-      <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
+      <h2 class="detail__title" id="detail-title" data-catalog-title="${escapeHtml(catalogTitle)}">${escapeHtml(displayName)}</h2>
+      ${catalogTitle && displayName !== catalogTitle
+        ? `<p class="detail__catalog-line">${escapeHtml(catalogTitle)}</p>`
+        : ""
+      }
       ${compoundDesc ? `<p class="detail__what-it-is">${escapeHtml(compoundDesc)}</p>` : ""}
 
       <div class="detail__evidence-block">
@@ -218,20 +223,22 @@ export function renderDetailHtml(entry) {
       <ul class="detail__apps">${apps}</ul>
     </div>` : ""}
 
-    <div class="detail__section">
-      <h3>How people use it</h3>
+    <details class="detail__section detail__collapsible">
+      <summary><h3>How people use it</h3></summary>
+      <p class="detail__help">This describes what has been reported in studies and forums. It is not a dosing guide for you. Talk to your doctor.</p>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
-    </div>
+    </details>
 
     <details class="detail__section detail__collapsible">
       <summary><h3>Cycling pattern</h3></summary>
+      <p class="detail__help">Cycling patterns come from community reports and limited research. Your needs may differ entirely.</p>
       <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "No established cycling pattern.")}</p>
     </details>
 
     ${doseRows
       ? `<details class="detail__section detail__collapsible">
       <summary><h3>Doses from published research</h3></summary>
-      <p class="detail__help">These appeared in published studies. They are not personal dosing instructions.</p>
+      <p class="detail__help">These numbers appeared in published studies. They are not personal dosing instructions. Researchers used these in controlled settings with medical supervision.</p>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
@@ -242,13 +249,16 @@ export function renderDetailHtml(entry) {
       : ""
     }
 
-    ${synergy ? `<div class="detail__section">
-      <h3>Often mentioned alongside</h3>
+    ${synergy ? `<details class="detail__section detail__collapsible">
+      <summary><h3>Often mentioned alongside</h3></summary>
       <p class="detail__help">These appear together in research or product lines. Not a recommendation to combine.</p>
       <ul class="synergy-list">${synergy}</ul>
-    </div>` : ""}
+    </details>` : ""}
 
-    ${dqThemes ? `<div class="detail__section"><h3>Research themes</h3><div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}</div>` : ""}
+    ${dqThemes ? `<details class="detail__section detail__collapsible">
+      <summary><h3>Research themes</h3></summary>
+      <div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
+    </details>` : ""}
 
     ${(() => {
       const srcList = entry.sources || [];
@@ -308,7 +318,9 @@ export function showDetailAt(index) {
   els.detailBody.innerHTML = renderDetailHtml(entry);
   syncDetailNav();
   bindDetailEvents();
-  if (_updateHash) _updateHash("entry=" + encodeURIComponent(entry.catalog?.title || ""));
+  if (_updateHash) {
+    _updateHash("entry=" + encodeURIComponent(getCatalogTitle(entry)));
+  }
 }
 
 export function bindDetailEvents() {

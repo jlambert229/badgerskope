@@ -3,7 +3,7 @@
  */
 
 import { tierForKey, highestTier, KNOWN_FOR_THEME_ORDER, EVIDENCE_TIERS } from "./constants.js";
-import { formatCompoundType, FRIENDLY_CATEGORIES } from "./utils.js";
+import { formatCompoundType, FRIENDLY_CATEGORIES, getDisplayName } from "./utils.js";
 import { state } from "./state.js";
 import { els } from "./dom.js";
 import { GROUP_THEME_LABELS, sortKnownForKeys } from "./groups.js";
@@ -24,6 +24,7 @@ export function matchesSearch(entry, q) {
     .join(" ");
   const hay = [
     entry.catalog?.title,
+    entry.catalog?.commonDrugName,
     entry.researchSummary,
     entry.compoundType,
     entry.notes,
@@ -65,9 +66,9 @@ export function matchesEvidence(entry, filterKey) {
 export function sortEntries(entries, mode) {
   const out = [...entries];
   if (mode === "title") {
-    out.sort((a, b) => (a.catalog?.title || "").localeCompare(b.catalog?.title || ""));
+    out.sort((a, b) => getDisplayName(a).localeCompare(getDisplayName(b)));
   } else if (mode === "title-desc") {
-    out.sort((a, b) => (b.catalog?.title || "").localeCompare(a.catalog?.title || ""));
+    out.sort((a, b) => getDisplayName(b).localeCompare(getDisplayName(a)));
   } else if (mode === "evidence") {
     out.sort((a, b) => highestTier(a).rank - highestTier(b).rank);
   } else if (mode === "type") {

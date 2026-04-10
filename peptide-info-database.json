@@ -3,7 +3,7 @@
   "meta": {
     "builtAt": "2026-04-07T23:08:32.564Z",
     "entryCount": 53,
-    "schemaVersion": "2.9",
+    "schemaVersion": "3.0",
     "wellnessCategoryIndex": {
       "appetite_satiety": "Appetite, feeling full, and eating behavior research",
       "body_composition": "Body fat, muscle mass, and weight-related research (clinical or lab)",
@@ -84,7 +84,8 @@
   "entries": [
     {
       "catalog": {
-        "title": "1G-SGT 10mg"
+        "title": "1G-SGT 10mg",
+        "commonDrugName": "Semaglutide (10 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
@@ -158,7 +159,8 @@
     },
     {
       "catalog": {
-        "title": "1G-SGT 20mg"
+        "title": "1G-SGT 20mg",
+        "commonDrugName": "Semaglutide (20 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
@@ -232,7 +234,8 @@
     },
     {
       "catalog": {
-        "title": "2G-TZ 10mg"
+        "title": "2G-TZ 10mg",
+        "commonDrugName": "Tirzepatide (10 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -287,7 +290,8 @@
     },
     {
       "catalog": {
-        "title": "2G-TZ 15mg"
+        "title": "2G-TZ 15mg",
+        "commonDrugName": "Tirzepatide (15 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -342,7 +346,8 @@
     },
     {
       "catalog": {
-        "title": "2G-TZ 30mg"
+        "title": "2G-TZ 30mg",
+        "commonDrugName": "Tirzepatide (30 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -397,7 +402,8 @@
     },
     {
       "catalog": {
-        "title": "2G-TZ 60mg"
+        "title": "2G-TZ 60mg",
+        "commonDrugName": "Tirzepatide (60 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -452,7 +458,8 @@
     },
     {
       "catalog": {
-        "title": "3G-RT 10mg"
+        "title": "3G-RT 10mg",
+        "commonDrugName": "Retatrutide (10 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -503,7 +510,8 @@
     },
     {
       "catalog": {
-        "title": "3G-RT 20mg"
+        "title": "3G-RT 20mg",
+        "commonDrugName": "Retatrutide (20 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -554,7 +562,8 @@
     },
     {
       "catalog": {
-        "title": "3G-RT 36mg"
+        "title": "3G-RT 36mg",
+        "commonDrugName": "Retatrutide (36 mg)"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -605,7 +614,8 @@
     },
     {
       "catalog": {
-        "title": "5-amino-1mq"
+        "title": "5-amino-1mq",
+        "commonDrugName": "5-Amino-1MQ"
       },
       "compoundType": "small_molecule",
       "cyclingNotes": "No published human regimen. Long-term safety is unknown, and any cycling schedule would be purely speculative.",
@@ -654,7 +664,8 @@
     },
     {
       "catalog": {
-        "title": "AOD-9604 5mg"
+        "title": "AOD-9604 5mg",
+        "commonDrugName": "AOD-9604"
       },
       "compoundType": "peptide",
       "cyclingNotes": "No standard cycle. The main development programs ended without gaining approval.",
@@ -706,7 +717,8 @@
     },
     {
       "catalog": {
-        "title": "ARA-290"
+        "title": "ARA-290",
+        "commonDrugName": "Cibinetide (ARA-290)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment length is defined by clinical trial design. Self-directed cycling is not supported by evidence.",
@@ -750,7 +762,8 @@
     },
     {
       "catalog": {
-        "title": "BPC-157 10mg"
+        "title": "BPC-157 10mg",
+        "commonDrugName": "BPC-157"
       },
       "compoundType": "peptide",
       "cyclingNotes": "No evidence-based cycling template exists. Banned in sport by WADA since 2022.",
@@ -808,7 +821,8 @@
     },
     {
       "catalog": {
-        "title": "Bronchogen"
+        "title": "Bronchogen",
+        "commonDrugName": "Bronchogen"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Often described as short repeated courses by vendors. The evidence for optimal course length and rest periods is weak.",
@@ -852,7 +866,8 @@
     },
     {
       "catalog": {
-        "title": "Cag-10mg"
+        "title": "Cag-10mg",
+        "commonDrugName": "Cagrilintide (10 mg)"
       },
       "compoundType": "peptide_blend_incretin",
       "cyclingNotes": "Should follow supervised dose increases if used medically. Informal cycling is not established.",
@@ -908,7 +923,8 @@
     },
     {
       "catalog": {
-        "title": "CJC-1295 (no DAC) + IPA"
+        "title": "CJC-1295 (no DAC) + IPA",
+        "commonDrugName": "CJC-1295 / ipamorelin"
       },
       "compoundType": "peptide_blend_secretagogue",
       "cyclingNotes": "Online forums suggest weeks on/off to prevent the body from becoming less responsive, but there is little human proof for the optimal schedule. Growth hormone secretagogues are restricted by WADA.",
@@ -975,7 +991,8 @@
     },
     {
       "catalog": {
-        "title": "DSIP 10mg"
+        "title": "DSIP 10mg",
+        "commonDrugName": "DSIP"
       },
       "compoundType": "peptide",
       "cyclingNotes": "No standard cycle. The research base is old and has not been updated with modern sleep study methods.",
@@ -1018,7 +1035,8 @@
     },
     {
       "catalog": {
-        "title": "Epithalon"
+        "title": "Epithalon",
+        "commonDrugName": "Epitalon"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Often described as periodic short courses (e.g. 10-20 days) with rest periods. Evidence for the ideal schedule is very limited.",
@@ -1072,7 +1090,8 @@
     },
     {
       "catalog": {
-        "title": "FOXO4-DRI 10mg"
+        "title": "FOXO4-DRI 10mg",
+        "commonDrugName": "FOXO4-DRI"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Purely experimental. Any cycling protocol is speculative.",
@@ -1116,7 +1135,8 @@
     },
     {
       "catalog": {
-        "title": "GHK-Cu"
+        "title": "GHK-Cu",
+        "commonDrugName": "GHK-Cu"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Topical use is typically ongoing. Injectable cycling has no evidence-based schedule.",
@@ -1177,7 +1197,8 @@
     },
     {
       "catalog": {
-        "title": "GLOW 70"
+        "title": "GLOW 70",
+        "commonDrugName": "GLOW blend (BPC-157 / TB-500 / GHK-Cu)"
       },
       "compoundType": "peptide_blend",
       "cyclingNotes": "No evidence-based cycle for this combination. Each component has its own research base.",
@@ -1235,7 +1256,8 @@
     },
     {
       "catalog": {
-        "title": "Glutathione 1500mg"
+        "title": "Glutathione 1500mg",
+        "commonDrugName": "Glutathione"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Some clinics offer weekly or monthly IV series. Chronic oral supplementation also exists. The evidence quality depends on the specific medical condition.",
@@ -1289,7 +1311,8 @@
     },
     {
       "catalog": {
-        "title": "Ipamorelin 10mg"
+        "title": "Ipamorelin 10mg",
+        "commonDrugName": "Ipamorelin"
       },
       "compoundType": "peptide_secretagogue",
       "cyclingNotes": "Online protocols commonly suggest periods on and off to maintain sensitivity. Formal human proof for the optimal schedule is limited.",
@@ -1359,7 +1382,8 @@
     },
     {
       "catalog": {
-        "title": "Kisspeptin"
+        "title": "Kisspeptin",
+        "commonDrugName": "Kisspeptin"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Not a consumer supplement. Dosing is entirely research-protocol-dependent.",
@@ -1402,7 +1426,8 @@
     },
     {
       "catalog": {
-        "title": "KLOW"
+        "title": "KLOW",
+        "commonDrugName": "KLOW blend (GLOW + KPV)"
       },
       "compoundType": "peptide_blend",
       "cyclingNotes": "No evidence-based cycle. Each component has its own considerations.",
@@ -1462,7 +1487,8 @@
     },
     {
       "catalog": {
-        "title": "KPV"
+        "title": "KPV",
+        "commonDrugName": "KPV"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Animal studies used limited treatment windows. There is no proven human cycling protocol.",
@@ -1519,7 +1545,8 @@
     },
     {
       "catalog": {
-        "title": "LIPO-C with B12"
+        "title": "LIPO-C with B12",
+        "commonDrugName": "Lipotropic C (MIC + B12)"
       },
       "compoundType": "blend_injection",
       "cyclingNotes": "Clinic-specific series, often weekly for a set number of weeks. Stop if side effects occur.",
@@ -1573,7 +1600,8 @@
     },
     {
       "catalog": {
-        "title": "LL-37 5mg"
+        "title": "LL-37 5mg",
+        "commonDrugName": "LL-37"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Only theoretical intermittent use has been discussed. The safe dosing range in humans is unclear.",
@@ -1626,7 +1654,8 @@
     },
     {
       "catalog": {
-        "title": "MOTS-c"
+        "title": "MOTS-c",
+        "commonDrugName": "MOTS-c"
       },
       "compoundType": "peptide",
       "cyclingNotes": "The research field is too early for any established cycling protocol. Current schedules are speculative.",
@@ -1681,7 +1710,8 @@
     },
     {
       "catalog": {
-        "title": "MT-1"
+        "title": "MT-1",
+        "commonDrugName": "Melanotan I"
       },
       "compoundType": "peptide",
       "cyclingNotes": "The implant replacement schedule is defined by the product label for the approved medical condition.",
@@ -1728,7 +1758,8 @@
     },
     {
       "catalog": {
-        "title": "MT-II"
+        "title": "MT-II",
+        "commonDrugName": "Melanotan II"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Tanning communities describe intermittent low-dose protocols, but no medical standard exists.",
@@ -1772,7 +1803,8 @@
     },
     {
       "catalog": {
-        "title": "N-acetyl Selank Amidate 10mg"
+        "title": "N-acetyl Selank Amidate 10mg",
+        "commonDrugName": "N-acetyl Selank amidate"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Usually described as 2-4 week courses. Strong clinical trial evidence for the ideal cycle is limited.",
@@ -1827,7 +1859,8 @@
     },
     {
       "catalog": {
-        "title": "N-acetyl Semax Amidate 10mg"
+        "title": "N-acetyl Semax Amidate 10mg",
+        "commonDrugName": "N-acetyl Semax amidate"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Given in treatment courses of defined length, not open-ended continuous use.",
@@ -1881,7 +1914,8 @@
     },
     {
       "catalog": {
-        "title": "NAD+ 500mg"
+        "title": "NAD+ 500mg",
+        "commonDrugName": "NAD+"
       },
       "compoundType": "cofactor",
       "cyclingNotes": "Wellness IV treatments are often given weekly or monthly. The ideal frequency has not been established by strong clinical evidence.",
@@ -1935,7 +1969,8 @@
     },
     {
       "catalog": {
-        "title": "Orbitzen 40"
+        "title": "Orbitzen 40",
+        "commonDrugName": "Orbitzen (vendor weight blend)"
       },
       "compoundType": "unknown_blend",
       "cyclingNotes": "Unknown without full ingredient disclosure.",
@@ -1972,7 +2007,8 @@
     },
     {
       "catalog": {
-        "title": "Oxytocin 2mg"
+        "title": "Oxytocin 2mg",
+        "commonDrugName": "Oxytocin"
       },
       "compoundType": "peptide_hormone",
       "cyclingNotes": "Not a supplement to cycle. Medical uses are episode-specific (childbirth, breastfeeding, research sessions).",
@@ -2025,7 +2061,8 @@
     },
     {
       "catalog": {
-        "title": "Pinealon"
+        "title": "Pinealon",
+        "commonDrugName": "Pinealon"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Described as short repeated courses by vendors. The evidence for this approach is thin.",
@@ -2080,7 +2117,8 @@
     },
     {
       "catalog": {
-        "title": "PT-141"
+        "title": "PT-141",
+        "commonDrugName": "Bremelanotide (PT-141)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Not for daily continuous use. Nausea limits how frequently most people can use it. Follow the label's maximum frequency guidance.",
@@ -2123,7 +2161,8 @@
     },
     {
       "catalog": {
-        "title": "Selank 10mg"
+        "title": "Selank 10mg",
+        "commonDrugName": "Selank"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Typically used in multi-week treatment courses rather than indefinitely.",
@@ -2178,7 +2217,8 @@
     },
     {
       "catalog": {
-        "title": "Semax 10mg"
+        "title": "Semax 10mg",
+        "commonDrugName": "Semax"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Used in defined treatment courses, not as a lifelong daily supplement.",
@@ -2232,7 +2272,8 @@
     },
     {
       "catalog": {
-        "title": "Sermorelin 10mg"
+        "title": "Sermorelin 10mg",
+        "commonDrugName": "Sermorelin"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Some doctors pause treatment after several months to reassess growth hormone and IGF-1 levels, but there is no universal protocol.",
@@ -2286,7 +2327,8 @@
     },
     {
       "catalog": {
-        "title": "SLU-PP-332 5mg"
+        "title": "SLU-PP-332 5mg",
+        "commonDrugName": "SLU-PP-332"
       },
       "compoundType": "small_molecule",
       "cyclingNotes": "Purely preclinical. No information on how long humans could safely use it.",
@@ -2334,7 +2376,8 @@
     },
     {
       "catalog": {
-        "title": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
+        "title": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)",
+        "commonDrugName": "Tesamorelin + ipamorelin (SomatoPulse)"
       },
       "compoundType": "peptide_blend_secretagogue",
       "cyclingNotes": "Follow the tesamorelin label monitoring schedule for that component. Combining two peptides adds complexity.",
@@ -2395,7 +2438,8 @@
     },
     {
       "catalog": {
-        "title": "SS-31"
+        "title": "SS-31",
+        "commonDrugName": "Elamipretide (SS-31)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment periods are trial-defined. Not available for consumer self-dosing.",
@@ -2448,7 +2492,8 @@
     },
     {
       "catalog": {
-        "title": "Survodutide 10mg"
+        "title": "Survodutide 10mg",
+        "commonDrugName": "Survodutide"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Supervised dose titration only. Still investigational and not available outside clinical trials.",
@@ -2498,7 +2543,8 @@
     },
     {
       "catalog": {
-        "title": "TB-500 10mg"
+        "title": "TB-500 10mg",
+        "commonDrugName": "TB-500"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Forum-based loading and maintenance schedules are common but not evidence-backed. Thymosin beta-4 products are banned by WADA.",
@@ -2554,7 +2600,8 @@
     },
     {
       "catalog": {
-        "title": "Tesa-10mg"
+        "title": "Tesa-10mg",
+        "commonDrugName": "Tesamorelin (10 mg)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2608,7 +2655,8 @@
     },
     {
       "catalog": {
-        "title": "Tesa-15mg"
+        "title": "Tesa-15mg",
+        "commonDrugName": "Tesamorelin (15 mg)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2662,7 +2710,8 @@
     },
     {
       "catalog": {
-        "title": "Tesa-20mg"
+        "title": "Tesa-20mg",
+        "commonDrugName": "Tesamorelin (20 mg)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2716,7 +2765,8 @@
     },
     {
       "catalog": {
-        "title": "Thymosin Alpha-1 10mg"
+        "title": "Thymosin Alpha-1 10mg",
+        "commonDrugName": "Thymalfasin (Tα1)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment courses are defined for specific conditions (e.g. alongside hepatitis antivirals).",
@@ -2769,7 +2819,8 @@
     },
     {
       "catalog": {
-        "title": "Vilon 20mg"
+        "title": "Vilon 20mg",
+        "commonDrugName": "Vilon"
       },
       "compoundType": "peptide_bioregulator",
       "cyclingNotes": "Short pulsed courses are described in marketing materials. The evidence is weak.",
@@ -2824,7 +2875,8 @@
     },
     {
       "catalog": {
-        "title": "VIP 10mg"
+        "title": "VIP 10mg",
+        "commonDrugName": "VIP"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment periods are defined by research protocols.",
@@ -2868,7 +2920,8 @@
     },
     {
       "catalog": {
-        "title": "Wolverine 20mg"
+        "title": "Wolverine 20mg",
+        "commonDrugName": "Wolverine blend (BPC-157 / TB-500)"
       },
       "compoundType": "peptide_blend",
       "cyclingNotes": "Follow the more conservative schedule of the two components. Note that both BPC-157 and TB-500 are WADA-banned substances.",

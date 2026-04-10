@@ -4,7 +4,7 @@
 
 import { state, getEntryId, getEntryByTitle } from './state.js';
 import { els } from './dom.js';
-import { escapeHtml, formatCompoundType, wellnessLabel } from './utils.js';
+import { escapeHtml, formatCompoundType, wellnessLabel, getDisplayName, getCatalogTitle } from './utils.js';
 import { highestTier } from './constants.js';
 import { formatEvidenceBasis } from './detail.js';
 import { selectedEntriesSorted } from './selection.js';
@@ -39,8 +39,12 @@ export function renderComparisonTable() {
       fn: (e) => `<button type="button" class="synergy-pill" data-synergy-title="${escapeHtml(e.catalog?.title || "")}" style="font-size:.78rem">Open &rarr;</button>`,
     },
     {
-      label: "Title",
-      fn: (e) => escapeHtml(e.catalog?.title || ""),
+      label: "Common name",
+      fn: (e) => escapeHtml(getDisplayName(e)),
+    },
+    {
+      label: "Catalog listing",
+      fn: (e) => escapeHtml(getCatalogTitle(e)),
     },
     {
       label: "Compound type",
@@ -113,8 +117,16 @@ export function renderComparisonTable() {
   const headerCells = capped
     .map((e) => {
       const id = getEntryId(e);
+      const dn = escapeHtml(getDisplayName(e));
+      const ct = getCatalogTitle(e);
+      const sku = ct && getDisplayName(e) !== ct
+        ? `<span class="compare-col-head__sku">${escapeHtml(ct)}</span>`
+        : "";
       return `<th>
-        ${escapeHtml(e.catalog?.title || "")}
+        <div class="compare-col-head">
+          <span class="compare-col-head__name">${dn}</span>
+          ${sku}
+        </div>
         <button type="button" class="compare-remove" data-remove-id="${escapeHtml(id)}" aria-label="Remove from comparison">\u00d7</button>
       </th>`;
     })

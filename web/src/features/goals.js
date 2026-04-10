@@ -4,19 +4,21 @@
  */
 
 const GOAL_DESCRIPTIONS = {
-  metabolic_incretins: "Compounds researched for weight loss and appetite control. Evidence quality varies.",
-  tissue_healing: "Compounds studied for injury recovery, tissue repair, and wound healing.",
-  neuro_mood_sleep: "Compounds explored for cognitive function, mood, and sleep quality.",
-  immune_mucosal: "Compounds investigated for immune system support and gut health.",
-  aging_bioregulators: "Short peptides studied for age-related changes and cellular maintenance.",
-  growth_hormone_axis: "Compounds that interact with growth hormone pathways.",
-  skin_tanning_libido: "Compounds researched for skin, tanning, and sexual health.",
-  mitochondria_nad_redox: "Compounds studied for cellular energy production and metabolic health.",
+  metabolic_incretins: "Peptides people ask about for losing weight or controlling appetite. Some have strong science behind them; others are mostly gym lore.",
+  tissue_healing: "Peptides studied for helping injuries heal faster, from tendons to gut lining. Evidence ranges from FDA-level to animal-only.",
+  neuro_mood_sleep: "Peptides people look into for sharper thinking, less anxiety, or better sleep. Most are still early in research.",
+  immune_mucosal: "Peptides explored for strengthening your immune system or calming inflammation. A mix of established and experimental science.",
+  aging_bioregulators: "Short peptides marketed for slowing aging at the cellular level. Interesting research, but most evidence is limited.",
+  growth_hormone_axis: "Peptides that trigger your body to release more growth hormone. Many are banned in sports.",
+  skin_tanning_libido: "Peptides researched for skin darkening, tanning, or sexual health. Some carry serious safety concerns.",
+  mitochondria_nad_redox: "Peptides and molecules targeting your cells' energy factories. Promising science, but still mostly early-stage.",
 };
 
 export function initGoals() {
-  const controls = document.querySelector(".controls");
-  if (!controls) return;
+  const searchZone = document.querySelector(".search-zone");
+  const browseToolbar = document.querySelector(".browse-toolbar");
+  const insertTarget = browseToolbar || searchZone;
+  if (!insertTarget) return;
 
   const goals = [
     { label: "Weight loss", filter: "known-for", value: "metabolic_incretins", icon: "\u2696\uFE0F" },
@@ -30,7 +32,7 @@ export function initGoals() {
   ];
 
   const bar = document.createElement("div");
-  bar.className = "goal-bar goal-bar--primary";
+  bar.className = "goal-bar goal-bar--hero";
   bar.innerHTML = '<span class="goal-bar__label">What are you looking for?</span>' +
     '<div class="goal-bar__buttons">' +
     goals.map(g =>
@@ -39,7 +41,7 @@ export function initGoals() {
     '</div>' +
     '<p class="goal-bar__desc" id="goal-desc" hidden></p>';
 
-  controls.after(bar);
+  insertTarget.after(bar);
 
   bar.querySelectorAll(".goal-btn").forEach(btn => {
     btn.addEventListener("click", () => {

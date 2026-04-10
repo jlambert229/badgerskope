@@ -69,6 +69,9 @@ test.describe("Compare feature — complex multi-step flow", () => {
   });
 
   test("select all then compare works", async ({ page }) => {
+    await page.locator(".card__select input").nth(0).check();
+    await page.waitForTimeout(200);
+    await expect(page.locator("#select-visible")).toBeVisible();
     await page.click("#select-visible");
     await page.waitForTimeout(200);
 

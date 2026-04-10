@@ -40,6 +40,9 @@ import { initScroll } from "./features/scroll.js";
 import { initNotes } from "./features/notes.js";
 import { initDoping } from "./features/doping.js";
 import { initInteractions } from "./features/interactions.js";
+import { initOrientation } from "./features/orientation.js";
+import { initStartHere } from "./features/start-here.js";
+import { initSportFilter } from "./features/sport-filter.js";
 
 /* ------------------------------------------------------------------ */
 /*  Grid render                                                        */
@@ -233,9 +236,11 @@ async function init() {
     filtersToggle.addEventListener("click", () => {
       const isHidden = advancedFilters.hidden;
       advancedFilters.hidden = !isHidden;
-      filtersToggle.classList.toggle("filters-toggle--open", isHidden);
+      const nowOpen = isHidden;
+      filtersToggle.classList.toggle("filters-toggle--open", nowOpen);
+      filtersToggle.setAttribute("aria-expanded", String(nowOpen));
       const icon = filtersToggle.querySelector(".filters-toggle__icon");
-      if (icon) icon.textContent = isHidden ? "\u2212" : "+";
+      if (icon) icon.textContent = nowOpen ? "\u2212" : "+";
     });
   }
 
@@ -343,6 +348,11 @@ async function init() {
     });
   }
 
+  // Start-here curated entry clicks
+  document.addEventListener("bs:open-detail", (e) => {
+    if (e.detail?.entry) openDetail(e.detail.entry);
+  });
+
   // Hash change
   window.addEventListener("hashchange", () => {
     const params = readHashParams();
@@ -363,10 +373,13 @@ async function init() {
   initChips();
   initShare();
   initSearchEnhance();
+  initOrientation();
   initGoals();
+  initStartHere();
   initScroll();
   initNotes();
   initDoping();
+  initSportFilter();
   initInteractions();
 }
 

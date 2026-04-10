@@ -14,8 +14,8 @@
     <meta name="twitter:title" content="BadgerSkope — Peptide Research Library" />
     <meta name="twitter:description" content="53 peptide compounds. Plain English. Evidence-graded. Free." />
     <meta name="twitter:image" content="https://www.badgerskope.com/web/logo-hero.png" />
-    <meta name="theme-color" content="#0c0f14" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
     <link rel="icon" type="image/png" href="./favicon.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>BadgerSkope — Peptide Research Library</title>
@@ -34,7 +34,7 @@
       <nav class="nav-bar" aria-label="Main sections">
         <div class="nav-bar__inner">
           <a href="/" class="nav-bar__brand" title="Back to homepage">
-            <img src="./logo-hero.png" alt="" class="nav-bar__logo" width="28" height="28" />
+            <img src="./logo-hero.png" alt="" class="nav-bar__logo" width="28" height="28" aria-hidden="true" />
             <span class="nav-bar__name">BadgerSkope</span>
           </a>
           <div class="nav-bar__tabs" role="tablist" aria-label="Content sections">
@@ -69,6 +69,7 @@
         aria-labelledby="tab-browse"
         tabindex="0"
       >
+        <h1 class="panel-browse__title">Peptide research library</h1>
         <div class="search-zone">
           <input
             id="search"
@@ -76,12 +77,19 @@
             type="search"
             placeholder="Search peptides, compounds, benefits..."
             autocomplete="off"
+            aria-label="Search peptides, compounds, benefits"
           />
           <button type="button" class="search-zone__reset" id="reset-filters" hidden>Clear</button>
         </div>
 
         <div class="browse-toolbar">
-          <button type="button" class="filters-toggle" id="filters-toggle">
+          <button
+            type="button"
+            class="filters-toggle"
+            id="filters-toggle"
+            aria-expanded="false"
+            aria-controls="advanced-filters"
+          >
             Filters
             <span class="filters-toggle__icon" aria-hidden="true">+</span>
           </button>
@@ -90,45 +98,38 @@
 
         <section class="controls controls--advanced" id="advanced-filters" hidden>
           <label class="field">
-            <span class="field__label">Category</span>
+            <span class="field__label">Wellness area</span>
             <select id="category" class="field__input field__select"></select>
           </label>
           <label class="field">
-            <span class="field__label">Type</span>
+            <span class="field__label">Substance type</span>
             <select id="compound" class="field__input field__select"></select>
           </label>
           <label class="field">
-            <span class="field__label">Known for</span>
+            <span class="field__label">What it's researched for</span>
             <select id="known-for" class="field__input field__select"></select>
           </label>
           <label class="field">
-            <span class="field__label">Evidence</span>
-            <select id="evidence-filter" class="field__input field__select">
-              <option value="">All evidence</option>
-              <option value="Approved/labeled">Approved/labeled</option>
-              <option value="Major trials">Major trials</option>
-              <option value="Early human">Early human</option>
-              <option value="Animal only">Animal only</option>
-              <option value="Practice-based">Practice-based</option>
-            </select>
+            <span class="field__label">How strong is the science</span>
+            <select id="evidence-filter" class="field__input field__select"></select>
           </label>
           <label class="field">
             <span class="field__label">Sort</span>
             <select id="sort" class="field__input field__select">
-              <option value="title">Title A&ndash;Z</option>
-              <option value="title-desc">Title Z&ndash;A</option>
-              <option value="evidence">Best evidence first</option>
-              <option value="type">By compound type</option>
+              <option value="title">Name A&ndash;Z</option>
+              <option value="title-desc">Name Z&ndash;A</option>
+              <option value="evidence">Strongest evidence first</option>
+              <option value="type">By substance type</option>
             </select>
           </label>
           <label class="field">
             <span class="field__label">Group by</span>
             <select id="group-by" class="field__input field__select">
               <option value="">No grouping</option>
-              <option value="theme">Research theme</option>
-              <option value="compound">Compound type</option>
-              <option value="evidence">Evidence tier</option>
-              <option value="category">Top category</option>
+              <option value="theme">What it's known for</option>
+              <option value="compound">Substance type</option>
+              <option value="evidence">How strong the science is</option>
+              <option value="category">Wellness area</option>
             </select>
           </label>
         </section>
@@ -161,7 +162,7 @@
             <span class="monogram monogram--lg" aria-hidden="true">BS</span>
             <p class="compare-panel__empty-title">Nothing to compare yet</p>
             <p class="compare-panel__empty-hint">Select 2 or more entries from the Browse tab, then come back here.</p>
-            <p class="compare-panel__empty-hint" style="margin-top:0.75rem;font-size:0.78rem;opacity:0.6">Tip: Use checkboxes on cards or "Select all" to pick entries, then switch to this tab.</p>
+            <p class="compare-panel__empty-hint compare-panel__empty-tip">Tip: Use checkboxes on cards or "Select all" to pick entries, then switch to this tab.</p>
           </div>
           <div class="compare-table-wrap" id="compare-table"></div>
         </section>
@@ -176,7 +177,7 @@
         hidden
       >
         <section class="stats-dashboard" id="stats-dashboard">
-          <div class="info-banner" style="grid-column:1/-1">
+          <div class="info-banner info-banner--span-full">
             <span class="info-banner__icon" aria-hidden="true">&#128202;</span>
             <div>Overview of what's in the BadgerSkope database. Click any bar to filter the Browse tab by that value.</div>
           </div>

@@ -22,7 +22,13 @@ function addShareButton() {
     btn.textContent = "Copy link";
     btn.title = "Copy shareable link to this entry";
     btn.addEventListener("click", () => {
-      const url = window.location.origin + window.location.pathname + "#entry=" + encodeURIComponent(title.textContent);
+      const catalog =
+        title.dataset.catalogTitle || title.textContent || "";
+      const url =
+        window.location.origin +
+        window.location.pathname +
+        "#entry=" +
+        encodeURIComponent(catalog.trim());
       function done() {
         btn.textContent = "Copied!";
         btn.classList.add("share-btn--done");
