@@ -3,39 +3,6 @@
    Dark theme · Production CSS
    ============================================================ */
 
-/* ---------- Custom Properties ---------- */
-/* Palette derived from the BadgerSkope badger logo:
-   steel blue (DNA helix, "SKOPE"), cyan (test tube, molecule nodes),
-   charcoal (fur, outlines), silver (fur highlights), crimson (mouth) */
-:root {
-  --bg: #0b0e13;
-  --bg-elevated: #111720;
-  --surface: #161d28;
-  --border: #253040;
-  --text: #dce3eb;
-  --text-muted: #8a9bb0;
-  --accent: #4a8ec2;
-  --accent-bright: #5da8dc;
-  --cyan: #5cc8e4;
-  --green: #4abfa0;
-  --warning: #d4952a;
-  --orange: #c86a3a;
-  --danger: #c0392b;
-
-  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", "Fira Code", monospace;
-
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2);
-
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms ease;
-}
-
 /* ---------- Reset & Base ---------- */
 *,
 *::before,
@@ -316,7 +283,7 @@ h2 {
     var(--surface) 100%
   );
   border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
-  color: var(--accent-bright) !important;
+  color: var(--accent) !important;
   font-weight: 600;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   transition:
@@ -446,7 +413,7 @@ h2 {
 }
 
 .grad-text {
-  background: linear-gradient(135deg, var(--accent-bright) 0%, var(--cyan) 55%, var(--green) 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 55%, var(--green) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
