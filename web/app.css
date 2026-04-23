@@ -10,16 +10,16 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Evidence-tier bg tints (not in shared tokens) */
-  --ev-approved-bg:   rgba(74, 191, 160, 0.15);
-  --ev-pivotal:       var(--ev-strong);
-  --ev-pivotal-bg:    rgba(92, 200, 228, 0.12);
-  --ev-phase1:        var(--ev-early);
-  --ev-phase1-bg:     rgba(212, 149, 42, 0.15);
-  --ev-preclinical:   var(--ev-animal);
-  --ev-preclinical-bg: rgba(200, 106, 58, 0.15);
-  --ev-practice-bg:   transparent;
-  --ev-unknown-bg:    transparent;
+  /* Evidence-tier background tints — unified to color-mix against shared ev-* tokens (Task 7) */
+  --ev-approved-bg:    color-mix(in srgb, var(--ev-approved) 14%, transparent);
+  --ev-pivotal:        var(--ev-strong);
+  --ev-pivotal-bg:     color-mix(in srgb, var(--ev-strong)   14%, transparent);
+  --ev-phase1:         var(--ev-early);
+  --ev-phase1-bg:      color-mix(in srgb, var(--ev-early)    14%, transparent);
+  --ev-preclinical:    var(--ev-animal);
+  --ev-preclinical-bg: color-mix(in srgb, var(--ev-animal)   14%, transparent);
+  --ev-practice-bg:    color-mix(in srgb, var(--ev-practice) 10%, transparent);
+  --ev-unknown-bg:     color-mix(in srgb, var(--ev-unknown)  10%, transparent);
 
   /* Surface alias */
   --surface-hover: var(--surface-raised);
@@ -888,13 +888,9 @@ a:hover { text-decoration: underline; }
   border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
   border-left-color: var(--evidence-color, var(--border));
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
-  transform: translateY(-2px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card:hover {
-    transform: none;
-  }
   .search-zone__input:focus {
     transform: none;
   }
@@ -1279,19 +1275,11 @@ a:hover { text-decoration: underline; }
 .stat-card:not(.stat-card--hero):hover {
   border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
 }
 
 .stat-card.stat-card--hero:hover {
-  transform: none;
   border-color: var(--border);
   box-shadow: var(--shadow-sm);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stat-card:not(.stat-card--hero):hover {
-    transform: none;
-  }
 }
 
 .stat-card__number {
