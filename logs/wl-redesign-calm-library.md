@@ -103,3 +103,17 @@ The following tokens are kept as local aliases in `web/app.css :root` because th
 | `--radius-pill` | `var(--radius-lg)` | legacy name, not in shared |
 
 Note: Evidence-tier `-bg` variants and the renamed tier names are kept for Task 8 (EVIDENCE_TIERS JS refactor) compatibility.
+
+## Phase 1 complete — 2026-04-23
+
+- Shared `design-tokens.css` in place at repo root with canonical tokens for color, typography, spacing, radius, shadow, motion.
+- Marketing (`index.html` + `marketing.css`), library (`web/index.html` + `web/app.css` + `web/features.css`), glossary (`glossary.html`), and evidence-guide (`evidence-guide.html`) all consume it.
+- Decorative noise removed from marketing: orbs, helix, gradient-text-as-decoration, `.hero-bg` wrappers, keyframes `orbFloat`.
+- Evidence-tier chip backgrounds unified to `color-mix(in srgb, var(--ev-*) 14%, transparent)` (10% for practice/unknown).
+- Hover scale/translate transforms removed from card-like selectors.
+- `EVIDENCE_TIERS` in `web/app.js` now reads colors from CSS custom properties via `getComputedStyle`; the `unknown` tier no longer shares `practice`'s color.
+- Playwright (Chromium, all 3 projects): **217 passed, 34 failed** (baseline was 217 passed). All 34 failures are pre-existing — confirmed identical on `main` branch before this work. Failure breakdown: 15× compare-feature timeouts (`.card__select` hidden by CSS), 9× ios-touch-interactions timeouts, 6× ios-viewport timeouts/assertions, 3× ios-safari-compat assertion failures, 1× navigation-state timeout. None introduced by design system changes.
+- Cross-surface smoke pass: `/ -> HTTP 200 (1 ref)`, `/web/ -> HTTP 200 (1 ref)`, `/glossary.html -> HTTP 200 (2 refs)`, `/evidence-guide.html -> HTTP 200 (1 ref)`, `/design-tokens.css -> HTTP 200`. Marketing decorative-noise count: 0 (expected 0). Library `/design-tokens.css` refs: 1 (expected >=1). Token helper count in `design-tokens.css`: 13 matches (expected 9+).
+- Unused-token audit: 55 tokens defined. 25 tokens have 0 references — all are clearly-useful scale primitives reserved for Phase 2+: typography scale (`--text-xs` through `--text-5xl`), leading/line-height scale (`--leading-tight/normal/relaxed`), spacing scale (`--space-1` through `--space-12`), `--shadow-lg`, `--border-strong`, `--transition-slow`, `--text-dim`. None removed — all are intentional design system foundations.
+
+Next: Phase 2 — library shell redesign (command bar, consolidated IA).
