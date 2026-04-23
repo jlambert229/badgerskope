@@ -35,6 +35,11 @@
   --warning: #d4952a;
   --danger:  #c0392b;
 
+  /* ---- Brand palette (shared with marketing) ---- */
+  --cyan:   #5cc8e4;
+  --green:  #4abfa0;
+  --orange: #c86a3a;
+
   /* ---- Typography ---- */
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
