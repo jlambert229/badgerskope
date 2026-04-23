@@ -23,14 +23,22 @@ const KNOWN_FOR_THEME_ORDER = [
   "aging_bioregulators",
 ];
 
+function cssVar(name) {
+  if (typeof window === "undefined" || !window.getComputedStyle) return "";
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
 const EVIDENCE_TIERS = [
-  { key: "regulatory_label", tier: "approved", color: "#22c55e", label: "FDA approved", rank: 0 },
-  { key: "pivotal_trials", tier: "pivotal", color: "#14b8a6", label: "Strong human trials", rank: 1 },
-  { key: "phase1_human", tier: "phase1", color: "#f59e0b", label: "Early human studies", rank: 2 },
-  { key: "preclinical_animal", tier: "preclinical", color: "#f97316", label: "Animal studies only", rank: 3 },
-  { key: "compounded_practice", tier: "practice", color: "#9ca3af", label: "Clinic practice", rank: 4 },
-  { key: "unknown_identity", tier: "unknown", color: "#9ca3af", label: "Unknown", rank: 5 },
-];
+  { key: "regulatory_label",    tier: "approved",    cssVar: "--ev-approved", label: "FDA approved",        rank: 0 },
+  { key: "pivotal_trials",      tier: "pivotal",     cssVar: "--ev-strong",   label: "Strong human trials", rank: 1 },
+  { key: "phase1_human",        tier: "phase1",      cssVar: "--ev-early",    label: "Early human studies", rank: 2 },
+  { key: "preclinical_animal",  tier: "preclinical", cssVar: "--ev-animal",   label: "Animal studies only", rank: 3 },
+  { key: "compounded_practice", tier: "practice",    cssVar: "--ev-practice", label: "Clinic practice",     rank: 4 },
+  { key: "unknown_identity",    tier: "unknown",     cssVar: "--ev-unknown",  label: "Unknown",             rank: 5 },
+].map((t) => Object.defineProperty(t, "color", {
+  get() { return cssVar(this.cssVar); },
+  enumerable: true,
+}));
 
 function tierForKey(key) {
   return EVIDENCE_TIERS.find((t) => t.key === key) || EVIDENCE_TIERS[EVIDENCE_TIERS.length - 1];
