@@ -203,7 +203,7 @@ Note: the `[data-theme="dark"]` guard prevents the prefers-color-scheme light ov
 
 ### JS integration
 
-`web/src/app.js` `EVIDENCE_TIERS` currently hard-codes hex colors. Change the color lookup to read from CSS custom properties:
+`web/app.js` `EVIDENCE_TIERS` currently hard-codes hex colors. Change the color lookup to read from CSS custom properties:
 
 ```js
 function cssVar(name) {
