@@ -35,7 +35,7 @@ Files touched:
 - `web/app.css` — replace local `:root` tokens with the shared set; audit hard-coded values
 - `web/features.css` — same audit and consolidation
 - `glossary.html` and `evidence-guide.html` — link the shared tokens and audit any inline style overrides
-- `web/src/constants.js` — update `EVIDENCE_TIERS` color values to read from CSS custom properties via `getComputedStyle(document.documentElement).getPropertyValue(...)` at runtime
+- `web/app.js` — update `EVIDENCE_TIERS` color values to read from CSS custom properties via `getComputedStyle(document.documentElement).getPropertyValue(...)` at runtime
 
 ## Design
 
@@ -79,7 +79,7 @@ Canonical names. Keep these stable; future phases can add but should not rename.
 }
 ```
 
-Evidence tier values come from `web/src/app.js` `EVIDENCE_TIERS` — those hex values are the source of truth and move into CSS vars. After this phase `EVIDENCE_TIERS[].color` reads from CSS at runtime so there is one source.
+Evidence tier values come from `web/app.js` `EVIDENCE_TIERS` — those hex values are the source of truth and move into CSS vars. After this phase `EVIDENCE_TIERS[].color` reads from CSS at runtime so there is one source.
 
 **Typography**
 
@@ -253,7 +253,7 @@ Any existing consumer of `tier.color` either switches to `tierColor(tier)` at ca
 2. `marketing.css`, `web/app.css`, `web/features.css` have no duplicate `:root` token definitions — they read from the shared file
 3. `glossary.html` and `evidence-guide.html` import `design-tokens.css` and render without visual regression
 4. Orbs, helix, and decorative gradient animations are removed from marketing
-5. `web/src/app.js` `EVIDENCE_TIERS` uses CSS custom properties for color
+5. `web/app.js` `EVIDENCE_TIERS` uses CSS custom properties for color
 6. All hard-coded hex colors and ad-hoc spacing values in the three CSS files are either replaced with tokens or flagged with a `/* exception: <reason> */` comment
 7. All existing Playwright tests pass
 8. Manual visual pass above documented in work log
