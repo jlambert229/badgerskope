@@ -347,47 +347,6 @@ h2 {
   overflow: hidden;
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-/* Ambient orbs */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.35;
-  animation: orbFloat 12s ease-in-out infinite alternate;
-}
-.orb-1 {
-  width: 420px; height: 420px;
-  background: var(--accent);
-  top: -10%; left: -8%;
-}
-.orb-2 {
-  width: 350px; height: 350px;
-  background: var(--cyan);
-  bottom: -15%; right: -5%;
-  animation-delay: -4s;
-  animation-duration: 15s;
-}
-.orb-3 {
-  width: 250px; height: 250px;
-  background: var(--green);
-  top: 30%; right: 15%;
-  opacity: 0.2;
-  animation-delay: -7s;
-  animation-duration: 18s;
-}
-.helix { display: none; }
-
-@keyframes orbFloat {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, -20px) scale(1.08); }
-}
-
 /* Hero content */
 .hero-content {
   position: relative;
@@ -413,10 +372,7 @@ h2 {
 }
 
 .grad-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 55%, var(--green) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 .hero-p {
