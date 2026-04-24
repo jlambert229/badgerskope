@@ -2111,6 +2111,10 @@
   }
 }
 
+.goal-bar--hidden {
+  display: none;
+}
+
 /* ---- Related grid single column on mobile ---- */
 @media (max-width: 480px) {
   .related-grid {

@@ -1063,6 +1063,28 @@
         bar.querySelectorAll(".goal-btn").forEach(b => b.classList.remove("goal-btn--active"));
       });
     }
+
+    // Hide the bar once any filter select has a non-empty value, or search has text.
+    const filterSelects = [
+      document.getElementById("category"),
+      document.getElementById("compound"),
+      document.getElementById("known-for"),
+      document.getElementById("evidence-filter"),
+    ].filter(Boolean);
+    const syncGoalVisibility = () => {
+      const anyActive = filterSelects.some((sel) => sel.value !== "" && sel.value != null);
+      bar.classList.toggle("goal-bar--hidden", anyActive);
+    };
+    filterSelects.forEach((sel) => sel.addEventListener("change", syncGoalVisibility));
+    const searchInput = document.getElementById("search");
+    if (searchInput) {
+      searchInput.addEventListener("input", () => {
+        const hasSearch = searchInput.value.trim() !== "";
+        const anyActive = filterSelects.some((sel) => sel.value !== "" && sel.value != null);
+        bar.classList.toggle("goal-bar--hidden", hasSearch || anyActive);
+      });
+    }
+    syncGoalVisibility();
   }
 
   /* ---- help dialog ---- */
