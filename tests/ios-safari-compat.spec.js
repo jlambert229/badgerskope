@@ -68,6 +68,10 @@ test.describe("iOS Safari compatibility", () => {
   });
 
   test("select dropdowns are interactive", async ({ page }) => {
+    // #category lives inside #advanced-filters (collapsed by default) — open it first
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+
     const category = page.locator("#category");
     await expect(category).toBeVisible();
 

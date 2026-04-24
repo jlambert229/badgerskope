@@ -58,6 +58,10 @@ test.describe("Touch interactions (iOS)", () => {
   });
 
   test("filter dropdown responds", async ({ page }) => {
+    // #category lives inside #advanced-filters (collapsed by default) — open it first
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+
     const select = page.locator("#category");
     await select.selectOption({ index: 1 });
     await page.waitForTimeout(300);

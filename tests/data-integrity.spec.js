@@ -88,8 +88,7 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   });
 
   test("evidence filter returns only matching tiers", async ({ page }) => {
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    // #evidence-filter is in .browse-toolbar (always visible) since Phase 2
     await page.locator("#evidence-filter").selectOption("regulatory_label");
     await page.waitForTimeout(300);
 
