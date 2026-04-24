@@ -1826,16 +1826,16 @@ table.compare tbody tr:last-child td {
 
 /* Sections */
 .detail__section {
-  margin-bottom: 1.25rem;
-  padding: 0.85rem 1rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.1rem;
   background: color-mix(in srgb, var(--surface) 45%, transparent);
   border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
   border-radius: var(--radius-sm);
 }
 
 .detail__section h3 {
-  margin: 0 0 0.5rem;
-  font-size: 0.82rem;
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
   font-weight: 600;
   text-transform: none;
   letter-spacing: 0;
@@ -1866,8 +1866,9 @@ table.compare tbody tr:last-child td {
 .detail__section p,
 .detail__section li {
   margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
 }
 
 .detail__section ul {

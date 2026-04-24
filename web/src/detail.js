@@ -170,7 +170,6 @@ export function renderDetailHtml(entry) {
           ${dopingFlag ? `<li><strong>Sport:</strong> ${escapeHtml(dopingFlag)}</li>` : ""}
           <li><strong>Sources:</strong> ${srcCount} published reference${srcCount !== 1 ? "s" : ""} linked below</li>
         </ul>
-        <p class="detail__muted">Here's what we know. Talk to your doctor about what it means for you.</p>
       </div>`;
     })()}
 
@@ -190,7 +189,7 @@ export function renderDetailHtml(entry) {
       const thisTier = tier;
       const betterCount = catEntries.filter(e => highestTier(e).rank < thisTier.rank).length;
       const totalInCat = catEntries.length;
-      const position = betterCount === 0 ? "the strongest" : betterCount < totalInCat / 2 ? "above average" : "below average";
+      const position = betterCount === 0 ? "Strongest" : betterCount < totalInCat / 2 ? "Above average" : "Below average";
 
       const barHtml = EVIDENCE_TIERS
         .filter(t => tierCounts[t.label])
@@ -207,8 +206,7 @@ export function renderDetailHtml(entry) {
 
       return `<div class="detail__section">
         <h3>How strong is the evidence?</h3>
-        <p class="detail__help">Compared to the ${totalInCat} other entries in "${escapeHtml(catName)}".</p>
-        <p class="ev-compare__verdict" style="color:${thisTier.color}">This entry has <strong>${escapeHtml(position)}</strong> evidence for its category (${escapeHtml(thisTier.label)}).</p>
+        <p class="ev-compare__verdict" style="color:${thisTier.color}"><strong>${escapeHtml(position)}</strong> in ${escapeHtml(catName)} (${totalInCat} entries).</p>
         <div class="ev-compare">${barHtml}</div>
       </div>`;
     })()}
@@ -223,42 +221,42 @@ export function renderDetailHtml(entry) {
       <ul class="detail__apps">${apps}</ul>
     </div>` : ""}
 
-    <details class="detail__section detail__collapsible">
-      <summary><h3>How people use it</h3></summary>
-      <p class="detail__help">This describes what has been reported in studies and forums. It is not a dosing guide for you. Talk to your doctor.</p>
-      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
-    </details>
+    ${entry.dosingTimingNotes ? `<div class="detail__section">
+      <h3>How people use it</h3>
+      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes)}</p>
+      <p class="detail__help">Reported in studies and forums. Not a dosing guide for you.</p>
+    </div>` : ""}
 
-    <details class="detail__section detail__collapsible">
-      <summary><h3>Cycling pattern</h3></summary>
-      <p class="detail__help">Cycling patterns come from community reports and limited research. Your needs may differ entirely.</p>
-      <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "No established cycling pattern.")}</p>
-    </details>
+    ${entry.cyclingNotes ? `<div class="detail__section">
+      <h3>Cycling pattern</h3>
+      <p class="detail__prose">${escapeHtml(entry.cyclingNotes)}</p>
+      <p class="detail__help">Community reports and limited research. Your needs may differ.</p>
+    </div>` : ""}
 
     ${doseRows
-      ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Doses from published research</h3></summary>
-      <p class="detail__help">These numbers appeared in published studies. They are not personal dosing instructions. Researchers used these in controlled settings with medical supervision.</p>
+      ? `<div class="detail__section">
+      <h3>Doses from published research</h3>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
           <tbody>${doseRows}</tbody>
         </table>
       </div>
-    </details>`
+      <p class="detail__help">Numbers from published studies. Not personal dosing instructions.</p>
+    </div>`
       : ""
     }
 
-    ${synergy ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Often mentioned alongside</h3></summary>
-      <p class="detail__help">These appear together in research or product lines. Not a recommendation to combine.</p>
+    ${synergy ? `<div class="detail__section">
+      <h3>Often mentioned alongside</h3>
       <ul class="synergy-list">${synergy}</ul>
-    </details>` : ""}
+      <p class="detail__help">Appear together in research. Not a recommendation to combine.</p>
+    </div>` : ""}
 
-    ${dqThemes ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Research themes</h3></summary>
+    ${dqThemes ? `<div class="detail__section">
+      <h3>Research themes</h3>
       <div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
-    </details>` : ""}
+    </div>` : ""}
 
     ${(() => {
       const srcList = entry.sources || [];

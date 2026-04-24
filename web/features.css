@@ -243,13 +243,13 @@
 
 /* ---- Help text ---- */
 .detail__help {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   font-style: italic;
-  margin: -0.2rem 0 0.65rem;
+  margin: 0.65rem 0 0;
   padding-left: 0;
   border-left: none;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .stat-help {
@@ -507,9 +507,10 @@
 
 .detail__summary-prose {
   margin: 0;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.65;
+  max-width: 62ch;
 }
 
 .detail__answer-actions {
