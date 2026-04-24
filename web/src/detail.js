@@ -223,21 +223,21 @@ export function renderDetailHtml(entry) {
       <ul class="detail__apps">${apps}</ul>
     </div>` : ""}
 
-    <details class="detail__section detail__collapsible">
-      <summary><h3>How people use it</h3></summary>
+    ${entry.dosingTimingNotes ? `<div class="detail__section">
+      <h3>How people use it</h3>
       <p class="detail__help">This describes what has been reported in studies and forums. It is not a dosing guide for you. Talk to your doctor.</p>
-      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
-    </details>
+      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes)}</p>
+    </div>` : ""}
 
-    <details class="detail__section detail__collapsible">
-      <summary><h3>Cycling pattern</h3></summary>
+    ${entry.cyclingNotes ? `<div class="detail__section">
+      <h3>Cycling pattern</h3>
       <p class="detail__help">Cycling patterns come from community reports and limited research. Your needs may differ entirely.</p>
-      <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "No established cycling pattern.")}</p>
-    </details>
+      <p class="detail__prose">${escapeHtml(entry.cyclingNotes)}</p>
+    </div>` : ""}
 
     ${doseRows
-      ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Doses from published research</h3></summary>
+      ? `<div class="detail__section">
+      <h3>Doses from published research</h3>
       <p class="detail__help">These numbers appeared in published studies. They are not personal dosing instructions. Researchers used these in controlled settings with medical supervision.</p>
       <div class="table-wrap">
         <table class="doses">
@@ -245,20 +245,20 @@ export function renderDetailHtml(entry) {
           <tbody>${doseRows}</tbody>
         </table>
       </div>
-    </details>`
+    </div>`
       : ""
     }
 
-    ${synergy ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Often mentioned alongside</h3></summary>
+    ${synergy ? `<div class="detail__section">
+      <h3>Often mentioned alongside</h3>
       <p class="detail__help">These appear together in research or product lines. Not a recommendation to combine.</p>
       <ul class="synergy-list">${synergy}</ul>
-    </details>` : ""}
+    </div>` : ""}
 
-    ${dqThemes ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Research themes</h3></summary>
+    ${dqThemes ? `<div class="detail__section">
+      <h3>Research themes</h3>
       <div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
-    </details>` : ""}
+    </div>` : ""}
 
     ${(() => {
       const srcList = entry.sources || [];
