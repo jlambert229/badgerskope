@@ -84,6 +84,10 @@
         </div>
 
         <div class="browse-toolbar">
+          <label class="browse-toolbar__evidence">
+            <span class="browse-toolbar__evidence-label">Evidence</span>
+            <select id="evidence-filter" class="field__input field__select"></select>
+          </label>
           <button
             type="button"
             class="filters-toggle"
@@ -91,7 +95,7 @@
             aria-expanded="false"
             aria-controls="advanced-filters"
           >
-            Filters
+            Refine
             <span class="filters-toggle__icon" aria-hidden="true">+</span>
           </button>
           <span class="browse-toolbar__count" id="result-count"></span>
@@ -109,10 +113,6 @@
           <label class="field">
             <span class="field__label">What it's researched for</span>
             <select id="known-for" class="field__input field__select"></select>
-          </label>
-          <label class="field">
-            <span class="field__label">How strong is the science</span>
-            <select id="evidence-filter" class="field__input field__select"></select>
           </label>
           <label class="field">
             <span class="field__label">Sort</span>
