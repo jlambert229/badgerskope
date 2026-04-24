@@ -1849,13 +1849,6 @@ table.compare tbody tr:last-child td {
   background: var(--bg-elevated);
 }
 
-.detail__section.detail__section--highlight {
-  padding: 0;
-  background: none;
-  border: none;
-  border-radius: 0;
-}
-
 .detail__muted {
   margin: 0.75rem 0 0;
   font-size: 0.82rem;
@@ -2616,9 +2609,6 @@ kbd {
 }
 
 @media (max-width: 480px) {
-  .detail__hero-bar {
-    padding: 0.75rem;
-  }
   .detail__title {
     font-size: 1.15rem;
   }
@@ -2719,8 +2709,6 @@ kbd {
   box-shadow: var(--shadow);
 }
 
-/* detail__hero-bar, --highlight, --note: no background to override */
-
 [data-theme="light"] .stat-card {
   background: rgba(255, 255, 255, 0.7);
   border-color: rgba(37, 99, 235, 0.08);
@@ -2746,8 +2734,6 @@ kbd {
 [data-theme="light"] .doping-banner {
   background: rgba(217, 119, 6, 0.05);
 }
-
-/* detail__disclaimer: no background to override */
 
 [data-theme="light"] .info-banner {
   background: rgba(37, 99, 235, 0.05);
@@ -2788,4 +2774,214 @@ kbd {
 [data-theme="light"] .goal-bar {
   border-color: #c8d0da;
   background: #fff;
+}
+
+/* ============================================================
+   DETAIL — radical subtraction (Phase 2)
+   ============================================================ */
+
+.detail__disclaimer-strip {
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  margin: 0 0 var(--space-5);
+  text-align: center;
+}
+
+.detail__hero {
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.detail__hero-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.detail__title {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.detail__evidence-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  color: #0b0e13;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.detail__hero-summary {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text);
+}
+
+.detail__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-6);
+}
+
+.detail__fact { white-space: nowrap; }
+.detail__fact--warn { color: var(--warning); font-weight: 600; }
+.detail__fact-sep { color: var(--text-dim); }
+
+.detail__compare-link {
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.detail__compare-link:hover { text-decoration: underline; }
+
+.detail__body {
+  margin: 0 0 var(--space-6);
+}
+
+.detail__body-subhead {
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-base);
+}
+
+.detail__callout {
+  border-left: 3px solid var(--warning);
+  background: color-mix(in srgb, var(--warning) 8%, transparent);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  margin: var(--space-3) 0;
+  font-size: var(--text-base);
+}
+
+.detail__body-heading {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: var(--space-5) 0 var(--space-2);
+}
+
+.detail__body-more {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin: var(--space-2) 0 0;
+  font-style: italic;
+}
+
+.detail__depth {
+  margin: 0 0 var(--space-6);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-5);
+}
+
+.detail__depth-title {
+  font-size: var(--text-xl);
+  margin: 0 0 var(--space-3);
+  color: var(--text);
+}
+
+.detail__depth-item {
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-3) 0;
+}
+
+.detail__depth-item > summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: var(--space-1) 0;
+  color: var(--text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.detail__depth-item > summary::before {
+  content: "▸";
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+  display: inline-block;
+  width: 1em;
+}
+
+.detail__depth-item[open] > summary::before { transform: rotate(90deg); }
+
+.detail__depth-item > summary::-webkit-details-marker { display: none; }
+
+.detail__actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  margin-top: var(--space-6);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+  z-index: 5;
+}
+
+.detail__action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.detail__action:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-elevated));
+}
+
+.detail__action--done {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 12%, var(--bg-elevated));
+}
+
+/* Ensure modal panel doesn't let content hide behind sticky bar */
+.modal__panel { padding-bottom: var(--space-8); }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .detail__title { font-size: var(--text-2xl); }
+  .detail__hero-summary { font-size: var(--text-base); }
+}
+
+@media (max-width: 480px) {
+  .detail__facts { gap: var(--space-1); }
+  .detail__action-label { display: none; }
+  .detail__action { padding: var(--space-2); }
+}
+
+/* Print: sticky action bar becomes static, hide it */
+@media print {
+  .detail__actions { display: none; }
+  .detail__depth-item:not([open]) > *:not(summary) { display: block; }
 }
