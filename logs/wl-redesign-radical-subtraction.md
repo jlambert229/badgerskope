@@ -17,3 +17,11 @@ Direction: radical subtraction. Cut the detail view to hero + facts strip + body
 ## Plan
 
 (pending)
+
+## Baseline (Task 1)
+
+**Date:** 2026-04-23
+**Command:** `npx playwright test --project=chrome`
+**Result:** PASS (73) FAIL (11), 71.5s
+
+Pre-existing flaky tests noted in Phase 1 work log (compare-feature timeouts, iOS-viewport assertions) are not regressions. All 11 failures are compare-feature test timeouts (selecting 2+ entries, compare table rendering, highlighting differences, removing entry, select all + compare, and 6 more) — these are known environmental issues from Phase 1.
