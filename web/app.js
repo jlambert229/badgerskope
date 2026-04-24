@@ -541,11 +541,7 @@ function renderCard(entry, catIndex, cardIndex) {
     <span class="card__hint">View details \u2192</span>
   `;
   main.addEventListener("click", () => {
-    article.style.transform = "scale(0.98)";
-    setTimeout(() => {
-      article.style.transform = "";
-      openDetail(entry);
-    }, 100);
+    openDetail(entry);
   });
 
   article.appendChild(head);
