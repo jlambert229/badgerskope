@@ -5,89 +5,45 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Custom Properties
+   1. Local aliases — tokens used by this file that are not in design-tokens.css
+      (backward-compat names; prefer shared tokens for new code)
    -------------------------------------------------------------------------- */
 
 :root {
-  /* Dark palette (derived from logo: steel blue, cyan, charcoal, silver) */
-  --bg: #0b0e13;
-  --bg-elevated: #111720;
-  --surface: #161d28;
-  --surface-hover: #1c2633;
-  --border: #253040;
-  --text: #dce3eb;
-  --text-muted: #8a9bb0;
-  --accent: #4a8ec2;
-  --accent-soft: rgba(74, 142, 194, 0.14);
-  --success: #4abfa0;
-  --warning: #d4952a;
-  --danger: #c0392b;
+  /* Evidence-tier background tints — unified to color-mix against shared ev-* tokens (Task 7) */
+  --ev-approved-bg:    color-mix(in srgb, var(--ev-approved) 14%, transparent);
+  --ev-pivotal:        var(--ev-strong);
+  --ev-pivotal-bg:     color-mix(in srgb, var(--ev-strong)   14%, transparent);
+  --ev-phase1:         var(--ev-early);
+  --ev-phase1-bg:      color-mix(in srgb, var(--ev-early)    14%, transparent);
+  --ev-preclinical:    var(--ev-animal);
+  --ev-preclinical-bg: color-mix(in srgb, var(--ev-animal)   14%, transparent);
+  --ev-practice-bg:    color-mix(in srgb, var(--ev-practice) 10%, transparent);
+  --ev-unknown-bg:     color-mix(in srgb, var(--ev-unknown)  10%, transparent);
 
-  /* Radii (aligned with marketing page) */
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-pill: 20px;
+  /* Surface alias */
+  --surface-hover: var(--surface-raised);
 
-  /* Shadows */
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.15);
-
-  /* Typography */
-  --font: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, monospace;
-
-  /* Evidence tier */
-  --ev-approved: #4abfa0;
-  --ev-approved-bg: rgba(74, 191, 160, 0.15);
-  --ev-pivotal: #5cc8e4;
-  --ev-pivotal-bg: rgba(92, 200, 228, 0.12);
-  --ev-phase1: #d4952a;
-  --ev-phase1-bg: rgba(212, 149, 42, 0.15);
-  --ev-preclinical: #c86a3a;
-  --ev-preclinical-bg: rgba(200, 106, 58, 0.15);
-  --ev-practice: #8a9bb0;
-  --ev-practice-bg: transparent;
-  --ev-unknown: #627388;
-  --ev-unknown-bg: transparent;
-
-  /* Surface aliases (legacy glass names kept for compat) */
-  --glass: var(--bg-elevated);
-  --glass-border: var(--border);
-
-  /* Transition speed */
-  --speed: 0.1s;
+  /* Transition aliases (shared uses --transition-fast / --transition-base) */
+  --speed:    0.1s;
   --speed-md: 0.15s;
-}
 
-[data-theme="light"] {
-  --bg: #f4f6f9;
-  --bg-elevated: #fff;
-  --surface: #eaeff4;
-  --surface-hover: #dfe5ec;
-  --border: #c8d2dc;
-  --text: #1a2332;
-  --text-muted: #566a80;
-  --accent: #3a7aad;
-  --accent-soft: rgba(58, 122, 173, 0.1);
-  --success: #0e8a6d;
-  --warning: #b07b1a;
-  --danger: #a8321f;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --ev-approved: #0e8a6d;
-  --ev-approved-bg: rgba(14, 138, 109, 0.1);
-  --ev-pivotal: #1a8fa8;
-  --ev-pivotal-bg: rgba(26, 143, 168, 0.1);
-  --ev-phase1: #b07b1a;
-  --ev-phase1-bg: rgba(176, 123, 26, 0.1);
-  --ev-preclinical: #a8541c;
-  --ev-preclinical-bg: rgba(168, 84, 28, 0.1);
-  --ev-practice: #566a80;
-  --ev-practice-bg: transparent;
-  --ev-unknown: #8a9bb0;
-  --ev-unknown-bg: transparent;
-  --glass: var(--bg-elevated);
+  /* Glass aliases (legacy names) */
+  --glass:        var(--bg-elevated);
   --glass-border: var(--border);
+
+  /* Radius alias (legacy bare name → shared --radius-md) */
+  --radius: var(--radius-md);
+
+  /* Shadow alias (legacy bare name → shared --shadow-md) */
+  --shadow: var(--shadow-md);
+
+  /* Font aliases (shared uses --font-sans / --font-mono) */
+  --font: var(--font-sans);
+  --mono: var(--font-mono);
+
+  /* Legacy radius/pill size (not in shared) */
+  --radius-pill: var(--radius-lg);
 }
 
 /* --------------------------------------------------------------------------
@@ -932,13 +888,9 @@ a:hover { text-decoration: underline; }
   border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
   border-left-color: var(--evidence-color, var(--border));
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
-  transform: translateY(-2px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card:hover {
-    transform: none;
-  }
   .search-zone__input:focus {
     transform: none;
   }
@@ -1323,19 +1275,11 @@ a:hover { text-decoration: underline; }
 .stat-card:not(.stat-card--hero):hover {
   border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
 }
 
 .stat-card.stat-card--hero:hover {
-  transform: none;
   border-color: var(--border);
   box-shadow: var(--shadow-sm);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stat-card:not(.stat-card--hero):hover {
-    transform: none;
-  }
 }
 
 .stat-card__number {

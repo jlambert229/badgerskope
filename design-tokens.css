@@ -1,0 +1,126 @@
+/* ============================================================
+   BADGERSKOPE — Design tokens (shared across all surfaces)
+   Dark theme default; light theme via [data-theme="light"] or
+   prefers-color-scheme: light (unless [data-theme="dark"] set).
+   ============================================================ */
+
+:root {
+  /* ---- Surface ---- */
+  --bg:             #0b0e13;
+  --bg-elevated:    #111720;
+  --surface:        #161d28;
+  --surface-raised: #1c2633;
+  --border:         #253040;
+  --border-strong:  #334257;
+
+  /* ---- Text ---- */
+  --text:       #dce3eb;
+  --text-muted: #8a9bb0;
+  --text-dim:   #5f6f85;
+
+  /* ---- Accent ---- */
+  --accent:      #4a8ec2;
+  --accent-soft: rgba(74, 142, 194, 0.14);
+
+  /* ---- Evidence tiers (semantic, consumed by JS) ---- */
+  --ev-approved: #22c55e;
+  --ev-strong:   #14b8a6;
+  --ev-early:    #f59e0b;
+  --ev-animal:   #f97316;
+  --ev-practice: #9ca3af;
+  --ev-unknown:  #6b7280;
+
+  /* ---- Status (non-evidence) ---- */
+  --success: #4abfa0;
+  --warning: #d4952a;
+  --danger:  #c0392b;
+
+  /* ---- Brand palette (shared with marketing) ---- */
+  --cyan:   #5cc8e4;
+  --green:  #4abfa0;
+  --orange: #c86a3a;
+
+  /* ---- Typography ---- */
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2rem;
+  --text-4xl:  2.75rem;
+  --text-5xl:  3.5rem;
+
+  --leading-tight:   1.15;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  /* ---- Spacing (4px base) ---- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-8:  48px;
+  --space-10: 64px;
+  --space-12: 96px;
+
+  /* ---- Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+
+  /* ---- Shadow ---- */
+  --shadow-sm: 0 1px 2px  rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+  /* ---- Motion ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ---- Light theme: explicit opt-in OR system preference when not explicitly dark ---- */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  /* No-op; overridden below when appropriate */
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:             #f4f6f9;
+    --bg-elevated:    #ffffff;
+    --surface:        #ffffff;
+    --surface-raised: #ffffff;
+    --border:         #d7dde6;
+    --border-strong:  #b8c2d0;
+    --text:           #1a2230;
+    --text-muted:     #56657a;
+    --text-dim:       #8594a8;
+    --accent-soft:    rgba(74, 142, 194, 0.12);
+    --shadow-sm: 0 1px 2px  rgba(15, 30, 55, 0.06);
+    --shadow-md: 0 4px 12px rgba(15, 30, 55, 0.10);
+    --shadow-lg: 0 12px 40px rgba(15, 30, 55, 0.18);
+  }
+}
+
+[data-theme="light"] {
+  --bg:             #f4f6f9;
+  --bg-elevated:    #ffffff;
+  --surface:        #ffffff;
+  --surface-raised: #ffffff;
+  --border:         #d7dde6;
+  --border-strong:  #b8c2d0;
+  --text:           #1a2230;
+  --text-muted:     #56657a;
+  --text-dim:       #8594a8;
+  --accent-soft:    rgba(74, 142, 194, 0.12);
+  --shadow-sm: 0 1px 2px  rgba(15, 30, 55, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 30, 55, 0.10);
+  --shadow-lg: 0 12px 40px rgba(15, 30, 55, 0.18);
+}
