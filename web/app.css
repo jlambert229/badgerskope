@@ -1716,54 +1716,9 @@ table.compare tbody tr:last-child td {
 }
 
 /* Detail header */
-.detail__title {
-  margin: 0 0 0.15rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  padding-right: 2rem;
-}
-
-.detail__catalog-line {
-  margin: 0 0 0.5rem;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-muted);
-}
-
-.detail__actions {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.detail__bookmark-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font: inherit;
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all var(--speed);
-}
-
-.detail__bookmark-btn:hover {
-  border-color: var(--warning);
-  color: var(--warning);
-}
-
-.detail__bookmark-btn--active {
-  color: var(--warning);
-  border-color: var(--warning);
-  background: rgba(245, 166, 35, 0.1);
-}
+/* .detail__title, .detail__actions, .detail__bookmark-btn, .detail__catalog-line:
+   removed in Phase 2 — see bottom of file for new .detail__title and .detail__actions
+   (new .detail__action--bookmark replaces the legacy .detail__bookmark-btn). */
 
 .detail__link {
   display: inline-flex;
