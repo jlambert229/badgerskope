@@ -1641,9 +1641,19 @@ async function init() {
   /* Hash change */
   window.addEventListener("hashchange", () => {
     const params = readHashParams();
+    if (params.tab && (params.tab === "stats" || params.tab === "compare" || params.tab === "browse")) {
+      switchTab(params.tab);
+    }
+    if (params.category && els.category && els.category.value !== params.category) {
+      els.category.value = params.category;
+      els.category.dispatchEvent(new Event("change"));
+    }
     if (params.entry) {
       const entry = getEntryByTitle(params.entry);
       if (entry) openDetail(entry);
+    }
+    if (!params.entry && els.dialog?.open) {
+      els.dialog.close();
     }
   });
 
