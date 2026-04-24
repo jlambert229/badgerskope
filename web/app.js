@@ -689,35 +689,46 @@ function renderDetailHtml(entry) {
   const id = getEntryId(entry);
   const isBookmarked = bookmarks.has(id);
   const tier = highestTier(entry);
+  const dq = entry.distinctiveQuality;
 
-  const cats = (entry.wellnessCategories || [])
-    .map((k) => {
-      const w = wellnessLabel(catIndex, k);
-      return `<span class="detail__badge" title="${escapeHtml(w.full)}">${escapeHtml(w.short)}</span>`;
-    })
-    .join("");
+  // ----- facts strip pieces -----
+  const factsParts = [];
+  if (entry.compoundType) {
+    factsParts.push(
+      `<span class="detail__fact" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>`
+    );
+  }
+  const primaryCat = (entry.wellnessCategories || [])[0];
+  if (primaryCat) {
+    const w = wellnessLabel(catIndex, primaryCat);
+    factsParts.push(`<span class="detail__fact" title="${escapeHtml(w.full)}">${escapeHtml(w.short)}</span>`);
+  }
+  const fdaStatus =
+    tier.tier === "approved" ? "FDA approved" :
+    tier.tier === "pivotal" ? "In clinical trials" :
+    tier.tier === "phase1" ? "Early research" :
+    tier.tier === "preclinical" ? "Animal studies" :
+    tier.tier === "practice" ? "Clinic use" : "Status unknown";
+  factsParts.push(`<span class="detail__fact">${escapeHtml(fdaStatus)}</span>`);
+  if (entry.dopingStatus?.prohibited) {
+    factsParts.push(`<span class="detail__fact detail__fact--warn">WADA-prohibited</span>`);
+  }
+  const srcCount = (entry.sources || []).length;
+  factsParts.push(`<span class="detail__fact">${srcCount} source${srcCount !== 1 ? "s" : ""}</span>`);
+  if (primaryCat) {
+    factsParts.push(
+      `<a class="detail__compare-link" href="#tab=stats&category=${encodeURIComponent(primaryCat)}">See how this compares →</a>`
+    );
+  }
 
-  const benefits = (entry.reportedBenefits || [])
-    .map((b) => `<li>${escapeHtml(b)}</li>`)
-    .join("");
+  // ----- body pieces -----
+  const benefitsList = entry.reportedBenefits || [];
+  const visibleBenefits = benefitsList.slice(0, 5);
+  const moreBenefits = benefitsList.length - visibleBenefits.length;
+  const benefitsHtml = visibleBenefits.map((b) => `<li>${escapeHtml(b)}</li>`).join("");
 
-  const apps = (entry.potentialApplications || [])
-    .map(
-      (a) =>
-        `<li><strong>${escapeHtml(a.personCenteredBenefit || "")}</strong>
-        <div class="detail__muted">${escapeHtml(a.evidenceNote || "")}</div></li>`
-    )
-    .join("");
-
+  // ----- depth accordion pieces -----
   const synergy = renderSynergyPills(entry.synergisticWith);
-
-  const sources = (entry.sources || [])
-    .map(
-      (s) =>
-        `<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.label || s.url)}</a></li>`
-    )
-    .join("");
-
   const doseRows = (entry.doseGuidelines || [])
     .map((d) => {
       const ev = formatEvidenceBasis(d.evidenceBasis);
@@ -728,8 +739,6 @@ function renderDetailHtml(entry) {
       </tr>`;
     })
     .join("");
-
-  const dq = entry.distinctiveQuality;
   const dqThemes = (dq?.themes || [])
     .map((k) => {
       const tip = kfIdx[k] || "";
@@ -737,169 +746,117 @@ function renderDetailHtml(entry) {
       return `<span class="detail__badge" title="${escapeHtml(tip)}">${escapeHtml(friendlyTheme)}</span>`;
     })
     .join("");
+  const sources = (entry.sources || [])
+    .map(
+      (s) =>
+        `<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.label || s.url)}</a></li>`
+    )
+    .join("");
 
+  const apps = (entry.potentialApplications || [])
+    .map(
+      (a) =>
+        `<li><strong>${escapeHtml(a.personCenteredBenefit || "")}</strong>
+         <div class="detail__muted">${escapeHtml(a.evidenceNote || "")}</div></li>`
+    )
+    .join("");
+
+  // ----- render -----
   return `
-    <div class="detail__hero-bar" style="border-left: 4px solid ${tier.color}">
-      <div class="detail__hero-top">
-        <div>
-          <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
-          ${entry.compoundType ? `<span class="detail__compound-type" title="${escapeHtml(compoundTypeExplainer(entry.compoundType))}">${escapeHtml(formatCompoundType(entry.compoundType))}</span>` : ""}
-        </div>
-        <div class="detail__hero-right">
-          <span class="detail__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
-        </div>
+    <p class="detail__disclaimer-strip">Research summary, not medical advice. Talk to a licensed professional before making health decisions.</p>
+
+    <header class="detail__hero">
+      <div class="detail__hero-head">
+        <h2 class="detail__title" id="detail-title">${escapeHtml(title)}</h2>
+        <span class="detail__evidence-badge" style="background:${tier.color}" title="${escapeHtml(evidenceTierExplainer(tier.tier))}">${escapeHtml(tier.label)}</span>
       </div>
-      <div class="detail__hero-actions">
-        <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
-          ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
-        </button>
-      </div>
-    </div>
+      <p class="detail__hero-summary">${escapeHtml(entry.researchSummary || "")}</p>
+    </header>
 
-    ${cats ? `<div class="detail__cats">${cats}</div>` : ""}
+    <div class="detail__facts">${factsParts.join('<span class="detail__fact-sep" aria-hidden="true">\xb7</span>')}</div>
 
-    ${dq?.headline
-      ? `<div class="detail__section detail__section--highlight">
-      <h3>What it's known for</h3>
-      <p class="detail__prose detail__prose--lg">${escapeHtml(dq.headline)}</p>
-      ${dqThemes ? `<div class="detail__row">${dqThemes}</div>` : ""}
-      ${dq.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
-    </div>`
-      : ""
-    }
+    <section class="detail__body">
+      ${dq?.headline ? `<p class="detail__body-subhead">${escapeHtml(dq.headline)}</p>` : ""}
+      ${entry.notes ? `<aside class="detail__callout detail__callout--warn">${escapeHtml(entry.notes)}</aside>` : ""}
+      ${benefitsHtml ? `
+        <h3 class="detail__body-heading">What researchers found</h3>
+        <ul class="detail__benefits">${benefitsHtml}</ul>
+        ${moreBenefits > 0 ? `<p class="detail__body-more">+ ${moreBenefits} more in research details below</p>` : ""}
+      ` : ""}
+    </section>
 
-    <div class="detail__section">
-      <h3>In plain English</h3>
-      <p class="detail__prose">${escapeHtml(entry.researchSummary || "")}</p>
-    </div>
+    <section class="detail__depth">
+      <h3 class="detail__depth-title">Research details</h3>
 
-    ${(() => {
-      const primaryCat = (entry.wellnessCategories || [])[0];
-      if (!primaryCat) return "";
-      const catEntries = db.entries.filter(e => (e.wellnessCategories || []).includes(primaryCat));
-      if (catEntries.length < 2) return "";
-      const catName = FRIENDLY_CATEGORIES[primaryCat] || primaryCat.replace(/_/g, " ");
-      const tierCounts = {};
-      catEntries.forEach(e => {
-        const t = highestTier(e);
-        tierCounts[t.label] = (tierCounts[t.label] || 0) + 1;
-      });
-      const thisTier = tier;
-      const betterCount = catEntries.filter(e => highestTier(e).rank < thisTier.rank).length;
-      const sameCount = catEntries.filter(e => highestTier(e).rank === thisTier.rank).length;
-      const totalInCat = catEntries.length;
-      const position = betterCount === 0 ? "the strongest" : betterCount < totalInCat / 2 ? "above average" : "below average";
+      <details class="detail__depth-item">
+        <summary>Dosing &amp; timing</summary>
+        <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
+      </details>
 
-      const barHtml = EVIDENCE_TIERS
-        .filter(t => tierCounts[t.label])
-        .map(t => {
-          const count = tierCounts[t.label] || 0;
-          const pct = ((count / totalInCat) * 100).toFixed(0);
-          const isThis = t.tier === thisTier.tier;
-          return `<div class="ev-compare__bar${isThis ? ' ev-compare__bar--current' : ''}">
-            <span class="ev-compare__label">${escapeHtml(t.label)}${isThis ? ' (this)' : ''}</span>
-            <div class="ev-compare__track"><div class="ev-compare__fill" style="width:${pct}%;background:${t.color}"></div></div>
-            <span class="ev-compare__count">${count}</span>
-          </div>`;
-        }).join("");
+      <details class="detail__depth-item">
+        <summary>Cycling pattern</summary>
+        <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "No established cycling pattern.")}</p>
+      </details>
 
-      return `<div class="detail__section">
-        <h3>Evidence in context</h3>
-        <p class="detail__help">How this compound's evidence compares to the ${totalInCat} other entries in "${escapeHtml(catName)}".</p>
-        <p class="ev-compare__verdict" style="color:${thisTier.color}">This entry has <strong>${escapeHtml(position)}</strong> evidence for its category (${escapeHtml(thisTier.label)}).</p>
-        <div class="ev-compare">${barHtml}</div>
-      </div>`;
-    })()}
-
-    ${entry.notes ? `<div class="detail__section detail__section--note"><h3>Important note</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
-
-    ${benefits ? `<div class="detail__section">
-      <h3>What the research shows</h3>
-      <p class="detail__help">Each line is tagged by the type of evidence behind it.</p>
-      <ul class="detail__benefits">${benefits}</ul>
-    </div>` : ""}
-
-    <div class="detail__section">
-      <h3>How it's typically used</h3>
-      <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes || "No established dosing information available.")}</p>
-    </div>
-
-    <details class="detail__section detail__collapsible">
-      <summary><h3>Cycling pattern</h3></summary>
-      <p class="detail__prose">${escapeHtml(entry.cyclingNotes || "No established cycling pattern.")}</p>
-    </details>
-
-    ${doseRows
-      ? `<details class="detail__section detail__collapsible">
-      <summary><h3>Published doses from the literature</h3></summary>
-      <p class="detail__help">These are doses that appeared in published research. They are not personal dosing instructions.</p>
-      <div class="table-wrap">
-        <table class="doses">
-          <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
-          <tbody>${doseRows}</tbody>
-        </table>
-      </div>
-    </details>`
-      : ""
-    }
-
-    ${apps ? `<div class="detail__section">
-      <h3>Potential uses people explore</h3>
-      <p class="detail__help">What people are looking for when they research this compound, with evidence quality noted.</p>
-      <ul class="detail__apps">${apps}</ul>
-    </div>` : ""}
-
-    ${synergy ? `<div class="detail__section">
-      <h3>Often discussed alongside</h3>
-      <p class="detail__help">These appear together in research, product lines, or practice patterns \u2014 not a recommendation to combine.</p>
-      <ul class="synergy-list">${synergy}</ul>
-    </div>` : ""}
-
-    ${(() => {
-      const srcList = entry.sources || [];
-      if (srcList.length === 0) return '<div class="detail__section"><h3>Sources</h3><p class="detail__muted">No linked sources for this entry.</p></div>';
-
-      let pubmed = 0, pmc = 0, wiki = 0, fda = 0, other = 0;
-      srcList.forEach(s => {
-        const url = (s.url || "").toLowerCase();
-        if (url.includes("pubmed.ncbi") || url.includes("/pubmed/")) pubmed++;
-        else if (url.includes("/pmc/") || url.includes("ncbi.nlm.nih.gov/pmc")) pmc++;
-        else if (url.includes("wikipedia.org")) wiki++;
-        else if (url.includes("fda.gov") || url.includes("medlineplus")) fda++;
-        else other++;
-      });
-
-      const qualityParts = [];
-      if (fda > 0) qualityParts.push(`${fda} regulatory`);
-      if (pubmed + pmc > 0) qualityParts.push(`${pubmed + pmc} peer-reviewed`);
-      if (wiki > 0) qualityParts.push(`${wiki} reference`);
-      if (other > 0) qualityParts.push(`${other} other`);
-
-      const qualityScore = fda * 4 + (pubmed + pmc) * 3 + wiki * 1 + other * 1;
-      const maxScore = srcList.length * 4;
-      const pct = maxScore > 0 ? Math.round((qualityScore / maxScore) * 100) : 0;
-      const barColor = pct >= 75 ? "#22c55e" : pct >= 50 ? "#14b8a6" : pct >= 25 ? "#f59e0b" : "#9ca3af";
-
-      return `<div class="detail__section">
-        <h3>Verify it yourself</h3>
-        <p class="detail__help">Published references you can check.</p>
-        <div class="source-quality">
-          <div class="source-quality__bar">
-            <span class="source-quality__label">Source quality</span>
-            <div class="source-quality__track"><div class="source-quality__fill" style="width:${pct}%;background:${barColor}"></div></div>
-            <span class="source-quality__pct">${pct}%</span>
-          </div>
-          <span class="source-quality__breakdown">${qualityParts.join(" · ")}</span>
+      ${doseRows ? `
+      <details class="detail__depth-item">
+        <summary>Doses in published research</summary>
+        <div class="table-wrap">
+          <table class="doses">
+            <thead><tr><th>Used for</th><th>Evidence</th><th>What research found</th></tr></thead>
+            <tbody>${doseRows}</tbody>
+          </table>
         </div>
-        <ul class="detail__sources">${sources}</ul>
-      </div>`;
-    })()}
+      </details>` : ""}
 
-    <div class="detail__disclaimer">
-      <strong>Reminder:</strong> This is a research summary, not medical advice. Consult a licensed professional before making health decisions.
-    </div>
+      ${synergy ? `
+      <details class="detail__depth-item">
+        <summary>Often discussed alongside</summary>
+        <ul class="synergy-list">${synergy}</ul>
+      </details>` : ""}
+
+      ${apps ? `
+      <details class="detail__depth-item">
+        <summary>Potential uses people explore</summary>
+        <ul class="detail__apps">${apps}</ul>
+      </details>` : ""}
+
+      ${dqThemes ? `
+      <details class="detail__depth-item">
+        <summary>Research themes</summary>
+        <div class="detail__row">${dqThemes}</div>
+        ${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
+      </details>` : ""}
+
+      <details class="detail__depth-item">
+        <summary>Sources (${srcCount})</summary>
+        ${srcCount > 0
+          ? `<ul class="detail__sources">${sources}</ul>`
+          : `<p class="detail__muted">No linked sources for this entry.</p>`}
+      </details>
+    </section>
+
+    <footer class="detail__actions" role="group" aria-label="Detail actions">
+      <button type="button" class="detail__action detail__action--bookmark" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
+        <span aria-hidden="true">${isBookmarked ? "★" : "☆"}</span>
+        <span class="detail__action-label">Bookmark</span>
+      </button>
+      <button type="button" class="detail__action detail__action--share" data-action="share" aria-label="Share link">
+        <span aria-hidden="true">↗</span>
+        <span class="detail__action-label">Share</span>
+      </button>
+      <button type="button" class="detail__action detail__action--print" data-action="print" aria-label="Print">
+        <span aria-hidden="true">⎙</span>
+        <span class="detail__action-label">Print</span>
+      </button>
+      <a class="detail__action detail__action--report" href="https://github.com/jlambert229/badgerskope/issues/new?title=${encodeURIComponent('Issue with ' + title)}" target="_blank" rel="noopener noreferrer" aria-label="Report an issue">
+        <span aria-hidden="true">!</span>
+        <span class="detail__action-label">Report</span>
+      </a>
+    </footer>
   `;
 }
+
 
 function syncDetailNav() {
   const multi = detailQueue.length > 1;
@@ -921,15 +878,36 @@ function showDetailAt(index) {
 }
 
 function bindDetailEvents() {
-  const bookmarkBtn = els.detailBody.querySelector(".detail__bookmark-btn");
+  const bookmarkBtn = els.detailBody.querySelector(".detail__action--bookmark");
   if (bookmarkBtn) {
     bookmarkBtn.addEventListener("click", () => {
       const id = bookmarkBtn.dataset.entryId;
       toggleBookmark(id);
-      bookmarkBtn.innerHTML = (bookmarks.has(id) ? "\u2605" : "\u2606") + " Bookmark";
+      bookmarkBtn.querySelector("span[aria-hidden='true']").textContent = bookmarks.has(id) ? "★" : "☆";
       render();
     });
   }
+
+  const shareBtn = els.detailBody.querySelector(".detail__action--share");
+  if (shareBtn) {
+    shareBtn.addEventListener("click", () => {
+      const url = location.origin + location.pathname + location.hash;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          shareBtn.classList.add("detail__action--done");
+          setTimeout(() => shareBtn.classList.remove("detail__action--done"), 1500);
+        });
+      } else {
+        window.prompt("Copy this link:", url);
+      }
+    });
+  }
+
+  const printBtn = els.detailBody.querySelector(".detail__action--print");
+  if (printBtn) {
+    printBtn.addEventListener("click", () => window.print());
+  }
+
   els.detailBody.querySelectorAll(".synergy-pill").forEach((pill) => {
     pill.addEventListener("click", () => {
       const t = pill.dataset.synergyTitle;
