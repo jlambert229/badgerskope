@@ -58,9 +58,15 @@ function render() {
   const ev = els.evidenceFilter ? els.evidenceFilter.value : "";
   const sortMode = els.sort.value;
 
+  const hasSafetyData = (e) => {
+    const se = e.commonSideEffects;
+    if (!se) return false;
+    return (se.common?.length || 0) + (se.serious?.length || 0) > 0;
+  };
+
   let list = state.db.entries.filter(
     (e) =>
-      (state.showExperimental || !!e.commonSideEffects) &&
+      (state.showExperimental || hasSafetyData(e)) &&
       matchesSearch(e, q) &&
       matchesCategory(e, cat) &&
       matchesCompound(e, comp) &&
@@ -74,7 +80,7 @@ function render() {
   const selN = state.selectedIds.size;
   const hiddenExperimental = state.showExperimental
     ? 0
-    : state.db.entries.filter((e) => !e.commonSideEffects).length;
+    : state.db.entries.filter((e) => !hasSafetyData(e)).length;
   if (els.stats) {
     const baseLine = `Showing ${list.length} of ${state.db.entries.length}`;
     const expLine = hiddenExperimental > 0
