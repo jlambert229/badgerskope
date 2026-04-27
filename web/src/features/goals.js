@@ -15,8 +15,8 @@ const GOAL_DESCRIPTIONS = {
 };
 
 export function initGoals() {
-  const searchZone = document.querySelector(".search-zone");
-  const browseToolbar = document.querySelector(".browse-toolbar");
+  const searchZone = document.querySelector(".lib-search");
+  const browseToolbar = document.querySelector(".lib-toolbar");
   const insertTarget = browseToolbar || searchZone;
   if (!insertTarget) return;
 

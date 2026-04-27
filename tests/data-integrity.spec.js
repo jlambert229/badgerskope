@@ -74,8 +74,9 @@ test.describe("Data integrity — silent data bugs users notice", () => {
     await page.click("#filters-toggle");
     await page.locator("#advanced-filters").waitFor({ state: "visible" });
 
-    // Apply a category filter
-    await page.locator("#category").selectOption({ index: 1 });
+    // Filter by evidence tier — regulatory_label always has visible entries
+    // (FDA-approved compounds are never marked experimental).
+    await page.locator("#evidence-filter").selectOption("regulatory_label");
     await page.waitForTimeout(300);
 
     const filteredCards = await page.locator(".card").count();

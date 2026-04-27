@@ -47,7 +47,10 @@ test.describe("CSS rendering (iOS WebKit)", () => {
     const fontLoaded = await page.evaluate(async () => {
       await document.fonts.ready;
       const families = [...document.fonts].map((f) => f.family);
-      return families.some((f) => f.includes("IBM Plex"));
+      // Brand stack: Oswald (display), Inter (body), JetBrains Mono (data)
+      return families.some((f) => f.includes("Oswald"))
+          && families.some((f) => f.includes("Inter"))
+          && families.some((f) => f.includes("JetBrains Mono"));
     });
     expect(fontLoaded).toBe(true);
   });
@@ -62,16 +65,9 @@ test.describe("CSS rendering (iOS WebKit)", () => {
     expect(brightness).toBeLessThan(50);
   });
 
-  test("light mode colors are correct", async ({ page }) => {
-    await page.click("#theme-toggle");
-    await page.waitForTimeout(200);
-
-    const bg = await page.evaluate(() => {
-      return getComputedStyle(document.body).backgroundColor;
-    });
-    const rgb = bg.match(/\d+/g)?.map(Number) || [];
-    const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
-    expect(brightness).toBeGreaterThan(200);
+  test.skip("light mode colors are correct", async () => {
+    // Brand identity is dark-only after the editorial brutalist redesign.
+    // Light mode and the theme toggle were intentionally removed.
   });
 
   test("evidence badges have visible text", async ({ page }) => {
@@ -96,14 +92,22 @@ test.describe("CSS rendering (iOS WebKit)", () => {
     }
   });
 
-  test("border-radius renders on cards (WebKit subpixel)", async ({ page }) => {
-    const hasRadius = await page.evaluate(() => {
+  test("cards render with brutalist hairline borders (no rounding)", async ({ page }) => {
+    // The brand is brutalist — radius is 0 everywhere by design.
+    // Instead of asserting radius, assert the card has visible hairline borders.
+    const cardStyles = await page.evaluate(() => {
       const card = document.querySelector(".card");
-      if (!card) return false;
+      if (!card) return null;
       const style = getComputedStyle(card);
-      return parseFloat(style.borderRadius) > 0;
+      return {
+        radius: parseFloat(style.borderRadius),
+        borderRight: style.borderRightWidth,
+        borderBottom: style.borderBottomWidth,
+      };
     });
-    expect(hasRadius).toBe(true);
+    expect(cardStyles).not.toBeNull();
+    expect(cardStyles.radius).toBe(0);
+    expect(parseFloat(cardStyles.borderRight)).toBeGreaterThan(0);
   });
 
   test("tab bar active state is visually distinct", async ({ page }) => {

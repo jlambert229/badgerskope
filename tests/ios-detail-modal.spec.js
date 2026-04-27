@@ -11,9 +11,8 @@ test.describe("Detail modal on iOS", () => {
     await page.waitForTimeout(400);
 
     const scrollable = await page.evaluate(() => {
-      const panel = document.querySelector(".modal__panel");
+      const panel = document.querySelector(".modal-panel");
       if (!panel) return false;
-      // Panel should allow internal scrolling
       const style = getComputedStyle(panel);
       return style.overflowY === "auto" || style.overflowY === "scroll";
     });

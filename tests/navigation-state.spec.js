@@ -13,11 +13,12 @@ test.describe("Navigation and state — bugs that lose user context", () => {
   });
 
   test("URL hash restores filters on reload", async ({ page }) => {
-    await page.goto("/web/#search=bpc");
+    // Use "semaglutide" — an FDA-approved compound (non-experimental, visible by default).
+    await page.goto("/web/#search=semaglutide");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
     const searchValue = await page.locator("#search").inputValue();
-    expect(searchValue).toBe("bpc");
+    expect(searchValue).toBe("semaglutide");
 
     const cardCount = await page.locator(".card").count();
     expect(cardCount).toBeGreaterThan(0);

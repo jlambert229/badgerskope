@@ -8,7 +8,7 @@ const STORAGE_KEY = "bs_orientation_dismissed";
 export function initOrientation() {
   if (localStorage.getItem(STORAGE_KEY)) return;
 
-  const searchZone = document.querySelector(".search-zone");
+  const searchZone = document.querySelector(".lib-search");
   if (!searchZone) return;
 
   const banner = document.createElement("div");
