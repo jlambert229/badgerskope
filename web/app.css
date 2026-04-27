@@ -2655,13 +2655,30 @@ kbd {
     font-size: 1.15rem;
   }
   .detail__section {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    padding: 0.85rem 0.95rem;
   }
+  /* Pre-mobile-pass this was 0.68rem (~10.9px) — undermining the
+     "scannable headings" goal exactly where it matters most. */
   .detail__section h3 {
-    font-size: 0.68rem;
+    font-size: 0.95rem;
   }
   .detail__prose {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  /* Doses table th was 0.68rem — too small to read on a phone */
+  table.doses th {
+    font-size: 0.72rem;
+  }
+  table.doses td {
     font-size: 0.85rem;
+  }
+  /* Evidence-comparison: drop the 140px fixed label width on narrow
+     screens so the bar gets enough room. */
+  .ev-compare__label {
+    flex: 0 0 110px;
+    font-size: 0.72rem;
   }
 }
 
