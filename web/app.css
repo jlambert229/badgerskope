@@ -1114,11 +1114,12 @@ a:hover { text-decoration: underline; }
   align-items: center;
   font-family: var(--mono);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
   white-space: nowrap;
   line-height: 1.4;
+  color: #0b0e13;
 }
 
 .evidence--approved {
