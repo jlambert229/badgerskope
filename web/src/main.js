@@ -43,6 +43,7 @@ import { initInteractions } from "./features/interactions.js";
 import { initOrientation } from "./features/orientation.js";
 import { initStartHere } from "./features/start-here.js";
 import { initSportFilter } from "./features/sport-filter.js";
+import { initExperimentalToggle } from "./features/experimental-toggle.js";
 
 /* ------------------------------------------------------------------ */
 /*  Grid render                                                        */
@@ -59,6 +60,7 @@ function render() {
 
   let list = state.db.entries.filter(
     (e) =>
+      (state.showExperimental || !!e.commonSideEffects) &&
       matchesSearch(e, q) &&
       matchesCategory(e, cat) &&
       matchesCompound(e, comp) &&
@@ -70,8 +72,16 @@ function render() {
 
   const frag = document.createDocumentFragment();
   const selN = state.selectedIds.size;
+  const hiddenExperimental = state.showExperimental
+    ? 0
+    : state.db.entries.filter((e) => !e.commonSideEffects).length;
   if (els.stats) {
-    els.stats.textContent = `Showing ${list.length} of ${state.db.entries.length}${selN ? ` \u00b7 ${selN} selected` : ""}`;
+    const baseLine = `Showing ${list.length} of ${state.db.entries.length}`;
+    const expLine = hiddenExperimental > 0
+      ? ` \u00b7 ${hiddenExperimental} experimental hidden`
+      : "";
+    const selLine = selN ? ` \u00b7 ${selN} selected` : "";
+    els.stats.textContent = baseLine + expLine + selLine;
   }
 
   const hasFilters = q || cat || comp || known || ev;
@@ -368,6 +378,7 @@ async function init() {
   if (els.grid) els.grid.removeAttribute("aria-busy");
 
   // Initialize feature enhancements
+  initExperimentalToggle({ onChange: render });
   initRecent();
   initBookmarksToggle();
   initChips();
