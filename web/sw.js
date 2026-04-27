@@ -1,4 +1,4 @@
-const CACHE_NAME = "badgerskope-v4";
+const CACHE_NAME = "badgerskope-v5";
 const STATIC_ASSETS = [
   "/web/",
   "/web/index.html",
