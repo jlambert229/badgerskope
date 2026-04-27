@@ -32,9 +32,33 @@ export function setDetailCallbacks({ render, updateHash, readHashParams, writeHa
 /*  Evidence-basis formatting                                          */
 /* ------------------------------------------------------------------ */
 
+const EVIDENCE_BASIS_LABELS = {
+  regulatory_label: "FDA-approved use",
+  pivotal_trials: "Large human trial",
+  phase1_human: "Early human study",
+  preclinical_animal: "Animal study",
+  compounded_practice: "Clinic use",
+  clinical_fixed_combo_development: "Combo drug trial",
+  co_packaged_definition: "Co-packaged product",
+  co_packaged_or_parallel_components: "Sold together",
+  co_secretagogue_grey_literature: "Informal pairing",
+  co_secretagogue_or_fixed_ratio: "Common pairing",
+  vendor_blend_definition: "Vendor description",
+  named_stack_product: "Vendor stack",
+  named_stack_mechanism_complement: "Vendor stack rationale",
+  hypothesized_mitochondrial_complement: "Hypothesized pairing",
+  hypothesized_redox_mitochondrial_complement: "Hypothesized pairing",
+  immune_thymus_theme_juxtaposition: "Theme overlap",
+  innate_immunity_theme_speculative: "Speculative pairing",
+  khavinson_course_marketing: "Vendor course copy",
+  pituitary_axis_combination_discourse: "Forum / vendor discussion",
+  traditional_co_use_practice: "Traditional pairing",
+  wellness_adjunct_folklore: "Folklore",
+};
+
 export function formatEvidenceBasis(key) {
   const tip = state.doseLegend[key] || "";
-  const label = key ? key.replace(/_/g, " ") : "";
+  const label = EVIDENCE_BASIS_LABELS[key] || (key ? key.replace(/_/g, " ") : "");
   const t = tierForKey(key);
   return { label, tip, tier: t.tier, color: t.color };
 }
@@ -49,10 +73,13 @@ export function renderSynergyPills(synergyList) {
       const basis = formatEvidenceBasis(s.evidenceBasis);
       const titles = s.catalogTitles || [];
       const pills = titles
-        .map(
-          (t) =>
-            `<button type="button" class="synergy-pill" data-synergy-title="${escapeHtml(t)}">${escapeHtml(t)}</button>`
-        )
+        .map((t) => {
+          const linked = (state.db?.entries || []).find(
+            (e) => getCatalogTitle(e) === t,
+          );
+          const display = linked ? getDisplayName(linked) : t;
+          return `<button type="button" class="synergy-pill" data-synergy-title="${escapeHtml(t)}" title="${escapeHtml(t)}">${escapeHtml(display)}</button>`;
+        })
         .join(" ");
       return `<li>${pills}
         <span class="evidence-pill" style="background:${basis.color}" title="${escapeHtml(basis.tip)}">${escapeHtml(basis.label)}</span>
@@ -173,8 +200,6 @@ export function renderDetailHtml(entry) {
       </div>`;
     })()}
 
-    ${entry.notes ? `<div class="detail__section detail__section--note"><h3>Heads up</h3><p class="detail__prose">${escapeHtml(entry.notes)}</p></div>` : ""}
-
     ${(() => {
       const primaryCat = (entry.wellnessCategories || [])[0];
       if (!primaryCat) return "";
@@ -221,6 +246,20 @@ export function renderDetailHtml(entry) {
       <ul class="detail__apps">${apps}</ul>
     </div>` : ""}
 
+    ${(() => {
+      const se = entry.commonSideEffects;
+      if (!se) return "";
+      const common = (se.common || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
+      const serious = (se.serious || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
+      if (!common && !serious) return "";
+      return `<div class="detail__section">
+        <h3>Common side effects</h3>
+        ${common ? `<p class="detail__label">Most common</p><ul class="detail__benefits">${common}</ul>` : ""}
+        ${serious ? `<p class="detail__label">Serious but rare</p><ul class="detail__benefits">${serious}</ul>` : ""}
+        <p class="detail__help">Reported in trials and prescribing information. Not a complete list — your doctor has the full picture.</p>
+      </div>`;
+    })()}
+
     ${entry.dosingTimingNotes ? `<div class="detail__section">
       <h3>How people use it</h3>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes)}</p>
@@ -228,9 +267,9 @@ export function renderDetailHtml(entry) {
     </div>` : ""}
 
     ${entry.cyclingNotes ? `<div class="detail__section">
-      <h3>Cycling pattern</h3>
+      <h3>${tier.tier === "approved" ? "Starting and stopping" : "Cycling pattern"}</h3>
       <p class="detail__prose">${escapeHtml(entry.cyclingNotes)}</p>
-      <p class="detail__help">Community reports and limited research. Your needs may differ.</p>
+      ${tier.tier === "approved" ? "" : `<p class="detail__help">Community reports and limited research. Your needs may differ.</p>`}
     </div>` : ""}
 
     ${doseRows
@@ -256,6 +295,11 @@ export function renderDetailHtml(entry) {
     ${dqThemes ? `<div class="detail__section">
       <h3>Research themes</h3>
       <div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
+    </div>` : ""}
+
+    ${entry.notes ? `<div class="detail__section detail__section--note">
+      <h3>About this listing</h3>
+      <p class="detail__prose">${escapeHtml(entry.notes)}</p>
     </div>` : ""}
 
     ${(() => {

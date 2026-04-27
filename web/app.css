@@ -1864,6 +1864,19 @@ table.compare tbody tr:last-child td {
   font-style: italic;
 }
 
+.detail__label {
+  margin: 0.85rem 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.detail__label:first-child {
+  margin-top: 0;
+}
+
 .detail__section p,
 .detail__section li {
   margin: 0 0 0.5rem;

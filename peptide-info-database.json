@@ -88,6 +88,20 @@
         "commonDrugName": "Semaglutide (10 mg)"
       },
       "compoundType": "peptide_incretin",
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting or stepping up the dose",
+          "Diarrhea or constipation",
+          "Stomach pain, vomiting, or feeling overly full",
+          "Headache and tiredness in the first few weeks"
+        ],
+        "serious": [
+          "Pancreatitis (severe stomach pain that won't go away)",
+          "Gallbladder problems, including gallstones",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Possible thyroid tumor risk seen in animal studies (boxed warning on the label)"
+        ]
+      },
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
       "doseGuidelines": [
         {
@@ -102,7 +116,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "Exact mapping of the vendor code \"1G-SGT\" to semaglutide is not confirmed in published scientific research by that string; summary describes semaglutide as the widely used GLP-1 drug class.",
+      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide \u2014 the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
@@ -163,6 +177,20 @@
         "commonDrugName": "Semaglutide (20 mg)"
       },
       "compoundType": "peptide_incretin",
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting or stepping up the dose",
+          "Diarrhea or constipation",
+          "Stomach pain, vomiting, or feeling overly full",
+          "Headache and tiredness in the first few weeks"
+        ],
+        "serious": [
+          "Pancreatitis (severe stomach pain that won't go away)",
+          "Gallbladder problems, including gallstones",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Possible thyroid tumor risk seen in animal studies (boxed warning on the label)"
+        ]
+      },
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
       "doseGuidelines": [
         {
@@ -177,7 +205,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "Exact mapping of the vendor code \"1G-SGT\" to semaglutide is not confirmed in published scientific research by that string; summary describes semaglutide as the widely used GLP-1 drug class.",
+      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide \u2014 the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
@@ -247,7 +275,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
@@ -286,6 +314,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting treatment or increasing the dose",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite and indigestion",
+          "Stomach (abdominal) pain"
+        ],
+        "serious": [
+          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
+          "Pancreatitis (severe stomach pain that may radiate to the back)",
+          "Gallbladder problems, including gallstones and inflammation",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
+        ]
       }
     },
     {
@@ -303,7 +348,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
@@ -342,6 +387,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting treatment or increasing the dose",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite and indigestion",
+          "Stomach (abdominal) pain"
+        ],
+        "serious": [
+          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
+          "Pancreatitis (severe stomach pain that may radiate to the back)",
+          "Gallbladder problems, including gallstones and inflammation",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
+        ]
       }
     },
     {
@@ -359,7 +421,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
@@ -398,6 +460,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting treatment or increasing the dose",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite and indigestion",
+          "Stomach (abdominal) pain"
+        ],
+        "serious": [
+          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
+          "Pancreatitis (severe stomach pain that may radiate to the back)",
+          "Gallbladder problems, including gallstones and inflammation",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
+        ]
       }
     },
     {
@@ -415,7 +494,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Vendor \"2G-TZ\" is widely described in retail copy as a tirzepatide-class dual agonist; confirm identity with the supplier certificate of analysis for your vial.",
+      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
@@ -454,6 +533,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting treatment or increasing the dose",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite and indigestion",
+          "Stomach (abdominal) pain"
+        ],
+        "serious": [
+          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
+          "Pancreatitis (severe stomach pain that may radiate to the back)",
+          "Gallbladder problems, including gallstones and inflammation",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
+        ]
       }
     },
     {
@@ -471,7 +567,7 @@
         }
       ],
       "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
-      "notes": "Retail \"3G-RT\" is commonly used as shorthand for retatrutide-class triple agonists in grey-market listings.",
+      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is a triple agonist that acts on three hormone receptors (GLP-1, GIP, and glucagon). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
@@ -506,6 +602,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, most often during dose increases",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite",
+          "Mild, temporary increases in heart rate"
+        ],
+        "serious": [
+          "Pancreatitis was reported in a small number of trial participants",
+          "Gallbladder-related events such as gallstones",
+          "Modest rises in heart rate that warrant monitoring",
+          "Because it activates the glucagon receptor, effects on blood sugar control and liver enzymes are being watched closely",
+          "Long-term safety, including any thyroid risk seen with related drugs, is still being studied"
+        ]
       }
     },
     {
@@ -523,7 +636,7 @@
         }
       ],
       "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
-      "notes": "Retail \"3G-RT\" is commonly used as shorthand for retatrutide-class triple agonists in grey-market listings.",
+      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is a triple agonist that acts on three hormone receptors (GLP-1, GIP, and glucagon). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
@@ -558,6 +671,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, most often during dose increases",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite",
+          "Mild, temporary increases in heart rate"
+        ],
+        "serious": [
+          "Pancreatitis was reported in a small number of trial participants",
+          "Gallbladder-related events such as gallstones",
+          "Modest rises in heart rate that warrant monitoring",
+          "Because it activates the glucagon receptor, effects on blood sugar control and liver enzymes are being watched closely",
+          "Long-term safety, including any thyroid risk seen with related drugs, is still being studied"
+        ]
       }
     },
     {
@@ -575,7 +705,7 @@
         }
       ],
       "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
-      "notes": "Retail \"3G-RT\" is commonly used as shorthand for retatrutide-class triple agonists in grey-market listings.",
+      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is a triple agonist that acts on three hormone receptors (GLP-1, GIP, and glucagon). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
@@ -610,6 +740,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, most often during dose increases",
+          "Diarrhea",
+          "Vomiting",
+          "Constipation",
+          "Decreased appetite",
+          "Mild, temporary increases in heart rate"
+        ],
+        "serious": [
+          "Pancreatitis was reported in a small number of trial participants",
+          "Gallbladder-related events such as gallstones",
+          "Modest rises in heart rate that warrant monitoring",
+          "Because it activates the glucagon receptor, effects on blood sugar control and liver enzymes are being watched closely",
+          "Long-term safety, including any thyroid risk seen with related drugs, is still being studied"
+        ]
       }
     },
     {
@@ -713,7 +860,8 @@
           "experimental_weight_adjunct"
         ],
         "basisNote": "The weight-loss trial results for this fragment did not match the success of approved weight-loss drugs."
-      }
+      },
+      "notes": "AOD-9604 is an experimental fragment of human growth hormone that was studied in the 2000s as a potential obesity treatment but failed to show meaningful weight-loss benefit in Phase 2b trials and was never approved by the FDA or any major regulator as a drug. The FDA has explicitly stated AOD-9604 is not an approved drug and has placed it on its list of bulk substances that compounding pharmacies may not use. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -879,7 +1027,7 @@
         }
       ],
       "dosingTimingNotes": "Designed as a weekly injection, similar to other weight-loss injectables. Retail vials may not match the exact doses used in pharmaceutical trials.",
-      "notes": "Listing name \"Cag-10mg\" is a vendor shorthand; verify exact composition and mass balance on the certificate of analysis.",
+      "notes": "Cagrilintide is an investigational long-acting amylin analog from Novo Nordisk being studied for weight management, most prominently as part of CagriSema, a fixed-dose combination with semaglutide (the active ingredient in Wegovy and Ozempic). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Phase 3 CagriSema-style development; exact retail vial must match pharmaceutical specs to mean anything similar.",
@@ -919,6 +1067,23 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on the cagrilintide drug class; its combination with semaglutide is being studied under the name CagriSema."
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, particularly when starting or moving to a higher dose",
+          "Vomiting",
+          "Diarrhea or constipation",
+          "Decreased appetite",
+          "Injection-site reactions such as redness or itching",
+          "Fatigue"
+        ],
+        "serious": [
+          "Pancreatitis has been reported infrequently in trials of cagrilintide and the CagriSema combination",
+          "Gallbladder problems, including gallstones",
+          "Possible allergic or hypersensitivity reactions",
+          "When combined with semaglutide (CagriSema), risk of low blood sugar increases, especially with other diabetes medicines",
+          "Long-term safety is still being evaluated in ongoing Phase 3 studies"
+        ]
       }
     },
     {
@@ -1754,7 +1919,23 @@
           "skin_tanning_libido"
         ],
         "basisNote": "Regulated differently in different countries; unapproved cosmetic use still happens."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea",
+          "Headache",
+          "Implant-site reactions such as pain, redness, or bruising",
+          "Darkening of the skin, freckles, and moles",
+          "Fatigue",
+          "Back pain"
+        ],
+        "serious": [
+          "New or changing moles, so regular full-body skin exams by a dermatologist are required",
+          "Possible masking of skin cancers because of overall skin darkening",
+          "Allergic reactions"
+        ]
+      },
+      "notes": "Afamelanotide, sold as Scenesse, is an FDA-approved implant that increases skin pigment to help adults with erythropoietic protoporphyria tolerate light exposure without painful skin reactions. It is sometimes marketed by unregulated vendors as Melanotan-1 or MT-1, but only the Scenesse implant is FDA-approved; injectable copies sold online are not. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -1799,7 +1980,25 @@
           "skin_tanning_libido"
         ],
         "basisNote": "Side effects including nausea, blood pressure changes, and mole darkening appear in medical case reports."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea and vomiting",
+          "Facial flushing",
+          "Spontaneous erections in men",
+          "Loss of appetite",
+          "Darkening of moles, freckles, and overall skin",
+          "Injection-site reactions"
+        ],
+        "serious": [
+          "The FDA has warned that Melanotan II is an unapproved drug and that products sold online are not regulated for safety, purity, or sterility",
+          "Published case reports describe new or rapidly changing moles, dysplastic nevi, and melanoma in users",
+          "Reports of priapism (painful, prolonged erection requiring emergency care)",
+          "Reports of kidney injury, posterior reversible encephalopathy syndrome (a brain swelling condition), and severe allergic reactions",
+          "UK and EU regulators have issued similar safety alerts urging consumers not to use it"
+        ]
+      },
+      "notes": "Melanotan II (MT-II) is an unapproved synthetic analog of alpha-MSH, sold on the grey market as a tanning and libido aid. It is not approved by the FDA or any other major drug regulator, and the FDA, UK MHRA, and other agencies have issued public warnings against its use due to documented safety concerns including melanoma case reports. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2057,7 +2256,24 @@
           "reproduction_social"
         ],
         "basisNote": "The hype around nasal-spray use runs ahead of reliably reproduced results from human trials."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea or vomiting",
+          "Stronger or more frequent contractions during labor",
+          "Headache",
+          "Faster or irregular heartbeat",
+          "Flushing"
+        ],
+        "serious": [
+          "Excessively strong contractions that can injure the uterus or harm the baby",
+          "Dangerously low sodium and water retention with prolonged use, which can cause seizures",
+          "Serious allergic reactions",
+          "Bleeding after delivery",
+          "Changes in blood pressure and heart rhythm"
+        ]
+      },
+      "notes": "Oxytocin is a natural hormone made by the brain; the injectable form (brand name Pitocin) is FDA-approved to start or strengthen labor and to control bleeding after childbirth. Intranasal and other uses for bonding, anxiety, or autism are off-label and not FDA-approved. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2157,7 +2373,24 @@
           "skin_tanning_libido"
         ],
         "basisNote": "Blood pressure increase and nausea are listed concerns; grey-market vials may differ from the approved product."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea (sometimes strong, especially after the first dose)",
+          "Flushing or warmth in the face",
+          "Headache",
+          "Injection-site reactions such as redness or irritation",
+          "Vomiting",
+          "Temporary darkening of the skin, gums, or face (hyperpigmentation)"
+        ],
+        "serious": [
+          "Temporary rises in blood pressure and small drops in heart rate after each dose, so it is not recommended for people with uncontrolled high blood pressure or known heart disease",
+          "Focal hyperpigmentation that may not fully fade after stopping",
+          "Severe nausea that may require anti-nausea medicine",
+          "Allergic reactions"
+        ]
+      },
+      "notes": "Bremelanotide, sold as Vyleesi (also called PT-141 in research), is an FDA-approved on-demand injection for premenopausal women with acquired, generalized hypoactive sexual desire disorder. The FDA label warns it can transiently raise blood pressure, so it should not be used by people with uncontrolled hypertension or known cardiovascular disease. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2323,7 +2556,23 @@
           "growth_hormone_axis"
         ],
         "basisNote": "Still widely offered in anti-aging clinics; results depend on how well your pituitary gland still works."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Pain, redness, swelling, or itching at the injection site",
+          "Flushing or warmth in the face",
+          "Headache",
+          "Nausea",
+          "Trouble swallowing",
+          "Dizziness"
+        ],
+        "serious": [
+          "Allergic reactions, including rash or trouble breathing",
+          "Possible effects on thyroid hormone levels",
+          "Unknown long-term safety when obtained from compounding pharmacies"
+        ]
+      },
+      "notes": "Sermorelin is a shortened version of growth-hormone-releasing hormone that signals the pituitary to release growth hormone. It was previously sold in the US as Geref for diagnosing and treating growth hormone deficiency, but the manufacturer withdrew it in 2008; today it is only available through compounding pharmacies, and the FDA has flagged compounded sermorelin as not an FDA-approved drug. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2539,7 +2788,25 @@
           "metabolic_incretins"
         ],
         "basisNote": "Based on pharmaceutical company clinical trial reports; not the same as claims made by grey-market vial sellers."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially during dose escalation",
+          "Vomiting",
+          "Diarrhea",
+          "Constipation",
+          "Decreased appetite",
+          "Injection-site reactions"
+        ],
+        "serious": [
+          "Pancreatitis was reported in a small number of participants",
+          "Gallbladder-related events",
+          "Modest increases in heart rate",
+          "Because it activates the glucagon receptor, effects on blood sugar, liver enzymes, and metabolism are being monitored",
+          "Long-term safety, including any cardiovascular or thyroid signals, is still being studied"
+        ]
+      },
+      "notes": "Survodutide is an investigational once-weekly injectable being co-developed by Boehringer Ingelheim and Zealand Pharma for obesity and metabolic dysfunction-associated steatohepatitis (MASH). It is a dual agonist that activates both the GLP-1 and glucagon receptors. It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2570,7 +2837,7 @@
       "researchSummary": "A synthetic version of a fragment from thymosin beta-4, a natural protein involved in cell movement and tissue repair. Popular in sports recovery for claims about faster healing of injuries. Animal evidence is solid, but human clinical trials are scarce. Flagged in anti-doping contexts.",
       "sources": [
         {
-          "label": "PMC: Thymosin β4 function review",
+          "label": "PMC: Thymosin \u03b24 function review",
           "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8724243/"
         }
       ],
@@ -2651,7 +2918,24 @@
           "growth_hormone_axis"
         ],
         "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Joint pain or stiffness",
+          "Redness, itching, rash, or bruising at the injection site",
+          "Muscle pain",
+          "Swelling in the hands or feet (fluid retention)",
+          "Tingling or numbness in the hands",
+          "Upset stomach or nausea"
+        ],
+        "serious": [
+          "Higher blood sugar, which may worsen or trigger diabetes",
+          "Serious allergic reactions (hives, trouble breathing, swelling of the face)",
+          "Possible increased risk of cancer growth in people with active cancer",
+          "Fluid buildup around the wrist nerve causing carpal tunnel symptoms"
+        ]
+      },
+      "notes": "Tesamorelin, sold under the brand name Egrifta, is an FDA-approved injectable medicine that prompts the body to release more of its own growth hormone. It is approved specifically to reduce excess belly fat in adults living with HIV who have lipodystrophy. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2706,7 +2990,24 @@
           "growth_hormone_axis"
         ],
         "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Joint pain or stiffness",
+          "Redness, itching, rash, or bruising at the injection site",
+          "Muscle pain",
+          "Swelling in the hands or feet (fluid retention)",
+          "Tingling or numbness in the hands",
+          "Upset stomach or nausea"
+        ],
+        "serious": [
+          "Higher blood sugar, which may worsen or trigger diabetes",
+          "Serious allergic reactions (hives, trouble breathing, swelling of the face)",
+          "Possible increased risk of cancer growth in people with active cancer",
+          "Fluid buildup around the wrist nerve causing carpal tunnel symptoms"
+        ]
+      },
+      "notes": "Tesamorelin, sold under the brand name Egrifta, is an FDA-approved injectable medicine that prompts the body to release more of its own growth hormone. It is approved specifically to reduce excess belly fat in adults living with HIV who have lipodystrophy. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
@@ -2761,12 +3062,29 @@
           "growth_hormone_axis"
         ],
         "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Joint pain or stiffness",
+          "Redness, itching, rash, or bruising at the injection site",
+          "Muscle pain",
+          "Swelling in the hands or feet (fluid retention)",
+          "Tingling or numbness in the hands",
+          "Upset stomach or nausea"
+        ],
+        "serious": [
+          "Higher blood sugar, which may worsen or trigger diabetes",
+          "Serious allergic reactions (hives, trouble breathing, swelling of the face)",
+          "Possible increased risk of cancer growth in people with active cancer",
+          "Fluid buildup around the wrist nerve causing carpal tunnel symptoms"
+        ]
+      },
+      "notes": "Tesamorelin, sold under the brand name Egrifta, is an FDA-approved injectable medicine that prompts the body to release more of its own growth hormone. It is approved specifically to reduce excess belly fat in adults living with HIV who have lipodystrophy. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
         "title": "Thymosin Alpha-1 10mg",
-        "commonDrugName": "Thymalfasin (Tα1)"
+        "commonDrugName": "Thymalfasin (T\u03b11)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment courses are defined for specific conditions (e.g. alongside hepatitis antivirals).",
@@ -2815,7 +3133,20 @@
           "immune_mucosal"
         ],
         "basisNote": "Approval varies by country; grey-market supply carries risks of contamination and counterfeits."
-      }
+      },
+      "commonSideEffects": {
+        "common": [
+          "Discomfort, redness, or soreness at the injection site",
+          "Mild flu-like feelings",
+          "Muscle or joint aches",
+          "Fatigue"
+        ],
+        "serious": [
+          "Allergic reactions",
+          "Theoretical risk of overstimulating the immune system in people with autoimmune disease or organ transplants"
+        ]
+      },
+      "notes": "Thymalfasin, also called thymosin alpha-1 and sold as Zadaxin, is a synthetic copy of a small immune-signaling peptide naturally made by the thymus gland. It is approved in more than 30 countries (including parts of Europe, Asia, and Latin America) to treat chronic hepatitis B and C and as an add-on for some cancers and vaccines, but it is not FDA-approved in the United States. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
     },
     {
       "catalog": {
