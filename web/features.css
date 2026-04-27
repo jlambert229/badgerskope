@@ -588,18 +588,18 @@
   font-weight: 600;
 }
 
-/* ---- Note section ---- */
+/* ---- Note section (neutral "About this listing" framing) ---- */
 .detail__section--note {
   background: none;
   border: none;
-  border-left: 2px solid var(--warning);
+  border-left: 2px solid var(--border);
   border-radius: 0;
   padding: 0 0 0 0.75rem;
   margin-bottom: 1.25rem;
 }
 
 .detail__section--note h3 {
-  color: var(--warning);
+  color: var(--text-muted);
 }
 
 /* ---- Benefits list ---- */
