@@ -64,23 +64,27 @@ function render() {
     return (se.common?.length || 0) + (se.serious?.length || 0) > 0;
   };
 
+  const matchesOtherFilters = (e) =>
+    matchesSearch(e, q) &&
+    matchesCategory(e, cat) &&
+    matchesCompound(e, comp) &&
+    matchesKnownFor(e, known) &&
+    matchesEvidence(e, ev);
+
   let list = state.db.entries.filter(
-    (e) =>
-      (state.showExperimental || hasSafetyData(e)) &&
-      matchesSearch(e, q) &&
-      matchesCategory(e, cat) &&
-      matchesCompound(e, comp) &&
-      matchesKnownFor(e, known) &&
-      matchesEvidence(e, ev)
+    (e) => (state.showExperimental || hasSafetyData(e)) && matchesOtherFilters(e),
   );
   list = sortEntries(list, sortMode);
   state.lastVisibleList = list;
 
   const frag = document.createDocumentFragment();
   const selN = state.selectedIds.size;
+  // Count only experimental entries that *would* match the active search /
+  // filters, so the "X experimental hidden" hint is contextual instead of
+  // always showing the database-wide total.
   const hiddenExperimental = state.showExperimental
     ? 0
-    : state.db.entries.filter((e) => !hasSafetyData(e)).length;
+    : state.db.entries.filter((e) => !hasSafetyData(e) && matchesOtherFilters(e)).length;
   if (els.stats) {
     const baseLine = `Showing ${list.length} of ${state.db.entries.length}`;
     const expLine = hiddenExperimental > 0
@@ -109,7 +113,11 @@ function render() {
   if (list.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty";
-    empty.textContent = "No peptides match your current filters. Try broadening your search.";
+    if (hiddenExperimental > 0) {
+      empty.textContent = `No peptides match your current filters. ${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry" : "entries"} would match — turn on "Show experimental" to see ${hiddenExperimental === 1 ? "it" : "them"}.`;
+    } else {
+      empty.textContent = "No peptides match your current filters. Try broadening your search.";
+    }
     frag.appendChild(empty);
   } else if (groupBy) {
     const groups = new Map();

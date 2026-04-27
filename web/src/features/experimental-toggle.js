@@ -12,11 +12,14 @@ export function initExperimentalToggle({ onChange } = {}) {
   const toolbar = document.querySelector(".browse-toolbar");
   if (!toolbar) return;
 
+  let stored = false;
   try {
-    state.showExperimental = localStorage.getItem(STORAGE_KEY) === "1";
+    stored = localStorage.getItem(STORAGE_KEY) === "1";
   } catch {
-    state.showExperimental = false;
+    stored = false;
   }
+  const changed = stored !== state.showExperimental;
+  state.showExperimental = stored;
 
   const label = document.createElement("label");
   label.className = "experimental-toggle";
@@ -39,4 +42,9 @@ export function initExperimentalToggle({ onChange } = {}) {
     }
     if (typeof onChange === "function") onChange();
   });
+
+  // If the persisted value differed from the default, the initial render
+  // already ran with the wrong filter. Trigger a re-render so the grid
+  // matches the checkbox state.
+  if (changed && typeof onChange === "function") onChange();
 }
