@@ -88,6 +88,20 @@
         "commonDrugName": "Semaglutide (10 mg)"
       },
       "compoundType": "peptide_incretin",
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting or stepping up the dose",
+          "Diarrhea or constipation",
+          "Stomach pain, vomiting, or feeling overly full",
+          "Headache and tiredness in the first few weeks"
+        ],
+        "serious": [
+          "Pancreatitis (severe stomach pain that won't go away)",
+          "Gallbladder problems, including gallstones",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Possible thyroid tumor risk seen in animal studies (boxed warning on the label)"
+        ]
+      },
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
       "doseGuidelines": [
         {
@@ -102,7 +116,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "Exact mapping of the vendor code \"1G-SGT\" to semaglutide is not confirmed in published scientific research by that string; summary describes semaglutide as the widely used GLP-1 drug class.",
+      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide — the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
@@ -163,6 +177,20 @@
         "commonDrugName": "Semaglutide (20 mg)"
       },
       "compoundType": "peptide_incretin",
+      "commonSideEffects": {
+        "common": [
+          "Nausea, especially when starting or stepping up the dose",
+          "Diarrhea or constipation",
+          "Stomach pain, vomiting, or feeling overly full",
+          "Headache and tiredness in the first few weeks"
+        ],
+        "serious": [
+          "Pancreatitis (severe stomach pain that won't go away)",
+          "Gallbladder problems, including gallstones",
+          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
+          "Possible thyroid tumor risk seen in animal studies (boxed warning on the label)"
+        ]
+      },
       "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
       "doseGuidelines": [
         {
@@ -177,7 +205,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "Exact mapping of the vendor code \"1G-SGT\" to semaglutide is not confirmed in published scientific research by that string; summary describes semaglutide as the widely used GLP-1 drug class.",
+      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide — the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
