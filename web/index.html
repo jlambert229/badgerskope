@@ -36,12 +36,15 @@
            NAV
            ============================================================ -->
       <nav class="nav-bar" id="site-nav" aria-label="Primary">
-        <a href="/" class="nav-brand" title="Back to homepage">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <a href="/" class="nav-brand wordmark" title="Back to homepage">
+          <svg width="40" height="40" viewBox="0 0 100 100" fill="none" aria-hidden="true">
             <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
             <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
           </svg>
-          <span>BADGERSKOPE</span>
+          <span class="nav-brand__lockup">
+            <span class="wordmark-name">BADGERSKOPE</span>
+            <span class="wordmark-tag">EVIDENCE &gt; HYPE</span>
+          </span>
         </a>
         <div class="nav-tabs" role="tablist" aria-label="Library sections">
           <button type="button" role="tab" id="tab-browse" class="nav-tab" aria-selected="true" aria-controls="panel-browse">LIBRARY</button>
@@ -160,7 +163,17 @@
 
         <p id="load-error" class="lib-error" hidden></p>
 
-        <main class="lib-grid" id="grid" aria-busy="true"></main>
+        <div class="lib-table" role="table" aria-label="Peptide library">
+          <div class="lib-table__head" role="row" aria-hidden="true">
+            <div>FILE</div>
+            <div>COMPOUND</div>
+            <div>EVIDENCE</div>
+            <div>WELLNESS</div>
+            <div>SUMMARY</div>
+            <div></div>
+          </div>
+          <main class="lib-rows" id="grid" aria-busy="true"></main>
+        </div>
       </section>
 
       <!-- ============================================================

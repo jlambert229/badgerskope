@@ -1,5 +1,8 @@
 /**
- * Card rendering for the browse grid.
+ * Library row rendering — editorial brutalist table layout.
+ * Returns an <article class="card lib-row"> so feature modules that
+ * query .card / .card__title / .card__summary / .card__category etc.
+ * keep working.
  */
 
 import { state, getEntryId } from './state.js';
@@ -7,7 +10,6 @@ import { escapeHtml, wellnessLabel, getDisplayName, getCatalogTitle } from './ut
 import { highestTier } from './constants.js';
 import { toggleBookmark } from './bookmarks.js';
 
-/* Late-bound callbacks injected by main.js to avoid circular deps */
 let _openDetail = null;
 let _updateSelectionToolbar = null;
 
@@ -27,14 +29,12 @@ export function renderCard(entry, catIndex, cardIndex) {
   const grade = tier.grade || "F";
 
   const topChip = (entry.wellnessCategories || [])[0];
-  const chipHtml = topChip
-    ? `<span class="card__category">${escapeHtml(wellnessLabel(catIndex, topChip).short)}</span>`
-    : "";
+  const wellnessShort = topChip ? wellnessLabel(catIndex, topChip).short : "";
 
   const fileIndex = String(cardIndex + 1).padStart(4, "0");
 
   const article = document.createElement("article");
-  article.className = "card" +
+  article.className = "card lib-row" +
     (selected ? " card--selected" : "") +
     (isBookmarked ? " card--bookmarked" : "");
   article.dataset.entryId = id;
@@ -45,20 +45,73 @@ export function renderCard(entry, catIndex, cardIndex) {
     article.classList.add("card--evidence-dashed");
   }
 
-  // \u2500\u2500 HEAD: file index + bookmark \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-  const head = document.createElement("div");
-  head.className = "card__head";
+  // ── INDEX (mono FILE №NNNN) ──────────────────────────────────────────
+  const indexCell = document.createElement("div");
+  indexCell.className = "lib-row__index card__file";
+  indexCell.textContent = `FILE №${fileIndex}`;
 
-  const fileTag = document.createElement("span");
-  fileTag.className = "card__file";
-  fileTag.textContent = `FILE\u00a0\u2116${fileIndex}`;
+  // ── COMPOUND (name + AKA stack) — clickable, opens detail ────────────
+  const nameCell = document.createElement("button");
+  nameCell.type = "button";
+  nameCell.className = "lib-row__name card__main";
+  nameCell.setAttribute("aria-label", `View details for ${displayName}`);
+  const titleEl = document.createElement("h2");
+  titleEl.className = "lib-row__title card__title";
+  titleEl.textContent = displayName;
+  nameCell.appendChild(titleEl);
+  if (catalogTitle && displayName !== catalogTitle) {
+    const sku = document.createElement("p");
+    sku.className = "lib-row__sku card__catalog-sku";
+    sku.textContent = catalogTitle;
+    nameCell.appendChild(sku);
+  }
+  nameCell.addEventListener("click", () => { if (_openDetail) _openDetail(entry); });
 
-  const label = document.createElement("label");
-  label.className = "card__select";
+  // ── EVIDENCE chip ────────────────────────────────────────────────────
+  const tierCell = document.createElement("div");
+  tierCell.className = "lib-row__tier";
+  tierCell.innerHTML = `
+    <span class="tier" data-grade="${grade}">
+      <span class="tier-letter">${grade}</span>
+    </span>
+    <span class="card__evidence-label lib-row__tier-label">${escapeHtml(tier.label)}</span>
+  `;
+
+  // ── WELLNESS chip ────────────────────────────────────────────────────
+  const wellnessCell = document.createElement("div");
+  wellnessCell.className = "lib-row__wellness";
+  if (wellnessShort) {
+    wellnessCell.innerHTML = `<span class="card__category">${escapeHtml(wellnessShort)}</span>`;
+  }
+
+  // ── SUMMARY ──────────────────────────────────────────────────────────
+  const summaryCell = document.createElement("div");
+  summaryCell.className = "lib-row__summary card__summary";
+  summaryCell.textContent = summary;
+
+  // ── ACTIONS (bookmark, select, open arrow) ───────────────────────────
+  const actionsCell = document.createElement("div");
+  actionsCell.className = "lib-row__actions";
+
+  const bookmarkBtn = document.createElement("button");
+  bookmarkBtn.type = "button";
+  bookmarkBtn.className = "lib-row__bookmark card__bookmark";
+  bookmarkBtn.setAttribute("aria-label", `Bookmark ${displayName}`);
+  bookmarkBtn.title = "Bookmark";
+  bookmarkBtn.textContent = isBookmarked ? "★" : "☆";
+  bookmarkBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleBookmark(id);
+    bookmarkBtn.textContent = state.bookmarks.has(id) ? "★" : "☆";
+    article.classList.toggle("card--bookmarked", state.bookmarks.has(id));
+  });
+
+  const selectLabel = document.createElement("label");
+  selectLabel.className = "lib-row__select card__select";
+  selectLabel.title = "Select for compare";
   const cb = document.createElement("input");
   cb.type = "checkbox";
   cb.checked = selected;
-  cb.title = "Select for compare / batch view";
   cb.setAttribute("aria-label", `Select ${displayName}`);
   cb.addEventListener("click", (e) => e.stopPropagation());
   cb.addEventListener("change", () => {
@@ -67,62 +120,15 @@ export function renderCard(entry, catIndex, cardIndex) {
     article.classList.toggle("card--selected", state.selectedIds.has(id));
     if (_updateSelectionToolbar) _updateSelectionToolbar();
   });
-  label.appendChild(cb);
+  selectLabel.appendChild(cb);
 
-  const bookmarkBtn = document.createElement("button");
-  bookmarkBtn.type = "button";
-  bookmarkBtn.className = "card__bookmark";
-  bookmarkBtn.setAttribute("aria-label", `Bookmark ${displayName}`);
-  bookmarkBtn.textContent = isBookmarked ? "\u2605" : "\u2606";
-  bookmarkBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    toggleBookmark(id);
-    bookmarkBtn.textContent = state.bookmarks.has(id) ? "\u2605" : "\u2606";
-    article.classList.toggle("card--bookmarked", state.bookmarks.has(id));
-  });
-
-  head.appendChild(fileTag);
-  head.appendChild(label);
-  head.appendChild(bookmarkBtn);
-
-  // \u2500\u2500 TITLE BLOCK \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-  const headText = document.createElement("div");
-  headText.className = "card__head-text";
-  const h2 = document.createElement("h2");
-  h2.className = "card__title";
-  h2.textContent = displayName;
-  headText.appendChild(h2);
-  if (catalogTitle && displayName !== catalogTitle) {
-    const sku = document.createElement("p");
-    sku.className = "card__catalog-sku";
-    sku.textContent = catalogTitle;
-    headText.appendChild(sku);
-  }
-
-  // \u2500\u2500 MAIN: tier chip + summary + meta \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-  const main = document.createElement("button");
-  main.type = "button";
-  main.className = "card__main";
-  main.setAttribute("aria-label", `View details for ${displayName}`);
-  main.innerHTML = `
-    <div class="card__evidence-row">
-      <span class="tier" data-grade="${grade}">
-        <span class="tier-letter">${grade}</span>
-      </span>
-      <span class="card__evidence-label">${escapeHtml(tier.label)}</span>
-    </div>
-    <p class="card__summary">${escapeHtml(summary)}</p>
-    ${chipHtml ? `<div class="card__meta">${chipHtml}</div>` : ""}
-  `;
-  main.addEventListener("click", () => {
-    if (_openDetail) _openDetail(entry);
-  });
-
-  // \u2500\u2500 FOOT: compare action \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // hidden compare button kept for keyboard / a11y access; the visible
+  // affordance is the checkbox + selection toolbar
   const compareBtn = document.createElement("button");
   compareBtn.type = "button";
-  compareBtn.className = "card__compare-btn";
-  compareBtn.textContent = selected ? "\u2212 REMOVE" : "+ COMPARE";
+  compareBtn.className = "lib-row__compare card__compare-btn";
+  compareBtn.textContent = selected ? "−" : "+";
+  compareBtn.title = selected ? "Remove from compare" : "Add to compare";
   compareBtn.setAttribute("aria-label", `Toggle compare for ${displayName}`);
   compareBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -134,13 +140,40 @@ export function renderCard(entry, catIndex, cardIndex) {
       cb.checked = true;
     }
     article.classList.toggle("card--selected", state.selectedIds.has(id));
-    compareBtn.textContent = state.selectedIds.has(id) ? "\u2212 REMOVE" : "+ COMPARE";
+    compareBtn.textContent = state.selectedIds.has(id) ? "−" : "+";
     if (_updateSelectionToolbar) _updateSelectionToolbar();
   });
 
-  article.appendChild(head);
-  article.appendChild(headText);
-  article.appendChild(main);
-  article.appendChild(compareBtn);
+  const arrow = document.createElement("button");
+  arrow.type = "button";
+  arrow.className = "lib-row__arrow";
+  arrow.setAttribute("aria-label", `Open ${displayName}`);
+  arrow.tabIndex = -1;
+  arrow.textContent = "→";
+  arrow.addEventListener("click", () => { if (_openDetail) _openDetail(entry); });
+
+  actionsCell.appendChild(bookmarkBtn);
+  actionsCell.appendChild(selectLabel);
+  actionsCell.appendChild(compareBtn);
+  actionsCell.appendChild(arrow);
+
+  article.appendChild(indexCell);
+  article.appendChild(nameCell);
+  article.appendChild(tierCell);
+  article.appendChild(wellnessCell);
+  article.appendChild(summaryCell);
+  article.appendChild(actionsCell);
+
+  // ── SAFETY pseudo-fields used by feature modules ────────────────────
+  // Several feature modules (doping, scroll, sport-filter, search-enhance)
+  // query .card__type / .card__meta-row / .card__meta. Keep an offscreen
+  // .card__meta wrapper so those queries find something deterministic.
+  const metaWrap = document.createElement("div");
+  metaWrap.className = "card__meta lib-row__meta-srt";
+  if (wellnessShort) {
+    metaWrap.innerHTML = `<span class="card__category">${escapeHtml(wellnessShort)}</span>`;
+  }
+  article.appendChild(metaWrap);
+
   return article;
 }

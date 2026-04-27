@@ -94,20 +94,19 @@ test.describe("CSS rendering (iOS WebKit)", () => {
 
   test("cards render with brutalist hairline borders (no rounding)", async ({ page }) => {
     // The brand is brutalist — radius is 0 everywhere by design.
-    // Instead of asserting radius, assert the card has visible hairline borders.
+    // Library rows separate via 1px bottom hairlines (no right rule, no radius).
     const cardStyles = await page.evaluate(() => {
       const card = document.querySelector(".card");
       if (!card) return null;
       const style = getComputedStyle(card);
       return {
         radius: parseFloat(style.borderRadius),
-        borderRight: style.borderRightWidth,
-        borderBottom: style.borderBottomWidth,
+        borderBottom: parseFloat(style.borderBottomWidth),
       };
     });
     expect(cardStyles).not.toBeNull();
     expect(cardStyles.radius).toBe(0);
-    expect(parseFloat(cardStyles.borderRight)).toBeGreaterThan(0);
+    expect(cardStyles.borderBottom).toBeGreaterThan(0);
   });
 
   test("tab bar active state is visually distinct", async ({ page }) => {
