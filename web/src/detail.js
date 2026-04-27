@@ -9,7 +9,7 @@ import {
   FRIENDLY_CATEGORIES, getDisplayName, getCatalogTitle,
 } from './utils.js';
 import {
-  highestTier, evidenceTierExplainer, compoundTypeExplainer,
+  highestTier, compoundTypeExplainer,
   tierForKey, EVIDENCE_TIERS
 } from './constants.js';
 import { GROUP_THEME_LABELS } from './groups.js';
