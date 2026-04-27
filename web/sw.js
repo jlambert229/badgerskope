@@ -1,4 +1,4 @@
-const CACHE_NAME = "badgerskope-v3";
+const CACHE_NAME = "badgerskope-v4";
 const STATIC_ASSETS = [
   "/web/",
   "/web/index.html",
@@ -31,6 +31,10 @@ const STATIC_ASSETS = [
   "/web/src/features/notes.js",
   "/web/src/features/doping.js",
   "/web/src/features/interactions.js",
+  "/web/src/features/orientation.js",
+  "/web/src/features/start-here.js",
+  "/web/src/features/sport-filter.js",
+  "/web/src/features/experimental-toggle.js",
   "/web/logo.png",
   "/web/logo-hero.png",
   "/web/favicon.png",

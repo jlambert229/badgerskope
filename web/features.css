@@ -80,7 +80,6 @@
   color: var(--text-muted);
   cursor: pointer;
   padding-right: 0.75rem;
-  border-right: 1px solid var(--border);
   margin-right: 0.25rem;
 }
 .bookmarks-toggle input {
