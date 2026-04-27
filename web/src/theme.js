@@ -1,21 +1,11 @@
 /**
- * Light/dark theme toggle (localStorage-backed).
+ * Theme — dark only. The brand identity does not have a light variant.
+ * Kept as a no-op so any saved "peptide-theme=light" doesn't try to flip.
  */
 
 export function loadTheme() {
-  const saved = localStorage.getItem("peptide-theme");
-  if (saved === "light") {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
+  document.documentElement.removeAttribute("data-theme");
+  try { localStorage.removeItem("peptide-theme"); } catch (_) {}
 }
 
-export function toggleTheme() {
-  const isLight = document.documentElement.getAttribute("data-theme") === "light";
-  if (isLight) {
-    document.documentElement.removeAttribute("data-theme");
-    localStorage.setItem("peptide-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("peptide-theme", "light");
-  }
-}
+export function toggleTheme() { /* no-op */ }
