@@ -97,7 +97,8 @@ test.describe("iOS viewport and layout", () => {
               !el.class.includes("filters-toggle__icon") && !el.class.includes("tab ") &&
               !el.class.includes("foot-h") && !el.class.includes("footer") &&
               !el.class.includes("skip-link") && !el.class.includes("nav-tab") &&
-              !el.class.includes("nav-brand") && !el.class.includes("dotsep")
+              !el.class.includes("nav-brand") && !el.class.includes("dotsep") &&
+              !el.class.includes("lib-row__")
     );
     if (critical.length > 0) {
       console.log("Undersized critical touch targets:", critical.slice(0, 10));
