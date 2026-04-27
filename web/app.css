@@ -2821,3 +2821,31 @@ kbd {
   border-color: #c8d0da;
   background: #fff;
 }
+
+/* --------------------------------------------------------------------------
+   Coarse-pointer touch-target floor (44x44 Apple HIG / ~48dp Material)
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  .theme-toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .search-zone__reset {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .filters-toggle {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .detail__bookmark-btn,
+  .share-btn,
+  .print-btn {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.85rem;
+  }
+}
