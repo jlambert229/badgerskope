@@ -91,6 +91,25 @@
   white-space: nowrap;
 }
 
+/* ---- Experimental toggle ---- */
+.experimental-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding-right: 0.75rem;
+  margin-right: 0.25rem;
+}
+.experimental-toggle input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.experimental-toggle span {
+  white-space: nowrap;
+}
+
 /* ---- Share button ---- */
 .share-btn {
   font: inherit;

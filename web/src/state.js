@@ -11,6 +11,7 @@ export const state = {
   detailIndex: 0,
   bookmarks: new Set(),
   activeTab: "browse",
+  showExperimental: false,
 };
 
 export function getEntryId(entry) {

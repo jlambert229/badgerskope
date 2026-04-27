@@ -43,6 +43,7 @@ import { initInteractions } from "./features/interactions.js";
 import { initOrientation } from "./features/orientation.js";
 import { initStartHere } from "./features/start-here.js";
 import { initSportFilter } from "./features/sport-filter.js";
+import { initExperimentalToggle } from "./features/experimental-toggle.js";
 
 /* ------------------------------------------------------------------ */
 /*  Grid render                                                        */
@@ -57,21 +58,40 @@ function render() {
   const ev = els.evidenceFilter ? els.evidenceFilter.value : "";
   const sortMode = els.sort.value;
 
+  const hasSafetyData = (e) => {
+    const se = e.commonSideEffects;
+    if (!se) return false;
+    return (se.common?.length || 0) + (se.serious?.length || 0) > 0;
+  };
+
+  const matchesOtherFilters = (e) =>
+    matchesSearch(e, q) &&
+    matchesCategory(e, cat) &&
+    matchesCompound(e, comp) &&
+    matchesKnownFor(e, known) &&
+    matchesEvidence(e, ev);
+
   let list = state.db.entries.filter(
-    (e) =>
-      matchesSearch(e, q) &&
-      matchesCategory(e, cat) &&
-      matchesCompound(e, comp) &&
-      matchesKnownFor(e, known) &&
-      matchesEvidence(e, ev)
+    (e) => (state.showExperimental || hasSafetyData(e)) && matchesOtherFilters(e),
   );
   list = sortEntries(list, sortMode);
   state.lastVisibleList = list;
 
   const frag = document.createDocumentFragment();
   const selN = state.selectedIds.size;
+  // Count only experimental entries that *would* match the active search /
+  // filters, so the "X experimental hidden" hint is contextual instead of
+  // always showing the database-wide total.
+  const hiddenExperimental = state.showExperimental
+    ? 0
+    : state.db.entries.filter((e) => !hasSafetyData(e) && matchesOtherFilters(e)).length;
   if (els.stats) {
-    els.stats.textContent = `Showing ${list.length} of ${state.db.entries.length}${selN ? ` \u00b7 ${selN} selected` : ""}`;
+    const baseLine = `Showing ${list.length} of ${state.db.entries.length}`;
+    const expLine = hiddenExperimental > 0
+      ? ` \u00b7 ${hiddenExperimental} experimental hidden`
+      : "";
+    const selLine = selN ? ` \u00b7 ${selN} selected` : "";
+    els.stats.textContent = baseLine + expLine + selLine;
   }
 
   const hasFilters = q || cat || comp || known || ev;
@@ -93,7 +113,11 @@ function render() {
   if (list.length === 0) {
     const empty = document.createElement("p");
     empty.className = "empty";
-    empty.textContent = "No peptides match your current filters. Try broadening your search.";
+    if (hiddenExperimental > 0) {
+      empty.textContent = `No peptides match your current filters. ${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry" : "entries"} would match — turn on "Show experimental" to see ${hiddenExperimental === 1 ? "it" : "them"}.`;
+    } else {
+      empty.textContent = "No peptides match your current filters. Try broadening your search.";
+    }
     frag.appendChild(empty);
   } else if (groupBy) {
     const groups = new Map();
@@ -368,6 +392,7 @@ async function init() {
   if (els.grid) els.grid.removeAttribute("aria-busy");
 
   // Initialize feature enhancements
+  initExperimentalToggle({ onChange: render });
   initRecent();
   initBookmarksToggle();
   initChips();
