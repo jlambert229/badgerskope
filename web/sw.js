@@ -1,4 +1,4 @@
-const CACHE_NAME = "badgerskope-v6";
+const CACHE_NAME = "badgerskope-v7-evidence-hype";
 const STATIC_ASSETS = [
   "/web/",
   "/web/index.html",
@@ -35,9 +35,8 @@ const STATIC_ASSETS = [
   "/web/src/features/start-here.js",
   "/web/src/features/sport-filter.js",
   "/web/src/features/experimental-toggle.js",
-  "/web/logo.png",
-  "/web/logo-hero.png",
-  "/web/favicon.png",
+  "/web/badger-180.png",
+  "/web/badger-256.png",
 ];
 
 // JSON data — always try network first

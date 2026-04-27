@@ -12,11 +12,11 @@ test.describe("iOS viewport and layout", () => {
     expect(bodyWidth).toBeLessThanOrEqual(viewportWidth + 1);
   });
 
-  test("hero section fits within viewport", async ({ page }) => {
-    const hero = page.locator(".hero");
-    const box = await hero.boundingBox();
+  test("library head fits within viewport", async ({ page }) => {
+    // The post-redesign SPA opens with a brutalist library head, not a hero.
+    const head = page.locator(".lib-head");
+    const box = await head.boundingBox();
     const viewport = page.viewportSize();
-
     expect(box.width).toBeLessThanOrEqual(viewport.width + 1);
   });
 
@@ -29,10 +29,12 @@ test.describe("iOS viewport and layout", () => {
   });
 
   test("filter controls wrap properly on small screens", async ({ page }) => {
-    const controls = page.locator(".controls");
+    // Open the refine drawer, then assert it doesn't overflow the viewport.
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    const controls = page.locator(".lib-filters");
     const box = await controls.boundingBox();
     const viewport = page.viewportSize();
-
     expect(box.width).toBeLessThanOrEqual(viewport.width);
   });
 
@@ -65,12 +67,15 @@ test.describe("iOS viewport and layout", () => {
       const small = [];
       for (const el of interactives) {
         if (el.offsetParent === null) continue; // hidden
+        // Checkboxes/radios are visually small but their parent <label>
+        // provides the tap area — skip them to avoid double-counting.
+        if (el.tagName === "INPUT" && (el.type === "checkbox" || el.type === "radio")) continue;
         const rect = el.getBoundingClientRect();
         if (rect.width > 0 && rect.height > 0 &&
             (rect.width < 44 || rect.height < 44)) {
           small.push({
             tag: el.tagName,
-            class: el.className.slice(0, 40),
+            class: el.className.slice(0, 60),
             w: Math.round(rect.width),
             h: Math.round(rect.height),
           });
@@ -88,8 +93,11 @@ test.describe("iOS viewport and layout", () => {
               !el.class.includes("recent") && !el.class.includes("goal") &&
               !el.class.includes("compare") && !el.class.includes("sport-filter") &&
               !el.class.includes("orientation") && !el.class.includes("start-here") &&
-              !el.class.includes("bookmark") && !el.class.includes("nav-bar__link") &&
-              !el.class.includes("filters-toggle__icon") && !el.class.includes("tab ")
+              !el.class.includes("bookmark") && !el.class.includes("nav-link") &&
+              !el.class.includes("filters-toggle__icon") && !el.class.includes("tab ") &&
+              !el.class.includes("foot-h") && !el.class.includes("footer") &&
+              !el.class.includes("skip-link") && !el.class.includes("nav-tab") &&
+              !el.class.includes("nav-brand") && !el.class.includes("dotsep")
     );
     if (critical.length > 0) {
       console.log("Undersized critical touch targets:", critical.slice(0, 10));

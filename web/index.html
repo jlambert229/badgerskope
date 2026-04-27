@@ -1,28 +1,27 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="color-scheme" content="dark light" />
-    <meta name="description" content="BadgerSkope is an open peptide research library with plain-English summaries, evidence grading, and comparison tools. Not medical advice." />
-    <meta property="og:title" content="BadgerSkope — Peptide Research Library" />
-    <meta property="og:description" content="53 peptide compounds with plain-English summaries, evidence grading, and comparison tools. Free and open." />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="BadgerSkope — independent peptide research literacy. Compounds graded on what they actually do. Evidence > hype." />
+    <meta property="og:title" content="BadgerSkope — Library" />
+    <meta property="og:description" content="Peptide compounds graded A–F across evidence, safety, and access. Independent. Receipts attached." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.badgerskope.com/web/" />
-    <meta property="og:image" content="https://www.badgerskope.com/web/logo-hero.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="BadgerSkope — Peptide Research Library" />
-    <meta name="twitter:description" content="53 peptide compounds. Plain English. Evidence-graded. Free." />
-    <meta name="twitter:image" content="https://www.badgerskope.com/web/logo-hero.png" />
-    <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <title>BadgerSkope — Peptide Research Library</title>
+    <meta property="og:image" content="https://www.badgerskope.com/lockup-og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BadgerSkope — Library" />
+    <meta name="twitter:description" content="Peptide compounds graded A–F. Evidence > hype." />
+    <meta name="twitter:image" content="https://www.badgerskope.com/lockup-og.png" />
+    <meta name="theme-color" content="#0B0B0A" />
+    <link rel="icon" type="image/png" href="./badger-256.png" />
+    <link rel="apple-touch-icon" href="./badger-180.png" />
+    <title>BadgerSkope — The Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/design-tokens.css" />
@@ -30,472 +29,377 @@
     <link rel="stylesheet" href="./features.css" />
   </head>
   <body>
+    <a href="#panel-browse" class="skip-link">Skip to library</a>
+
     <div class="app">
-      <!-- ===== Sticky nav bar (the only header) ===== -->
-      <nav class="nav-bar" aria-label="Main sections">
-        <div class="nav-bar__inner">
-          <a href="/" class="nav-bar__brand" title="Back to homepage">
-            <img src="./logo-hero.png" alt="" class="nav-bar__logo" width="28" height="28" aria-hidden="true" />
-            <span class="nav-bar__name">BadgerSkope</span>
-          </a>
-          <div class="nav-bar__tabs" role="tablist" aria-label="Content sections">
-            <button type="button" role="tab" id="tab-browse" class="tab" aria-selected="true" aria-controls="panel-browse">Browse</button>
-            <button type="button" role="tab" id="tab-compare" class="tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">Compare</button>
-            <button type="button" role="tab" id="tab-stats" class="tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">Stats</button>
-          </div>
-          <div class="nav-bar__end">
-            <a href="/glossary.html" class="nav-bar__link">Glossary</a>
-            <a href="/evidence-guide.html" class="nav-bar__link">Evidence</a>
-            <button type="button" class="nav-bar__link" id="open-help" title="Help (h)">Help</button>
-            <button
-              type="button"
-              class="btn btn--icon theme-toggle"
-              id="theme-toggle"
-              aria-label="Toggle light/dark theme"
-              title="Toggle theme (t)"
-            >
-              <span class="icon-sun" aria-hidden="true">&#9788;</span>
-              <span class="icon-moon" aria-hidden="true">&#9790;</span>
-            </button>
-          </div>
+      <!-- ============================================================
+           NAV
+           ============================================================ -->
+      <nav class="nav-bar" id="site-nav" aria-label="Primary">
+        <a href="/" class="nav-brand" title="Back to homepage">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+            <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+          </svg>
+          <span>BADGERSKOPE</span>
+        </a>
+        <div class="nav-tabs" role="tablist" aria-label="Library sections">
+          <button type="button" role="tab" id="tab-browse" class="nav-tab" aria-selected="true" aria-controls="panel-browse">LIBRARY</button>
+          <button type="button" role="tab" id="tab-compare" class="nav-tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">COMPARE</button>
+          <button type="button" role="tab" id="tab-stats" class="nav-tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">STATS</button>
+        </div>
+        <div class="nav-end">
+          <a href="/evidence-guide.html" class="nav-link">EVIDENCE</a>
+          <a href="/glossary.html" class="nav-link">GLOSSARY</a>
+          <button type="button" class="nav-link" id="open-help" title="Help (h)">HELP</button>
         </div>
       </nav>
 
-      <div class="hero__stats" id="stats" aria-live="polite"></div>
-
-      <!-- ===== Browse panel ===== -->
-      <div
+      <!-- ============================================================
+           BROWSE / LIBRARY (the home / landing screen)
+           ============================================================ -->
+      <section
         role="tabpanel"
+        class="lib"
         id="panel-browse"
         aria-labelledby="tab-browse"
         tabindex="0"
       >
-        <h1 class="panel-browse__title">Peptide research library</h1>
-        <div class="search-zone">
+        <div class="lib-meta">
+          <span>BADGERSKOPE.COM &middot; THE LIBRARY</span>
+          <span id="stats" aria-live="polite">&mdash;</span>
+          <span class="mono">EVIDENCE &gt; HYPE</span>
+        </div>
+
+        <header class="lib-head">
+          <div class="lib-rule">
+            <span class="lib-rule-label">FILE 04 &mdash; THE STACKS</span>
+            <span class="lib-rule-line"></span>
+          </div>
+          <h1 class="lib-h1">THE STACKS.</h1>
+          <p class="lib-deck">
+            Every compound logged with evidence, safety, and access tiers. Search,
+            filter, group, compare. The badger doesn't care who your guru is.
+          </p>
+        </header>
+
+        <div class="lib-search">
+          <span class="lib-search-prefix" aria-hidden="true">/</span>
           <input
             id="search"
-            class="search-zone__input"
+            class="lib-search-input"
             type="search"
-            placeholder="Search peptides, compounds, benefits..."
+            placeholder="SEARCH COMPOUNDS, BENEFITS, MECHANISMS…"
             autocomplete="off"
             aria-label="Search peptides, compounds, benefits"
           />
-          <button type="button" class="search-zone__reset" id="reset-filters" hidden>Clear</button>
+          <button type="button" class="lib-search-reset" id="reset-filters" hidden>CLEAR</button>
         </div>
 
-        <div class="browse-toolbar">
+        <div class="lib-toolbar">
           <button
             type="button"
-            class="filters-toggle"
+            class="lib-toolbar-btn"
             id="filters-toggle"
             aria-expanded="false"
             aria-controls="advanced-filters"
           >
-            Filters
-            <span class="filters-toggle__icon" aria-hidden="true">+</span>
+            REFINE
+            <span class="lib-toolbar-btn__icon" aria-hidden="true">+</span>
           </button>
-          <span class="browse-toolbar__count" id="result-count"></span>
+          <span class="lib-toolbar-count" id="result-count" hidden></span>
         </div>
 
-        <section class="controls controls--advanced" id="advanced-filters" hidden>
-          <label class="field">
-            <span class="field__label">Wellness area</span>
-            <select id="category" class="field__input field__select"></select>
+        <section class="lib-filters" id="advanced-filters" hidden>
+          <label class="lib-field">
+            <span class="lib-field-label">WELLNESS AREA</span>
+            <select id="category" class="lib-field-input"></select>
           </label>
-          <label class="field">
-            <span class="field__label">Substance type</span>
-            <select id="compound" class="field__input field__select"></select>
+          <label class="lib-field">
+            <span class="lib-field-label">SUBSTANCE TYPE</span>
+            <select id="compound" class="lib-field-input"></select>
           </label>
-          <label class="field">
-            <span class="field__label">What it's researched for</span>
-            <select id="known-for" class="field__input field__select"></select>
+          <label class="lib-field">
+            <span class="lib-field-label">RESEARCHED FOR</span>
+            <select id="known-for" class="lib-field-input"></select>
           </label>
-          <label class="field">
-            <span class="field__label">How strong is the science</span>
-            <select id="evidence-filter" class="field__input field__select"></select>
+          <label class="lib-field">
+            <span class="lib-field-label">EVIDENCE TIER</span>
+            <select id="evidence-filter" class="lib-field-input"></select>
           </label>
-          <label class="field">
-            <span class="field__label">Sort</span>
-            <select id="sort" class="field__input field__select">
-              <option value="title">Name A&ndash;Z</option>
-              <option value="title-desc">Name Z&ndash;A</option>
+          <label class="lib-field">
+            <span class="lib-field-label">SORT</span>
+            <select id="sort" class="lib-field-input">
+              <option value="title">Name A–Z</option>
+              <option value="title-desc">Name Z–A</option>
               <option value="evidence">Strongest evidence first</option>
               <option value="type">By substance type</option>
             </select>
           </label>
-          <label class="field">
-            <span class="field__label">Group by</span>
-            <select id="group-by" class="field__input field__select">
+          <label class="lib-field">
+            <span class="lib-field-label">GROUP BY</span>
+            <select id="group-by" class="lib-field-input">
               <option value="">No grouping</option>
-              <option value="theme">What it's known for</option>
+              <option value="theme">Researched theme</option>
               <option value="compound">Substance type</option>
-              <option value="evidence">How strong the science is</option>
+              <option value="evidence">Evidence tier</option>
               <option value="category">Wellness area</option>
             </select>
           </label>
         </section>
 
-        <section class="selection-bar" id="selection-bar" hidden aria-label="Selection actions">
-          <span class="selection-bar__count" id="selection-count">0 selected</span>
-          <div class="selection-bar__actions">
-            <button type="button" class="btn btn--ghost" id="select-visible">Select all</button>
-            <button type="button" class="btn btn--ghost" id="clear-selection" disabled>Clear</button>
-            <button type="button" class="btn btn--primary" id="compare-selected" disabled>Compare</button>
-            <button type="button" class="btn btn--primary" id="view-selected" disabled>View details</button>
+        <section class="lib-selection" id="selection-bar" hidden aria-label="Selection actions">
+          <span class="lib-selection-count" id="selection-count">0 SELECTED</span>
+          <div class="lib-selection-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="select-visible">SELECT ALL</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="clear-selection" disabled>CLEAR</button>
+            <button type="button" class="btn btn-primary btn-sm" id="compare-selected" disabled>COMPARE &rarr;</button>
+            <button type="button" class="btn btn-primary btn-sm" id="view-selected" disabled>VIEW DETAILS &rarr;</button>
           </div>
         </section>
 
-        <p id="load-error" class="load-error" hidden></p>
+        <p id="load-error" class="lib-error" hidden></p>
 
-        <main class="grid" id="grid" aria-busy="true"></main>
-      </div>
+        <main class="lib-grid" id="grid" aria-busy="true"></main>
+      </section>
 
-      <!-- ===== Compare panel ===== -->
-      <div
+      <!-- ============================================================
+           COMPARE
+           ============================================================ -->
+      <section
         role="tabpanel"
+        class="lib"
         id="panel-compare"
         aria-labelledby="tab-compare"
         tabindex="0"
         hidden
       >
-        <section class="compare-panel">
-          <div class="compare-panel__empty" id="compare-empty">
-            <span class="monogram monogram--lg" aria-hidden="true">BS</span>
-            <p class="compare-panel__empty-title">Nothing to compare yet</p>
-            <p class="compare-panel__empty-hint">Select 2 or more entries from the Browse tab, then come back here.</p>
-            <p class="compare-panel__empty-hint compare-panel__empty-tip">Tip: Use checkboxes on cards or "Select all" to pick entries, then switch to this tab.</p>
-          </div>
-          <div class="compare-table-wrap" id="compare-table"></div>
-        </section>
-      </div>
+        <div class="lib-rule">
+          <span class="lib-rule-label">FILE 07 &mdash; SIDE-BY-SIDE</span>
+          <span class="lib-rule-line"></span>
+        </div>
+        <h1 class="lib-h1">COMPARE.</h1>
 
-      <!-- ===== Stats panel ===== -->
-      <div
+        <div class="compare-empty" id="compare-empty">
+          <div class="compare-empty-mark" aria-hidden="true">∅</div>
+          <p class="compare-empty-title">NOTHING TO COMPARE.</p>
+          <p class="compare-empty-hint">Select 2+ entries from the Library tab and come back.</p>
+        </div>
+        <div class="compare-table-wrap" id="compare-table"></div>
+      </section>
+
+      <!-- ============================================================
+           STATS
+           ============================================================ -->
+      <section
         role="tabpanel"
+        class="lib"
         id="panel-stats"
         aria-labelledby="tab-stats"
         tabindex="0"
         hidden
       >
+        <div class="lib-rule">
+          <span class="lib-rule-label">FILE 08 &mdash; THE METRICS</span>
+          <span class="lib-rule-line"></span>
+        </div>
+        <h1 class="lib-h1">THE METRICS.</h1>
+
         <section class="stats-dashboard" id="stats-dashboard">
-          <div class="info-banner info-banner--span-full">
-            <span class="info-banner__icon" aria-hidden="true">&#128202;</span>
-            <div>Overview of what's in the BadgerSkope database. Click any bar to filter the Browse tab by that value.</div>
+          <div class="stat-banner">
+            <span class="stat-banner__index">[01]</span>
+            <span>Overview of the library. Click any bar to filter the Library tab.</span>
           </div>
 
           <div class="stat-card stat-card--hero" id="stat-total">
             <div class="stat-hero__number" id="stat-total-value">&mdash;</div>
-            <div class="stat-hero__label">compounds in the library</div>
+            <div class="stat-hero__label">COMPOUNDS IN THE LIBRARY</div>
             <div class="stat-hero__sub" id="stat-total-sub"></div>
           </div>
 
           <div class="stat-card" id="stat-evidence">
-            <h3 class="stat-card__title">By evidence quality</h3>
+            <h3 class="stat-card__title">BY EVIDENCE TIER</h3>
             <div class="stat-card__body"></div>
           </div>
 
           <div class="stat-card" id="stat-compounds">
-            <h3 class="stat-card__title">By compound type</h3>
+            <h3 class="stat-card__title">BY COMPOUND TYPE</h3>
             <div class="stat-card__body"></div>
           </div>
 
           <div class="stat-card" id="stat-categories">
-            <h3 class="stat-card__title">By wellness category</h3>
+            <h3 class="stat-card__title">BY WELLNESS AREA</h3>
             <div class="stat-card__body"></div>
           </div>
 
           <div class="stat-card" id="stat-themes">
-            <h3 class="stat-card__title">By research theme</h3>
+            <h3 class="stat-card__title">BY RESEARCH THEME</h3>
             <div class="stat-card__body"></div>
           </div>
         </section>
-      </div>
+      </section>
 
-      <!-- ===== Footer ===== -->
+      <!-- ============================================================
+           FOOTER
+           ============================================================ -->
       <footer class="footer">
-        <div class="footer__top">
-          <span class="monogram monogram--footer" aria-hidden="true">BS</span>
-          <div>
-            <p class="footer__brand-name">BadgerSkope</p>
-            <p class="footer__brand-tag">Open peptide research literacy</p>
+        <div class="footer-top">
+          <div class="wordmark">
+            <svg width="56" height="56" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+              <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+              <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+            </svg>
+            <div>
+              <div class="wordmark-name">BADGERSKOPE</div>
+              <div class="wordmark-tag">EVIDENCE &gt; HYPE</div>
+            </div>
+          </div>
+          <div class="footer-cols">
+            <div>
+              <div class="foot-h">LIBRARY</div>
+              <a href="#panel-browse">All compounds</a>
+              <a href="#panel-compare">Compare</a>
+              <a href="#panel-stats">Stats</a>
+            </div>
+            <div>
+              <div class="foot-h">METHOD</div>
+              <a href="/evidence-guide.html">Evidence guide</a>
+              <a href="/glossary.html">Glossary</a>
+              <a href="/#method">How we grade</a>
+            </div>
+            <div>
+              <div class="foot-h">ABOUT</div>
+              <a href="/#faq">The badger</a>
+              <a href="/#subscribe">Newsletter</a>
+              <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
+            </div>
+            <div>
+              <div class="foot-h">LEGAL</div>
+              <a href="/#faq">Not medical advice</a>
+              <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank" rel="noopener">Report issue</a>
+            </div>
           </div>
         </div>
-        <p id="disclaimer" class="disclaimer"></p>
-        <div class="footer__bottom">
-          <p class="footer__meta" id="footer-meta"></p>
-          <p class="footer__shortcuts">
-            <kbd>?</kbd> shortcuts &middot; <kbd>h</kbd> help guide
+
+        <div class="footer-mega" aria-label="Evidence greater than hype">
+          EVIDENCE&nbsp;
+          <svg viewBox="0 0 80 100" class="gt-inline" aria-hidden="true">
+            <path d="M14 14 L66 50 L14 86" stroke-width="10" fill="none" stroke-linecap="square" stroke-linejoin="miter" style="stroke: var(--accent);"/>
+          </svg>
+          &nbsp;HYPE
+        </div>
+
+        <div class="footer-bot">
+          <p id="disclaimer" class="disclaimer"></p>
+          <p class="footer-bot-meta">
+            <span id="footer-meta"></span>
+            <span class="dotsep">&middot;</span>
+            <kbd>?</kbd> shortcuts &middot; <kbd>h</kbd> help
           </p>
         </div>
       </footer>
     </div>
 
-    <!-- ===== Detail modal ===== -->
+    <!-- ============================================================
+         DETAIL MODAL
+         ============================================================ -->
     <dialog class="modal" id="detail-dialog" aria-labelledby="detail-title">
-      <div class="modal__panel">
-        <div class="modal__toolbar">
-          <button
-            type="button"
-            class="modal__close"
-            id="detail-close"
-            aria-label="Close"
-          >&times;</button>
+      <div class="modal-panel">
+        <div class="modal-toolbar">
+          <button type="button" class="modal-close" id="detail-close" aria-label="Close">&times;</button>
         </div>
-        <nav class="detail__nav" id="detail-nav" aria-label="Selected entries" hidden>
-          <button
-            type="button"
-            class="btn btn--ghost btn--small"
-            id="detail-prev"
-            aria-label="Previous entry"
-          >&larr; Previous</button>
-          <span class="detail__nav-pos" id="detail-nav-pos"></span>
-          <button
-            type="button"
-            class="btn btn--ghost btn--small"
-            id="detail-next"
-            aria-label="Next entry"
-          >Next &rarr;</button>
+        <nav class="detail-nav" id="detail-nav" aria-label="Selected entries" hidden>
+          <button type="button" class="btn btn-ghost btn-sm" id="detail-prev" aria-label="Previous entry">&larr; PREV</button>
+          <span class="detail-nav-pos" id="detail-nav-pos"></span>
+          <button type="button" class="btn btn-ghost btn-sm" id="detail-next" aria-label="Next entry">NEXT &rarr;</button>
         </nav>
         <div id="detail-body"></div>
-        <p class="modal__hint">Press <kbd>Esc</kbd> to close &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> to navigate</p>
+        <p class="modal-hint">Press <kbd>Esc</kbd> to close &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> to navigate</p>
       </div>
     </dialog>
 
-    <!-- ===== Keyboard shortcuts modal ===== -->
+    <!-- ============================================================
+         SHORTCUTS DIALOG
+         ============================================================ -->
     <dialog class="modal modal--compact" id="shortcuts-dialog" aria-labelledby="shortcuts-title">
-      <div class="modal__panel">
-        <button
-          type="button"
-          class="modal__close"
-          id="shortcuts-close"
-          aria-label="Close shortcuts"
-        >&times;</button>
-        <h2 id="shortcuts-title" class="modal__title">Keyboard shortcuts &mdash; BadgerSkope</h2>
+      <div class="modal-panel">
+        <button type="button" class="modal-close" id="shortcuts-close" aria-label="Close shortcuts">&times;</button>
+        <h2 id="shortcuts-title" class="modal-title">KEYBOARD SHORTCUTS.</h2>
         <dl class="shortcuts-list">
-          <div class="shortcuts-list__item">
-            <dt><kbd>Esc</kbd></dt>
-            <dd>Close dialog</dd>
-          </div>
-          <div class="shortcuts-list__item">
-            <dt><kbd>&larr;</kbd> <kbd>&rarr;</kbd></dt>
-            <dd>Navigate entries</dd>
-          </div>
-          <div class="shortcuts-list__item">
-            <dt><kbd>/</kbd></dt>
-            <dd>Focus search</dd>
-          </div>
-          <div class="shortcuts-list__item">
-            <dt><kbd>?</kbd></dt>
-            <dd>Show shortcuts</dd>
-          </div>
-          <div class="shortcuts-list__item">
-            <dt><kbd>t</kbd></dt>
-            <dd>Toggle theme</dd>
-          </div>
-          <div class="shortcuts-list__item">
-            <dt><kbd>b</kbd></dt>
-            <dd>Bookmark current entry</dd>
-          </div>
-          <div class="shortcuts-list__item">
-            <dt><kbd>f</kbd></dt>
-            <dd>Toggle bookmarked only</dd>
-          </div>
+          <div><dt><kbd>Esc</kbd></dt><dd>Close dialog</dd></div>
+          <div><dt><kbd>&larr;</kbd> <kbd>&rarr;</kbd></dt><dd>Navigate entries</dd></div>
+          <div><dt><kbd>/</kbd></dt><dd>Focus search</dd></div>
+          <div><dt><kbd>?</kbd></dt><dd>Show shortcuts</dd></div>
+          <div><dt><kbd>h</kbd></dt><dd>Open help</dd></div>
+          <div><dt><kbd>b</kbd></dt><dd>Bookmark current entry</dd></div>
+          <div><dt><kbd>f</kbd></dt><dd>Toggle bookmarked-only</dd></div>
         </dl>
       </div>
     </dialog>
 
-    <!-- ===== Help / User Guide ===== -->
+    <!-- ============================================================
+         HELP DIALOG
+         ============================================================ -->
     <dialog class="modal" id="help-dialog" aria-labelledby="help-title">
-      <div class="modal__panel modal__panel--wide">
-        <button type="button" class="modal__close" id="help-close" aria-label="Close">&times;</button>
-        <h2 id="help-title" class="modal__title">How to use BadgerSkope</h2>
-        <p class="help-intro">BadgerSkope is a free, open peptide research library. Everything here is for education — not medical advice. Here's how to get the most out of it.</p>
+      <div class="modal-panel modal-panel--wide">
+        <button type="button" class="modal-close" id="help-close" aria-label="Close">&times;</button>
+        <h2 id="help-title" class="modal-title">HOW TO USE THE LIBRARY.</h2>
+        <p class="help-intro">BadgerSkope is education, not advice. Here's how to navigate the files.</p>
 
         <div class="help-section">
-          <h3>Browsing &amp; Searching</h3>
+          <h3>BROWSING</h3>
           <dl class="help-list">
-            <div class="help-item">
-              <dt>Search bar</dt>
-              <dd>Type any word to search across titles, summaries, benefits, dosing notes, and more. Supports multiple words — all must match. An autocomplete dropdown shows matching titles as you type.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Filter dropdowns</dt>
-              <dd><strong>Category:</strong> Filter by wellness area (weight, brain, immune, etc.). <strong>Type:</strong> Filter by compound class. <strong>Known for:</strong> Filter by research theme. <strong>Evidence:</strong> Show only entries at a specific evidence level. <strong>Sort:</strong> Reorder by name, evidence strength, or type.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Quick find buttons</dt>
-              <dd>The row of pill buttons below filters lets you jump to common goals like &ldquo;Weight loss&rdquo; or &ldquo;Brain &amp; mood&rdquo; with one click.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Group by</dt>
-              <dd>Use the &ldquo;Group by&rdquo; dropdown to organize entries into labeled sections by theme, compound type, evidence tier, or category.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Category chips</dt>
-              <dd>Click any colored category chip on a card to instantly filter by that category. A &ldquo;Filter&rdquo; tooltip appears on hover.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Reset filters</dt>
-              <dd>A red &ldquo;Reset filters&rdquo; button appears whenever any filter is active. Click it to clear everything.</dd>
-            </div>
+            <div><dt>Search</dt><dd>Type any word to search across titles, summaries, benefits, and dosing notes.</dd></div>
+            <div><dt>Refine</dt><dd>Click <strong>REFINE</strong> for filters by wellness area, substance type, evidence tier, sort order, and grouping.</dd></div>
+            <div><dt>Tier chips</dt><dd>Each card shows a tier letter (A–F). A = FDA-approved or strong human trials. F = unconfirmed.</dd></div>
+            <div><dt>Reset</dt><dd>The <strong>CLEAR</strong> button next to search appears whenever a filter is active.</dd></div>
           </dl>
         </div>
 
         <div class="help-section">
-          <h3>Reading an Entry</h3>
+          <h3>READING AN ENTRY</h3>
           <dl class="help-list">
-            <div class="help-item">
-              <dt>Opening details</dt>
-              <dd>Click any card to open its full detail view. You&rsquo;ll see the compound name, type, and evidence level in a header bar.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Evidence badges</dt>
-              <dd>Color-coded badges tell you how strong the evidence is. <span style="color:#22c55e">Green = FDA approved.</span> <span style="color:#14b8a6">Teal = strong human trials.</span> <span style="color:#f59e0b">Amber = early human studies.</span> <span style="color:#f97316">Orange = animal studies only.</span> <span style="color:#9ca3af">Gray = clinic practice or unknown.</span> Hover any badge for a full explanation.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Evidence in context</dt>
-              <dd>A chart shows how this entry&rsquo;s evidence compares to others in the same category. Look for the verdict: &ldquo;strongest,&rdquo; &ldquo;above average,&rdquo; or &ldquo;below average.&rdquo;</dd>
-            </div>
-            <div class="help-item">
-              <dt>Source quality</dt>
-              <dd>A quality bar above the sources shows what percentage are from high-quality origins (FDA labels and peer-reviewed papers score highest).</dd>
-            </div>
-            <div class="help-item">
-              <dt>Unit tooltips</dt>
-              <dd>Hover over units like mg, mcg, IU, or terms like HbA1c, IGF-1, BDNF to see plain-English definitions.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Sport/doping flags</dt>
-              <dd>Compounds banned by WADA or flagged by anti-doping agencies show an amber warning badge on cards and a banner in the detail view.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Collapsible sections</dt>
-              <dd>&ldquo;Cycling&rdquo; and &ldquo;Published doses&rdquo; sections start collapsed. Click to expand them.</dd>
-            </div>
+            <div><dt>Open detail</dt><dd>Click any card to read the full audit — evidence in context, source quality, dosing notes, side-effect profile, and synergy data.</dd></div>
+            <div><dt>Sport flags</dt><dd>WADA-banned compounds show an amber flag on the card and a banner in the detail view.</dd></div>
+            <div><dt>Glossary tooltips</dt><dd>Hover over units (mg, mcg, IU) and acronyms (HbA1c, IGF-1, BDNF) for plain-English definitions.</dd></div>
           </dl>
         </div>
 
         <div class="help-section">
-          <h3>Selecting &amp; Comparing</h3>
+          <h3>SELECTING &amp; COMPARING</h3>
           <dl class="help-list">
-            <div class="help-item">
-              <dt>Selecting entries</dt>
-              <dd>Use the checkbox on each card, or click &ldquo;Select all&rdquo; to select everything visible. The selection count shows in the toolbar and on the Compare tab.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Compare tab</dt>
-              <dd>With 2+ entries selected, switch to the Compare tab to see them side by side. Differences are highlighted. &ldquo;Best&rdquo; badges mark the strongest evidence.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Stack synergy map</dt>
-              <dd>The Compare tab also shows a synergy map revealing which of your selected compounds are discussed together in research or product lines.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Export CSV</dt>
-              <dd>Click &ldquo;Export CSV&rdquo; in the selection toolbar to download your selected entries as a spreadsheet.</dd>
-            </div>
-            <div class="help-item">
-              <dt>View details (multi)</dt>
-              <dd>Click &ldquo;View details&rdquo; with multiple selections to browse through them one by one with Previous/Next navigation.</dd>
-            </div>
+            <div><dt>Select</dt><dd>Use the checkbox on each card or hit <strong>SELECT ALL</strong> in the toolbar.</dd></div>
+            <div><dt>Compare</dt><dd>With 2+ entries selected, switch to the COMPARE tab. Differences are highlighted; "best" badges mark strongest evidence.</dd></div>
+            <div><dt>Stack synergy</dt><dd>The compare view also shows which selected compounds are discussed together in research or product lines.</dd></div>
           </dl>
         </div>
 
         <div class="help-section">
-          <h3>Personal Tools</h3>
+          <h3>PERSONAL TOOLS</h3>
           <dl class="help-list">
-            <div class="help-item">
-              <dt>Bookmarks</dt>
-              <dd>Click the star on any card or in the detail view to bookmark it. Toggle &ldquo;Bookmarked only&rdquo; in the toolbar to see only your bookmarks. Press <kbd>b</kbd> to bookmark, <kbd>f</kbd> to filter.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Private notes</dt>
-              <dd>Each detail view has a &ldquo;Your private notes&rdquo; section at the bottom. Your notes are saved only in your browser — never sent anywhere.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Recently viewed</dt>
-              <dd>A bar above the grid shows your last 6 viewed entries for quick access. Click &times; to clear history.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Reading tracker</dt>
-              <dd>A small green dot appears on cards you&rsquo;ve already opened, so you can track what you&rsquo;ve read.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Share &amp; print</dt>
-              <dd>Use &ldquo;Copy link&rdquo; in the detail view to share a direct link to an entry. Use &ldquo;Print&rdquo; for a clean paper copy.</dd>
-            </div>
+            <div><dt>Bookmarks</dt><dd>Star any card to bookmark it; press <kbd>b</kbd> in the detail view. Toggle bookmarked-only with <kbd>f</kbd>.</dd></div>
+            <div><dt>Notes</dt><dd>Each detail view has a private-notes section, saved in your browser only.</dd></div>
+            <div><dt>Recently viewed</dt><dd>Your last 6 viewed entries surface above the grid for quick re-access.</dd></div>
+            <div><dt>Share &amp; print</dt><dd>Copy a direct link or print a clean version from the detail toolbar.</dd></div>
           </dl>
         </div>
 
-        <div class="help-section">
-          <h3>Stats Dashboard</h3>
-          <dl class="help-list">
-            <div class="help-item">
-              <dt>Overview</dt>
-              <dd>The Stats tab shows the database at a glance — total compounds and distribution charts for compound types, categories, evidence quality, and themes.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Click to filter</dt>
-              <dd>Click any bar in the Stats dashboard to switch to the Browse tab filtered by that value.</dd>
-            </div>
-          </dl>
-        </div>
-
-        <div class="help-section">
-          <h3>Keyboard Shortcuts</h3>
-          <dl class="help-list">
-            <div class="help-item"><dt><kbd>/</kbd></dt><dd>Focus the search bar</dd></div>
-            <div class="help-item"><dt><kbd>?</kbd></dt><dd>Show keyboard shortcuts</dd></div>
-            <div class="help-item"><dt><kbd>h</kbd></dt><dd>Open this help guide</dd></div>
-            <div class="help-item"><dt><kbd>t</kbd></dt><dd>Toggle dark/light theme</dd></div>
-            <div class="help-item"><dt><kbd>b</kbd></dt><dd>Bookmark current entry</dd></div>
-            <div class="help-item"><dt><kbd>f</kbd></dt><dd>Toggle bookmarked-only filter</dd></div>
-            <div class="help-item"><dt><kbd>Esc</kbd></dt><dd>Close any dialog</dd></div>
-            <div class="help-item"><dt><kbd>&larr;</kbd> <kbd>&rarr;</kbd></dt><dd>Navigate between entries</dd></div>
-          </dl>
-        </div>
-
-        <div class="help-section">
-          <h3>Other Features</h3>
-          <dl class="help-list">
-            <div class="help-item">
-              <dt>Dark/light theme</dt>
-              <dd>Click the sun/moon icon or press <kbd>t</kbd>. Your preference is saved. On first visit, it matches your system setting.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Offline access</dt>
-              <dd>After your first visit, BadgerSkope works offline — the full database is cached in your browser.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Related &amp; similar</dt>
-              <dd>&ldquo;Often discussed alongside&rdquo; shows synergy-linked compounds. &ldquo;Similar compounds&rdquo; suggests entries in the same categories.</dd>
-            </div>
-            <div class="help-item">
-              <dt>Report an issue</dt>
-              <dd>Found an error? Click &ldquo;Report issue&rdquo; in the detail view to open a pre-filled GitHub issue.</dd>
-            </div>
-          </dl>
-        </div>
-
-        <p class="help-footer">BadgerSkope is a research literacy tool, not medical advice. All data is stored locally on your device. <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">View on GitHub</a>.</p>
+        <p class="help-footer">
+          Stored locally on your device. <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">View on GitHub</a>.
+        </p>
       </div>
     </dialog>
 
-    <!-- ===== Bookmarks bar ===== -->
+    <!-- ============================================================
+         BOOKMARKS BAR + BACK TO TOP
+         ============================================================ -->
     <div class="bookmarks-bar" id="bookmarks-bar" aria-live="polite" hidden>
-      <span class="bookmarks-bar__icon" aria-hidden="true">&#9733;</span>
+      <span class="bookmarks-bar__icon" aria-hidden="true">★</span>
       <span class="bookmarks-bar__count" id="bookmarks-count">0</span>
-      <span class="bookmarks-bar__label">bookmarked</span>
+      <span class="bookmarks-bar__label">BOOKMARKED</span>
     </div>
 
-    <!-- ===== Back to top ===== -->
-    <button
-      type="button"
-      class="back-to-top"
-      id="back-to-top"
-      aria-label="Back to top"
-      hidden
-    >&uarr;</button>
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
 
     <script src="./src/main.js" type="module"></script>
     <script>

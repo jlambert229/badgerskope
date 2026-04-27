@@ -40,10 +40,10 @@ export function initBookmarksToggle() {
     return toggle;
   }
 
-  const toolbar = document.querySelector(".browse-toolbar");
+  const toolbar = document.querySelector(".lib-toolbar");
   if (toolbar) createToggle(toolbar, "append");
 
-  const selActions = document.querySelector(".selection-bar__actions");
+  const selActions = document.querySelector(".lib-selection-actions");
   if (selActions) createToggle(selActions, "prepend");
 
   document.addEventListener("keydown", (e) => {

@@ -9,7 +9,7 @@ import { state } from "../state.js";
 const STORAGE_KEY = "badgerskope.showExperimental";
 
 export function initExperimentalToggle({ onChange } = {}) {
-  const toolbar = document.querySelector(".browse-toolbar");
+  const toolbar = document.querySelector(".lib-toolbar");
   if (!toolbar) return;
 
   let stored = false;

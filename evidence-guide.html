@@ -1,366 +1,479 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evidence Guide — BadgerSkope</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Evidence Guide &mdash; BadgerSkope</title>
   <meta name="description" content="How to read peptide evidence tiers, spot red flags, and think critically about health claims. A BS detector for the peptide world.">
-  <link rel="icon" type="image/png" href="./favicon.png">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <meta name="theme-color" content="#0B0B0A">
+
+  <link rel="icon" type="image/png" href="./badger-256.png">
+  <link rel="apple-touch-icon" href="./badger-180.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./design-tokens.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./design-tokens.css">
+  <link rel="stylesheet" href="./marketing.css">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #07090d;
-      color: #c8cdd5;
-      line-height: 1.7;
+    /* ============================================================
+       Evidence guide — content-page extensions on top of marketing.css
+       ============================================================ */
+    .doc-wrap { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 700px) { .doc-wrap { padding: 0 20px; } }
+
+    .doc-hero { padding: 96px 40px 56px; }
+    @media (max-width: 700px) { .doc-hero { padding: 64px 20px 32px; } }
+    .doc-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(56px, 9vw, 128px);
+      line-height: 0.9;
+      letter-spacing: var(--tracking-display);
+      margin: 24px 0;
+      text-transform: uppercase;
+    }
+    .doc-hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .doc-hero p {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.5;
+      color: var(--fg-2);
+      max-width: 56ch;
+      margin: 0;
+    }
+
+    .doc-section {
+      padding: 56px 0;
+      border-top: 1px solid var(--line);
+    }
+    .doc-section h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: var(--tracking-display);
+      text-transform: uppercase;
+      margin: 16px 0 24px;
+    }
+    .doc-section p {
+      color: var(--fg-2);
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 0 16px;
+    }
+    .doc-section p strong { color: var(--fg); font-weight: 500; }
+    .doc-section p em { color: var(--accent); font-style: italic; }
+
+    /* tier card list — brutalist evidence-tier rows */
+    .ev-tiers { display: flex; flex-direction: column; }
+    .ev-tier {
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .ev-tier:last-child { border-bottom: 1px solid var(--line); }
+    .ev-tier-head {
+      display: flex; flex-direction: column; gap: 12px;
+      position: sticky; top: 90px;
+    }
+    .ev-tier-num {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: var(--tracking-mono-lg);
+      color: var(--fg-3);
+    }
+    .ev-tier-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .ev-tier-tag .tier-letter {
+      width: 32px; height: 32px;
       font-size: 16px;
-      -webkit-font-smoothing: antialiased;
     }
-    a { color: #4c9dff; text-decoration: none; transition: color .2s; }
-    a:hover { color: #7db8ff; }
-    code, .mono { font-family: 'IBM Plex Mono', monospace; }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+    .ev-tier-tag .tier-text {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: var(--tracking-mono);
+    }
+    .ev-tier-body h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+    }
+    .ev-tier-body p { margin: 0 0 12px; }
+    .ev-tier-body p.expect {
+      color: var(--fg-3);
+      font-style: italic;
+      font-size: 15px;
+    }
+    .ev-tier-body p.examples {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--fg-3);
+      letter-spacing: 0.02em;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line);
+    }
+    .ev-tier-body p.examples strong { color: var(--accent); font-weight: 500; }
 
-    /* ====== NAV ====== */
-    .site-header {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(7, 9, 13, .72);
-      backdrop-filter: blur(16px) saturate(1.6);
-      -webkit-backdrop-filter: blur(16px) saturate(1.6);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .85rem 1.5rem;
-    }
-    .nav-logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
-    .monogram {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 34px; height: 34px; border-radius: 8px;
-      background: linear-gradient(135deg, #4c9dff 0%, #1a6dcc 100%);
-      color: #fff; font-weight: 800; font-size: .85rem; letter-spacing: -.02em;
-    }
-    .wordmark { color: #fff; font-weight: 700; font-size: 1.05rem; }
-    .nav-links { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
-    .nav-links a { color: #8b93a1; font-size: .9rem; font-weight: 500; }
-    .nav-links a:hover, .nav-links a.active { color: #fff; }
-    .nav-links a.active { border-bottom: 2px solid #4c9dff; padding-bottom: 2px; }
-    .nav-cta {
-      background: rgba(76,157,255,.12); color: #4c9dff !important;
-      padding: .45rem 1rem; border-radius: 8px; font-weight: 600;
-    }
-    .nav-cta:hover { background: rgba(76,157,255,.22); }
-
-    /* ====== HERO ====== */
-    .hero {
-      padding: 6rem 1.5rem 4rem; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(76,157,255,.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero h1 {
-      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-      font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 1rem;
-    }
-    .hero h1 span { color: #4c9dff; }
-    .hero p {
-      max-width: 620px; margin: 0 auto; font-size: 1.1rem; color: #8b93a1;
+    @media (max-width: 800px) {
+      .ev-tier { grid-template-columns: 1fr; gap: 16px; }
+      .ev-tier-head { position: static; flex-direction: row; align-items: center; gap: 16px; }
     }
 
-    /* ====== SECTIONS ====== */
-    .section {
-      padding: 4.5rem 0;
-      border-top: 1px solid rgba(255,255,255,.05);
-    }
-    .section:first-of-type { border-top: none; }
-    .section-num {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .8rem; color: #4c9dff; font-weight: 500;
-      letter-spacing: .06em; text-transform: uppercase;
-      margin-bottom: .5rem; display: block;
-    }
-    .section h2 {
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 1.2rem;
-    }
-    .section p, .section li { color: #a0a8b6; font-size: 1rem; line-height: 1.75; }
-    .section p + p { margin-top: .8rem; }
-
-    /* ====== TIER CARDS ====== */
-    .tier-card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 12px; padding: 1.5rem 1.75rem;
-      margin-bottom: 1.25rem; position: relative;
-      transition: border-color .25s;
-    }
-    .tier-card:hover { border-color: rgba(255,255,255,.14); }
-    .tier-badge {
-      display: inline-block; padding: .25rem .75rem; border-radius: 6px;
-      font-size: .8rem; font-weight: 600; letter-spacing: .02em;
-      margin-bottom: .75rem;
-    }
-    .badge-green  { background: rgba(34,197,94,.15); color: #4ade80; }
-    .badge-teal   { background: rgba(45,212,191,.15); color: #5eead4; }
-    .badge-amber  { background: rgba(251,191,36,.15); color: #fbbf24; }
-    .badge-orange { background: rgba(251,146,60,.15); color: #fb923c; }
-    .badge-gray   { background: rgba(148,163,184,.12); color: #94a3b8; }
-    .badge-dashed {
-      background: transparent; color: #64748b;
-      border: 1px dashed rgba(148,163,184,.35);
-    }
-    .tier-card h3 {
-      font-size: 1.1rem; font-weight: 700; color: #e2e8f0; margin-bottom: .5rem;
-    }
-    .tier-card .tier-what {
-      color: #94a3b8; font-size: .95rem; margin-bottom: .6rem;
-    }
-    .tier-card .tier-expect {
-      color: #7b8394; font-size: .9rem; font-style: italic; margin-bottom: .6rem;
-    }
-    .tier-card .tier-examples {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .82rem; color: #64748b;
-    }
-    .tier-card .tier-examples strong { color: #8b93a1; font-weight: 500; }
-
-    /* ====== RED FLAGS ====== */
-    .flag-list { list-style: none; padding: 0; }
+    /* flag list */
+    .flag-list { list-style: none; padding: 0; margin: 0; }
     .flag-list li {
-      position: relative; padding: .8rem 0 .8rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,.04);
+      padding: 20px 0 20px 36px;
+      border-top: 1px solid var(--line);
+      position: relative;
+      color: var(--fg-2);
+      font-size: 16px;
+      line-height: 1.55;
     }
+    .flag-list li:last-child { border-bottom: 1px solid var(--line); }
     .flag-list li::before {
-      content: '\26A0'; position: absolute; left: 0; top: .8rem;
-      font-size: 1rem; color: #f87171;
+      content: "✕";
+      position: absolute;
+      left: 0; top: 22px;
+      width: 20px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent);
     }
-    .flag-list li strong { color: #e2e8f0; }
+    .flag-list li strong { color: var(--fg); font-weight: 500; }
 
-    /* ====== STEPS ====== */
-    .step-list { list-style: none; padding: 0; counter-reset: steps; }
+    /* step list */
+    .step-list {
+      list-style: none; padding: 0; margin: 0;
+      counter-reset: step;
+    }
     .step-list li {
-      counter-increment: steps;
-      position: relative; padding: .75rem 0 .75rem 2.5rem;
-      border-bottom: 1px solid rgba(255,255,255,.04);
+      counter-increment: step;
+      padding: 24px 0 24px 64px;
+      border-top: 1px solid var(--line);
+      position: relative;
+      color: var(--fg-2);
+      font-size: 16px;
+      line-height: 1.55;
     }
+    .step-list li:last-child { border-bottom: 1px solid var(--line); }
     .step-list li::before {
-      content: counter(steps);
-      position: absolute; left: 0; top: .75rem;
-      width: 1.6rem; height: 1.6rem; border-radius: 50%;
-      background: rgba(76,157,255,.15); color: #4c9dff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .8rem; font-weight: 700;
+      content: "[" counter(step, decimal-leading-zero) "]";
+      position: absolute;
+      left: 0; top: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: var(--tracking-mono);
+      color: var(--accent);
     }
-    .step-list a { text-decoration: underline; text-underline-offset: 2px; }
+    .step-list li strong { color: var(--fg); font-weight: 500; }
+    .step-list li a {
+      color: var(--accent);
+      border-bottom: 1px solid var(--line-2);
+      transition: border-color var(--transition-fast);
+    }
+    .step-list li a:hover { border-bottom-color: var(--accent); }
 
-    /* ====== DISCLAIMER BOX ====== */
-    .disclaimer-box {
-      background: rgba(76,157,255,.06);
-      border: 1px solid rgba(76,157,255,.15);
-      border-radius: 12px; padding: 1.75rem;
-      margin-top: 1rem;
+    /* disclaimer */
+    .doc-disclaimer {
+      margin-top: 24px;
+      padding: 28px 32px;
+      background: var(--bg-2);
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--accent);
     }
-    .disclaimer-box p { color: #94a3b8; }
-
-    /* ====== FOOTER ====== */
-    .site-footer {
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding: 2.5rem 0;
-    }
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-left { display: flex; align-items: center; gap: .5rem; }
-    .monogram-sm {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 26px; height: 26px; border-radius: 6px;
-      background: linear-gradient(135deg, #4c9dff 0%, #1a6dcc 100%);
-      color: #fff; font-weight: 800; font-size: .7rem;
-    }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { color: #64748b; font-size: .85rem; }
-    .footer-links a:hover { color: #94a3b8; }
-    .footer-right { text-align: right; }
-    .footer-right p { color: #475569; font-size: .8rem; line-height: 1.5; }
-
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 700px) {
-      .nav-links { display: none; }
-      .hero { padding: 4rem 1rem 3rem; }
-      .section { padding: 3rem 0; }
-      .tier-card { padding: 1.25rem; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-right { text-align: center; }
-    }
+    .doc-disclaimer p { color: var(--fg-2); margin-bottom: 12px; }
+    .doc-disclaimer p:last-child { margin-bottom: 0; }
+    .doc-disclaimer p strong { color: var(--fg); }
   </style>
 </head>
 <body>
 
-  <!-- ====== NAV ====== -->
-  <header class="site-header">
-    <nav class="nav">
-      <a href="/" class="nav-logo">
-        <span class="monogram">BS</span>
-        <span class="wordmark">BadgerSkope</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/web/">Library</a></li>
-        <li><a href="/evidence-guide.html" class="active">Evidence Guide</a></li>
-        <li><a href="/web/" class="nav-cta">Open Library &rarr;</a></li>
-      </ul>
-    </nav>
-  </header>
+<a href="#main" class="skip-link">Skip to content</a>
 
-  <main>
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="site-nav" aria-label="Primary">
+  <a href="/" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+      <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+    </svg>
+    <span>BADGERSKOPE</span>
+  </a>
+  <div class="nav-links">
+    <a href="/web/">LIBRARY</a>
+    <a href="/evidence-guide.html" style="color: var(--accent);">EVIDENCE</a>
+    <a href="/glossary.html">GLOSSARY</a>
+    <a href="/#faq">FAQ</a>
+  </div>
+  <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
+</nav>
 
-    <!-- ====== HERO ====== -->
-    <section class="hero">
-      <h1>How to Read Peptide Evidence<br><span>A BS detector for health claims</span></h1>
-      <p>Most peptide information online skips the part where it tells you whether a claim comes from a landmark FDA approval or a single study in eight mice. This guide teaches you what to look for.</p>
+<main id="main">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="doc-hero">
+    <div class="doc-wrap" style="padding: 0;">
+      <div class="rule-row">
+        <span class="rule-label">FILE 00 &mdash; THE EVIDENCE GUIDE</span>
+        <span class="rule-line"></span>
+      </div>
+      <h1>HOW TO READ<br>PEPTIDE <em>EVIDENCE</em>.</h1>
+      <p>
+        Most peptide information online skips the part where it tells you whether
+        a claim comes from a landmark FDA approval or a single study in eight mice.
+        This file teaches you what to look for.
+      </p>
+    </div>
+  </section>
+
+  <div class="doc-wrap">
+
+    <section class="doc-section" id="basics">
+      <span class="rule-label" style="display:block; margin-bottom:8px;">01 &mdash; THE BASICS</span>
+      <h2>Why evidence quality matters.</h2>
+      <p>Most peptide information online doesn't tell you whether a claim is backed by an FDA approval or a single mouse study. A compound that &ldquo;reduces inflammation&rdquo; could mean it earned regulatory approval after years of clinical trials &mdash; or it means someone injected a rat's knee and measured the swelling go down 14%.</p>
+      <p>Those are not the same thing. BadgerSkope uses a six-tier evidence system so you always know what you're looking at. <strong>No inflated language. No hidden context.</strong> Just the actual level of proof behind every claim.</p>
     </section>
 
-    <div class="wrap">
+    <section class="doc-section" id="tiers">
+      <span class="rule-label" style="display:block; margin-bottom:8px;">02 &mdash; THE SYSTEM</span>
+      <h2>The six evidence tiers.</h2>
+      <p>Every compound and every claim in BadgerSkope is tagged with one of these tiers. Here's what each one actually means.</p>
 
-      <!-- ====== 1. WHY QUALITY MATTERS ====== -->
-      <section class="section">
-        <span class="section-num">01 &mdash; The basics</span>
-        <h2>Why evidence quality matters</h2>
-        <p>Most peptide information online doesn't tell you whether a claim is backed by an FDA approval or a single mouse study. A compound that "reduces inflammation" could mean it earned regulatory approval after years of clinical trials &mdash; or it means someone injected a rat's knee and measured the swelling go down 14%.</p>
-        <p>Those are not the same thing. BadgerSkope uses a 6-tier evidence system so you always know what you're looking at. No inflated language. No hidden context. Just the actual level of proof behind every claim.</p>
-      </section>
+      <div class="ev-tiers" style="margin-top: 32px;">
 
-      <!-- ====== 2. THE SIX TIERS ====== -->
-      <section class="section">
-        <span class="section-num">02 &mdash; The system</span>
-        <h2>The six evidence tiers</h2>
-        <p style="margin-bottom:1.5rem;">Every compound and every claim in BadgerSkope is tagged with one of these tiers. Here's what each one actually means.</p>
-
-        <div class="tier-card">
-          <span class="tier-badge badge-green">FDA Approved</span>
-          <h3>The gold standard</h3>
-          <p class="tier-what">This compound has gone through the full regulatory process. A pharmaceutical company submitted safety and efficacy data, and a government agency reviewed and approved it. Real prescribing information exists. Doctors can legally prescribe it for specific conditions.</p>
-          <p class="tier-expect">What to expect: large-scale data, known side-effect profiles, established dosing, post-market surveillance.</p>
-          <p class="tier-examples"><strong>Examples:</strong> Semaglutide for diabetes, Tesamorelin for HIV lipodystrophy, Bremelanotide (PT-141) for HSDD</p>
+        <div class="ev-tier">
+          <div class="ev-tier-head">
+            <div class="ev-tier-num">[ TIER 01 ]</div>
+            <span class="ev-tier-tag tier" data-grade="A">
+              <span class="tier-letter">A</span>
+              <span class="tier-text">FDA APPROVED</span>
+            </span>
+          </div>
+          <div class="ev-tier-body">
+            <h3>The gold standard.</h3>
+            <p>This compound has gone through the full regulatory process. A pharmaceutical company submitted safety and efficacy data, and a government agency reviewed and approved it. Real prescribing information exists. Doctors can legally prescribe it for specific conditions.</p>
+            <p class="expect">What to expect: large-scale data, known side-effect profiles, established dosing, post-market surveillance.</p>
+            <p class="examples"><strong>EXAMPLES &mdash;</strong> Semaglutide for diabetes &middot; Tesamorelin for HIV lipodystrophy &middot; Bremelanotide (PT-141) for HSDD</p>
+          </div>
         </div>
 
-        <div class="tier-card">
-          <span class="tier-badge badge-teal">Strong Human Trials</span>
-          <h3>Serious data, not yet approved</h3>
-          <p class="tier-what">Major clinical trials &mdash; Phase 2 or Phase 3 &mdash; with hundreds or thousands of human participants. The drug may not be approved yet, but the data is serious. These are the studies that get published in top journals and drive approval applications.</p>
-          <p class="tier-expect">What to expect: controlled study designs, statistical significance, safety monitoring, peer-reviewed publications.</p>
-          <p class="tier-examples"><strong>Examples:</strong> Tirzepatide weight loss trials (SURMOUNT), Retatrutide phase 2 data, Survodutide</p>
+        <div class="ev-tier">
+          <div class="ev-tier-head">
+            <div class="ev-tier-num">[ TIER 02 ]</div>
+            <span class="ev-tier-tag tier" data-grade="A">
+              <span class="tier-letter">A</span>
+              <span class="tier-text">STRONG HUMAN</span>
+            </span>
+          </div>
+          <div class="ev-tier-body">
+            <h3>Serious data, not yet approved.</h3>
+            <p>Major clinical trials &mdash; Phase 2 or Phase 3 &mdash; with hundreds or thousands of human participants. The drug may not be approved yet, but the data is serious. These are the studies that get published in top journals and drive approval applications.</p>
+            <p class="expect">What to expect: controlled study designs, statistical significance, safety monitoring, peer-reviewed publications.</p>
+            <p class="examples"><strong>EXAMPLES &mdash;</strong> Tirzepatide weight-loss trials (SURMOUNT) &middot; Retatrutide phase 2 data &middot; Survodutide</p>
+          </div>
         </div>
 
-        <div class="tier-card">
-          <span class="tier-badge badge-amber">Early Human Studies</span>
-          <h3>Promising signals, not proof</h3>
-          <p class="tier-what">Phase 1 or small human studies. These mainly test safety and basic pharmacological effects in healthy volunteers or small patient groups. You might see interesting signals, but the sample sizes are too small and the designs too preliminary to call anything conclusive.</p>
-          <p class="tier-expect">What to expect: safety/tolerability data, pharmacokinetic profiles, preliminary efficacy hints, small sample sizes.</p>
-          <p class="tier-examples"><strong>Examples:</strong> Ipamorelin pharmacology studies, Kisspeptin fertility infusions, Semax/Selank regional clinical use</p>
+        <div class="ev-tier">
+          <div class="ev-tier-head">
+            <div class="ev-tier-num">[ TIER 03 ]</div>
+            <span class="ev-tier-tag tier" data-grade="B">
+              <span class="tier-letter">B</span>
+              <span class="tier-text">EARLY HUMAN</span>
+            </span>
+          </div>
+          <div class="ev-tier-body">
+            <h3>Promising signals, not proof.</h3>
+            <p>Phase 1 or small human studies. These mainly test safety and basic pharmacological effects in healthy volunteers or small patient groups. You might see interesting signals, but the sample sizes are too small and the designs too preliminary to call anything conclusive.</p>
+            <p class="expect">What to expect: safety/tolerability data, pharmacokinetic profiles, preliminary efficacy hints, small sample sizes.</p>
+            <p class="examples"><strong>EXAMPLES &mdash;</strong> Ipamorelin pharmacology studies &middot; Kisspeptin fertility infusions &middot; Semax/Selank regional clinical use</p>
+          </div>
         </div>
 
-        <div class="tier-card">
-          <span class="tier-badge badge-orange">Animal Studies Only</span>
-          <h3>Worked in mice. That's it.</h3>
-          <p class="tier-what">The evidence comes from mice, rats, or cell cultures. This is where most "breakthrough" peptide claims originate. It's real science, and it matters &mdash; but there's a critical caveat: <strong>most things that work in mice don't work in humans.</strong> The failure rate from animal models to human efficacy is roughly 90%.</p>
-          <p class="tier-expect">What to expect: preclinical data only, no human safety profile, speculative dosing, unknown side effects in people.</p>
-          <p class="tier-examples"><strong>Examples:</strong> BPC-157 tendon healing, FOXO4-DRI senescent cell clearance, SLU-PP-332 exercise mimetic, MOTS-c metabolism</p>
+        <div class="ev-tier">
+          <div class="ev-tier-head">
+            <div class="ev-tier-num">[ TIER 04 ]</div>
+            <span class="ev-tier-tag tier" data-grade="C">
+              <span class="tier-letter">C</span>
+              <span class="tier-text">ANIMAL ONLY</span>
+            </span>
+          </div>
+          <div class="ev-tier-body">
+            <h3>Worked in mice. That's it.</h3>
+            <p>The evidence comes from mice, rats, or cell cultures. This is where most &ldquo;breakthrough&rdquo; peptide claims originate. It's real science, and it matters &mdash; but there's a critical caveat: <strong>most things that work in mice don't work in humans.</strong> The failure rate from animal models to human efficacy is roughly 90%.</p>
+            <p class="expect">What to expect: preclinical data only, no human safety profile, speculative dosing, unknown side effects in people.</p>
+            <p class="examples"><strong>EXAMPLES &mdash;</strong> BPC-157 tendon healing &middot; FOXO4-DRI senescent cell clearance &middot; SLU-PP-332 exercise mimetic &middot; MOTS-c metabolism</p>
+          </div>
         </div>
 
-        <div class="tier-card">
-          <span class="tier-badge badge-gray">Clinic Practice</span>
-          <h3>Experience, not experiments</h3>
-          <p class="tier-what">Used in wellness clinics or compounding pharmacies based on clinical experience rather than controlled trials. The evidence is anecdotal or based on small uncontrolled observations. Practitioners may swear by it, but "I've seen it work" is not the same as "we tested it rigorously."</p>
-          <p class="tier-expect">What to expect: anecdotal reports, practitioner protocols, no control groups, potential placebo effects, selection bias.</p>
-          <p class="tier-examples"><strong>Examples:</strong> LIPO-C fat-burning shots, GH secretagogue "stacks," some bioregulator courses</p>
+        <div class="ev-tier">
+          <div class="ev-tier-head">
+            <div class="ev-tier-num">[ TIER 05 ]</div>
+            <span class="ev-tier-tag tier" data-grade="D">
+              <span class="tier-letter">D</span>
+              <span class="tier-text">CLINIC PRACTICE</span>
+            </span>
+          </div>
+          <div class="ev-tier-body">
+            <h3>Experience, not experiments.</h3>
+            <p>Used in wellness clinics or compounding pharmacies based on clinical experience rather than controlled trials. The evidence is anecdotal or based on small uncontrolled observations. Practitioners may swear by it, but &ldquo;I've seen it work&rdquo; is not the same as &ldquo;we tested it rigorously.&rdquo;</p>
+            <p class="expect">What to expect: anecdotal reports, practitioner protocols, no control groups, potential placebo effects, selection bias.</p>
+            <p class="examples"><strong>EXAMPLES &mdash;</strong> LIPO-C fat-burning shots &middot; GH secretagogue &ldquo;stacks&rdquo; &middot; some bioregulator courses</p>
+          </div>
         </div>
 
-        <div class="tier-card">
-          <span class="tier-badge badge-dashed">Unknown</span>
-          <h3>Can't confirm what's in the tin</h3>
-          <p class="tier-what">The active ingredient or evidence basis couldn't be confirmed. This might be a proprietary blend, a novel vendor formulation, or something where the claimed mechanism doesn't match any published research. Treat with maximum skepticism.</p>
-          <p class="tier-expect">What to expect: no verifiable data, unclear composition, possible marketing-only claims.</p>
-          <p class="tier-examples"><strong>Examples:</strong> Orbitzen 40</p>
+        <div class="ev-tier">
+          <div class="ev-tier-head">
+            <div class="ev-tier-num">[ TIER 06 ]</div>
+            <span class="ev-tier-tag tier" data-grade="F">
+              <span class="tier-letter">F</span>
+              <span class="tier-text">UNKNOWN</span>
+            </span>
+          </div>
+          <div class="ev-tier-body">
+            <h3>Can't confirm what's in the tin.</h3>
+            <p>The active ingredient or evidence basis couldn't be confirmed. This might be a proprietary blend, a novel vendor formulation, or something where the claimed mechanism doesn't match any published research. Treat with maximum skepticism.</p>
+            <p class="expect">What to expect: no verifiable data, unclear composition, possible marketing-only claims.</p>
+            <p class="examples"><strong>EXAMPLES &mdash;</strong> Orbitzen 40</p>
+          </div>
         </div>
-      </section>
 
-      <!-- ====== 3. RED FLAGS ====== -->
-      <section class="section">
-        <span class="section-num">03 &mdash; Watch out</span>
-        <h2>Red flags to watch for</h2>
-        <p style="margin-bottom:1rem;">When you're reading about peptides online, these patterns should trigger your skepticism reflex.</p>
-        <ul class="flag-list">
-          <li><strong>"Clinically proven" with no citations</strong> &mdash; proven by whom? In what study? With how many participants? If the claim doesn't link to a specific trial, it's marketing copy, not science.</li>
-          <li><strong>Forum testimonials as primary evidence</strong> &mdash; survivorship bias, placebo effect, and zero controls. The people who didn't get results aren't posting about it.</li>
-          <li><strong>Vendor-funded "research"</strong> &mdash; if the company selling the product also funded or conducted the study, that's a conflict of interest. It doesn't automatically invalidate the findings, but it should make you look harder.</li>
-          <li><strong>Animal studies presented as human proof</strong> &mdash; mice aren't people. A mouse study is a starting point, not a finish line. Roughly 90% of drugs that work in animal models fail in human trials.</li>
-          <li><strong>Dose extrapolation from animals to humans</strong> &mdash; "the mouse dose converts to X mg in humans" is speculation dressed up as math. Allometric scaling is a rough estimate, not a prescription.</li>
-          <li><strong>"No side effects" claims</strong> &mdash; everything that does something also does side effects. If someone claims a bioactive compound has zero downsides, they either haven't looked or aren't telling you.</li>
-          <li><strong>Mixing approved drug data with grey-market products</strong> &mdash; the FDA approved Ozempic (manufactured by Novo Nordisk under strict quality controls), not a random vial labeled "1G-SGT" from an unregulated compounder. The active ingredient might be the same. The purity, sterility, and dosing accuracy might not be.</li>
-        </ul>
-      </section>
-
-      <!-- ====== 4. VERIFY A CLAIM ====== -->
-      <section class="section">
-        <span class="section-num">04 &mdash; Do it yourself</span>
-        <h2>How to verify a claim yourself</h2>
-        <p style="margin-bottom:1rem;">You don't need a science degree. You need 10 minutes and a healthy distrust of marketing.</p>
-        <ol class="step-list">
-          <li><strong>Check the evidence tier badge in BadgerSkope.</strong> This is your first filter. If it says "Animal Only," you already know the claim hasn't been proven in humans.</li>
-          <li><strong>Click the linked sources.</strong> Do they actually say what's being claimed? Read the abstract, at minimum. You'd be surprised how often a citation doesn't support the claim it's attached to.</li>
-          <li><strong>Look at the study design.</strong> How many people were in the trial? Was there a control group? How long did it run? A 12-person, 4-week study tells you something very different than a 3,000-person, 2-year trial.</li>
-          <li><strong>Check who funded the study.</strong> Industry-funded research isn't automatically wrong, but it's worth noting. Independent replication carries more weight.</li>
-          <li><strong>Search PubMed yourself.</strong> Go to <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov</a> and search the compound name. See what comes up. Read a few abstracts. It takes five minutes.</li>
-          <li><strong>Remember: one study does not equal proof.</strong> Science works by replication. A single positive result is a signal. Multiple independent studies finding the same thing is evidence. Look for consistency across research groups.</li>
-        </ol>
-      </section>
-
-      <!-- ====== 5. DISCLAIMER ====== -->
-      <section class="section">
-        <span class="section-num">05 &mdash; Fine print that matters</span>
-        <h2>Understanding the disclaimer</h2>
-        <p>Every page on BadgerSkope says "not medical advice." This isn't a legal dodge and it isn't a formality. It means something specific.</p>
-        <p>Translating research into plain language is not the same as prescribing a treatment. A research summary can tell you what the evidence says &mdash; it cannot tell you what <em>you</em> should do with your body, your health conditions, your medications, or your risk tolerance. That's what a licensed medical professional is for.</p>
-        <div class="disclaimer-box">
-          <p>BadgerSkope exists to help you <strong style="color:#e2e8f0;">ask better questions</strong>, not to replace the person who should be answering them. When you walk into a doctor's office knowing the difference between Phase 3 trial data and a mouse study, you have a better conversation. That's the goal.</p>
-          <p style="margin-top:.75rem;">We don't sell anything. We don't recommend anything. We show you what the evidence says, tell you how strong it is, and trust you to make informed decisions with the people qualified to help you make them.</p>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- ====== FOOTER ====== -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <span class="monogram-sm">BS</span>
-        <span class="wordmark">BadgerSkope</span>
       </div>
-      <nav class="footer-links">
-        <a href="/web/">Library</a>
+    </section>
+
+    <section class="doc-section" id="flags">
+      <span class="rule-label" style="display:block; margin-bottom:8px;">03 &mdash; WATCH OUT</span>
+      <h2>Red flags to watch for.</h2>
+      <p>When you're reading about peptides online, these patterns should trigger your skepticism reflex.</p>
+      <ul class="flag-list" style="margin-top: 24px;">
+        <li><strong>&ldquo;Clinically proven&rdquo; with no citations</strong> &mdash; proven by whom? In what study? With how many participants? If the claim doesn't link to a specific trial, it's marketing copy, not science.</li>
+        <li><strong>Forum testimonials as primary evidence</strong> &mdash; survivorship bias, placebo effect, and zero controls. The people who didn't get results aren't posting about it.</li>
+        <li><strong>Vendor-funded &ldquo;research&rdquo;</strong> &mdash; if the company selling the product also funded or conducted the study, that's a conflict of interest. It doesn't automatically invalidate the findings, but it should make you look harder.</li>
+        <li><strong>Animal studies presented as human proof</strong> &mdash; mice aren't people. A mouse study is a starting point, not a finish line. Roughly 90% of drugs that work in animal models fail in human trials.</li>
+        <li><strong>Dose extrapolation from animals to humans</strong> &mdash; &ldquo;the mouse dose converts to X mg in humans&rdquo; is speculation dressed up as math. Allometric scaling is a rough estimate, not a prescription.</li>
+        <li><strong>&ldquo;No side effects&rdquo; claims</strong> &mdash; everything that does something also does side effects. If someone claims a bioactive compound has zero downsides, they either haven't looked or aren't telling you.</li>
+        <li><strong>Mixing approved drug data with grey-market products</strong> &mdash; the FDA approved Ozempic, not a random vial labeled &ldquo;1G-SGT&rdquo; from an unregulated compounder. The active ingredient might be the same. The purity, sterility, and dosing accuracy might not be.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="verify">
+      <span class="rule-label" style="display:block; margin-bottom:8px;">04 &mdash; DO IT YOURSELF</span>
+      <h2>How to verify a claim.</h2>
+      <p>You don't need a science degree. You need ten minutes and a healthy distrust of marketing.</p>
+      <ol class="step-list" style="margin-top: 24px;">
+        <li><strong>Check the evidence tier badge in BadgerSkope.</strong> This is your first filter. If it says &ldquo;Animal Only,&rdquo; you already know the claim hasn't been proven in humans.</li>
+        <li><strong>Click the linked sources.</strong> Do they actually say what's being claimed? Read the abstract, at minimum. You'd be surprised how often a citation doesn't support the claim it's attached to.</li>
+        <li><strong>Look at the study design.</strong> How many people were in the trial? Was there a control group? How long did it run? A 12-person, 4-week study tells you something very different than a 3,000-person, 2-year trial.</li>
+        <li><strong>Check who funded the study.</strong> Industry-funded research isn't automatically wrong, but it's worth noting. Independent replication carries more weight.</li>
+        <li><strong>Search PubMed yourself.</strong> Go to <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov</a> and search the compound name. See what comes up. Read a few abstracts. It takes five minutes.</li>
+        <li><strong>One study does not equal proof.</strong> Science works by replication. A single positive result is a signal. Multiple independent studies finding the same thing is evidence. Look for consistency across research groups.</li>
+      </ol>
+    </section>
+
+    <section class="doc-section" id="disclaimer">
+      <span class="rule-label" style="display:block; margin-bottom:8px;">05 &mdash; FINE PRINT THAT MATTERS</span>
+      <h2>Understanding the disclaimer.</h2>
+      <p>Every page on BadgerSkope says &ldquo;not medical advice.&rdquo; This isn't a legal dodge and it isn't a formality. It means something specific.</p>
+      <p>Translating research into plain language is not the same as prescribing a treatment. A research summary can tell you what the evidence says &mdash; it cannot tell you what <em>you</em> should do with your body, your health conditions, your medications, or your risk tolerance. That's what a licensed medical professional is for.</p>
+      <div class="doc-disclaimer">
+        <p>BadgerSkope exists to help you <strong>ask better questions</strong>, not to replace the person who should be answering them. When you walk into a doctor's office knowing the difference between Phase 3 trial data and a mouse study, you have a better conversation. That's the goal.</p>
+        <p>We don't sell anything. We don't recommend anything. We show you what the evidence says, tell you how strong it is, and trust you to make informed decisions with the people qualified to help you make them.</p>
+      </div>
+    </section>
+
+    <section class="doc-section" style="border-bottom: 1px solid var(--line);">
+      <a href="/web/" class="btn btn-primary">OPEN THE LIBRARY &rarr;</a>
+    </section>
+
+  </div>
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="wordmark">
+      <svg width="56" height="56" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+        <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+      </svg>
+      <div>
+        <div class="wordmark-name">BADGERSKOPE</div>
+        <div class="wordmark-tag">EVIDENCE &gt; HYPE</div>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <div class="foot-h">LIBRARY</div>
+        <a href="/web/">All compounds</a>
+        <a href="/web/?evidence=A">Tier A</a>
+        <a href="/web/">Recently filed</a>
+      </div>
+      <div>
+        <div class="foot-h">METHOD</div>
+        <a href="/#method">How we grade</a>
+        <a href="/evidence-guide.html">Evidence guide</a>
+        <a href="/glossary.html">Glossary</a>
+      </div>
+      <div>
+        <div class="foot-h">ABOUT</div>
+        <a href="/#faq">The badger</a>
+        <a href="/#subscribe">Newsletter</a>
         <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank" rel="noopener">Report Issue</a>
-      </nav>
-      <div class="footer-right">
-        <p>Not medical advice. For research literacy only.</p>
-        <p>&copy; 2026 BadgerSkope</p>
+      </div>
+      <div>
+        <div class="foot-h">LEGAL</div>
+        <a href="/#faq">Not medical advice</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
       </div>
     </div>
-  </footer>
+  </div>
+
+  <div class="footer-mega" aria-label="Evidence greater than hype">
+    EVIDENCE&nbsp;
+    <svg viewBox="0 0 80 100" class="gt-inline" aria-hidden="true">
+      <path d="M14 14 L66 50 L14 86" stroke-width="10" fill="none" stroke-linecap="square" stroke-linejoin="miter" style="stroke: var(--accent);"/>
+    </svg>
+    &nbsp;HYPE
+  </div>
+
+  <div class="footer-bot">
+    <div>&copy; 2026 BADGERSKOPE &mdash; INDEPENDENT, AD-FREE, RECEIPTS-BASED.</div>
+    <div class="mono">v.027.04 &middot; BUILT IN A BURROW</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var onScroll = function () {
+      nav.classList.toggle('is-scrolled', window.scrollY > 30);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
 
 </body>
 </html>

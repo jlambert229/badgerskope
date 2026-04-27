@@ -63,8 +63,9 @@ test.describe("Edge cases — the bugs users find first", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
-    // Type quickly then wait for debounce (150ms) + render (match catalog text "bpc-157")
-    await page.locator("#search").pressSequentially("bpc-157", { delay: 30 });
+    // "semaglutide" is FDA-approved (non-experimental) so it's visible by default.
+    // Type quickly to exercise the 150ms debounce, then wait for render.
+    await page.locator("#search").pressSequentially("semaglutide", { delay: 30 });
     await page.waitForTimeout(800);
 
     const cards = await page.locator(".card").count();

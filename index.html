@@ -1,264 +1,641 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BadgerSkope — Peptide Research in Plain English</title>
-  <meta name="description" content="The open reference library that translates dense peptide science into clear, evidence-graded summaries anyone can understand.">
-  <link rel="icon" type="image/png" href="./favicon.png">
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>BadgerSkope &mdash; Evidence &gt; Hype</title>
+  <meta name="description" content="Independent peptide-research literacy. We read the trials, decode vendor copy, and grade compounds on what they actually do — not what podcast hosts promise.">
+  <meta name="theme-color" content="#0B0B0A">
+
+  <link rel="icon" type="image/png" href="./badger-256.png">
+  <link rel="apple-touch-icon" href="./badger-180.png">
+
+  <meta property="og:title" content="BadgerSkope — Evidence > Hype">
+  <meta property="og:description" content="Independent peptide-research literacy. Compounds graded on data, not vibes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.badgerskope.com/">
+  <meta property="og:image" content="https://www.badgerskope.com/lockup-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BadgerSkope — Evidence > Hype">
+  <meta name="twitter:description" content="Independent peptide-research literacy. Compounds graded on data, not vibes.">
+  <meta name="twitter:image" content="https://www.badgerskope.com/lockup-og.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./design-tokens.css">
   <link rel="stylesheet" href="./marketing.css">
 </head>
 <body>
 
-  <!-- ====== NAV ====== -->
-  <header class="site-header" id="top">
-    <nav class="nav">
-      <a href="#top" class="nav-logo">
-        <span class="monogram">BS</span>
-        <span class="wordmark">BadgerSkope</span>
-      </a>
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="nav-hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
-      <ul class="nav-links">
-        <li><a href="#why">Why</a></li>
-        <li><a href="#how">How</a></li>
-        <li><a href="#evidence">Evidence</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="/glossary.html">Glossary</a></li>
-        <li><a href="/web/" class="nav-cta">Open Library &rarr;</a></li>
-      </ul>
-    </nav>
-  </header>
+<a href="#top" class="skip-link">Skip to content</a>
 
-  <main>
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="site-nav" aria-label="Primary">
+  <a href="#top" class="nav-brand" aria-label="BadgerSkope home">
+    <svg class="nav-mark" width="32" height="32" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+      <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+    </svg>
+    <span>BADGERSKOPE</span>
+  </a>
+  <div class="nav-links">
+    <a href="#library">LIBRARY</a>
+    <a href="#method">METHOD</a>
+    <a href="#receipts">RECEIPTS</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#subscribe" class="nav-cta">SUBSCRIBE &rarr;</a>
+</nav>
 
-    <!-- ====== HERO ====== -->
-    <section class="hero">
-      <div class="hero-content">
-        <img src="./logo-hero.png" alt="BadgerSkope" class="hero-logo" width="320" height="320">
-        <h1 class="hero-h1">Your peptide dealer has a <span class="strikethrough">marketing team</span>.<br><span class="grad-text">You should have a research library.</span></h1>
-        <p class="hero-p">53 compounds. Every claim tagged by how strong the evidence actually is. No jargon. No sales pitch. No BS. <em>Well, some BS.</em></p>
-        <div class="hero-actions">
-          <a href="/web/" class="btn-big">Explore the Library</a>
-          <a href="#why" class="btn-outline">Why this exists &darr;</a>
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="hero-meta">
+      <span>ISSUE 027 / Q2 2026</span>
+      <span>BADGERSKOPE.COM</span>
+      <span>PEPTIDE LITERACY &middot; INDEPENDENT</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          NOW READING &mdash; THE LITERATURE SO YOU DON'T HAVE TO
         </div>
-        <div class="hero-proof">
-          <div class="proof-item"><strong>53</strong> compounds</div>
-          <div class="proof-dot"></div>
-          <div class="proof-item"><strong>6</strong> evidence tiers</div>
-          <div class="proof-dot"></div>
-          <div class="proof-item"><strong>100%</strong> free</div>
-          <div class="proof-dot"></div>
-          <div class="proof-item">Not medical advice</div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ====== THE PROBLEM ====== -->
-    <section class="band" id="why">
-      <div class="wrap">
-        <div class="split">
-          <div class="split-text">
-            <p class="kicker">The problem</p>
-            <h2>The internet is lying<br>to you about peptides.</h2>
-            <p>Forum bros claiming miracle cures. Vendors writing their own "research." PubMed papers that require a PhD and three espressos to parse. And <em>nobody</em> tells you whether the evidence is from a 10,000-person FDA trial or literally one mouse.</p>
-            <p>You deserve better than vibes-based biochemistry.</p>
-          </div>
-          <div class="split-visual">
-            <div class="noise-card nc-1"><span class="nc-tag nc-red">Reddit, 3am</span>"bro this peptide literally regrew my hairline, fixed my knee, and made my dog respect me again"</div>
-            <div class="noise-card nc-2"><span class="nc-tag nc-yellow">Vendor page</span>"REVOLUTIONARY QUANTUM-ACTIVATED PEPTIDE MATRIX for ULTIMATE CELLULAR SYNERGY OPTIMIZATION&trade;"</div>
-            <div class="noise-card nc-3"><span class="nc-tag nc-gray">PubMed abstract</span>"Subcutaneous administration of the GLP-1 receptor agonist demonstrated statistically significant reductions in glycosylated hemoglobin (HbA1c; p&lt;0.001) versus..."</div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <h1 class="hero-h1" id="hero-h1">
+          <span class="hero-h1-evidence">EVIDENCE</span>
+          <span class="hero-h1-gt" aria-hidden="true">
+            <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMid meet">
+              <path d="M14 14 L66 50 L14 86" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="square" stroke-linejoin="miter" style="stroke: var(--accent);"/>
+            </svg>
+          </span>
+          <span class="visually-hidden" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">greater than</span>
+          <span class="hero-h1-hype">HYPE</span>
+        </h1>
 
-    <!-- ====== THE FIX ====== -->
-    <section class="band band-dark">
-      <div class="wrap">
-        <div class="split split-reverse">
-          <div class="split-text">
-            <p class="kicker kicker-green">The fix</p>
-            <h2>We translated<br>the entire mess.</h2>
-            <p>Every compound gets one card. Plain English summary. Reported benefits with evidence tags that tell you <em>exactly</em> how strong the science is. Dosing context. Cycling notes. What it pairs with. Where to verify.</p>
-            <p>Imagine if Wikipedia, PubMed, and your smartest friend had a baby. That's this.</p>
+        <p class="hero-deck">
+          BadgerSkope reads peptide trials, decodes vendor copy, and grades
+          compounds on what they actually do &mdash; not what your favorite
+          podcast host promised.
+        </p>
+
+        <div class="hero-cta">
+          <a href="/web/" class="btn btn-primary">OPEN THE LIBRARY &rarr;</a>
+          <a href="#method" class="btn btn-ghost">HOW WE GRADE</a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-n">142</div>
+            <div class="hero-stat-l">COMPOUNDS GRADED</div>
           </div>
-          <div class="split-visual">
-            <div class="sample-card">
-              <div class="sc-title">Semaglutide (1G-SGT)</div>
-              <div class="sc-meta">
-                <span class="sc-dot sc-dot-green"></span>
-                <span class="sc-evidence">FDA approved</span>
-                <span class="sc-sep">&middot;</span>
-                <span class="sc-category">Appetite &amp; fullness</span>
-              </div>
-              <p class="sc-summary">A weekly injectable in the same family as Ozempic. Mimics a gut hormone called GLP-1 that tells your brain you're full and helps manage blood sugar.</p>
-            </div>
+          <div>
+            <div class="hero-stat-n">2,807</div>
+            <div class="hero-stat-l">TRIALS PARSED</div>
+          </div>
+          <div>
+            <div class="hero-stat-n">0</div>
+            <div class="hero-stat-l">SPONSORED POSTS</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ====== HOW IT WORKS ====== -->
-    <section class="band" id="how">
-      <div class="wrap center">
-        <p class="kicker">How it works</p>
-        <h2>Three clicks to<br>not being an idiot.</h2>
-        <div class="how-grid">
-          <div class="how-step">
-            <div class="how-num">1</div>
-            <h3>Find it fast</h3>
-            <p>Search by name or filter by category, evidence level, compound type, or what it's known for. 53 entries, zero clutter.</p>
+      <aside class="hero-right" aria-label="Current watch">
+        <div class="hero-card">
+          <div class="hero-card-head">
+            <span>CURRENT WATCH</span>
+            <span class="hero-card-pulse">&bull;&nbsp;LIVE</span>
           </div>
-          <div class="how-arrow" aria-hidden="true">&rarr;</div>
-          <div class="how-step">
-            <div class="how-num">2</div>
-            <h3>Read the real story</h3>
-            <p>Plain English summaries with every claim tagged by evidence quality. You'll know if it's FDA-approved or a single mouse study.</p>
+          <div class="hero-card-name">RETATRUTIDE</div>
+          <div class="hero-card-aka">LY3437943 &middot; TRI-AGONIST &middot; PHASE 3</div>
+          <div class="hero-card-tier">
+            <span class="tier" data-grade="A"><span class="tier-letter">A</span><span class="tier-text">EVIDENCE</span></span>
+            <span class="tier" data-grade="B"><span class="tier-letter">B</span><span class="tier-text">SAFETY</span></span>
+            <span class="tier" data-grade="C"><span class="tier-letter">C</span><span class="tier-text">ACCESS</span></span>
           </div>
-          <div class="how-arrow" aria-hidden="true">&rarr;</div>
-          <div class="how-step">
-            <div class="how-num">3</div>
-            <h3>Compare side by side</h3>
-            <p>Select compounds and see them in a comparison table. Evidence, synergies, dosing, sources &mdash; all at a glance.</p>
-          </div>
+          <div class="hero-card-row"><span>HUMAN N</span><span class="mono">2,148</span></div>
+          <div class="hero-card-row"><span>WEIGHT &Delta; @ 48W</span><span class="mono">&minus;24.2%</span></div>
+          <div class="hero-card-row"><span>VENDOR CLAIMS</span><span class="mono">7 / 9 OVERSTATED</span></div>
+          <div class="hero-card-row"><span>LAST FILED</span><span class="mono">26 APR 2026</span></div>
+          <a class="hero-card-link" href="/web/">READ THE FULL FILE &rarr;</a>
         </div>
-        <a href="/web/" class="btn-big" style="margin-top:2.5rem">Try it now &mdash; free</a>
+      </aside>
+    </div>
+
+    <div class="rule-row">
+      <span class="rule-label">SCROLL FOR THE METHOD</span>
+      <span class="rule-line"></span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TICKER
+       ============================================================ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <!-- ============================================================
+       PROBLEM STRIP
+       ============================================================ -->
+  <section class="problem" aria-labelledby="problem-h2">
+    <div class="rule-row">
+      <span class="rule-label">FILE 01 &mdash; THE NOISE</span>
+      <span class="rule-line"></span>
+    </div>
+    <h2 class="section-h2" id="problem-h2">
+      THE INTERNET TELLS YOU<br>
+      <em>EVERYTHING</em> WORKS.
+    </h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-k">PODCAST</div>
+        <div class="problem-v">&ldquo;It's basically magic.&rdquo;</div>
+        <div class="problem-t"><span aria-hidden="true">&#8627;</span>translation: one rat study, 2014.</div>
       </div>
-    </section>
-
-    <!-- ====== EVIDENCE SYSTEM ====== -->
-    <section class="band band-dark" id="evidence">
-      <div class="wrap">
-        <p class="kicker kicker-blue">The system</p>
-        <h2 class="center">"Clinically proven" is doing<br>a <em>lot</em> of heavy lifting.</h2>
-        <p class="sub center">So we killed the phrase entirely. Every claim in BadgerSkope gets a specific evidence tier. No more guessing.</p>
-
-        <div class="ev-stack">
-          <div class="ev-row">
-            <span class="ev-pill ev-green">Approved / Labeled</span>
-            <span class="ev-desc">FDA or regulator-approved. This is the gold standard &mdash; real prescribing information from real drug approvals.</span>
-          </div>
-          <div class="ev-row">
-            <span class="ev-pill ev-teal">Major Trials</span>
-            <span class="ev-desc">Large, rigorous clinical trials in humans. The kind of data that gets drugs approved.</span>
-          </div>
-          <div class="ev-row">
-            <span class="ev-pill ev-amber">Early Human</span>
-            <span class="ev-desc">Small human studies or Phase 1 safety data. Promising, but not conclusive.</span>
-          </div>
-          <div class="ev-row">
-            <span class="ev-pill ev-orange">Animal Only</span>
-            <span class="ev-desc">Worked in mice or rats. Cool. Wake us up when it works in a human.</span>
-          </div>
-          <div class="ev-row">
-            <span class="ev-pill ev-gray">Practice-Based</span>
-            <span class="ev-desc">Used in clinics or wellness protocols. The controlled evidence? Thin at best.</span>
-          </div>
-        </div>
+      <div class="problem-card">
+        <div class="problem-k">VENDOR</div>
+        <div class="problem-v">&ldquo;Research-grade, 99% purity.&rdquo;</div>
+        <div class="problem-t"><span aria-hidden="true">&#8627;</span>translation: no COA, no batch ID, no source.</div>
       </div>
-    </section>
-
-    <!-- ====== WHAT WE'RE NOT ====== -->
-    <section class="band">
-      <div class="wrap center">
-        <p class="kicker" style="color:#c0392b">Full disclosure</p>
-        <h2>Here's everything we <em>don't</em> do.</h2>
-        <div class="not-grid">
-          <div class="not-card">
-            <span class="not-x" aria-hidden="true">&times;</span>
-            <strong>Not a store.</strong>
-            <p>We don't sell peptides. Never have. Never will. We don't even like most of the vendors.</p>
-          </div>
-          <div class="not-card">
-            <span class="not-x" aria-hidden="true">&times;</span>
-            <strong>Not medical advice.</strong>
-            <p>We summarize science. We don't prescribe, diagnose, or promise outcomes.</p>
-          </div>
-          <div class="not-card">
-            <span class="not-x" aria-hidden="true">&times;</span>
-            <strong>Not sponsored.</strong>
-            <p>Zero vendor relationships. No affiliate links. No conflicts of interest.</p>
-          </div>
-          <div class="not-card">
-            <span class="not-x" aria-hidden="true">&times;</span>
-            <strong>Not hype.</strong>
-            <p>If the evidence is weak, we say so. If it only worked in mice, you'll know.</p>
-          </div>
-        </div>
+      <div class="problem-card">
+        <div class="problem-k">INFLUENCER</div>
+        <div class="problem-v">&ldquo;I lost 30 lbs on it.&rdquo;</div>
+        <div class="problem-t"><span aria-hidden="true">&#8627;</span>translation: also calorie deficit, also gym, also paid.</div>
       </div>
-    </section>
-
-    <!-- ====== FAQ ====== -->
-    <section class="band band-dark" id="faq">
-      <div class="wrap wrap-narrow">
-        <h2 class="center">You have questions.<br>We have <span class="grad-text">answers</span>.</h2>
-        <div class="faq-list">
-          <details class="faq">
-            <summary>Is BadgerSkope actually free?</summary>
-            <p>Yes. Completely free, no account needed, no paywall. The library is open and it stays that way.</p>
-          </details>
-          <details class="faq">
-            <summary>Where does the data come from?</summary>
-            <p>Published clinical trials, FDA prescribing labels, PubMed, and peer-reviewed research. Every entry links to its sources. If something is based on vendor marketing, we say so explicitly.</p>
-          </details>
-          <details class="faq">
-            <summary>Can I use this to decide what to take?</summary>
-            <p>BadgerSkope is a research literacy tool, not a prescribing guide. It helps you understand the landscape &mdash; but any decision about your health should involve a licensed medical professional.</p>
-          </details>
-          <details class="faq">
-            <summary>How do I know the evidence grades are honest?</summary>
-            <p>Every grade maps to a specific type of evidence (FDA label, clinical trial, animal study, etc.). We don't inflate. If something only has mouse data, it says "Animal Only" &mdash; not "clinically proven."</p>
-          </details>
-          <details class="faq">
-            <summary>Do you have a commercial relationship with any vendor?</summary>
-            <p>No. BadgerSkope has zero vendor affiliations, zero affiliate links, and zero financial incentive to recommend any product.</p>
-          </details>
-          <details class="faq">
-            <summary>I found an error. How do I report it?</summary>
-            <p>Open an issue on <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank">our GitHub</a>. We take accuracy seriously and will investigate every report.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====== FINAL CTA ====== -->
-    <section class="cta-end">
-      <div class="wrap center">
-        <img src="./logo-hero.png" alt="" class="cta-logo" width="96" height="96">
-        <h2>Enough scrolling.<br>Go <span class="grad-text">read something real</span>.</h2>
-        <p class="cta-p">53 compounds. Plain English. Evidence-graded. Free forever. No account needed.</p>
-        <a href="/web/" class="btn-big btn-glow">Launch BadgerSkope &rarr;</a>
-        <p class="cta-whisper">Seriously, it's free. We're not even collecting your email.</p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ====== FOOTER ====== -->
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <div class="footer-left">
-        <span class="monogram monogram-sm">BS</span>
-        <span class="wordmark">BadgerSkope</span>
-      </div>
-      <nav class="footer-links">
-        <a href="/web/">Library</a>
-        <a href="/glossary.html">Glossary</a>
-        <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank" rel="noopener">Report Issue</a>
-      </nav>
-      <div class="footer-right">
-        <p>Not medical advice. For research literacy only.</p>
-        <p>&copy; 2026 BadgerSkope</p>
+      <div class="problem-card">
+        <div class="problem-k">FORUM</div>
+        <div class="problem-v">&ldquo;Stack it for synergy.&rdquo;</div>
+        <div class="problem-t"><span aria-hidden="true">&#8627;</span>translation: zero pharmacokinetic data exists.</div>
       </div>
     </div>
-  </footer>
+  </section>
+
+  <!-- ============================================================
+       METHOD
+       ============================================================ -->
+  <section class="method" id="method" aria-labelledby="method-h2">
+    <div class="rule-row">
+      <span class="rule-label">FILE 02 &mdash; THE METHOD</span>
+      <span class="rule-line"></span>
+    </div>
+    <div class="method-head">
+      <h2 class="section-h2" id="method-h2">FOUR STEPS.<br>NO VIBES.</h2>
+      <p class="section-deck">
+        Every compound on BadgerSkope goes through the same audit. The badger
+        doesn't care who your guru is.
+      </p>
+    </div>
+    <div class="method-grid">
+      <div class="method-step">
+        <div class="method-n" aria-hidden="true">01</div>
+        <div class="method-title">PULL THE PAPER</div>
+        <div class="method-body">Every claim traces back to a primary source. PubMed, ClinicalTrials.gov, registered preprints. No &ldquo;a study showed&rdquo; without a DOI.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-n" aria-hidden="true">02</div>
+        <div class="method-title">CHECK THE SAMPLE</div>
+        <div class="method-body">Mouse vs human. N=8 vs N=2,000. Healthy vs diseased. The grade reflects who it actually worked on, not who it might.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-n" aria-hidden="true">03</div>
+        <div class="method-title">STRESS THE CLAIM</div>
+        <div class="method-body">Vendor copy gets line-by-line audited against the underlying data. Overstatements get flagged. Receipts attached.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-n" aria-hidden="true">04</div>
+        <div class="method-title">GRADE AND FILE</div>
+        <div class="method-body">Tier A through F across Evidence, Safety, and Access. Re-reviewed quarterly, or whenever new data lands.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LEGEND
+       ============================================================ -->
+  <section class="legend" aria-labelledby="legend-h2">
+    <div class="rule-row">
+      <span class="rule-label">FILE 03 &mdash; THE GRADES</span>
+      <span class="rule-line"></span>
+    </div>
+    <h2 class="section-h2" id="legend-h2">FIVE TIERS.<br>ONE SCALE.</h2>
+    <div class="legend-table" role="list">
+      <div class="legend-row" role="listitem">
+        <span class="tier" data-grade="A"><span class="tier-letter">A</span></span>
+        <div class="legend-label">GOLD STANDARD</div>
+        <div class="legend-desc">Multiple human RCTs &middot; consistent effect &middot; regulatory pathway</div>
+        <div class="legend-bar" aria-hidden="true"><span style="width: 100%;"></span></div>
+      </div>
+      <div class="legend-row" role="listitem">
+        <span class="tier" data-grade="B"><span class="tier-letter">B</span></span>
+        <div class="legend-label">PROMISING</div>
+        <div class="legend-desc">Human pilot data &middot; mechanism plausible &middot; early but real</div>
+        <div class="legend-bar" aria-hidden="true"><span style="width: 80%;"></span></div>
+      </div>
+      <div class="legend-row" role="listitem">
+        <span class="tier" data-grade="C"><span class="tier-letter">C</span></span>
+        <div class="legend-label">SUGGESTIVE</div>
+        <div class="legend-desc">Animal data only, or small N &middot; mechanistic claims dominate</div>
+        <div class="legend-bar" aria-hidden="true"><span style="width: 55%;"></span></div>
+      </div>
+      <div class="legend-row" role="listitem">
+        <span class="tier" data-grade="D"><span class="tier-letter">D</span></span>
+        <div class="legend-label">WEAK / DATED</div>
+        <div class="legend-desc">Old papers, in-vitro only, or contradictory results</div>
+        <div class="legend-bar" aria-hidden="true"><span style="width: 30%;"></span></div>
+      </div>
+      <div class="legend-row" role="listitem">
+        <span class="tier" data-grade="F"><span class="tier-letter">F</span></span>
+        <div class="legend-label">SLOP</div>
+        <div class="legend-desc">Influencer-driven, no plausible data, or actively misleading</div>
+        <div class="legend-bar" aria-hidden="true"><span style="width: 8%;"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LIBRARY
+       ============================================================ -->
+  <section class="library" id="library" aria-labelledby="library-h2">
+    <div class="rule-row">
+      <span class="rule-label">FILE 04 &mdash; THE LIBRARY</span>
+      <span class="rule-line"></span>
+    </div>
+    <div class="library-head">
+      <div>
+        <h2 class="section-h2" id="library-h2">THE STACKS.</h2>
+        <p class="section-deck">
+          Every file logs evidence quality, safety profile, and access reality.
+          Click any to read the full audit.
+        </p>
+      </div>
+      <div class="library-filter" role="tablist" aria-label="Filter by evidence tier">
+        <button type="button" class="chip is-on" data-filter="ALL" aria-pressed="true">ALL</button>
+        <button type="button" class="chip" data-filter="A" aria-pressed="false">TIER A</button>
+        <button type="button" class="chip" data-filter="B" aria-pressed="false">TIER B</button>
+        <button type="button" class="chip" data-filter="C" aria-pressed="false">TIER C</button>
+        <button type="button" class="chip" data-filter="D" aria-pressed="false">TIER D</button>
+        <button type="button" class="chip" data-filter="F" aria-pressed="false">TIER F</button>
+      </div>
+    </div>
+
+    <div class="library-table">
+      <div class="library-th" role="row">
+        <div>COMPOUND</div>
+        <div>EVIDENCE</div>
+        <div>SAFETY</div>
+        <div>ACCESS</div>
+        <div>HUMAN N</div>
+        <div>SUMMARY</div>
+        <div>FILED</div>
+        <div></div>
+      </div>
+      <div id="library-rows"></div>
+    </div>
+
+    <div class="library-foot">
+      <div id="library-count">SHOWING 8 OF 142 FILES</div>
+      <a href="/web/" class="link-arrow">BROWSE ALL 142 &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURE FILE
+       ============================================================ -->
+  <section class="feature" id="receipts" aria-labelledby="feature-h2">
+    <div class="rule-row">
+      <span class="rule-label">FILE 05 &mdash; THIS WEEK'S AUDIT</span>
+      <span class="rule-line"></span>
+    </div>
+    <article class="feature-art">
+      <header class="feature-head">
+        <span class="filed"><span class="filed-dot" aria-hidden="true"></span>FILED&nbsp;&#8470;0142</span>
+        <h2 class="feature-title" id="feature-h2">THE BPC-157<br>RECEIPT.</h2>
+        <div class="feature-meta">
+          <span>BY THE BADGER</span>
+          <span class="dotsep" aria-hidden="true">&middot;</span>
+          <span>14 MIN READ</span>
+          <span class="dotsep" aria-hidden="true">&middot;</span>
+          <span>POSTED 18 APR 2026</span>
+        </div>
+      </header>
+
+      <div class="feature-body">
+        <div class="feature-lede">
+          BPC-157 has been called a &ldquo;miracle peptide,&rdquo; a &ldquo;Wolverine drug,&rdquo; and &ldquo;the closest thing to actual regeneration.&rdquo; It might also be useful. Both can be true.
+        </div>
+
+        <div class="feature-cols">
+          <div>
+            <p>A pentadecapeptide derived from a protective protein in human gastric juice. Animal data &mdash; and there is a lot of it &mdash; shows consistent effects on tendon healing, gut barrier integrity, and wound recovery. The mechanism is plausible. The model organisms are mostly rats.</p>
+            <p>Human data is where the gap appears. As of April 2026, we count <strong>nine</strong> registered human trials, six completed, three with published results. Two are open-label. None exceed N=80. None are double-blinded RCTs in healthy adults.</p>
+          </div>
+          <div>
+            <p>That isn't damning. It's where most peptides sit &mdash; somewhere between &ldquo;the rats love it&rdquo; and &ldquo;your insurance will cover it.&rdquo; The honest framing is <strong>promising-but-unproven</strong>, not <strong>basically aspirin</strong>.</p>
+            <p>What gets BPC-157 a B from us instead of a C: the animal evidence is unusually consistent across labs, dose ranges, and injury models. Replication is the entire point.</p>
+          </div>
+        </div>
+
+        <blockquote class="pullquote">
+          <span class="pullquote-mark" aria-hidden="true">&ldquo;</span>
+          BPC-157 isn't slop. It also isn't aspirin. The honest grade is <em>promising</em> &mdash; and that's a useful word, if you let it mean what it means.
+        </blockquote>
+
+        <div class="feature-receipts">
+          <div class="receipts-h">RECEIPTS</div>
+          <ol>
+            <li><span class="mono">[01]</span> Sikiric et al. <em>J Pharm Sci</em> 2018 &mdash; tendon healing in rat Achilles, N=72</li>
+            <li><span class="mono">[02]</span> Chang et al. <em>Eur J Pharm</em> 2014 &mdash; anastomotic healing, rat colon</li>
+            <li><span class="mono">[03]</span> ClinicalTrials.gov NCT04938843 &mdash; human pilot, knee, completed 2023</li>
+            <li><span class="mono">[04]</span> ClinicalTrials.gov NCT05521022 &mdash; human IBD, recruiting 2026</li>
+            <li><span class="mono">[05]</span> Vendor audit &mdash; 7 of 11 sellers reviewed had no batch COA on file</li>
+          </ol>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="faq" id="faq" aria-labelledby="faq-h2">
+    <div class="rule-row">
+      <span class="rule-label">FILE 06 &mdash; THE QUESTIONS</span>
+      <span class="rule-line"></span>
+    </div>
+    <div class="faq-grid">
+      <h2 class="section-h2" id="faq-h2">YOU<br>ASKED.</h2>
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item is-open">
+          <button class="faq-q" type="button" aria-expanded="true">
+            <span class="mono faq-n">01</span>
+            <span class="faq-q-text">ARE YOU TELLING ME WHAT TO TAKE?</span>
+            <span class="faq-toggle" aria-hidden="true">&minus;</span>
+          </button>
+          <div class="faq-a"><p>No. BadgerSkope is education, not advice. We grade evidence; you (and your physician) decide if that evidence is enough for you.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="mono faq-n">02</span>
+            <span class="faq-q-text">WHO PAYS FOR THIS?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a"><p>Readers. Subscriptions only. We don't take ad money from peptide vendors, supplement brands, or anyone whose product we might grade. The receipts page lists every revenue source.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="mono faq-n">03</span>
+            <span class="faq-q-text">HOW OFTEN DO GRADES CHANGE?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a"><p>Quarterly review for everything; immediate review when a major trial reads out. Each file shows its last-reviewed date and its grade history.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="mono faq-n">04</span>
+            <span class="faq-q-text">WHY THE BADGER?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a"><p>Badgers don't care. They dig until they hit the thing. They aren't impressed by anyone's podcast. Same energy.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">
+            <span class="mono faq-n">05</span>
+            <span class="faq-q-text">WHAT IF I DISAGREE WITH A GRADE?</span>
+            <span class="faq-toggle" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-a"><p>Cite the paper. We re-grade in public when a reader brings a primary source we missed. Fifteen grades have moved this year because of reader receipts.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SUBSCRIBE
+       ============================================================ -->
+  <section class="subscribe" id="subscribe" aria-labelledby="sub-h2">
+    <div class="sub-card">
+      <svg width="120" height="120" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+        <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+      </svg>
+      <div class="sub-eyebrow">JOIN 38,402 READERS</div>
+      <h2 class="sub-h2" id="sub-h2">
+        ONE EMAIL.<br>
+        EVERY FRIDAY.<br>
+        <span class="sub-h2-accent">RECEIPTS ATTACHED.</span>
+      </h2>
+      <p class="sub-deck">
+        New audits, grade changes, and the week's slop. No sponsors, no
+        stack-bro affiliate links, no &ldquo;sponsored by your liver.&rdquo;
+      </p>
+      <form class="sub-form" id="sub-form" novalidate>
+        <input type="email" id="sub-email" name="email" required placeholder="YOU@DOMAIN.COM" aria-label="Email address">
+        <button type="submit">SUBSCRIBE &rarr;</button>
+      </form>
+      <div class="sub-fine">
+        FREE TIER WEEKLY &middot; PRO TIER $8/MO FOR THE FULL LIBRARY &middot; CANCEL WHENEVER
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="wordmark">
+      <svg width="56" height="56" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
+        <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
+      </svg>
+      <div>
+        <div class="wordmark-name">BADGERSKOPE</div>
+        <div class="wordmark-tag">EVIDENCE &gt; HYPE</div>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <div class="foot-h">LIBRARY</div>
+        <a href="/web/">All compounds</a>
+        <a href="/web/?evidence=A">Tier A</a>
+        <a href="/web/">Recently filed</a>
+        <a href="/web/">Grade changes</a>
+      </div>
+      <div>
+        <div class="foot-h">METHOD</div>
+        <a href="#method">How we grade</a>
+        <a href="./evidence-guide.html">Evidence guide</a>
+        <a href="./glossary.html">Glossary</a>
+        <a href="#receipts">Receipts</a>
+      </div>
+      <div>
+        <div class="foot-h">ABOUT</div>
+        <a href="#faq">The badger</a>
+        <a href="#subscribe">Newsletter</a>
+        <a href="#subscribe">Pro membership</a>
+        <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div>
+        <div class="foot-h">LEGAL</div>
+        <a href="#faq">Not medical advice</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">RSS</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-mega" aria-label="Evidence greater than hype">
+    EVIDENCE&nbsp;
+    <svg viewBox="0 0 80 100" class="gt-inline" aria-hidden="true">
+      <path d="M14 14 L66 50 L14 86" stroke-width="10" fill="none" stroke-linecap="square" stroke-linejoin="miter" style="stroke: var(--accent);"/>
+    </svg>
+    &nbsp;HYPE
+  </div>
+
+  <div class="footer-bot">
+    <div>&copy; 2026 BADGERSKOPE &mdash; INDEPENDENT, AD-FREE, RECEIPTS-BASED.</div>
+    <div class="mono">v.027.04 &middot; BUILT IN A BURROW</div>
+  </div>
+</footer>
+
+<script type="module">
+  // ===========================================================
+  // Nav scroll state
+  // ===========================================================
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 30);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ===========================================================
+  // Ticker — 12 items duplicated for seamless loop
+  // ===========================================================
+  const tickerItems = [
+    'BPC-157 · TIER B · 14 HUMAN TRIALS LOGGED',
+    'TB-500 · TIER C · ANIMAL DATA ONLY',
+    'RETATRUTIDE · TIER A · PHASE 3 ACTIVE',
+    'GHK-CU · TIER B · TOPICAL EVIDENCE STRONG',
+    'MOTS-C · TIER D · MOSTLY VENDOR HYPE',
+    'EPITHALON · TIER F · SLOP DETECTED',
+    'TIRZEPATIDE · TIER A · FDA APPROVED 2022',
+    'SEMAGLUTIDE · TIER A · LONG-TERM RCTS',
+    'SS-31 · TIER C · EARLY PHASE 2',
+    'DSIP · TIER D · INSUFFICIENT DATA',
+    'CJC-1295 · TIER C · OFF-LABEL POPULAR',
+    'IPAMORELIN · TIER C · LIMITED HUMAN'
+  ];
+  const track = document.getElementById('ticker-track');
+  if (track) {
+    const fragment = document.createDocumentFragment();
+    [...tickerItems, ...tickerItems].forEach(text => {
+      const span = document.createElement('span');
+      span.className = 'ticker-item';
+      span.innerHTML = `<span class="ticker-mark">▮</span>${text}`;
+      fragment.appendChild(span);
+    });
+    track.appendChild(fragment);
+  }
+
+  // ===========================================================
+  // Library — filter rows by evidence grade
+  // ===========================================================
+  const files = [
+    { name: 'RETATRUTIDE',  aka: 'LY3437943',         e: 'A', s: 'B', a: 'C', n: 2148, claim: 'Tri-agonist GLP-1/GIP/glucagon — Phase 3 weight loss',   filed: '26 APR 26' },
+    { name: 'TIRZEPATIDE',  aka: 'MOUNJARO',          e: 'A', s: 'A', a: 'A', n: 6420, claim: 'Dual GIP/GLP-1 — FDA approved, long-term RCTs',           filed: '21 APR 26' },
+    { name: 'BPC-157',      aka: 'PL 14736',          e: 'B', s: 'B', a: 'B', n: 217,  claim: 'Tendon/gut healing — promising animal, sparse human',     filed: '18 APR 26' },
+    { name: 'GHK-CU',       aka: 'COPPER TRIPEPT.',   e: 'B', s: 'A', a: 'A', n: 380,  claim: 'Topical wound/skin — solid topical, weaker injected',     filed: '14 APR 26' },
+    { name: 'MOTS-C',       aka: 'MITOCHON. PEPT.',   e: 'C', s: 'C', a: 'D', n: 24,   claim: 'Mitochondrial / metabolic — animal data, viral hype',     filed: '11 APR 26' },
+    { name: 'TB-500',       aka: 'THYMOSIN-Β4 FRAG',  e: 'C', s: 'C', a: 'C', n: 0,    claim: 'Recovery — popular in horse racing, no human trials',    filed: '08 APR 26' },
+    { name: 'EPITALON',     aka: 'EPITHALON',         e: 'F', s: 'D', a: 'B', n: 12,   claim: 'Anti-aging / telomere — claims wildly exceed data',      filed: '03 APR 26' },
+    { name: 'DSIP',         aka: 'DELTA SLEEP',       e: 'D', s: 'C', a: 'C', n: 33,   claim: 'Sleep — 1970s studies, never replicated at scale',       filed: '29 MAR 26' }
+  ];
+  const rowsEl = document.getElementById('library-rows');
+  const countEl = document.getElementById('library-count');
+  const tierChip = (g) => `<span class="tier" data-grade="${g}"><span class="tier-letter">${g}</span></span>`;
+  const renderLibrary = (filter) => {
+    const visible = filter === 'ALL' ? files : files.filter(f => f.e === filter);
+    rowsEl.innerHTML = visible.map(f => `
+      <a class="library-row" href="/web/" role="row">
+        <div class="lib-name">
+          <div class="lib-name-main">${f.name}</div>
+          <div class="lib-name-aka">${f.aka}</div>
+        </div>
+        <div>${tierChip(f.e)}</div>
+        <div>${tierChip(f.s)}</div>
+        <div>${tierChip(f.a)}</div>
+        <div class="mono">${f.n.toLocaleString()}</div>
+        <div class="lib-claim">${f.claim}</div>
+        <div class="mono lib-filed">${f.filed}</div>
+        <div class="lib-arrow" aria-hidden="true">→</div>
+      </a>
+    `).join('');
+    countEl.textContent = `SHOWING ${visible.length} OF 142 FILES`;
+  };
+  renderLibrary('ALL');
+  document.querySelectorAll('.library-filter .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.library-filter .chip').forEach(c => {
+        c.classList.toggle('is-on', c === chip);
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      renderLibrary(chip.dataset.filter);
+    });
+  });
+
+  // ===========================================================
+  // FAQ — single-open accordion
+  // ===========================================================
+  const faqList = document.getElementById('faq-list');
+  if (faqList) {
+    faqList.addEventListener('click', (e) => {
+      const btn = e.target.closest('.faq-q');
+      if (!btn) return;
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('is-open');
+      faqList.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('is-open');
+        const b = i.querySelector('.faq-q');
+        const t = i.querySelector('.faq-toggle');
+        if (b) b.setAttribute('aria-expanded', 'false');
+        if (t) t.textContent = '+';
+      });
+      if (!wasOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        const t = item.querySelector('.faq-toggle');
+        if (t) t.textContent = '−';
+      }
+    });
+  }
+
+  // ===========================================================
+  // Subscribe — replace form with success state
+  // ===========================================================
+  const form = document.getElementById('sub-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('sub-email').value.trim();
+      if (!email || !/.+@.+\..+/.test(email)) return;
+      const ok = document.createElement('div');
+      ok.className = 'sub-ok';
+      ok.textContent = '✓ FILED. CHECK YOUR INBOX FOR THE CONFIRMATION.';
+      form.replaceWith(ok);
+    });
+  }
+</script>
 
 </body>
 </html>

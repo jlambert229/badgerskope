@@ -11,7 +11,7 @@ const WADA_KEYWORDS = [
 const STORAGE_KEY = "bs_hide_banned";
 
 export function initSportFilter() {
-  const toolbar = document.querySelector(".browse-toolbar");
+  const toolbar = document.querySelector(".lib-toolbar");
   if (!toolbar) return;
 
   const wrap = document.createElement("label");

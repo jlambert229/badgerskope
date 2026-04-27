@@ -68,14 +68,16 @@ test.describe("iOS Safari compatibility", () => {
   });
 
   test("select dropdowns are interactive", async ({ page }) => {
+    // Filters live behind the REFINE drawer in the redesigned SPA.
+    await page.click("#filters-toggle");
+    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+
     const category = page.locator("#category");
     await expect(category).toBeVisible();
 
-    // Get option count
     const optionCount = await category.locator("option").count();
     expect(optionCount).toBeGreaterThan(2);
 
-    // Select an option
     await category.selectOption({ index: 1 });
     const value = await category.inputValue();
     expect(value).not.toBe("");
@@ -92,19 +94,9 @@ test.describe("iOS Safari compatibility", () => {
     expect(filteredCount).toBeGreaterThan(0);
   });
 
-  test("theme toggle switches between dark and light", async ({ page }) => {
-    const initialTheme = await page.evaluate(() =>
-      document.documentElement.getAttribute("data-theme")
-    );
-
-    await page.click("#theme-toggle");
-    await page.waitForTimeout(100);
-
-    const newTheme = await page.evaluate(() =>
-      document.documentElement.getAttribute("data-theme")
-    );
-
-    expect(newTheme).not.toBe(initialTheme);
+  test.skip("theme toggle switches between dark and light", async () => {
+    // Brand identity is dark-only after the editorial brutalist redesign.
+    // The toggle and light-mode tokens were intentionally removed.
   });
 
   test("smooth scroll does not break (iOS scroll quirks)", async ({ page }) => {

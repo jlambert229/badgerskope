@@ -81,12 +81,12 @@ function updateExportVisibility() {
 }
 
 function addExportNotes() {
-  const navEnd = document.querySelector(".nav-bar__end");
+  const navEnd = document.querySelector(".nav-end");
   if (!navEnd) return;
 
   exportBtn = document.createElement("button");
   exportBtn.type = "button";
-  exportBtn.className = "nav-bar__link";
+  exportBtn.className = "nav-link";
   exportBtn.textContent = "Export notes";
   exportBtn.title = "Download all your personal notes";
   exportBtn.id = "export-notes";

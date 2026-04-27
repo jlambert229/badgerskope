@@ -18,13 +18,16 @@ export const KNOWN_FOR_THEME_ORDER = [
   "aging_bioregulators",
 ];
 
+// Brand tier ramp (grayscale-olive, drab on purpose — no "traffic light hype").
+// Each evidence category maps to a letter grade A–F shown as a brutalist chip.
+// Two categories map to A (approved + pivotal): the label distinguishes them.
 export const EVIDENCE_TIERS = [
-  { key: "regulatory_label", tier: "approved", color: "#22c55e", label: "FDA approved", subtitle: "Regulators reviewed the data and said yes", rank: 0 },
-  { key: "pivotal_trials", tier: "pivotal", color: "#14b8a6", label: "Strong human trials", subtitle: "Tested on thousands of people in controlled studies", rank: 1 },
-  { key: "phase1_human", tier: "phase1", color: "#f59e0b", label: "Early human studies", subtitle: "Small studies on people, but not conclusive yet", rank: 2 },
-  { key: "preclinical_animal", tier: "preclinical", color: "#f97316", label: "Animal studies only", subtitle: "Only tested on animals so far", rank: 3 },
-  { key: "compounded_practice", tier: "practice", color: "#9ca3af", label: "Clinic practice", subtitle: "Used by some clinics, but little controlled research", rank: 4 },
-  { key: "unknown_identity", tier: "unknown", color: "#9ca3af", label: "Unknown", subtitle: "Not enough data to grade", rank: 5 },
+  { key: "regulatory_label",    tier: "approved",    grade: "A", color: "#C8D17A", label: "FDA approved",        subtitle: "Regulators reviewed the data and said yes",            rank: 0 },
+  { key: "pivotal_trials",      tier: "pivotal",     grade: "A", color: "#C8D17A", label: "Strong human trials", subtitle: "Tested on thousands of people in controlled studies",  rank: 1 },
+  { key: "phase1_human",        tier: "phase1",      grade: "B", color: "#A6A089", label: "Early human studies", subtitle: "Small studies on people, but not conclusive yet",      rank: 2 },
+  { key: "preclinical_animal",  tier: "preclinical", grade: "C", color: "#7A7665", label: "Animal studies only", subtitle: "Only tested on animals so far",                        rank: 3 },
+  { key: "compounded_practice", tier: "practice",    grade: "D", color: "#5A5750", label: "Clinic practice",     subtitle: "Used by some clinics, but little controlled research", rank: 4 },
+  { key: "unknown_identity",    tier: "unknown",     grade: "F", color: "#3F3D38", label: "Unknown",             subtitle: "Not enough data to grade",                             rank: 5 },
 ];
 
 export function tierForKey(key) {
