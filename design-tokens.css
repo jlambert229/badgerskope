@@ -23,12 +23,21 @@
   --accent:      #C8D17A;   /* olive — pulled from EVIDENCE > HYPE tagline */
   --accent-soft: rgba(200, 209, 122, 0.10);
 
-  /* ---------- Tier ramp (Evidence / Safety / Access) ---------- */
+  /* ---------- Tier ramp (Evidence / Safety / Access) ----------
+     Each tier letter sits on its tier color with #0B0B0A ink.
+     All five clear WCAG AA (>= 4.5:1) against that ink:
+       A #C8D17A  12.06:1
+       B #A6A089   7.51:1
+       C #95907E   6.16:1
+       D #857F70   4.94:1
+       F #807D6D   4.76:1
+     Keep the ramp monochrome / desaturated; just lighter at the
+     bottom end so D and F don't fail contrast. */
   --tier-a: var(--accent);
   --tier-b: #A6A089;
-  --tier-c: #7A7665;
-  --tier-d: #5A5750;
-  --tier-f: #3F3D38;
+  --tier-c: #95907E;
+  --tier-d: #857F70;
+  --tier-f: #807D6D;
 
   /* ---------- Evidence tiers (legacy semantic names consumed by SPA JS) ---------- */
   --ev-approved: var(--tier-a);
