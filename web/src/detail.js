@@ -20,12 +20,14 @@ let _render = null;
 let _updateHash = null;
 let _readHashParams = null;
 let _writeHashParams = null;
+let _updateHashFromState = null;
 
-export function setDetailCallbacks({ render, updateHash, readHashParams, writeHashParams }) {
+export function setDetailCallbacks({ render, updateHash, readHashParams, writeHashParams, updateHashFromState }) {
   _render = render;
   _updateHash = updateHash;
   _readHashParams = readHashParams;
   _writeHashParams = writeHashParams;
+  _updateHashFromState = updateHashFromState;
 }
 
 /* ------------------------------------------------------------------ */
@@ -173,7 +175,7 @@ export function renderDetailHtml(entry) {
       <p class="detail__summary-prose">${escapeHtml(entry.researchSummary || "")}</p>
 
       <div class="detail__answer-actions">
-        <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark">
+        <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark for ${escapeHtml(displayName)}" aria-pressed="${isBookmarked ? "true" : "false"}">
           ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
         </button>
       </div>
@@ -371,7 +373,9 @@ export function bindDetailEvents() {
     bookmarkBtn.addEventListener("click", () => {
       const id = bookmarkBtn.dataset.entryId;
       toggleBookmark(id);
-      bookmarkBtn.innerHTML = (state.bookmarks.has(id) ? "\u2605" : "\u2606") + " Bookmark";
+      const nowOn = state.bookmarks.has(id);
+      bookmarkBtn.innerHTML = (nowOn ? "\u2605" : "\u2606") + " Bookmark";
+      bookmarkBtn.setAttribute("aria-pressed", String(nowOn));
       if (_render) _render();
     });
   }
@@ -404,7 +408,12 @@ export function openDetail(entry, opts = {}) {
 
 export function closeDetail() {
   els.dialog.close();
-  if (_readHashParams && _writeHashParams) {
+  // Rebuild the hash from current filter state. updateHashFromState() skips
+  // when the dialog is open, so calling it after .close() yields a clean
+  // hash without the entry= param.
+  if (_updateHashFromState) {
+    _updateHashFromState();
+  } else if (_readHashParams && _writeHashParams) {
     const params = _readHashParams();
     delete params.entry;
     _writeHashParams(params);
