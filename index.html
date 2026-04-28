@@ -289,7 +289,7 @@
     </div>
 
     <div class="library-table">
-      <div class="library-th" role="row">
+      <div class="library-th" aria-hidden="true">
         <div>COMPOUND</div>
         <div>EVIDENCE</div>
         <div>SAFETY</div>
@@ -489,9 +489,9 @@
       <div>
         <div class="foot-h">LEGAL</div>
         <a href="#faq">Not medical advice</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">RSS</a>
+        <span class="dead-link" aria-disabled="true">Privacy <span class="dead-soon">(soon)</span></span>
+        <span class="dead-link" aria-disabled="true">Terms <span class="dead-soon">(soon)</span></span>
+        <span class="dead-link" aria-disabled="true">RSS <span class="dead-soon">(soon)</span></span>
       </div>
     </div>
   </div>
@@ -567,7 +567,7 @@
   const renderLibrary = (filter) => {
     const visible = filter === 'ALL' ? files : files.filter(f => f.e === filter);
     rowsEl.innerHTML = visible.map(f => `
-      <a class="library-row" href="/web/" role="row">
+      <a class="library-row" href="/web/">
         <div class="lib-name">
           <div class="lib-name-main">${f.name}</div>
           <div class="lib-name-aka">${f.aka}</div>
@@ -621,17 +621,44 @@
   }
 
   // ===========================================================
-  // Subscribe — replace form with success state
+  // Subscribe — replace form with success state, or show error
   // ===========================================================
   const form = document.getElementById('sub-form');
   if (form) {
+    const input = document.getElementById('sub-email');
+    let errEl = null;
+    let flashTimer = null;
+    const clearError = () => {
+      input.removeAttribute('aria-invalid');
+      input.classList.remove('is-invalid');
+      if (errEl) { errEl.remove(); errEl = null; }
+      if (flashTimer) { clearTimeout(flashTimer); flashTimer = null; }
+    };
+    input.addEventListener('input', clearError);
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = document.getElementById('sub-email').value.trim();
-      if (!email || !/.+@.+\..+/.test(email)) return;
+      const email = input.value.trim();
+      if (!email || !/.+@.+\..+/.test(email)) {
+        input.setAttribute('aria-invalid', 'true');
+        input.classList.add('is-invalid');
+        if (!errEl) {
+          errEl = document.createElement('div');
+          errEl.className = 'sub-err';
+          errEl.setAttribute('role', 'alert');
+          errEl.textContent = 'INVALID EMAIL — TRY AGAIN.';
+          form.insertAdjacentElement('afterend', errEl);
+        }
+        if (flashTimer) clearTimeout(flashTimer);
+        flashTimer = setTimeout(() => {
+          input.classList.remove('is-invalid');
+          flashTimer = null;
+        }, 600);
+        return;
+      }
       const ok = document.createElement('div');
       ok.className = 'sub-ok';
       ok.textContent = '✓ FILED. CHECK YOUR INBOX FOR THE CONFIRMATION.';
+      if (errEl) { errEl.remove(); errEl = null; }
       form.replaceWith(ok);
     });
   }

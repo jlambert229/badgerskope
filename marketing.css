@@ -246,15 +246,23 @@ img { display: block; max-width: 100%; }
   background: var(--accent); color: #0B0B0A;
   border-color: var(--accent);
 }
-.btn-primary:hover,
-.btn-primary:focus-visible {
+.btn-primary:hover {
   background: var(--fg); border-color: var(--fg);
   outline: none;
 }
-.btn-ghost:hover,
+.btn-primary:focus-visible {
+  background: var(--fg); border-color: var(--fg);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+.btn-ghost:hover {
+  border-color: var(--accent); color: var(--accent);
+  outline: none;
+}
 .btn-ghost:focus-visible {
   border-color: var(--accent); color: var(--accent);
   outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
 }
 
 .hero-stats {
@@ -364,12 +372,14 @@ img { display: block; max-width: 100%; }
 }
 .ticker-item { display: inline-flex; align-items: center; gap: 12px; }
 .ticker-mark { color: var(--accent); }
+.ticker:hover .ticker-track { animation-play-state: paused; }
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .ticker-track { animation: none; }
+  .hero-eyebrow .dot { animation: none; }
 }
 
 /* =================================================================
@@ -812,6 +822,19 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--accent);
   display: inline-block;
 }
+.sub-form input.is-invalid {
+  border-color: var(--danger);
+  transition: border-color 200ms ease;
+}
+.sub-err {
+  margin: 14px auto 0;
+  max-width: 520px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-mono);
+  color: var(--danger);
+  text-align: left;
+}
 
 /* =================================================================
    FOOTER
@@ -857,6 +880,20 @@ img { display: block; max-width: 100%; }
   transition: color var(--transition-fast);
 }
 .footer-cols a:hover { color: var(--accent); }
+.footer-cols .dead-link {
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--fg-3);
+  cursor: default;
+}
+.footer-cols .dead-soon {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-mono);
+  color: var(--fg-3);
+  margin-left: 6px;
+}
 
 .footer-mega {
   display: flex; align-items: center; justify-content: center;
