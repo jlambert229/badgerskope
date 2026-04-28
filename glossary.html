@@ -8,6 +8,21 @@
   <meta name="description" content="A searchable dictionary of peptide and medical terms, translated into plain English. No jargon, no gatekeeping.">
   <meta name="theme-color" content="#0B0B0A">
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="Glossary &mdash; BadgerSkope">
+  <meta property="og:description" content="A searchable dictionary of peptide and medical terms, translated into plain English. No jargon, no gatekeeping.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.badgerskope.com/glossary.html">
+  <meta property="og:image" content="https://www.badgerskope.com/lockup-og.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Glossary &mdash; BadgerSkope">
+  <meta name="twitter:description" content="A searchable dictionary of peptide and medical terms, translated into plain English. No jargon, no gatekeeping.">
+  <meta name="twitter:image" content="https://www.badgerskope.com/lockup-og.png">
+
+  <link rel="canonical" href="https://www.badgerskope.com/glossary.html">
+
   <link rel="icon" type="image/png" href="./badger-256.png">
   <link rel="apple-touch-icon" href="./badger-180.png">
 
@@ -111,8 +126,23 @@
       color: var(--accent);
     }
     .letter-nav .disabled {
-      color: var(--line-2);
+      /* Muted-disabled semantics: readable but visibly inactive.
+         Pure --line-2 (#3A3A35) on bg failed at 1.27:1; --fg-3 at
+         opacity 0.4 keeps the "off" feel while staying legible. */
+      color: var(--fg-3);
+      opacity: 0.4;
       pointer-events: none;
+    }
+
+    /* Mobile: enforce 44x44 minimum touch targets per WCAG 2.5.5.
+       Letters wrap to additional rows when 13-per-row math falls
+       below 44px. */
+    @media (max-width: 700px) {
+      .letter-nav a, .letter-nav span {
+        min-width: 44px;
+        min-height: 44px;
+        flex: 0 0 auto;
+      }
     }
 
     /* glossary list */
@@ -212,7 +242,10 @@
     <a href="/glossary.html" style="color: var(--accent);">GLOSSARY</a>
     <a href="/#faq">FAQ</a>
   </div>
-  <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
+  <div class="nav-cta-group" style="display:flex; gap:8px;">
+    <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
+    <a href="/#subscribe" class="nav-cta">SUBSCRIBE &rarr;</a>
+  </div>
 </nav>
 
 <main id="main">
