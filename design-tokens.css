@@ -25,19 +25,19 @@
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
      Each tier letter sits on its tier color with #0B0B0A ink.
-     All five clear WCAG AA (>= 4.5:1) against that ink:
-       A #C8D17A  12.06:1
-       B #A6A089   7.51:1
-       C #95907E   6.16:1
-       D #857F70   4.94:1
-       F #807D6D   4.76:1
-     Keep the ramp monochrome / desaturated; just lighter at the
-     bottom end so D and F don't fail contrast. */
+     Re-tuned for visible separation between B/C/D/F while keeping
+     all five at WCAG AA (>= 4.5:1) against that ink:
+       A #C8D17A  12.06:1   (brand olive)
+       B #BAB395   9.35:1
+       C #9F9985   6.91:1
+       D #8C8571   5.35:1
+       F #827B69   4.68:1
+     Each step is ~1.2-1.35× the next, so the steps read distinctly. */
   --tier-a: var(--accent);
-  --tier-b: #A6A089;
-  --tier-c: #95907E;
-  --tier-d: #857F70;
-  --tier-f: #807D6D;
+  --tier-b: #BAB395;
+  --tier-c: #9F9985;
+  --tier-d: #8C8571;
+  --tier-f: #827B69;
 
   /* ---------- Evidence tiers (legacy semantic names consumed by SPA JS) ---------- */
   --ev-approved: var(--tier-a);

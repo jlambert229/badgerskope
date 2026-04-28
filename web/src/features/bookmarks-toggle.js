@@ -16,7 +16,7 @@ export function initBookmarksToggle() {
         : allCards;
       const stats = document.getElementById("stats");
       if (stats && checked) {
-        stats.textContent = `Showing ${visibleCards.length} bookmarked of ${allCards.length}`;
+        stats.textContent = `${visibleCards.length} BOOKMARKED OF ${allCards.length}`;
       }
     }, 50);
   }
@@ -28,10 +28,10 @@ export function initBookmarksToggle() {
 
   const checkboxes = [];
 
-  function createToggle(parent, position) {
+  function createToggle(parent, position, label) {
     const toggle = document.createElement("label");
     toggle.className = "bookmarks-toggle";
-    toggle.innerHTML = '<input type="checkbox"> <span>Bookmarked only</span>';
+    toggle.innerHTML = `<input type="checkbox"> <span>${label}</span>`;
     if (position === "prepend") parent.prepend(toggle);
     else parent.appendChild(toggle);
     const cb = toggle.querySelector("input");
@@ -40,11 +40,12 @@ export function initBookmarksToggle() {
     return toggle;
   }
 
-  const toolbar = document.querySelector(".lib-toolbar");
-  if (toolbar) createToggle(toolbar, "append");
+  const stripToggles = document.getElementById("filter-strip-toggles")
+    || document.querySelector(".filter-strip__toggles");
+  if (stripToggles) createToggle(stripToggles, "append", "BOOKMARKED ONLY");
 
   const selActions = document.querySelector(".lib-selection-actions");
-  if (selActions) createToggle(selActions, "prepend");
+  if (selActions) createToggle(selActions, "prepend", "Bookmarked only");
 
   document.addEventListener("keydown", (e) => {
     if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT" || e.target.tagName === "TEXTAREA") return;

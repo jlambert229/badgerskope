@@ -30,17 +30,14 @@ import {
 import { initKeyboard, setKeyboardCallbacks } from "./keyboard.js";
 
 // Feature modules
-import { initRecent } from "./features/recent.js";
 import { initBookmarksToggle } from "./features/bookmarks-toggle.js";
 import { initChips } from "./features/chips.js";
 import { initShare } from "./features/share.js";
 import { initSearchEnhance } from "./features/search-enhance.js";
-import { initGoals } from "./features/goals.js";
 import { initScroll } from "./features/scroll.js";
 import { initNotes } from "./features/notes.js";
 import { initDoping } from "./features/doping.js";
 import { initInteractions } from "./features/interactions.js";
-import { initOrientation } from "./features/orientation.js";
 import { initStartHere } from "./features/start-here.js";
 import { initSportFilter } from "./features/sport-filter.js";
 import { initExperimentalToggle } from "./features/experimental-toggle.js";
@@ -86,12 +83,22 @@ function render() {
     ? 0
     : state.db.entries.filter((e) => !hasSafetyData(e) && matchesOtherFilters(e)).length;
   if (els.stats) {
-    const baseLine = `Showing ${list.length} of ${state.db.entries.length}`;
-    const expLine = hiddenExperimental > 0
-      ? ` \u00b7 ${hiddenExperimental} experimental hidden`
-      : "";
-    const selLine = selN ? ` \u00b7 ${selN} selected` : "";
-    els.stats.textContent = baseLine + expLine + selLine;
+    // Masthead live count: "53 COMPOUNDS LOGGED" only when ALL entries
+    // are visible. Once anything trims the list (filters or the default
+    // "experimentals hidden" cut), switch to "<n> OF <total> SHOWING"
+    // so the masthead always reflects what's actually rendered.
+    const total = state.db.entries.length;
+    let line;
+    if (list.length === total) {
+      line = `${total} COMPOUNDS LOGGED`;
+    } else {
+      line = `${list.length} OF ${total} SHOWING`;
+    }
+    if (hiddenExperimental > 0) {
+      line += ` \u00b7 ${hiddenExperimental} EXPERIMENTAL HIDDEN`;
+    }
+    if (selN) line += ` \u00b7 ${selN} SELECTED`;
+    els.stats.textContent = line;
   }
 
   const hasFilters = q || cat || comp || known || ev;
@@ -101,7 +108,7 @@ function render() {
   const resultCount = document.getElementById("result-count");
   if (resultCount) {
     if (hasFilters) {
-      resultCount.textContent = `${list.length} result${list.length !== 1 ? "s" : ""}`;
+      resultCount.textContent = `${list.length} RESULT${list.length !== 1 ? "S" : ""}`;
       resultCount.hidden = false;
     } else {
       resultCount.hidden = true;
@@ -188,6 +195,21 @@ setKeyboardCallbacks({ closeDetail, showDetailAt, render });
 /*  Back to top                                                        */
 /* ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ */
+/*  Sticky offsets — measure nav + filter strip so the column header   */
+/*  pins beneath both. Re-runs on resize.                              */
+/* ------------------------------------------------------------------ */
+
+function measureStickyOffsets() {
+  const nav = document.getElementById("site-nav");
+  const strip = document.getElementById("filter-strip");
+  const navH = nav ? Math.round(nav.getBoundingClientRect().height) : 70;
+  const stripH = strip ? Math.round(strip.getBoundingClientRect().height) : 110;
+  const root = document.documentElement;
+  root.style.setProperty("--nav-h", navH + "px");
+  root.style.setProperty("--filter-strip-h", stripH + "px");
+}
+
 function initBackToTop() {
   if (!els.backToTop) return;
   const check = () => {
@@ -252,21 +274,6 @@ async function init() {
   if (els.evidenceFilter) els.evidenceFilter.addEventListener("change", render);
   const groupByEl = document.getElementById("group-by");
   if (groupByEl) groupByEl.addEventListener("change", render);
-
-  // Advanced filters toggle
-  const filtersToggle = document.getElementById("filters-toggle");
-  const advancedFilters = document.getElementById("advanced-filters");
-  if (filtersToggle && advancedFilters) {
-    filtersToggle.addEventListener("click", () => {
-      const isHidden = advancedFilters.hidden;
-      advancedFilters.hidden = !isHidden;
-      const nowOpen = isHidden;
-      filtersToggle.classList.toggle("filters-toggle--open", nowOpen);
-      filtersToggle.setAttribute("aria-expanded", String(nowOpen));
-      const icon = filtersToggle.querySelector(".filters-toggle__icon");
-      if (icon) icon.textContent = nowOpen ? "\u2212" : "+";
-    });
-  }
 
   const resetBtn = document.getElementById("reset-filters");
   if (resetBtn) {
@@ -342,6 +349,14 @@ async function init() {
   // Back to top
   initBackToTop();
 
+  // Sticky offsets — measure nav + filter strip
+  measureStickyOffsets();
+  window.addEventListener("resize", measureStickyOffsets, { passive: true });
+  // Also re-measure after fonts load (Oswald nav height shifts)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(measureStickyOffsets).catch(() => {});
+  }
+
   // Keyboard shortcuts
   initKeyboard();
 
@@ -387,13 +402,10 @@ async function init() {
 
   // Initialize feature enhancements
   initExperimentalToggle({ onChange: render });
-  initRecent();
   initBookmarksToggle();
   initChips();
   initShare();
   initSearchEnhance();
-  initOrientation();
-  initGoals();
   initStartHere();
   initScroll();
   initNotes();

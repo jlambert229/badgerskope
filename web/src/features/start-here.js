@@ -1,11 +1,10 @@
 /**
- * "Start here" curated section.
- * Shows a handful of well-known compounds with strong evidence for new visitors.
- * Picks entries by highest evidence tier so the first impression is credible.
+ * "Most looked-up compounds" curated picker.
+ * Uses brand voice: mono uppercase labels, no tier color in foreground
+ * (was failing 4.5:1 contrast against #0B0B0A). Border + hover use accent.
  */
 
-import { state, getEntryByTitle } from "../state.js";
-import { highestTier } from "../constants.js";
+import { getEntryByTitle } from "../state.js";
 import { escapeHtml, getDisplayName } from "../utils.js";
 
 const CURATED_TITLES = [
@@ -21,11 +20,14 @@ const STORAGE_KEY = "bs_start_here_dismissed";
 export function initStartHere() {
   if (localStorage.getItem(STORAGE_KEY)) return;
 
-  const goalBar = document.querySelector(".goal-bar");
-  if (!goalBar) return;
+  // Place "most looked-up" between the masthead and the search input.
+  // Falls back to inserting before the filter strip if the search is missing.
+  const insertBefore = document.querySelector(".lib-search")
+    || document.querySelector(".filter-strip");
+  if (!insertBefore || !insertBefore.parentNode) return;
 
   const curated = CURATED_TITLES
-    .map(t => getEntryByTitle(t))
+    .map((t) => getEntryByTitle(t))
     .filter(Boolean)
     .slice(0, 5);
 
@@ -35,33 +37,36 @@ export function initStartHere() {
   section.className = "start-here";
   section.innerHTML = `
     <strong class="start-here__title">Most looked-up compounds</strong>
-    <p class="start-here__desc">Not sure where to start? These are the compounds people search for most. Tap one to see the research.</p>
+    <p class="start-here__desc">Quick picks &mdash; tap to open the file.</p>
     <div class="start-here__actions">
-      ${curated.map(entry => {
-        const tier = highestTier(entry);
-        const name = getDisplayName(entry);
-        return `<button type="button" class="start-here__btn" data-title="${escapeHtml(name)}"
-          style="border-color: ${tier.color}33; color: ${tier.color}; background: ${tier.color}11"
-          >${escapeHtml(name)}</button>`;
-      }).join("")}
-      <button type="button" class="start-here__btn start-here__btn--dismiss">Dismiss</button>
+      ${curated
+        .map((entry) => {
+          const name = getDisplayName(entry);
+          return `<button type="button" class="start-here__btn" data-title="${escapeHtml(name)}">${escapeHtml(name)}</button>`;
+        })
+        .join("")}
+      <button type="button" class="start-here__btn start-here__btn--dismiss" aria-label="Dismiss">DISMISS</button>
     </div>
   `;
 
-  goalBar.after(section);
+  insertBefore.parentNode.insertBefore(section, insertBefore);
 
-  section.querySelectorAll(".start-here__btn:not(.start-here__btn--dismiss)").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const entry = getEntryByTitle(btn.dataset.title);
-      if (entry) {
-        const event = new CustomEvent("bs:open-detail", { detail: { entry } });
-        document.dispatchEvent(event);
-      }
+  section
+    .querySelectorAll(".start-here__btn:not(.start-here__btn--dismiss)")
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const entry = getEntryByTitle(btn.dataset.title);
+        if (entry) {
+          const event = new CustomEvent("bs:open-detail", { detail: { entry } });
+          document.dispatchEvent(event);
+        }
+      });
     });
-  });
 
-  section.querySelector(".start-here__btn--dismiss")?.addEventListener("click", () => {
-    section.remove();
-    localStorage.setItem(STORAGE_KEY, "1");
-  });
+  section
+    .querySelector(".start-here__btn--dismiss")
+    ?.addEventListener("click", () => {
+      section.remove();
+      localStorage.setItem(STORAGE_KEY, "1");
+    });
 }

@@ -126,9 +126,8 @@ test.describe("Navigation and state — bugs that lose user context", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
-    // Category lives in collapsed advanced filters
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    // Filter strip is always visible — no drawer to open.
+    await page.locator(".filter-strip").waitFor({ state: "visible" });
 
     await page.fill("#search", "test");
     await page.locator("#category").selectOption({ index: 1 });

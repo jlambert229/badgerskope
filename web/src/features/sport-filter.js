@@ -11,17 +11,18 @@ const WADA_KEYWORDS = [
 const STORAGE_KEY = "bs_hide_banned";
 
 export function initSportFilter() {
-  const toolbar = document.querySelector(".lib-toolbar");
-  if (!toolbar) return;
+  const slot = document.getElementById("filter-strip-sport")
+    || document.querySelector(".filter-strip__meta");
+  if (!slot) return;
 
   const wrap = document.createElement("label");
   wrap.className = "sport-filter";
   wrap.innerHTML = `
     <input type="checkbox" class="sport-filter__cb" />
-    <span class="sport-filter__label">Hide sport-banned</span>
+    <span class="sport-filter__label">HIDE SPORT-BANNED</span>
   `;
 
-  toolbar.appendChild(wrap);
+  slot.appendChild(wrap);
 
   const cb = wrap.querySelector(".sport-filter__cb");
   const grid = document.getElementById("grid");
