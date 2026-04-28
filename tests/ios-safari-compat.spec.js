@@ -68,9 +68,8 @@ test.describe("iOS Safari compatibility", () => {
   });
 
   test("select dropdowns are interactive", async ({ page }) => {
-    // Filters live behind the REFINE drawer in the redesigned SPA.
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    // Filter strip is always visible in the data-first redesign.
+    await page.locator(".filter-strip").waitFor({ state: "visible" });
 
     const category = page.locator("#category");
     await expect(category).toBeVisible();

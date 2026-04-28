@@ -13,8 +13,9 @@ test.describe("iOS viewport and layout", () => {
   });
 
   test("library head fits within viewport", async ({ page }) => {
-    // The post-redesign SPA opens with a brutalist library head, not a hero.
-    const head = page.locator(".lib-head");
+    // The post-redesign SPA opens with an editorial masthead strip + H1,
+    // not a hero. (Old `.lib-head` wrapper was replaced by `.lib-mast`.)
+    const head = page.locator(".lib-mast");
     const box = await head.boundingBox();
     const viewport = page.viewportSize();
     expect(box.width).toBeLessThanOrEqual(viewport.width + 1);
@@ -29,10 +30,9 @@ test.describe("iOS viewport and layout", () => {
   });
 
   test("filter controls wrap properly on small screens", async ({ page }) => {
-    // Open the refine drawer, then assert it doesn't overflow the viewport.
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
-    const controls = page.locator(".lib-filters");
+    // Filter strip is always visible in the data-first redesign.
+    await page.locator(".filter-strip").waitFor({ state: "visible" });
+    const controls = page.locator(".filter-strip__row--selects");
     const box = await controls.boundingBox();
     const viewport = page.viewportSize();
     expect(box.width).toBeLessThanOrEqual(viewport.width);
