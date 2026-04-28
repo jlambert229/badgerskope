@@ -9,8 +9,9 @@ import { state } from "../state.js";
 const STORAGE_KEY = "badgerskope.showExperimental";
 
 export function initExperimentalToggle({ onChange } = {}) {
-  const toolbar = document.querySelector(".lib-toolbar");
-  if (!toolbar) return;
+  const slot = document.getElementById("filter-strip-toggles")
+    || document.querySelector(".filter-strip__toggles");
+  if (!slot) return;
 
   let stored = false;
   try {
@@ -27,8 +28,8 @@ export function initExperimentalToggle({ onChange } = {}) {
     "Show entries without documented side-effect data (early-stage, " +
     "preclinical, or grey-market peptides)";
   label.innerHTML =
-    '<input type="checkbox"> <span>Show experimental</span>';
-  toolbar.appendChild(label);
+    '<input type="checkbox"> <span>SHOW EXPERIMENTAL</span>';
+  slot.appendChild(label);
 
   const cb = label.querySelector("input");
   cb.checked = state.showExperimental;

@@ -58,9 +58,8 @@ test.describe("Touch interactions (iOS)", () => {
   });
 
   test("filter dropdown responds", async ({ page }) => {
-    // Filters live behind the REFINE drawer in the redesigned SPA.
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    // Filter strip is always visible in the data-first redesign.
+    await page.locator(".filter-strip").waitFor({ state: "visible" });
 
     const select = page.locator("#category");
     await select.selectOption({ index: 1 });

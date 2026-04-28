@@ -43,7 +43,9 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   test("card count matches stats display", async ({ page }) => {
     const cardCount = await page.locator(".card").count();
     const statsText = await page.locator("#stats").textContent();
-    const match = statsText.match(/Showing (\d+) of (\d+)/);
+    // Masthead reads "53 COMPOUNDS LOGGED" with no filters, or
+    // "<filtered> OF <total> SHOWING" once filters are active.
+    const match = statsText.match(/(\d+)\s+(?:OF\s+\d+\s+SHOWING|COMPOUNDS\s+LOGGED)/i);
     expect(match).toBeTruthy();
     expect(parseInt(match[1])).toBe(cardCount);
   });
@@ -71,8 +73,8 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   test("filter counts are accurate after filtering", async ({ page }) => {
     const totalCards = await page.locator(".card").count();
 
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    // Filter strip is always visible in the data-first redesign.
+    await page.locator(".filter-strip").waitFor({ state: "visible" });
 
     // Filter by evidence tier — regulatory_label always has visible entries
     // (FDA-approved compounds are never marked experimental).
@@ -89,8 +91,8 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   });
 
   test("evidence filter returns only matching tiers", async ({ page }) => {
-    await page.click("#filters-toggle");
-    await page.locator("#advanced-filters").waitFor({ state: "visible" });
+    // Filter strip is always visible in the data-first redesign.
+    await page.locator(".filter-strip").waitFor({ state: "visible" });
     await page.locator("#evidence-filter").selectOption("regulatory_label");
     await page.waitForTimeout(300);
 
