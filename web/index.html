@@ -59,6 +59,10 @@
       </nav>
 
       <!-- ============================================================
+           MAIN LANDMARK — wraps the three tabpanels for screen readers
+           ============================================================ -->
+      <main class="app-main">
+      <!-- ============================================================
            BROWSE / LIBRARY (the home / landing screen)
            ============================================================ -->
       <section
@@ -163,8 +167,8 @@
 
         <p id="load-error" class="lib-error" hidden></p>
 
-        <div class="lib-table" role="table" aria-label="Peptide library">
-          <div class="lib-table__head" role="row" aria-hidden="true">
+        <div class="lib-table" aria-label="Peptide library">
+          <div class="lib-table__head" aria-hidden="true">
             <div>FILE</div>
             <div>COMPOUND</div>
             <div>EVIDENCE</div>
@@ -172,7 +176,7 @@
             <div>SUMMARY</div>
             <div></div>
           </div>
-          <main class="lib-rows" id="grid" aria-busy="true"></main>
+          <div class="lib-rows" id="grid" aria-busy="true" aria-label="Peptide entries"></div>
         </div>
       </section>
 
@@ -252,6 +256,8 @@
         </section>
       </section>
 
+      </main>
+
       <!-- ============================================================
            FOOTER
            ============================================================ -->
@@ -270,6 +276,7 @@
           <div class="footer-cols">
             <div>
               <div class="foot-h">LIBRARY</div>
+              <a href="/">Home</a>
               <a href="#panel-browse">All compounds</a>
               <a href="#panel-compare">Compare</a>
               <a href="#panel-stats">Stats</a>

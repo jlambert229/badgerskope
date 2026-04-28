@@ -33,7 +33,7 @@ export function writeHashParams(params) {
     }
   }
   const newHash = parts.length ? "#" + parts.join("&") : "";
-  if ("#" + location.hash.replace(/^#/, "") !== newHash && location.hash !== newHash) {
+  if (location.hash !== newHash) {
     history.replaceState(null, "", newHash || location.pathname);
   }
 }
