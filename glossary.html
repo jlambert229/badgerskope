@@ -316,7 +316,7 @@
       <div>
         <div class="foot-h">LIBRARY</div>
         <a href="/web/">All compounds</a>
-        <a href="/web/?evidence=A">Tier A</a>
+        <a href="/web/">By evidence tier</a>
         <a href="/web/">Recently filed</a>
       </div>
       <div>
@@ -334,8 +334,8 @@
       <div>
         <div class="foot-h">LEGAL</div>
         <a href="/#faq">Not medical advice</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <span class="dead-link" aria-disabled="true">Privacy <small>(soon)</small></span>
+        <span class="dead-link" aria-disabled="true">Terms <small>(soon)</small></span>
       </div>
     </div>
   </div>
@@ -389,20 +389,20 @@
       { term: 'GHRP', full: 'Growth Hormone Releasing Peptide', def: 'A synthetic peptide that triggers growth hormone release by activating the ghrelin receptor. Examples include GHRP-2 and GHRP-6. Not the same mechanism as GHRH.' },
       { term: 'GLP-1', full: 'Glucagon-Like Peptide-1', def: 'A gut hormone (incretin) that reduces appetite and helps control blood sugar. Semaglutide and liraglutide are GLP-1 receptor agonists — the drugs behind Ozempic and Wegovy.' },
       { term: 'GIP', full: 'Glucose-dependent Insulinotropic Peptide', def: 'Another gut hormone that works alongside GLP-1 to regulate insulin and blood sugar. Tirzepatide (Mounjaro) targets both GLP-1 and GIP receptors.' },
-      { term: 'Grey market', full: '', def: 'Products sold legally but outside official pharmaceutical channels, with uncertain quality and authenticity. Most "research peptides" fall into this category.' },
+      { term: 'Grey market', full: '', def: 'Products sold legally but outside official pharmaceutical channels, with uncertain quality and authenticity. Most “research peptides” fall into this category.' },
       { term: 'Half-life', full: '', def: 'How long it takes for half of a substance to be eliminated from your body. A peptide with a 6-hour half-life means roughly half is gone after 6 hours. This determines dosing frequency.' },
       { term: 'HbA1c', full: 'Glycated Hemoglobin', def: 'A blood test measuring average blood sugar levels over 2–3 months. It is the standard metric for long-term blood sugar control in diabetes management.' },
       { term: 'Homeostasis', full: '', def: 'The body’s tendency to maintain stable internal conditions (temperature, pH, blood sugar, etc.). Many peptides work by nudging the body back toward homeostatic balance.' },
       { term: 'IGF-1', full: 'Insulin-like Growth Factor 1', def: 'A hormone produced mainly by the liver that mediates many effects of growth hormone. When GH goes up, IGF-1 typically follows. It is often measured as a proxy for GH activity.' },
-      { term: 'Incretin', full: '', def: 'A gut hormone that helps control blood sugar and appetite by stimulating insulin release after eating. GLP-1 and GIP are the two main incretins. The "incretin effect" explains why oral glucose triggers more insulin than IV glucose.' },
-      { term: 'In vitro', full: '', def: 'Experiments done in a test tube or petri dish, outside a living organism. "It worked in vitro" means it worked in a lab dish — not necessarily in a living body.' },
+      { term: 'Incretin', full: '', def: 'A gut hormone that helps control blood sugar and appetite by stimulating insulin release after eating. GLP-1 and GIP are the two main incretins. The “incretin effect” explains why oral glucose triggers more insulin than IV glucose.' },
+      { term: 'In vitro', full: '', def: 'Experiments done in a test tube or petri dish, outside a living organism. “It worked in vitro” means it worked in a lab dish — not necessarily in a living body.' },
       { term: 'In vivo', full: '', def: 'Experiments done in a living organism (animal or human). More relevant than in vitro, but animal in vivo results don’t always translate to humans.' },
       { term: 'Lipodystrophy', full: '', def: 'Abnormal fat distribution in the body. Can be a side effect of certain medications (including some HIV drugs) or repeated injections in the same spot.' },
       { term: 'Lyophilized', full: '', def: 'Freeze-dried — how most research peptides are stored before reconstitution. The powder is mixed with bacteriostatic water before injection. Lyophilized peptides are more stable than liquid form.' },
       { term: 'MCG / µg', full: 'Micrograms', def: 'One millionth of a gram. 1,000 mcg equals 1 mg. Many peptides are dosed in micrograms because they are active at very small amounts.' },
       { term: 'Melanocortin', full: '', def: 'A family of brain receptors (MC1R through MC5R) involved in skin pigmentation, appetite regulation, and sexual function. PT-141 (bremelanotide) and melanotan target melanocortin receptors.' },
       { term: 'MG', full: 'Milligrams', def: 'One thousandth of a gram. Most peptide vials are measured in milligrams (e.g., a 5 mg vial), while individual doses are often in micrograms.' },
-      { term: 'Mitochondria', full: '', def: 'The energy-producing structures inside every cell, often called the "powerhouses" of cells. They convert nutrients into ATP, the molecule your cells use for energy. Some peptides like SS-31 target mitochondrial function.' },
+      { term: 'Mitochondria', full: '', def: 'The energy-producing structures inside every cell, often called the “powerhouses” of cells. They convert nutrients into ATP, the molecule your cells use for energy. Some peptides like SS-31 target mitochondrial function.' },
       { term: 'NAD+', full: 'Nicotinamide Adenine Dinucleotide', def: 'A coenzyme found in every living cell, essential for converting food into energy and repairing DNA. NAD+ levels decline with age, which has made it a target for longevity research.' },
       { term: 'Neuropeptide', full: '', def: 'A peptide that acts as a signaling molecule in the nervous system. Examples include oxytocin, vasopressin, and various opioid peptides. They influence mood, pain, and behavior.' },
       { term: 'Off-label', full: '', def: 'Using an FDA-approved drug for a purpose, population, or dose it was not officially approved for. This is legal and common in medicine — doctors do it all the time — but the evidence base may be thinner.' },
@@ -410,8 +410,8 @@
       { term: 'Phase 1 trial', full: '', def: 'The first stage of testing a drug in humans. Primarily checks safety and dosing in a small group of healthy volunteers (typically 20–80 people). Not designed to prove the drug works.' },
       { term: 'Phase 2 trial', full: '', def: 'Testing effectiveness in a small group of patients (typically 100–300) who actually have the target condition. Also continues to monitor safety. Many drugs fail at this stage.' },
       { term: 'Phase 3 trial', full: '', def: 'Large-scale testing (typically 1,000–3,000+ participants) that can lead to drug approval. These are the big, expensive trials that regulatory agencies require before approving a new drug.' },
-      { term: 'Pituitary gland', full: '', def: 'A pea-sized gland at the base of the brain that produces many important hormones, including growth hormone, ACTH, and thyroid-stimulating hormone. Often called the "master gland" of the endocrine system.' },
-      { term: 'Placebo', full: '', def: 'An inactive treatment (sugar pill or saline injection) used as a comparison in studies. The "placebo effect" is the real, measurable improvement some people experience from believing they received treatment.' },
+      { term: 'Pituitary gland', full: '', def: 'A pea-sized gland at the base of the brain that produces many important hormones, including growth hormone, ACTH, and thyroid-stimulating hormone. Often called the “master gland” of the endocrine system.' },
+      { term: 'Placebo', full: '', def: 'An inactive treatment (sugar pill or saline injection) used as a comparison in studies. The “placebo effect” is the real, measurable improvement some people experience from believing they received treatment.' },
       { term: 'Preclinical', full: '', def: 'Research done in animals or lab dishes before any human testing begins. Promising preclinical results are necessary but not sufficient — many compounds that work in mice fail in humans.' },
       { term: 'Proteolysis', full: '', def: 'The breakdown of proteins or peptides by enzymes. One reason oral peptides have low bioavailability — stomach enzymes destroy them before they can be absorbed.' },
       { term: 'RCT', full: 'Randomized Controlled Trial', def: 'The gold standard of medical research. Participants are randomly assigned to receive either the treatment or a placebo, reducing bias. Double-blind RCTs are the most reliable study design.' },
@@ -420,7 +420,7 @@
       { term: 'Reconstitution', full: '', def: 'The process of mixing a lyophilized (freeze-dried) peptide with sterile water to create an injectable solution. Proper reconstitution technique affects peptide stability and dosing accuracy.' },
       { term: 'Secretagogue', full: '', def: 'A substance that triggers the body to release a specific hormone rather than replacing the hormone directly. Growth hormone secretagogues stimulate your own pituitary to produce more GH.' },
       { term: 'Senescent cells', full: '', def: 'Old, damaged cells that stop dividing but refuse to die. They accumulate with aging and secrete inflammatory signals that damage neighboring cells. Senolytics are drugs designed to clear them.' },
-      { term: 'Subcutaneous', full: '', def: 'Injected under the skin into the fat layer, not into muscle or veins. This is the most common injection route for peptides. Abbreviated as "subQ" or "SC."' },
+      { term: 'Subcutaneous', full: '', def: 'Injected under the skin into the fat layer, not into muscle or veins. This is the most common injection route for peptides. Abbreviated as “subQ” or “SC.”' },
       { term: 'Tachyphylaxis', full: '', def: 'A rapid decrease in response to a drug after repeated doses. Some peptides lose effectiveness if used continuously without breaks, which is why cycling protocols exist.' },
       { term: 'Telomere', full: '', def: 'Protective caps on the ends of chromosomes that shorten each time a cell divides. Shorter telomeres are associated with aging and age-related disease.' },
       { term: 'Telomerase', full: '', def: 'An enzyme that can rebuild telomeres, counteracting their natural shortening. Associated with longevity research, though the relationship between telomerase activity and lifespan is complex.' },

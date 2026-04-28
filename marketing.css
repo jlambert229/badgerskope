@@ -41,7 +41,7 @@ img { display: block; max-width: 100%; }
   font-size: 12px; letter-spacing: var(--tracking-mono);
   z-index: 200;
 }
-.skip-link:focus { left: 16px; top: 16px; }
+.skip-link:focus { left: 16px; top: 16px; outline: 2px solid #0B0B0A; outline-offset: 2px; box-shadow: 0 0 0 4px var(--accent); }
 
 /* =================================================================
    NAV
@@ -830,7 +830,7 @@ img { display: block; max-width: 100%; }
   margin: 14px auto 0;
   max-width: 520px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: var(--tracking-mono);
   color: var(--danger);
   text-align: left;
