@@ -38,7 +38,6 @@ import { initScroll } from "./features/scroll.js";
 import { initNotes } from "./features/notes.js";
 import { initDoping } from "./features/doping.js";
 import { initInteractions } from "./features/interactions.js";
-import { initStartHere } from "./features/start-here.js";
 import { initSportFilter } from "./features/sport-filter.js";
 import { initExperimentalToggle } from "./features/experimental-toggle.js";
 
@@ -83,22 +82,23 @@ function render() {
     ? 0
     : state.db.entries.filter((e) => !hasSafetyData(e) && matchesOtherFilters(e)).length;
   if (els.stats) {
-    // Masthead live count: "53 COMPOUNDS LOGGED" only when ALL entries
-    // are visible. Once anything trims the list (filters or the default
-    // "experimentals hidden" cut), switch to "<n> OF <total> SHOWING"
-    // so the masthead always reflects what's actually rendered.
     const total = state.db.entries.length;
-    let line;
-    if (list.length === total) {
-      line = `${total} COMPOUNDS LOGGED`;
-    } else {
-      line = `${list.length} OF ${total} SHOWING`;
-    }
+    let html = list.length === total
+      ? `${total} COMPOUNDS LOGGED`
+      : `${list.length} OF ${total} SHOWING`;
     if (hiddenExperimental > 0) {
-      line += ` \u00b7 ${hiddenExperimental} EXPERIMENTAL HIDDEN`;
+      // Promote the experimental count to a click target so users can reveal them inline.
+      html += ` \u00b7 ${hiddenExperimental} EXPERIMENTAL HIDDEN <button type="button" id="show-experimental-inline" class="lib-meta-strip__action">[SHOW]</button>`;
     }
-    if (selN) line += ` \u00b7 ${selN} SELECTED`;
-    els.stats.textContent = line;
+    if (selN) html += ` \u00b7 ${selN} SELECTED`;
+    els.stats.innerHTML = html;
+    const showBtn = document.getElementById("show-experimental-inline");
+    if (showBtn) {
+      showBtn.addEventListener("click", () => {
+        const cb = document.querySelector(".experimental-toggle input");
+        if (cb && !cb.checked) { cb.checked = true; cb.dispatchEvent(new Event("change")); }
+      });
+    }
   }
 
   const hasFilters = q || cat || comp || known || ev;
@@ -246,7 +246,13 @@ async function init() {
   document.title = `BadgerSkope \u2014 ${state.db.entries.length} Peptides`;
   state.doseLegend = state.db.meta?.doseGuidelinesLegend || {};
   state.bookmarks = loadBookmarks();
-  if (els.disclaimer) els.disclaimer.textContent = state.db.disclaimer || "";
+  if (els.disclaimer) {
+    const full = state.db.disclaimer || "";
+    // The data file's disclaimer field is overloaded with internal field-doc
+    // copy after the first ~4 sentences. Render only the legal portion.
+    const cutoff = full.indexOf(" Reported benefits");
+    els.disclaimer.textContent = (cutoff > 0 ? full.slice(0, cutoff).trim() : full).replace(/\s+/g, " ");
+  }
   if (els.footerMeta) {
     const built = state.db.meta?.builtAt || "";
     const ver = state.db.meta?.schemaVersion || "";
@@ -406,7 +412,6 @@ async function init() {
   initChips();
   initShare();
   initSearchEnhance();
-  initStartHere();
   initScroll();
   initNotes();
   initDoping();

@@ -63,6 +63,18 @@
            ============================================================ -->
       <main class="app-main">
       <!-- ============================================================
+           SELECTION BAR — global, persists across LIBRARY/COMPARE/STATS
+           ============================================================ -->
+      <section class="lib-selection" id="selection-bar" hidden aria-label="Selection actions">
+        <span class="lib-selection-count" id="selection-count">0 SELECTED</span>
+        <div class="lib-selection-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="select-visible">SELECT ALL</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="clear-selection" disabled>CLEAR</button>
+          <button type="button" class="btn btn-primary btn-sm" id="compare-selected" disabled>COMPARE &rarr;</button>
+          <button type="button" class="btn btn-primary btn-sm" id="view-selected" disabled>VIEW DETAILS &rarr;</button>
+        </div>
+      </section>
+      <!-- ============================================================
            BROWSE / LIBRARY (the home / landing screen)
            ============================================================ -->
       <section
@@ -72,21 +84,11 @@
         aria-labelledby="tab-browse"
         tabindex="0"
       >
-        <header class="lib-mast" aria-label="Library masthead">
-          <div class="lib-mast__strip">
-            <span class="lib-mast__cell lib-mast__cell--left">BUREAU OF PEPTIDE LITERACY</span>
-            <span class="lib-mast__cell lib-mast__cell--center" id="stats" aria-live="polite">&mdash;</span>
-            <span class="lib-mast__cell lib-mast__cell--right">
-              EVIDENCE
-              <svg viewBox="0 0 80 100" class="gt-inline lib-mast__chevron" aria-hidden="true">
-                <path d="M14 14 L66 50 L14 86" stroke-width="14" fill="none" stroke-linecap="square" stroke-linejoin="miter" style="stroke: var(--accent);"/>
-              </svg>
-              HYPE
-            </span>
-          </div>
-          <h1 class="lib-h1">FILE INDEX.</h1>
-          <p class="lib-deck">EVERY COMPOUND LOGGED &middot; EVIDENCE-GRADED &middot; BADGER-CERTIFIED</p>
-        </header>
+        <h1 class="lib-meta-strip" aria-label="Library status">
+          <span class="lib-meta-strip__label">LIBRARY</span>
+          <span class="lib-meta-strip__sep" aria-hidden="true">&middot;</span>
+          <span id="stats" aria-live="polite" class="lib-meta-strip__count">&mdash;</span>
+        </h1>
 
         <div class="lib-search">
           <span class="lib-search-prefix" aria-hidden="true">/</span>
@@ -94,7 +96,7 @@
             id="search"
             class="lib-search-input"
             type="search"
-            placeholder="SEARCH COMPOUNDS, BENEFITS, MECHANISMS…"
+            placeholder="SEARCH 53 COMPOUNDS"
             autocomplete="off"
             aria-label="Search peptides, compounds, benefits"
           />
@@ -145,16 +147,6 @@
               <div class="filter-strip__sport" id="filter-strip-sport"></div>
               <span class="filter-strip__count" id="result-count" hidden></span>
             </div>
-          </div>
-        </section>
-
-        <section class="lib-selection" id="selection-bar" hidden aria-label="Selection actions">
-          <span class="lib-selection-count" id="selection-count">0 SELECTED</span>
-          <div class="lib-selection-actions">
-            <button type="button" class="btn btn-ghost btn-sm" id="select-visible">SELECT ALL</button>
-            <button type="button" class="btn btn-ghost btn-sm" id="clear-selection" disabled>CLEAR</button>
-            <button type="button" class="btn btn-primary btn-sm" id="compare-selected" disabled>COMPARE &rarr;</button>
-            <button type="button" class="btn btn-primary btn-sm" id="view-selected" disabled>VIEW DETAILS &rarr;</button>
           </div>
         </section>
 
