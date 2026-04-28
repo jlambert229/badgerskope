@@ -177,7 +177,7 @@ function render() {
 /* ------------------------------------------------------------------ */
 
 setCardCallbacks({ openDetail, updateSelectionToolbar });
-setDetailCallbacks({ render, updateHash, readHashParams, writeHashParams });
+setDetailCallbacks({ render, updateHash, readHashParams, writeHashParams, updateHashFromState });
 setCompareCallbacks({ openDetail, updateSelectionToolbar, render });
 setStatsCallbacks({ switchTab, render });
 setTabCallbacks({ renderComparisonTable, renderStatsDashboard, updateHashFromState });
@@ -377,16 +377,10 @@ async function init() {
     if (e.detail?.entry) openDetail(e.detail.entry);
   });
 
-  // Hash change
+  // Hash change — re-apply filter state and tab/entry. Without this,
+  // back/forward navigation through filter states wouldn't work.
   window.addEventListener("hashchange", () => {
-    const params = readHashParams();
-    if (params.tab) {
-      switchTab(params.tab);
-    }
-    if (params.entry) {
-      const entry = getEntryByTitle(params.entry);
-      if (entry) openDetail(entry);
-    }
+    applyHashOnLoad();
   });
 
   if (els.grid) els.grid.removeAttribute("aria-busy");

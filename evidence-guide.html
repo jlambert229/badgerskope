@@ -8,6 +8,21 @@
   <meta name="description" content="How to read peptide evidence tiers, spot red flags, and think critically about health claims. A BS detector for the peptide world.">
   <meta name="theme-color" content="#0B0B0A">
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="Evidence Guide &mdash; BadgerSkope">
+  <meta property="og:description" content="How to read peptide evidence tiers, spot red flags, and think critically about health claims. A BS detector for the peptide world.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.badgerskope.com/evidence-guide.html">
+  <meta property="og:image" content="https://www.badgerskope.com/lockup-og.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Evidence Guide &mdash; BadgerSkope">
+  <meta name="twitter:description" content="How to read peptide evidence tiers, spot red flags, and think critically about health claims. A BS detector for the peptide world.">
+  <meta name="twitter:image" content="https://www.badgerskope.com/lockup-og.png">
+
+  <link rel="canonical" href="https://www.badgerskope.com/evidence-guide.html">
+
   <link rel="icon" type="image/png" href="./badger-256.png">
   <link rel="apple-touch-icon" href="./badger-180.png">
 
@@ -187,6 +202,15 @@
     }
     .step-list li a:hover { border-bottom-color: var(--accent); }
 
+    /* nav cta group — keep both CTAs visible across breakpoints. On
+       narrow viewports compact the padding and drop the brand wordmark
+       text (badger SVG remains) so OPEN LIBRARY + SUBSCRIBE don't clip. */
+    .nav-cta-group { display: flex; gap: 8px; flex-wrap: nowrap; }
+    @media (max-width: 700px) {
+      .nav-cta-group .nav-cta { padding: 8px 10px; font-size: 11px; letter-spacing: 0.1em; }
+      .nav-brand span { display: none; }
+    }
+
     /* disclaimer */
     .doc-disclaimer {
       margin-top: 24px;
@@ -221,7 +245,10 @@
     <a href="/glossary.html">GLOSSARY</a>
     <a href="/#faq">FAQ</a>
   </div>
-  <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
+  <div class="nav-cta-group">
+    <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
+    <a href="/#subscribe" class="nav-cta">SUBSCRIBE &rarr;</a>
+  </div>
 </nav>
 
 <main id="main">
@@ -250,13 +277,13 @@
       <span class="rule-label" style="display:block; margin-bottom:8px;">01 &mdash; THE BASICS</span>
       <h2>Why evidence quality matters.</h2>
       <p>Most peptide information online doesn't tell you whether a claim is backed by an FDA approval or a single mouse study. A compound that &ldquo;reduces inflammation&rdquo; could mean it earned regulatory approval after years of clinical trials &mdash; or it means someone injected a rat's knee and measured the swelling go down 14%.</p>
-      <p>Those are not the same thing. BadgerSkope uses a six-tier evidence system so you always know what you're looking at. <strong>No inflated language. No hidden context.</strong> Just the actual level of proof behind every claim.</p>
+      <p>Those are not the same thing. BadgerSkope sorts every claim into <strong>six evidence categories</strong> that map onto <strong>one five-grade scale (A / B / C / D / F)</strong> &mdash; so you always know what you're looking at. <strong>No inflated language. No hidden context.</strong> Just the actual level of proof behind every claim.</p>
     </section>
 
     <section class="doc-section" id="tiers">
       <span class="rule-label" style="display:block; margin-bottom:8px;">02 &mdash; THE SYSTEM</span>
-      <h2>The six evidence tiers.</h2>
-      <p>Every compound and every claim in BadgerSkope is tagged with one of these tiers. Here's what each one actually means.</p>
+      <h2>Six categories. Five grades.</h2>
+      <p>Every compound and every claim in BadgerSkope is tagged with one of six evidence categories. Those categories collapse into the five-grade scale you see on the marketing legend &mdash; <em>A / B / C / D / F</em>. Here's what each category actually means and how it grades out.</p>
 
       <div class="ev-tiers" style="margin-top: 32px;">
 

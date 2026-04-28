@@ -97,13 +97,16 @@ export function renderCard(entry, catIndex, cardIndex) {
   bookmarkBtn.type = "button";
   bookmarkBtn.className = "lib-row__bookmark card__bookmark";
   bookmarkBtn.setAttribute("aria-label", `Bookmark ${displayName}`);
+  bookmarkBtn.setAttribute("aria-pressed", String(isBookmarked));
   bookmarkBtn.title = "Bookmark";
   bookmarkBtn.textContent = isBookmarked ? "★" : "☆";
   bookmarkBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     toggleBookmark(id);
-    bookmarkBtn.textContent = state.bookmarks.has(id) ? "★" : "☆";
-    article.classList.toggle("card--bookmarked", state.bookmarks.has(id));
+    const nowOn = state.bookmarks.has(id);
+    bookmarkBtn.textContent = nowOn ? "★" : "☆";
+    bookmarkBtn.setAttribute("aria-pressed", String(nowOn));
+    article.classList.toggle("card--bookmarked", nowOn);
   });
 
   const selectLabel = document.createElement("label");
@@ -144,13 +147,11 @@ export function renderCard(entry, catIndex, cardIndex) {
     if (_updateSelectionToolbar) _updateSelectionToolbar();
   });
 
-  const arrow = document.createElement("button");
-  arrow.type = "button";
+  // Decorative arrow — the row itself is clickable now (see article click below)
+  const arrow = document.createElement("span");
   arrow.className = "lib-row__arrow";
-  arrow.setAttribute("aria-label", `Open ${displayName}`);
-  arrow.tabIndex = -1;
+  arrow.setAttribute("aria-hidden", "true");
   arrow.textContent = "→";
-  arrow.addEventListener("click", () => { if (_openDetail) _openDetail(entry); });
 
   actionsCell.appendChild(bookmarkBtn);
   actionsCell.appendChild(selectLabel);
@@ -163,6 +164,17 @@ export function renderCard(entry, catIndex, cardIndex) {
   article.appendChild(wellnessCell);
   article.appendChild(summaryCell);
   article.appendChild(actionsCell);
+
+  // Whole-row click opens detail. Inner controls (bookmark / select cb /
+  // compare / wellness chip) already stopPropagation so they keep their
+  // own behavior. The .lib-row__name <button> still handles keyboard.
+  article.addEventListener("click", (e) => {
+    // Don't intercept clicks that originated on an interactive control
+    // (their handlers already stopPropagation, but belt-and-braces for
+    // anything we miss like form labels wrapping inputs).
+    if (e.target.closest("button, a, input, label, .card__category, .chip")) return;
+    if (_openDetail) _openDetail(entry);
+  });
 
   // ── SAFETY pseudo-fields used by feature modules ────────────────────
   // Several feature modules (doping, scroll, sport-filter, search-enhance)
