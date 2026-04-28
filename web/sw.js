@@ -1,4 +1,4 @@
-const CACHE_NAME = "badgerskope-v7-evidence-hype";
+const CACHE_NAME = "badgerskope-v8-data-first";
 const STATIC_ASSETS = [
   "/web/",
   "/web/index.html",
@@ -21,17 +21,14 @@ const STATIC_ASSETS = [
   "/web/src/tabs.js",
   "/web/src/router.js",
   "/web/src/keyboard.js",
-  "/web/src/features/recent.js",
   "/web/src/features/bookmarks-toggle.js",
   "/web/src/features/chips.js",
   "/web/src/features/share.js",
   "/web/src/features/search-enhance.js",
-  "/web/src/features/goals.js",
   "/web/src/features/scroll.js",
   "/web/src/features/notes.js",
   "/web/src/features/doping.js",
   "/web/src/features/interactions.js",
-  "/web/src/features/orientation.js",
   "/web/src/features/start-here.js",
   "/web/src/features/sport-filter.js",
   "/web/src/features/experimental-toggle.js",
