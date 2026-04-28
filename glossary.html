@@ -213,6 +213,15 @@
       color: var(--fg-3);
       margin-bottom: 16px;
     }
+    /* nav cta group — keep both CTAs visible across breakpoints. On
+       narrow viewports compact the padding and drop the brand wordmark
+       text (badger SVG remains) so OPEN LIBRARY + SUBSCRIBE don't clip. */
+    .nav-cta-group { display: flex; gap: 8px; flex-wrap: nowrap; }
+    @media (max-width: 700px) {
+      .nav-cta-group .nav-cta { padding: 8px 10px; font-size: 11px; letter-spacing: 0.1em; }
+      .nav-brand span { display: none; }
+    }
+
     .no-results-text {
       font-family: var(--font-mono);
       font-size: 12px;
@@ -242,7 +251,7 @@
     <a href="/glossary.html" style="color: var(--accent);">GLOSSARY</a>
     <a href="/#faq">FAQ</a>
   </div>
-  <div class="nav-cta-group" style="display:flex; gap:8px;">
+  <div class="nav-cta-group">
     <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
     <a href="/#subscribe" class="nav-cta">SUBSCRIBE &rarr;</a>
   </div>
