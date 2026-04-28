@@ -202,64 +202,6 @@ kbd {
    EDITORIAL MASTHEAD STRIP — replaces the 480px hero
    Hairline rule + mono row + compact H1
    ============================================================ */
-.lib-mast {
-  margin: 0 0 20px;
-}
-.lib-mast__strip {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
-  padding: 10px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: var(--tracking-mono-lg);
-  color: var(--fg-2);
-  text-transform: uppercase;
-}
-.lib-mast__cell {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.lib-mast__cell--left { justify-self: start; color: var(--fg-2); }
-.lib-mast__cell--center {
-  justify-self: center;
-  color: var(--accent);
-  font-weight: 500;
-}
-.lib-mast__cell--right { justify-self: end; color: var(--fg-2); }
-.lib-mast__chevron {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  min-width: 14px;
-  vertical-align: middle;
-}
-
-.lib-h1 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(40px, 6vw, 64px);
-  line-height: 0.95;
-  letter-spacing: var(--tracking-h1);
-  text-transform: uppercase;
-  margin: 16px 0 8px;
-  color: var(--fg);
-}
-.lib-deck {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: var(--tracking-mono-lg);
-  text-transform: uppercase;
-  color: var(--fg-3);
-  margin: 0;
-}
 
 /* lib-rule used on COMPARE/STATS panels */
 .lib-rule {
@@ -401,12 +343,15 @@ kbd {
 .lib-selection {
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px;
-  margin-top: 24px;
-  padding: 16px 20px;
+  padding: 14px 24px;
+  margin: 0;
   background: var(--bg-2);
-  border: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   border-left: 3px solid var(--accent);
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 30;
 }
 .lib-selection[hidden] { display: none; }
 .lib-selection-count {
@@ -1056,10 +1001,6 @@ kbd {
 }
 /* Inside the masthead strip the chevron is a small inline icon, not
    the giant footer chevron. Reset the min-width so it doesn't blow up. */
-.lib-mast__chevron.gt-inline {
-  width: 14px;
-  min-width: 14px;
-}
 .footer-bot {
   display: flex; flex-direction: column; gap: 8px;
   padding-top: 24px;
@@ -1112,23 +1053,46 @@ kbd {
   .nav-tabs { grid-column: 1 / -1; justify-content: flex-start; gap: 0; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; overflow-x: auto; }
   .nav-end { display: none; }
   .lib { padding: 12px 16px 32px; }
-  .lib-h1 { font-size: clamp(36px, 9vw, 48px); }
-  .lib-mast__strip {
-    font-size: 9px;
-    gap: 12px;
-    padding: 8px 0;
-    grid-template-columns: 1fr;
-  }
-  .lib-mast__cell--left,
-  .lib-mast__cell--right { display: none; }
-  .lib-mast__cell--center { justify-self: start; }
   .filter-strip__row--selects { grid-template-columns: repeat(2, 1fr); }
   .lib-field:nth-child(2n) { border-right: 0; }
   .filter-strip__row--toggles { padding: 10px 12px; }
   .footer { padding: 40px 16px 16px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
-  .footer-mega { font-size: 56px; }
+  .footer-mega { font-size: 40px; }
   .modal-panel { padding: 20px; }
   .help-list > div { grid-template-columns: 1fr; gap: 4px; }
   .shortcuts-list > div { grid-template-columns: 100px 1fr; }
 }
+
+  .lib-selection-actions { gap: 6px; flex-shrink: 0; }
+  .lib-selection .btn { padding: 8px 10px; font-size: 10px; }
+}
+
+.lib-meta-strip {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 24px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: var(--tracking-mono-lg);
+  color: var(--fg-3);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.lib-meta-strip__label { color: var(--fg); letter-spacing: 0.18em; }
+.lib-meta-strip__sep { color: var(--line-2); }
+.lib-meta-strip__count { color: var(--fg-2); }
+
+.lib-meta-strip__action {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: var(--tracking-mono-lg);
+  color: var(--accent);
+  background: transparent;
+  border: 0;
+  padding: 0 4px;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+.lib-meta-strip__action:hover { opacity: 0.7; }
+.lib-meta-strip__action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

@@ -13,9 +13,9 @@ test.describe("iOS viewport and layout", () => {
   });
 
   test("library head fits within viewport", async ({ page }) => {
-    // The post-redesign SPA opens with an editorial masthead strip + H1,
-    // not a hero. (Old `.lib-head` wrapper was replaced by `.lib-mast`.)
-    const head = page.locator(".lib-mast");
+    // After the masthead strip-down, the library opens with a thin meta
+    // strip — `LIBRARY · 53 COMPOUNDS · …` — instead of a magazine mast.
+    const head = page.locator(".lib-meta-strip");
     const box = await head.boundingBox();
     const viewport = page.viewportSize();
     expect(box.width).toBeLessThanOrEqual(viewport.width + 1);

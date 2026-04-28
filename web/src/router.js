@@ -66,11 +66,13 @@ export function updateHashFromState() {
 export function applyHashOnLoad() {
   const params = readHashParams();
 
-  if (params.search && els.search) els.search.value = params.search;
-  if (params.category && els.category) els.category.value = params.category;
-  if (params.compound && els.compound) els.compound.value = params.compound;
-  if (params["known-for"] && els.knownFor) els.knownFor.value = params["known-for"];
-  if (params.evidence && els.evidenceFilter) els.evidenceFilter.value = params.evidence;
+  // Always assign — including empty string when the param is absent — so a
+  // back-button hashchange that drops a filter actually clears the input.
+  if (els.search)         els.search.value         = params.search        || "";
+  if (els.category)       els.category.value       = params.category      || "";
+  if (els.compound)       els.compound.value       = params.compound      || "";
+  if (els.knownFor)       els.knownFor.value       = params["known-for"]  || "";
+  if (els.evidenceFilter) els.evidenceFilter.value = params.evidence      || "";
 
   // Open deep-linked entry before switchTab/render. Otherwise updateHashFromState()
   // runs while the dialog is still closed and drops entry= from the URL.

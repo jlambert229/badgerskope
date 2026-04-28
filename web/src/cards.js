@@ -147,16 +147,9 @@ export function renderCard(entry, catIndex, cardIndex) {
     if (_updateSelectionToolbar) _updateSelectionToolbar();
   });
 
-  // Decorative arrow — the row itself is clickable now (see article click below)
-  const arrow = document.createElement("span");
-  arrow.className = "lib-row__arrow";
-  arrow.setAttribute("aria-hidden", "true");
-  arrow.textContent = "→";
-
   actionsCell.appendChild(bookmarkBtn);
   actionsCell.appendChild(selectLabel);
   actionsCell.appendChild(compareBtn);
-  actionsCell.appendChild(arrow);
 
   article.appendChild(indexCell);
   article.appendChild(nameCell);
