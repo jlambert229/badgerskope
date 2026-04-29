@@ -217,6 +217,34 @@ kbd {
 .lib-rule-line { flex: 1; height: 1px; background: var(--line); }
 
 /* ============================================================
+   DISCLAIMER BANNER — single-line, sits above search.
+   Replaces the 1300-char wall that used to live in the footer.
+   Full text now distributed across anchored sections in
+   evidence-guide.html (#scope / #vial-verification /
+   #summaries-not-instructions / #education-only).
+   ============================================================ */
+.lib-disclaimer-banner {
+  margin: 0 0 12px;
+  padding: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--fg-3);
+  line-height: 1.5;
+}
+.lib-disclaimer-banner__link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+.lib-disclaimer-banner__link:hover,
+.lib-disclaimer-banner__link:focus-visible {
+  border-bottom-color: var(--accent);
+}
+
+/* ============================================================
    SEARCH / FILTER STRIP
    ============================================================ */
 .lib-search {
@@ -939,6 +967,14 @@ kbd {
   padding: 56px 40px 24px;
   margin-top: 64px;
 }
+/* Library page footer — sentinel meta only, no marketing chrome.
+   Marketing chrome (directory, secondary lockup, mega-display,
+   disclaimer wall) lives on the marketing landing, not here. */
+.footer--minimal {
+  padding: 16px 40px;
+  margin-top: 32px;
+}
+.footer--minimal .footer-bot { padding-top: 0; }
 .footer-top {
   display: grid; grid-template-columns: 1fr 2fr;
   gap: 64px;

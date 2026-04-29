@@ -90,6 +90,11 @@
           <span id="stats" aria-live="polite" class="lib-meta-strip__count">&mdash;</span>
         </h1>
 
+        <p class="lib-disclaimer-banner" role="note">
+          Educational reference only &mdash; not medical advice.
+          <a href="/evidence-guide.html#scope" class="lib-disclaimer-banner__link">Read full scope &rarr;</a>
+        </p>
+
         <div class="lib-search">
           <span class="lib-search-prefix" aria-hidden="true">/</span>
           <input
@@ -244,58 +249,13 @@
       </main>
 
       <!-- ============================================================
-           FOOTER
+           FOOTER — minimal sentinel only.
+           Marketing chrome (4-column site directory, secondary lockup,
+           300px EVIDENCE > HYPE hero, disclaimer wall) lives on the
+           marketing landing at /, not on the research tool at /web/.
            ============================================================ -->
-      <footer class="footer">
-        <div class="footer-top">
-          <div class="wordmark">
-            <svg width="56" height="56" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-              <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="4"/>
-              <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
-            </svg>
-            <div>
-              <div class="wordmark-name">BADGERSKOPE</div>
-              <div class="wordmark-tag">EVIDENCE &gt; HYPE</div>
-            </div>
-          </div>
-          <div class="footer-cols">
-            <div>
-              <div class="foot-h">LIBRARY</div>
-              <a href="/">Home</a>
-              <a href="#panel-browse">All compounds</a>
-              <a href="#panel-compare">Compare</a>
-              <a href="#panel-stats">Stats</a>
-            </div>
-            <div>
-              <div class="foot-h">METHOD</div>
-              <a href="/evidence-guide.html">Evidence guide</a>
-              <a href="/glossary.html">Glossary</a>
-              <a href="/#method">How we grade</a>
-            </div>
-            <div>
-              <div class="foot-h">ABOUT</div>
-              <a href="/#faq">The badger</a>
-              <a href="/#subscribe">Newsletter</a>
-              <a href="https://github.com/jlambert229/badgerskope" target="_blank" rel="noopener">GitHub</a>
-            </div>
-            <div>
-              <div class="foot-h">LEGAL</div>
-              <a href="/#faq">Not medical advice</a>
-              <a href="https://github.com/jlambert229/badgerskope/issues" target="_blank" rel="noopener">Report issue</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-mega" aria-label="Evidence greater than hype">
-          EVIDENCE&nbsp;
-          <svg viewBox="0 0 80 100" class="gt-inline" aria-hidden="true">
-            <path d="M14 14 L66 50 L14 86" stroke-width="10" fill="none" stroke-linecap="square" stroke-linejoin="miter" style="stroke: var(--accent);"/>
-          </svg>
-          &nbsp;HYPE
-        </div>
-
+      <footer class="footer footer--minimal">
         <div class="footer-bot">
-          <p id="disclaimer" class="disclaimer"></p>
           <p class="footer-bot-meta">
             <span id="footer-meta"></span>
             <span class="dotsep">&middot;</span>
