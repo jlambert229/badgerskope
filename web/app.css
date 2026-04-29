@@ -841,6 +841,7 @@ kbd {
   color: var(--fg);
   width: min(960px, 92vw);
   max-height: 90vh;
+  max-height: 90dvh;   /* iOS Safari + modern: dynamic viewport height */
 }
 .modal::backdrop {
   background: rgba(0, 0, 0, 0.78);
@@ -852,6 +853,7 @@ kbd {
   border: 1px solid var(--line-2);
   padding: 32px;
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
   position: relative;
 }

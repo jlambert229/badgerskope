@@ -19,9 +19,22 @@
   --fg-2: #C9C5B6;   /* secondary text */
   --fg-3: #8A8775;   /* muted, mono labels, dates */
 
-  /* ---------- Accent ---------- */
-  --accent:      #C8D17A;   /* olive — pulled from EVIDENCE > HYPE tagline */
-  --accent-soft: rgba(200, 209, 122, 0.10);
+  /* ---------- Accent (split) ----------
+     Olive #C8D17A is Tier-A semantic ONLY.
+     Teal  #7EB6B0 is the brand / interactive accent (links, hover,
+     focus rings, active nav, EVIDENCE > chevron, FAQ accordion).
+     `--accent` is kept as a back-compat alias — points to the
+     interactive accent so existing hover/focus rules pick up teal
+     without per-call rewrites. Surfaces that meant "olive specifically"
+     (tier letter, badges, EVIDENCE > inline glyph, chevron) are
+     migrated to `--accent-tier-a` explicitly. */
+  --accent-tier-a: #C8D17A;                     /* olive — Tier A */
+  --accent-brand:  #7EB6B0;                     /* desaturated teal */
+  --accent-interactive: var(--accent-brand);
+  --accent-link:        var(--accent-brand);
+  --accent:      var(--accent-interactive);     /* legacy alias → teal */
+  --accent-soft: rgba(126, 182, 176, 0.10);     /* teal soft glow */
+  --accent-tier-a-soft: rgba(200, 209, 122, 0.10);
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
      Each tier letter sits on its tier color with #0B0B0A ink.
@@ -33,7 +46,7 @@
        D #8C8571   5.35:1
        F #827B69   4.68:1
      Each step is ~1.2-1.35× the next, so the steps read distinctly. */
-  --tier-a: var(--accent);
+  --tier-a: var(--accent-tier-a);
   --tier-b: #BAB395;
   --tier-c: #9F9985;
   --tier-d: #8C8571;
@@ -48,7 +61,7 @@
   --ev-unknown:  var(--tier-f);
 
   /* ---------- Status ---------- */
-  --success: var(--accent);
+  --success: var(--accent-tier-a);   /* olive — "approved" reads as tier-A */
   --warning: #E8B547;
   --danger:  #D97757;
 

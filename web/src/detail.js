@@ -347,12 +347,43 @@ export function renderDetailHtml(entry) {
 /* ------------------------------------------------------------------ */
 
 export function syncDetailNav() {
-  const multi = state.detailQueue.length > 1;
-  els.detailNav.hidden = !multi;
-  if (!multi) return;
-  els.detailNavPos.textContent = `${state.detailIndex + 1} of ${state.detailQueue.length}`;
-  els.detailPrev.disabled = state.detailIndex <= 0;
-  els.detailNext.disabled = state.detailIndex >= state.detailQueue.length - 1;
+  // Counter is always visible — N of M where N is the current entry's
+  // 1-based index in whichever list the modal is paging through, and
+  // M is that list's total. When the user opened the modal from a
+  // single row, queue length == 1, but the counter still reads "1 of N"
+  // by falling back to the currently-visible filtered list.
+  const queueLen = state.detailQueue.length;
+  const fallbackList = Array.isArray(state.lastVisibleList)
+    ? state.lastVisibleList
+    : [];
+  const useFallback = queueLen <= 1 && fallbackList.length > 1;
+
+  let totalForCounter;
+  let posForCounter;
+  if (useFallback) {
+    const currentEntry = state.detailQueue[0];
+    const currentId = currentEntry ? getEntryId(currentEntry) : null;
+    const idx = currentId
+      ? fallbackList.findIndex((e) => getEntryId(e) === currentId)
+      : -1;
+    totalForCounter = fallbackList.length;
+    posForCounter = idx >= 0 ? idx + 1 : 1;
+  } else {
+    totalForCounter = queueLen;
+    posForCounter = state.detailIndex + 1;
+  }
+
+  if (els.detailNav) els.detailNav.hidden = false;
+  if (els.detailNavPos) {
+    els.detailNavPos.textContent = `${posForCounter} of ${totalForCounter}`;
+  }
+
+  // PREV / NEXT remain enabled only when there's a real queue to step
+  // through. The counter is informational; the buttons are functional.
+  if (els.detailPrev) els.detailPrev.disabled = state.detailIndex <= 0;
+  if (els.detailNext) {
+    els.detailNext.disabled = state.detailIndex >= queueLen - 1;
+  }
 }
 
 export function showDetailAt(index) {

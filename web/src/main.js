@@ -186,7 +186,25 @@ function renderRowCount(visibleCount, totalCount) {
 }
 
 /** Build the brutalist empty-state panel for 0-result filter combos.
- *  Keeps `.empty` as a compatibility class so existing tests/selectors still work. */
+ *  Keeps `.empty` as a compatibility class so existing tests/selectors still work.
+ *
+ *  Copy is intentionally subversive (audit #1b): the marketing voice is
+ *  receipts-first, so an empty result is a chance to lean in, not apologize.
+ *  One headline is picked per session so the same user doesn't see three
+ *  different jokes within one filter sweep. */
+const SARCASTIC_EMPTY_HEADINGS = [
+  "Couldn't find that. Neither could PubMed.",
+  "0 results. Try a real word.",
+  "Empty. The good news is — that's exactly the kind of negative signal this site exists for.",
+];
+let _sessionEmptyHeading = null;
+function pickSessionEmptyHeading() {
+  if (_sessionEmptyHeading) return _sessionEmptyHeading;
+  const idx = Math.floor(Math.random() * SARCASTIC_EMPTY_HEADINGS.length);
+  _sessionEmptyHeading = SARCASTIC_EMPTY_HEADINGS[idx];
+  return _sessionEmptyHeading;
+}
+
 function buildEmptyStatePanel(hiddenExperimental) {
   const panel = document.createElement("div");
   panel.className = "empty-state empty";
@@ -194,14 +212,14 @@ function buildEmptyStatePanel(hiddenExperimental) {
 
   const heading = document.createElement("p");
   heading.className = "empty-state__heading";
-  heading.textContent = "NO MATCHES";
+  heading.textContent = pickSessionEmptyHeading();
   panel.appendChild(heading);
 
   const hint = document.createElement("p");
   hint.className = "empty-state__hint";
   hint.textContent = hiddenExperimental > 0
-    ? `No peptides match your current filters. ${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry is" : "entries are"} hidden — clear filters or enable experimental.`
-    : "No peptides match your current filters. Try clearing them.";
+    ? `${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry is" : "entries are"} hidden behind the experimental toggle. Or clear the filters and start over.`
+    : "Clear the filters and try a less specific query — or just clear and browse.";
   panel.appendChild(hint);
 
   const btn = document.createElement("button");
