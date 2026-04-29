@@ -103,7 +103,9 @@ export function renderCard(entry, catIndex, cardIndex) {
   bookmarkBtn.className = "lib-row__bookmark card__bookmark";
   bookmarkBtn.setAttribute("aria-label", `Bookmark ${displayName}`);
   bookmarkBtn.setAttribute("aria-pressed", String(isBookmarked));
-  bookmarkBtn.title = "Bookmark";
+  bookmarkBtn.title = isBookmarked
+    ? `Remove ${displayName} from bookmarks`
+    : `Bookmark ${displayName}`;
   bookmarkBtn.textContent = isBookmarked ? "★" : "☆";
   bookmarkBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -111,12 +113,15 @@ export function renderCard(entry, catIndex, cardIndex) {
     const nowOn = state.bookmarks.has(id);
     bookmarkBtn.textContent = nowOn ? "★" : "☆";
     bookmarkBtn.setAttribute("aria-pressed", String(nowOn));
+    bookmarkBtn.title = nowOn
+      ? `Remove ${displayName} from bookmarks`
+      : `Bookmark ${displayName}`;
     article.classList.toggle("card--bookmarked", nowOn);
   });
 
   const selectLabel = document.createElement("label");
   selectLabel.className = "lib-row__select card__select";
-  selectLabel.title = "Select for compare";
+  selectLabel.title = `Select ${displayName} for comparison`;
   const cb = document.createElement("input");
   cb.type = "checkbox";
   cb.checked = selected;
@@ -136,7 +141,9 @@ export function renderCard(entry, catIndex, cardIndex) {
   compareBtn.type = "button";
   compareBtn.className = "lib-row__compare card__compare-btn";
   compareBtn.textContent = selected ? "−" : "+";
-  compareBtn.title = selected ? "Remove from compare" : "Add to compare";
+  compareBtn.title = selected
+    ? `Remove ${displayName} from comparison`
+    : `Add ${displayName} to comparison`;
   compareBtn.setAttribute("aria-label", `Toggle compare for ${displayName}`);
   compareBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -147,8 +154,12 @@ export function renderCard(entry, catIndex, cardIndex) {
       state.selectedIds.add(id);
       cb.checked = true;
     }
-    article.classList.toggle("card--selected", state.selectedIds.has(id));
-    compareBtn.textContent = state.selectedIds.has(id) ? "−" : "+";
+    const nowSelected = state.selectedIds.has(id);
+    article.classList.toggle("card--selected", nowSelected);
+    compareBtn.textContent = nowSelected ? "−" : "+";
+    compareBtn.title = nowSelected
+      ? `Remove ${displayName} from comparison`
+      : `Add ${displayName} to comparison`;
     if (_updateSelectionToolbar) _updateSelectionToolbar();
   });
 
