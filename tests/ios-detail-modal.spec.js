@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 test.describe("Detail modal on iOS", () => {
   test.beforeEach(async ({ page }) => {
@@ -7,7 +8,16 @@ test.describe("Detail modal on iOS", () => {
     // PR D added a "populated landing" override (evidence-tier sort + 25-row
     // cap) before any filter is touched. These tests rely on the alphabetical
     // first card, so flip back to title-sort by triggering a user interaction.
+    // PR C: at ≤768px the sort control is inside the mobile filter sheet —
+    // open the sheet first so the select is interactable.
+    await ensureFiltersReachable(page);
     await page.locator("#sort").selectOption("title");
+    // Close the sheet again on mobile so subsequent clicks reach the page.
+    const trigger = page.locator("#mobile-filter-trigger");
+    if (await trigger.isVisible()) {
+      const done = page.locator("#mobile-filter-done");
+      if (await done.isVisible()) await done.click();
+    }
     await page.waitForTimeout(200);
   });
 

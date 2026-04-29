@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 /**
  * PR D — populated default state + active filter chips + empty-state panel.
@@ -29,6 +30,8 @@ test.describe("Library — active filter chips", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
+    // PR C: at ≤768px the strip moves into a sheet — open it first.
+    await ensureFiltersReachable(page);
     // Pick the first non-empty category option
     const categorySelect = page.locator("#category");
     const optionValue = await categorySelect.locator("option").nth(1).getAttribute("value");
@@ -47,12 +50,21 @@ test.describe("Library — active filter chips", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
+    // PR C: at ≤768px the strip moves into a sheet — open it first.
+    await ensureFiltersReachable(page);
     const categorySelect = page.locator("#category");
     const optionValue = await categorySelect.locator("option").nth(1).getAttribute("value");
     await categorySelect.selectOption(optionValue);
     await page.waitForTimeout(200);
 
     expect(await page.locator(".chip-active").count()).toBeGreaterThanOrEqual(1);
+
+    // On mobile, close the sheet so the chip row above the trigger is reachable.
+    const trigger = page.locator("#mobile-filter-trigger");
+    if (await trigger.isVisible()) {
+      const done = page.locator("#mobile-filter-done");
+      if (await done.isVisible()) await done.click();
+    }
 
     await page.locator(".chip-active").first().click();
     await page.waitForTimeout(200);

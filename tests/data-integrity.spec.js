@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 test.describe("Data integrity — silent data bugs users notice", () => {
   test.beforeEach(async ({ page }) => {
@@ -73,8 +74,8 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   test("filter counts are accurate after filtering", async ({ page }) => {
     const totalCards = await page.locator(".card").count();
 
-    // Filter strip is always visible in the data-first redesign.
-    await page.locator(".filter-strip").waitFor({ state: "visible" });
+    // Filter strip is always reachable — open the mobile sheet if needed.
+    await ensureFiltersReachable(page);
 
     // Filter by evidence tier — regulatory_label always has visible entries
     // (FDA-approved compounds are never marked experimental).
@@ -91,8 +92,8 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   });
 
   test("evidence filter returns only matching tiers", async ({ page }) => {
-    // Filter strip is always visible in the data-first redesign.
-    await page.locator(".filter-strip").waitFor({ state: "visible" });
+    // Filter strip is always reachable — open the mobile sheet if needed.
+    await ensureFiltersReachable(page);
     await page.locator("#evidence-filter").selectOption("regulatory_label");
     await page.waitForTimeout(300);
 

@@ -167,6 +167,64 @@
         <!-- Active filter chips (populated by app.js; collapses when empty) -->
         <div class="active-filters" id="active-filters" aria-label="Active filters" aria-live="polite"></div>
 
+        <!-- ============================================================
+             MOBILE FILTER SHEET TRIGGER
+             Visible only at ≤768px. Reparenting moves the desktop
+             filter strip controls into the sheet at that breakpoint.
+             ============================================================ -->
+        <button
+          type="button"
+          id="mobile-filter-trigger"
+          class="mobile-filter-trigger"
+          aria-label="Open filter sheet"
+          aria-expanded="false"
+          aria-controls="mobile-filter-sheet"
+          hidden
+        >
+          <span class="mobile-filter-trigger__label">FILTERS</span>
+          <span class="mobile-filter-trigger__sep" aria-hidden="true">&middot;</span>
+          <span class="mobile-filter-trigger__count" id="mobile-filter-count">0</span>
+        </button>
+
+        <!-- Backdrop — overlays the page when sheet is open. -->
+        <div
+          class="mobile-filter-backdrop"
+          id="mobile-filter-backdrop"
+          hidden
+          aria-hidden="true"
+        ></div>
+
+        <!-- Sheet — bottom sheet, ~85vh, contains a stacked clone of
+             the filter strip rows. The actual control nodes are moved
+             here at mobile breakpoint, then back to the strip on resize.
+             Stays in the DOM so reparented controls remain queryable;
+             visually hidden via transform offscreen when closed. -->
+        <aside
+          class="mobile-filter-sheet"
+          id="mobile-filter-sheet"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-filter-sheet-title"
+          aria-hidden="true"
+        >
+          <header class="mobile-filter-sheet__header">
+            <h2 id="mobile-filter-sheet-title" class="mobile-filter-sheet__title">FILTERS</h2>
+            <button
+              type="button"
+              id="mobile-filter-done"
+              class="mobile-filter-sheet__done"
+              aria-label="Close filters"
+            >DONE</button>
+          </header>
+          <div class="mobile-filter-sheet__body" id="mobile-filter-sheet-body">
+            <!-- Reparented filter strip rows land here at ≤768px. -->
+          </div>
+          <footer class="mobile-filter-sheet__footer">
+            <button type="button" id="mobile-filter-reset" class="mobile-filter-sheet__btn mobile-filter-sheet__btn--ghost">RESET</button>
+            <button type="button" id="mobile-filter-apply" class="mobile-filter-sheet__btn mobile-filter-sheet__btn--primary">APPLY</button>
+          </footer>
+        </aside>
+
         <!-- "Showing N of M entries" — updates with filters/sort/group -->
         <div class="row-count" id="row-count" aria-live="polite"></div>
 

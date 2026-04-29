@@ -41,6 +41,7 @@ import { initDoping } from "./features/doping.js";
 import { initInteractions } from "./features/interactions.js";
 import { initSportFilter } from "./features/sport-filter.js";
 import { initExperimentalToggle } from "./features/experimental-toggle.js";
+import { initMobileFilterSheet } from "./features/mobile-filter-sheet.js";
 
 /* ------------------------------------------------------------------ */
 /*  Default-state, chip row, count, empty-state helpers                */
@@ -599,6 +600,7 @@ async function init() {
   initDoping();
   initSportFilter();
   initInteractions();
+  initMobileFilterSheet({ onApply: render, onReset: render });
 }
 
 init();

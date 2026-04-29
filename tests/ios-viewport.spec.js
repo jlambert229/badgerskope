@@ -30,10 +30,17 @@ test.describe("iOS viewport and layout", () => {
   });
 
   test("filter controls wrap properly on small screens", async ({ page }) => {
-    // Filter strip is always visible in the data-first redesign.
-    await page.locator(".filter-strip").waitFor({ state: "visible" });
-    const controls = page.locator(".filter-strip__row--selects");
-    const box = await controls.boundingBox();
+    // PR C: at ≤768px the desktop strip is hidden in favor of a mobile
+    // filter sheet with a single-column FILTERS button. We verify the
+    // mobile button (or the sheet body, when desktop) fits viewport.
+    const isMobile = await page.evaluate(() =>
+      document.body.classList.contains("is-mobile-filters"),
+    );
+    const target = isMobile
+      ? page.locator("#mobile-filter-trigger")
+      : page.locator(".filter-strip__row--selects");
+    await target.waitFor({ state: "visible" });
+    const box = await target.boundingBox();
     const viewport = page.viewportSize();
     expect(box.width).toBeLessThanOrEqual(viewport.width);
   });
