@@ -604,15 +604,17 @@
   // ===========================================================
   // Library — filter rows by evidence grade
   // ===========================================================
+  // `slug` matches the catalog.title in peptide-info-database.json so each
+  // row deep-links into /web/#entry=<slug> for the actual library entry.
   const files = [
-    { name: 'RETATRUTIDE',  aka: 'LY3437943',         e: 'A', s: 'B', a: 'C', n: 2148, claim: 'Tri-agonist GLP-1/GIP/glucagon — Phase 3 weight loss',   filed: '26 APR 26' },
-    { name: 'TIRZEPATIDE',  aka: 'MOUNJARO',          e: 'A', s: 'A', a: 'A', n: 6420, claim: 'Dual GIP/GLP-1 — FDA approved, long-term RCTs',           filed: '21 APR 26' },
-    { name: 'BPC-157',      aka: 'PL 14736',          e: 'B', s: 'B', a: 'B', n: 217,  claim: 'Tendon/gut healing — promising animal, sparse human',     filed: '18 APR 26' },
-    { name: 'GHK-CU',       aka: 'COPPER TRIPEPT.',   e: 'B', s: 'A', a: 'A', n: 380,  claim: 'Topical wound/skin — solid topical, weaker injected',     filed: '14 APR 26' },
-    { name: 'MOTS-C',       aka: 'MITOCHON. PEPT.',   e: 'C', s: 'C', a: 'D', n: 24,   claim: 'Mitochondrial / metabolic — animal data, viral hype',     filed: '11 APR 26' },
-    { name: 'TB-500',       aka: 'THYMOSIN-Β4 FRAG',  e: 'C', s: 'C', a: 'C', n: 0,    claim: 'Recovery — popular in horse racing, no human trials',    filed: '08 APR 26' },
-    { name: 'EPITALON',     aka: 'EPITHALON',         e: 'F', s: 'D', a: 'B', n: 0,    claim: 'Anti-aging / telomere — claims wildly exceed data',      filed: '03 APR 26' },
-    { name: 'DSIP',         aka: 'DELTA SLEEP',       e: 'D', s: 'C', a: 'C', n: 33,   claim: 'Sleep — 1970s studies, never replicated at scale',       filed: '29 MAR 26' }
+    { name: 'RETATRUTIDE',  slug: '3G-RT',     aka: 'LY3437943',         e: 'A', s: 'B', a: 'C', n: 2148, claim: 'Tri-agonist GLP-1/GIP/glucagon — Phase 3 weight loss',   filed: '26 APR 26' },
+    { name: 'TIRZEPATIDE',  slug: '2G-TZ',     aka: 'MOUNJARO',          e: 'A', s: 'A', a: 'A', n: 6420, claim: 'Dual GIP/GLP-1 — FDA approved, long-term RCTs',           filed: '21 APR 26' },
+    { name: 'BPC-157',      slug: 'BPC-157',   aka: 'PL 14736',          e: 'B', s: 'B', a: 'B', n: 217,  claim: 'Tendon/gut healing — promising animal, sparse human',     filed: '18 APR 26' },
+    { name: 'GHK-CU',       slug: 'GHK-Cu',    aka: 'COPPER TRIPEPT.',   e: 'B', s: 'A', a: 'A', n: 380,  claim: 'Topical wound/skin — solid topical, weaker injected',     filed: '14 APR 26' },
+    { name: 'MOTS-C',       slug: 'MOTS-c',    aka: 'MITOCHON. PEPT.',   e: 'C', s: 'C', a: 'D', n: 24,   claim: 'Mitochondrial / metabolic — animal data, viral hype',     filed: '11 APR 26' },
+    { name: 'TB-500',       slug: 'TB-500',    aka: 'THYMOSIN-Β4 FRAG',  e: 'C', s: 'C', a: 'C', n: 0,    claim: 'Recovery — popular in horse racing, no human trials',    filed: '08 APR 26' },
+    { name: 'EPITALON',     slug: 'Epithalon', aka: 'EPITHALON',         e: 'F', s: 'D', a: 'B', n: 0,    claim: 'Anti-aging / telomere — claims wildly exceed data',      filed: '03 APR 26' },
+    { name: 'DSIP',         slug: 'DSIP',      aka: 'DELTA SLEEP',       e: 'D', s: 'C', a: 'C', n: 33,   claim: 'Sleep — 1970s studies, never replicated at scale',       filed: '29 MAR 26' }
   ];
   const rowsEl = document.getElementById('library-rows');
   const countEl = document.getElementById('library-count');
@@ -620,7 +622,7 @@
   const renderLibrary = (filter) => {
     const visible = filter === 'ALL' ? files : files.filter(f => f.e === filter);
     rowsEl.innerHTML = visible.map(f => `
-      <a class="library-row" href="/web/">
+      <a class="library-row" href="/web/#entry=${encodeURIComponent(f.slug)}">
         <div class="lib-name">
           <div class="lib-name-main">${f.name}</div>
           <div class="lib-name-aka">${f.aka}</div>
