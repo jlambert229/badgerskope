@@ -14,19 +14,19 @@ import { test, expect } from "@playwright/test";
  */
 
 const TIER_RGB = {
-  A: "rgb(200, 209, 122)", // #C8D17A olive
-  B: "rgb(168, 199, 122)", // #A8C77A sage
-  C: "rgb(212, 168, 92)",  // #D4A85C honey
-  D: "rgb(201, 122, 74)",  // #C97A4A terracotta
-  F: "rgb(156, 61, 61)",   // #9C3D3D muted rust
+  A: "rgb(204, 213, 111)", // #CCD56F olive
+  B: "rgb(166, 205, 104)", // #A6CD68 sage
+  C: "rgb(217, 169, 73)",  // #D9A949 honey
+  D: "rgb(206, 124, 64)",  // #CE7C40 terracotta
+  F: "rgb(169, 53, 53)",   // #A93535 muted rust
 };
 
 const TIER_HEX = {
-  A: "#C8D17A",
-  B: "#A8C77A",
-  C: "#D4A85C",
-  D: "#C97A4A",
-  F: "#9C3D3D",
+  A: "#CCD56F",
+  B: "#A6CD68",
+  C: "#D9A949",
+  D: "#CE7C40",
+  F: "#A93535",
 };
 
 test.describe("tier color delineation", () => {
@@ -89,7 +89,7 @@ test.describe("tier color delineation", () => {
     await page.goto("/");
     const chip = page.locator('.legend-row[data-grade="A"] .tier-letter');
     const color = await chip.evaluate((n) => getComputedStyle(n).color);
-    // #0B0B0A → rgb(11, 11, 10).
-    expect(color).toBe("rgb(11, 11, 10)");
+    // Ink references --bg (#1A1A18 → rgb(26, 26, 24)).
+    expect(color).toBe("rgb(26, 26, 24)");
   });
 });

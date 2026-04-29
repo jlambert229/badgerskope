@@ -48,7 +48,7 @@
   font-family: var(--font-mono);
   font-size: 11px; letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: #0B0B0A;
+  color: var(--bg);
   font-weight: 600;
   /* background set inline to tier color */
 }
@@ -246,7 +246,7 @@
   font-family: var(--font-mono);
   font-size: 10px; letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: #0B0B0A;
+  color: var(--bg);
   font-weight: 600;
 }
 
@@ -394,7 +394,7 @@ table.compare { table-layout: fixed; }
 .user-notes__save:hover { border-color: var(--accent); color: var(--accent); }
 .user-notes__save--done {
   background: var(--accent);
-  color: #0B0B0A;
+  color: var(--bg);
   border-color: var(--accent);
 }
 
@@ -465,7 +465,7 @@ table.compare { table-layout: fixed; }
   border-color: var(--accent); color: var(--accent);
 }
 .share-btn--done {
-  background: var(--accent); color: #0B0B0A;
+  background: var(--accent); color: var(--bg);
   border-color: var(--accent);
 }
 
@@ -478,7 +478,7 @@ table.compare { table-layout: fixed; }
   font-family: var(--font-mono);
   font-size: 10px; letter-spacing: var(--tracking-mono);
   background: var(--warning);
-  color: #0B0B0A;
+  color: var(--bg);
   text-transform: uppercase;
   font-weight: 600;
   margin-left: 8px;
@@ -514,7 +514,7 @@ table.compare { table-layout: fixed; }
 .sport-filter__cb:checked::after {
   content: "✓";
   font-size: 9px; line-height: 1;
-  color: #0B0B0A;
+  color: var(--bg);
 }
 .lib-grid.grid--hide-banned .card--sport-banned { display: none; }
 #grid.grid--hide-banned .card--sport-banned { display: none; }
@@ -554,7 +554,7 @@ table.compare { table-layout: fixed; }
 .bookmarks-toggle input[type="checkbox"]:checked::after {
   content: "✓";
   font-size: 9px; line-height: 1;
-  color: #0B0B0A;
+  color: var(--bg);
 }
 
 /* ============================================================
@@ -646,7 +646,7 @@ table.compare { table-layout: fixed; }
 .chip:hover { border-color: var(--accent); color: var(--accent); }
 .chip.is-on {
   background: var(--accent);
-  color: #0B0B0A;
+  color: var(--bg);
   border-color: var(--accent);
 }
 
@@ -680,7 +680,7 @@ table.compare { table-layout: fixed; }
 
 mark {
   background: var(--accent);
-  color: #0B0B0A;
+  color: var(--bg);
   padding: 0 2px;
 }
 
