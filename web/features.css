@@ -579,16 +579,23 @@ table.compare { table-layout: fixed; }
   z-index: 50;
   display: flex; align-items: center; gap: 8px;
   padding: 10px 14px;
+  /* Cap width so the bar can't grow into the back-to-top hit area on
+     narrow viewports. 96px = back-to-top (44) + right margin (24) + left
+     margin (24) + safety buffer. */
+  max-width: calc(100vw - 96px);
   background: var(--bg-2);
   border: 1px solid var(--accent);
   font-family: var(--font-mono);
   font-size: 11px; letter-spacing: var(--tracking-mono);
   color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .bookmarks-bar[hidden] { display: none; }
-.bookmarks-bar__icon { color: var(--accent); }
-.bookmarks-bar__count { color: var(--accent); font-weight: 600; }
-.bookmarks-bar__label { color: var(--fg-3); }
+.bookmarks-bar__icon { color: var(--accent); flex-shrink: 0; }
+.bookmarks-bar__count { color: var(--accent); font-weight: 600; flex-shrink: 0; }
+.bookmarks-bar__label { color: var(--fg-3); overflow: hidden; text-overflow: ellipsis; }
 
 /* ============================================================
    BACK TO TOP
@@ -596,7 +603,9 @@ table.compare { table-layout: fixed; }
 .back-to-top {
   position: fixed;
   bottom: 24px; right: 24px;
-  z-index: 50;
+  /* Above .bookmarks-bar so any edge overlap leaves the back-to-top
+     button clickable. */
+  z-index: 51;
   width: 44px; height: 44px;
   display: grid; place-items: center;
   background: var(--bg-2);
@@ -610,6 +619,15 @@ table.compare { table-layout: fixed; }
   border-color: var(--accent); color: var(--accent);
 }
 .back-to-top[hidden] { display: none; }
+
+/* Narrow viewports: stack the bookmark bar above the back-to-top so the
+   two floating widgets never share a row at ≤480px wide. */
+@media (max-width: 480px) {
+  .bookmarks-bar {
+    bottom: 80px; /* clears 44px back-to-top + 24px margin + 12px gap */
+    max-width: calc(100vw - 48px);
+  }
+}
 
 /* ============================================================
    GENERIC chip class (used by features/chips.js, etc.)
