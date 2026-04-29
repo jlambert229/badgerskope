@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-04-29T19:12:25.857Z",
+  "generatedAt": "2026-04-29T22:48:24.986Z",
   "databaseEntryCount": 45,
   "databaseSchemaVersion": "3.0",
-  "totalChecks": 51,
-  "elapsedSec": 2.5,
+  "totalChecks": 55,
+  "elapsedSec": 2.8,
   "buckets": {
-    "ok2xx": 50,
+    "ok2xx": 54,
     "redirected": 1,
     "client4xx": 0,
     "server5xx": 0,
@@ -23,8 +23,24 @@
     },
     {
       "entry": "1G-SGT",
-      "label": "PubMed: STEP 5 trial snapshot",
+      "label": "PubMed: Garvey STEP 5 weight-loss trial (Nat Med 2022)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/36216945/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "1G-SGT",
+      "label": "PubMed: Lincoff SELECT cardiovascular outcomes (NEJM 2023)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37952131/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "1G-SGT",
+      "label": "PubMed: Marso SUSTAIN-6 cardiovascular in T2D (NEJM 2016)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27633186/",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -175,8 +191,16 @@
     },
     {
       "entry": "Ipamorelin",
-      "label": "PubMed: ipamorelin human PK/PD",
+      "label": "PubMed: Gobburu ipamorelin PK/PD in humans (Pharm Res 1999)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Ipamorelin",
+      "label": "PubMed: Raun ipamorelin original characterization, GH selectivity vs cortisol/prolactin (Eur J Endocrinol 1998)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9849822/",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -283,7 +307,7 @@
       "url": "https://link.springer.com/article/10.1007/s10522-025-10315-x",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=ed2c9579-abd4-4717-a9a6-0616c7e0ceb9"
+      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=73d68985-7074-4658-a10a-a1242dfdb8e6"
     },
     {
       "entry": "PT-141",
@@ -351,8 +375,16 @@
     },
     {
       "entry": "SS-31",
-      "label": "PubMed: SS-31 ANT aged mitochondria",
+      "label": "PubMed: Pharaoh SS-31 / ANT aged mitochondria (Geroscience 2023)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37462785/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SS-31",
+      "label": "PubMed: Birk SS-31 cardiolipin binding mechanism (Br J Pharmacol 2014)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24134698/",
       "ok": true,
       "status": 200,
       "finalUrl": null
