@@ -144,12 +144,18 @@ kbd {
 }
 .nav-end {
   display: flex; gap: 24px; align-items: center;
+  /* Lock to a single row — without nowrap, the 3 right-side links wrapped
+     to two lines whenever the auto grid column got squeezed (700–1100px),
+     making HELP fall below EVIDENCE / GLOSSARY. */
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 .nav-link {
   font-family: var(--font-mono);
   font-size: var(--text-label); letter-spacing: var(--tracking-mono);
   color: var(--fg-2);
   transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 .nav-link:hover,
 .nav-link:focus-visible { color: var(--accent); outline: none; }
