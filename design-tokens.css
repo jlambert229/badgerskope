@@ -77,6 +77,12 @@
   --text-4xl:   44px;
   --text-5xl:   56px;
 
+  /* Single source of truth for mono uppercase labels (filter row labels,
+     chip labels, table headers, count text, badge text, etc).
+     Codebase previously mixed 10/11/12px for visually-identical labels;
+     this token unifies them. */
+  --text-label: 11px;
+
   --leading-tight:   0.92;
   --leading-h1:      0.86;
   --leading-snug:    1.15;
@@ -94,10 +100,15 @@
   --space-8:  64px;
   --space-9:  96px;
 
-  /* ---------- Radius (brutalist: zero everywhere) ---------- */
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
+  /* ---------- Radius (brutalist: zero on layout containers) ----------
+     Layout (cards, panels, sheets, table, modal, footer) stays square.
+     `--radius-micro` is the brand carve-out for INTERACTIVE controls in
+     the web app — checkboxes, badges, active-filter chips, dropdowns.
+     A 2px hint signals tappability without softening the editorial feel. */
+  --radius-sm:    0;
+  --radius-md:    0;
+  --radius-lg:    0;
+  --radius-micro: 2px;
 
   /* ---------- Motion ---------- */
   --transition-fast: 150ms ease;
