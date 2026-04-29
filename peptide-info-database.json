@@ -393,7 +393,7 @@
       "sources": [
         {
           "label": "Compare: hGH fragment discussion (journal compare article)",
-          "url": "https://peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides"
+          "url": "https://www.peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides"
         }
       ],
       "synergisticWith": [
@@ -671,7 +671,7 @@
       "sources": [
         {
           "label": "PubMed: CJC-1295 clinical proteomics paper",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2787983/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2787983/"
         },
         {
           "label": "PubMed: ipamorelin human PK/PD",
@@ -837,7 +837,7 @@
       "sources": [
         {
           "label": "PMC: senolytic chondrocyte paper (example)",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8261234/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8261234/"
         }
       ],
       "wellnessCategories": [
@@ -887,7 +887,7 @@
       "sources": [
         {
           "label": "PMC: GHK review (example)",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359723/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3359723/"
         }
       ],
       "synergisticWith": [
@@ -1129,7 +1129,7 @@
       "sources": [
         {
           "label": "PMC: kisspeptin signaling review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4678402/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4678402/"
         }
       ],
       "wellnessCategories": [
@@ -1401,7 +1401,7 @@
       "sources": [
         {
           "label": "PMC: MOTS-c review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9570330/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9570330/"
         }
       ],
       "synergisticWith": [
@@ -1584,7 +1584,7 @@
       "sources": [
         {
           "label": "Frontiers: Selank molecular review (example)",
-          "url": "https://www.frontiersin.org/articles/10.3389/fphar.2016.00031"
+          "url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2016.00031/full"
         }
       ],
       "synergisticWith": [
@@ -1640,7 +1640,7 @@
       "sources": [
         {
           "label": "PMC: Semax transcriptome ischemia study (example)",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7350263/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7350263/"
         }
       ],
       "synergisticWith": [
@@ -2392,7 +2392,7 @@
       "sources": [
         {
           "label": "PMC: Thymosin β4 function review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8724243/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724243/"
         }
       ],
       "synergisticWith": [
@@ -2449,7 +2449,7 @@
       "sources": [
         {
           "label": "PMC: tesamorelin HIV lipodystrophy review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3103937/"
         }
       ],
       "synergisticWith": [
@@ -2521,7 +2521,7 @@
       "sources": [
         {
           "label": "PMC: thymosin alpha-1 comprehensive review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7747025/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7747025/"
         }
       ],
       "synergisticWith": [
@@ -2588,7 +2588,7 @@
       "sources": [
         {
           "label": "Khavinson bioregulator explainer (secondary)",
-          "url": "https://calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide"
+          "url": "https://www.calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide"
         }
       ],
       "synergisticWith": [
@@ -2644,7 +2644,7 @@
       "sources": [
         {
           "label": "PMC: VIP physiology review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6743256/"
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6743256/"
         }
       ],
       "wellnessCategories": [

@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-04-29T14:52:35.524Z",
+  "generatedAt": "2026-04-29T19:12:25.857Z",
   "databaseEntryCount": 45,
   "databaseSchemaVersion": "3.0",
   "totalChecks": 51,
-  "elapsedSec": 2.4,
+  "elapsedSec": 2.5,
   "buckets": {
-    "ok2xx": 37,
-    "redirected": 14,
+    "ok2xx": 50,
+    "redirected": 1,
     "client4xx": 0,
     "server5xx": 0,
     "network": 0,
@@ -72,10 +72,10 @@
     {
       "entry": "AOD-9604",
       "label": "Compare: hGH fragment discussion (journal compare article)",
-      "url": "https://peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides",
+      "url": "https://www.peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://www.peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides"
+      "finalUrl": null
     },
     {
       "entry": "ARA-290",
@@ -112,10 +112,10 @@
     {
       "entry": "CJC-1295 (no DAC) + IPA",
       "label": "PubMed: CJC-1295 clinical proteomics paper",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2787983/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2787983/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2787983/"
+      "finalUrl": null
     },
     {
       "entry": "CJC-1295 (no DAC) + IPA",
@@ -144,18 +144,18 @@
     {
       "entry": "FOXO4-DRI",
       "label": "PMC: senolytic chondrocyte paper (example)",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8261234/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8261234/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8261234/"
+      "finalUrl": null
     },
     {
       "entry": "GHK-Cu",
       "label": "PMC: GHK review (example)",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359723/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3359723/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3359723/"
+      "finalUrl": null
     },
     {
       "entry": "GLOW 70",
@@ -184,10 +184,10 @@
     {
       "entry": "Kisspeptin",
       "label": "PMC: kisspeptin signaling review",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4678402/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4678402/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4678402/"
+      "finalUrl": null
     },
     {
       "entry": "KLOW",
@@ -224,10 +224,10 @@
     {
       "entry": "MOTS-c",
       "label": "PMC: MOTS-c review",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9570330/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9570330/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9570330/"
+      "finalUrl": null
     },
     {
       "entry": "MT-1",
@@ -248,18 +248,18 @@
     {
       "entry": "N-acetyl Selank Amidate",
       "label": "Frontiers: Selank molecular review (example)",
-      "url": "https://www.frontiersin.org/articles/10.3389/fphar.2016.00031",
+      "url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2016.00031/full",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2016.00031/full"
+      "finalUrl": null
     },
     {
       "entry": "N-acetyl Semax Amidate",
       "label": "PMC: Semax transcriptome ischemia study (example)",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7350263/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7350263/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7350263/"
+      "finalUrl": null
     },
     {
       "entry": "NAD+",
@@ -283,7 +283,7 @@
       "url": "https://link.springer.com/article/10.1007/s10522-025-10315-x",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=67e0d11b-f67a-4395-ad78-e4b46516f634"
+      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=ed2c9579-abd4-4717-a9a6-0616c7e0ceb9"
     },
     {
       "entry": "PT-141",
@@ -376,42 +376,42 @@
     {
       "entry": "TB-500",
       "label": "PMC: Thymosin β4 function review",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8724243/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724243/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724243/"
+      "finalUrl": null
     },
     {
       "entry": "Tesa",
       "label": "PMC: tesamorelin HIV lipodystrophy review",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3103937/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3103937/"
+      "finalUrl": null
     },
     {
       "entry": "Thymosin Alpha-1",
       "label": "PMC: thymosin alpha-1 comprehensive review",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7747025/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7747025/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7747025/"
+      "finalUrl": null
     },
     {
       "entry": "Vilon",
       "label": "Khavinson bioregulator explainer (secondary)",
-      "url": "https://calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide",
+      "url": "https://www.calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://www.calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide"
+      "finalUrl": null
     },
     {
       "entry": "VIP",
       "label": "PMC: VIP physiology review",
-      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6743256/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6743256/",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6743256/"
+      "finalUrl": null
     },
     {
       "entry": "Wolverine",
