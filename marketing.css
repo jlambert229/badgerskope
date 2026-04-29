@@ -157,7 +157,11 @@ img { display: block; max-width: 100%; }
 .tier[data-grade="B"] .tier-letter { background: var(--tier-b); }
 .tier[data-grade="C"] .tier-letter { background: var(--tier-c); }
 .tier[data-grade="D"] .tier-letter { background: var(--tier-d); }
-.tier[data-grade="F"] .tier-letter { background: var(--tier-f); }
+.tier[data-grade="F"] .tier-letter {
+  background: var(--tier-f);
+  /* Muted rust vs #0B0B0A is 2.95:1 (fails AA). Flip ink to fg.   */
+  color: var(--fg);
+}
 
 .filed {
   /* "Filed" press stamp reads as the receipts/evidence sigil → olive */
@@ -512,10 +516,16 @@ img { display: block; max-width: 100%; }
   position: relative;
 }
 .legend-bar span {
-  /* Bar represents tier-A strength → olive */
+  /* Bar fill picks up the row's tier color so the visual ramp tracks
+     the semantic ramp (olive → sage → honey → terracotta → rust). */
   position: absolute; left: 0; top: 0; bottom: 0;
-  background: var(--accent-tier-a);
+  background: var(--tier-a);
 }
+.legend-row[data-grade="A"] .legend-bar span { background: var(--tier-a); }
+.legend-row[data-grade="B"] .legend-bar span { background: var(--tier-b); }
+.legend-row[data-grade="C"] .legend-bar span { background: var(--tier-c); }
+.legend-row[data-grade="D"] .legend-bar span { background: var(--tier-d); }
+.legend-row[data-grade="F"] .legend-bar span { background: var(--tier-f); }
 
 /* =================================================================
    LIBRARY
