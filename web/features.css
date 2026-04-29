@@ -15,8 +15,11 @@
 .detail__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(40px, 6vw, 88px);
-  line-height: 0.92;
+  /* Was clamp(40, 6vw, 88px) — at typical desktop widths that resolved
+     to ~57px, so a long title like "THYMALFASIN (TA1)" took two thirds
+     of the modal viewport. Tightened the cap. */
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 0.95;
   letter-spacing: var(--tracking-h1);
   text-transform: uppercase;
   color: var(--fg);

@@ -931,17 +931,30 @@ html {
   font-size: 22px; line-height: 1;
   color: var(--fg-2);
   border: 1px solid var(--line-2);
+  background: var(--bg);
   transition: all var(--transition-fast);
 }
 .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Detail-modal close: float in the top-right of the panel so PREV/NEXT
+   can occupy the toolbar row directly below it without taking a second
+   row of space. The hairline-divider on .detail-nav still reads as the
+   panel's actionable header bar. */
+.modal-close--floating {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 2;
+}
 
 .modal--compact { width: min(560px, 92vw); }
 
 .detail-nav {
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px;
-  padding: 12px 0;
-  margin-bottom: 16px;
+  /* Right padding leaves room for the floating close button so the
+     NEXT button doesn't sit underneath it. */
+  padding: 12px 56px 12px 0;
+  margin-bottom: 24px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
