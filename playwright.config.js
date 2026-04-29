@@ -1,5 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// Allow concurrent worktrees to run tests on different ports without
+// stepping on each other. Defaults to 5173 (npm run web).
+const PORT = Number(process.env.PLAYWRIGHT_PORT || 5173);
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
@@ -10,14 +14,14 @@ export default defineConfig({
   timeout: 30_000,
 
   use: {
-    baseURL: "http://localhost:5173",
+    baseURL: `http://localhost:${PORT}`,
     trace: "on-first-retry",
     screenshot: "only-on-failure",
   },
 
   webServer: {
-    command: "npx --yes serve . -l 5173",
-    port: 5173,
+    command: `npx --yes serve . -l ${PORT}`,
+    port: PORT,
     reuseExistingServer: !process.env.CI,
   },
 

@@ -16,7 +16,11 @@ test.describe("Edge cases — the bugs users find first", () => {
     const empty = page.locator(".empty");
     await expect(empty).toBeVisible();
     const text = await empty.textContent();
-    expect(text).toContain("No peptides match");
+    // Empty-state copy is intentionally subversive (audit #1b). The headline
+    // rotates among three sarcastic strings; the supporting hint always tells
+    // users to clear the filters. We assert the user-facing affordance is
+    // present rather than pinning to a single string.
+    expect(text.toLowerCase()).toMatch(/clear the filters|pubmed|0 results|negative signal/);
   });
 
   test("special characters in search don't break app", async ({ page }) => {

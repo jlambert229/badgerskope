@@ -72,7 +72,7 @@ test.describe("Library — active filter chips", () => {
 });
 
 test.describe("Library — empty-state panel", () => {
-  test("0-result filter combo shows the empty-state panel with NO MATCHES + Clear button", async ({ page }) => {
+  test("0-result filter combo shows the empty-state panel with sarcastic heading + Clear button", async ({ page }) => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
@@ -81,7 +81,10 @@ test.describe("Library — empty-state panel", () => {
 
     const panel = page.locator(".empty-state");
     await expect(panel).toBeVisible();
-    await expect(panel.locator(".empty-state__heading")).toHaveText(/NO MATCHES/i);
+    // Heading rotates among three subversive lines; assert one of the
+    // canonical signal phrases is present rather than pinning to one string.
+    await expect(panel.locator(".empty-state__heading"))
+      .toHaveText(/PubMed|0 results|negative signal/i);
     await expect(panel.locator(".empty-state__clear")).toBeVisible();
   });
 

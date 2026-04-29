@@ -92,21 +92,6 @@
           <a href="/web/" class="btn btn-primary">OPEN THE LIBRARY &rarr;</a>
           <a href="#method" class="btn btn-ghost">HOW WE GRADE</a>
         </div>
-
-        <div class="hero-stats">
-          <div>
-            <div class="hero-stat-n">142</div>
-            <div class="hero-stat-l">COMPOUNDS GRADED</div>
-          </div>
-          <div>
-            <div class="hero-stat-n">2,807</div>
-            <div class="hero-stat-l">TRIALS PARSED</div>
-          </div>
-          <div>
-            <div class="hero-stat-n">0</div>
-            <div class="hero-stat-l">SPONSORED POSTS</div>
-          </div>
-        </div>
       </div>
 
       <aside class="hero-right" aria-label="Current watch">
@@ -131,18 +116,60 @@
       </aside>
     </div>
 
-    <div class="rule-row">
-      <span class="rule-label">SCROLL FOR THE METHOD</span>
+    <a href="#method" class="rule-row" id="scroll-for-method" aria-label="Scroll to the method">
+      <span class="rule-label">SCROLL FOR THE METHOD &darr;</span>
       <span class="rule-line"></span>
-    </div>
+    </a>
   </section>
 
   <!-- ============================================================
-       TICKER
+       FILE 00 — ANCHOR COMPOUND CARD
+       Focal point under the hero. One compound, deep-linked into
+       the library. Hype claims wrapped in `.redact` — hover or
+       scroll triggers the black-bar reveal.
        ============================================================ -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="ticker-track"></div>
-  </div>
+  <section class="anchor-card" id="anchor-card" aria-labelledby="anchor-card-name">
+    <div class="anchor-card__eyebrow">
+      <span>FILE 00 &mdash; THE ANCHOR</span>
+      <span class="anchor-card__rule"></span>
+      <span>READ THE RECEIPTS &rarr;</span>
+    </div>
+    <div>
+      <h2 class="anchor-card__name" id="anchor-card-name">BPC-157</h2>
+      <div class="anchor-card__aka">PL 14736 &middot; PENTADECAPEPTIDE &middot; ANIMAL DATA STRONG, HUMAN DATA SPARSE</div>
+      <div class="anchor-card__tiers">
+        <span class="tier" data-grade="B"><span class="tier-letter">B</span><span class="tier-text">EVIDENCE</span></span>
+        <span class="tier" data-grade="B"><span class="tier-letter">B</span><span class="tier-text">SAFETY</span></span>
+        <span class="tier" data-grade="B"><span class="tier-letter">B</span><span class="tier-text">ACCESS</span></span>
+      </div>
+      <p class="anchor-card__summary">
+        BPC-157 is the most popular peptide on the internet and has
+        <span class="redact">nine</span> human trials to its name. Both
+        of those things are true at the same time.
+      </p>
+      <a class="anchor-card__cta" href="/web/#entry=BPC-157%2010mg" data-anchor-cta>
+        SEE HOW WE GRADED THIS &rarr;
+      </a>
+    </div>
+    <ul class="anchor-card__claim-list">
+      <li class="anchor-card__claim">
+        <span class="anchor-card__claim-label">Vendor copy says</span>
+        It's <span class="redact">a miracle peptide</span> &mdash;
+        <span class="redact">basically Wolverine</span> in a vial.
+      </li>
+      <li class="anchor-card__claim">
+        <span class="anchor-card__claim-label">The literature says</span>
+        Consistent tendon and gut healing in rats. Six completed human trials,
+        none double-blinded, none larger than N=80.
+      </li>
+      <li class="anchor-card__claim">
+        <span class="anchor-card__claim-label">The honest verdict</span>
+        Promising-but-unproven. Not slop. Not aspirin. Banned in sport
+        by WADA since 2022.
+      </li>
+    </ul>
+    <div class="anchor-card__verdict">FILED 18 APR 2026 &middot; RE-REVIEW Q3</div>
+  </section>
 
   <!-- ============================================================
        PROBLEM STRIP
@@ -218,6 +245,15 @@
       </div>
     </div>
   </section>
+
+  <!-- ============================================================
+       TICKER — moved below method per audit (#2): ticker between
+       hero and methodology was hijacking attention from the anchor
+       card. Re-positioned as a metadata strip between sections.
+       ============================================================ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
 
   <!-- ============================================================
        LEGEND
@@ -331,7 +367,7 @@
 
       <div class="feature-body">
         <div class="feature-lede">
-          BPC-157 has been called a &ldquo;miracle peptide,&rdquo; a &ldquo;Wolverine drug,&rdquo; and &ldquo;the closest thing to actual regeneration.&rdquo; It might also be useful. Both can be true.
+          BPC-157 has been called a &ldquo;<span class="redact">miracle peptide</span>,&rdquo; a &ldquo;<span class="redact">Wolverine drug</span>,&rdquo; and &ldquo;the closest thing to <span class="redact">actual regeneration</span>.&rdquo; It might also be useful. Both can be true.
         </div>
 
         <div class="feature-cols">
@@ -429,11 +465,8 @@
         <image href="./badger-256.png" x="8" y="8" width="84" height="84" style="filter: brightness(0) invert(1) contrast(1.5);"/>
       </svg>
       <div class="sub-eyebrow">JOIN 38,402 READERS</div>
-      <h2 class="sub-h2" id="sub-h2">
-        ONE EMAIL.<br>
-        EVERY FRIDAY.<br>
-        <span class="sub-h2-accent">RECEIPTS ATTACHED.</span>
-      </h2>
+      <h2 class="sub-h2" id="sub-h2">ONE EMAIL EVERY FRIDAY.</h2>
+      <span class="sub-kicker">Receipts attached.</span>
       <p class="sub-deck">
         New audits, grade changes, and the week's slop. No sponsors, no
         stack-bro affiliate links, no &ldquo;sponsored by your liver.&rdquo;
@@ -518,6 +551,29 @@
   const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 30);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ===========================================================
+  // Redaction theater — auto-redact hype phrases on scroll-in.
+  // Hover still works regardless. IntersectionObserver toggles
+  // .is-redacted as each `.redact` element scrolls into view, so
+  // visitors who never hover still get the bar reveal once.
+  // ===========================================================
+  const redactTargets = document.querySelectorAll('.redact');
+  if (redactTargets.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Stagger by index so the bars sweep in sequence within
+          // the same paragraph rather than all at once.
+          const idx = Array.from(redactTargets).indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('is-redacted'),
+                     Math.min(idx, 8) * 90);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.7 });
+    redactTargets.forEach((el) => io.observe(el));
+  }
 
   // ===========================================================
   // Ticker — 12 items duplicated for seamless loop
