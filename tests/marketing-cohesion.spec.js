@@ -113,9 +113,9 @@ test.describe("Marketing landing — combined cohesion pass", () => {
   test("(#9) newsletter CTA shows a single headline + small kicker", async ({ page }) => {
     await page.goto("/");
     const headline = page.locator("#sub-h2");
-    await expect(headline).toHaveText(/ONE EMAIL EVERY FRIDAY\.?/i);
+    await expect(headline).toHaveText(/RECEIPTS IN YOUR INBOX\.?/i);
     const kicker = page.locator(".sub-kicker");
-    await expect(kicker).toHaveText(/RECEIPTS ATTACHED/i);
+    await expect(kicker).toHaveText(/WHEN NEW AUDITS DROP\.?/i);
   });
 });
 
