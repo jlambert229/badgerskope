@@ -49,10 +49,12 @@ test.describe("Library — inline column labels at narrow viewports", () => {
           })),
     );
 
-    // Spec: FILE / COMPOUND / EVIDENCE / SUMMARY are visible at <1100px.
-    // (WELLNESS cell is itself hidden at this breakpoint by existing rule.)
+    // Spec: at <1100px the row switches to a labeled stacked-card layout —
+    // FILE / COMPOUND / EVIDENCE / SUMMARY / WELLNESS are all visible with
+    // ::before label prefixes. (Pre-#fix-library-table-polish, WELLNESS was
+    // hidden here, dropping its data silently.)
     const visibleLabels = labels.map((l) => l.label).sort();
-    expect(visibleLabels).toEqual(["COMPOUND", "EVIDENCE", "FILE", "SUMMARY"]);
+    expect(visibleLabels).toEqual(["COMPOUND", "EVIDENCE", "FILE", "SUMMARY", "WELLNESS"]);
 
     for (const l of labels) {
       // ::before content surfaces the label text. Browsers may quote the

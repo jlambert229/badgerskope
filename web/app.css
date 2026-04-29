@@ -83,7 +83,10 @@ kbd {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 32px;
-  padding: 14px 40px;
+  /* Match .lib content edges so nav doesn't drift right of the centered
+     library at viewports wider than 1480px. .lib is max-width 1480px
+     with 40px padding → 1400px content; replicate that math here. */
+  padding: 14px max(40px, calc((100vw - 1400px) / 2));
   background: rgba(11, 11, 10, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -209,6 +212,23 @@ kbd {
   margin: 0 auto;
 }
 .lib[hidden] { display: none; }
+
+/* Scroll-padding so anchor / programmatic-scroll targets aren't clipped
+   beneath the sticky nav + filter strip (#8). */
+html {
+  scroll-padding-top: calc(var(--nav-h, 70px) + var(--filter-strip-h, 110px) + 16px);
+}
+.lib-row {
+  scroll-margin-top: calc(var(--nav-h, 70px) + var(--filter-strip-h, 110px) + 16px);
+}
+
+/* On short viewports, the sticky nav + sticky filter consume too much
+   visible height — drop the filter strip out of sticky so users can
+   actually see content rows (#7). */
+@media (max-height: 720px) {
+  .filter-strip { position: static; }
+  .lib-table__head { top: var(--nav-h, 70px); }
+}
 
 /* ============================================================
    EDITORIAL MASTHEAD STRIP — replaces the 480px hero
@@ -463,13 +483,18 @@ kbd {
   background: var(--bg);
 }
 
-/* shared 6-column grid: FILE · COMPOUND · EVIDENCE · WELLNESS · SUMMARY · ACTIONS */
+/* shared 6-column grid: FILE · COMPOUND · EVIDENCE · WELLNESS · SUMMARY · ACTIONS
+   Wellness is minmax(0, 120px) — bounded so its chip content can't blow the
+   column out and squeeze COMPOUND below the single-line break point (#1, #5).
+   Evidence bumped 1.05fr → 1.2fr so two-word labels like "STRONG HUMAN" don't
+   wrap (#10). align-items: start so a tall cell doesn't vertically stretch
+   the rest of the row. */
 .lib-table__head,
 .lib-row {
   display: grid;
-  grid-template-columns: 88px 1.6fr 1.05fr 0.7fr 2.4fr 168px;
+  grid-template-columns: 88px 1.6fr 1.2fr minmax(0, 120px) 2.4fr 168px;
   gap: 16px;
-  align-items: center;
+  align-items: start;
   padding: 14px 16px;
   border-bottom: 1px solid var(--line);
   min-height: 80px;
@@ -629,7 +654,7 @@ kbd {
   text-transform: uppercase;
 }
 
-.lib-row__wellness { display: flex; }
+.lib-row__wellness { display: flex; min-width: 0; overflow: hidden; flex-wrap: wrap; gap: 4px; }
 .card__category {
   display: inline-flex;
   align-items: center;
@@ -663,15 +688,20 @@ kbd {
 .lib-row__actions {
   display: flex; align-items: center; gap: 8px;
   justify-content: flex-end;
-  opacity: 0.55;
+  /* Bumped 0.55 → 0.85 — actions were so faded users didn't perceive them
+     as interactive. Hover/selected states still go to 1. (#9) */
+  opacity: 0.85;
   transition: opacity var(--transition-fast);
 }
 .card--selected .lib-row__actions,
 .card--bookmarked .lib-row__actions { opacity: 1; }
 
 .lib-row__bookmark {
-  width: 32px; height: 32px;
-  font-size: 16px;
+  /* 36×36 desktop target (was 32px). Still tight per WCAG 2.5.5 (44px
+     ideal) but library density argues against full 44 on every row.
+     ≤1100px breakpoint already pushes these to 44×44 for touch. */
+  width: 36px; height: 36px;
+  font-size: 18px;
   line-height: 1;
   color: var(--fg-3);
   display: grid; place-items: center;
@@ -749,27 +779,45 @@ kbd {
 }
 
 /* ── Compact at narrower widths ─────────────────────────────────────── */
+/* At ≤1100px, the column-header strip is hidden and the row switches to
+   a labeled stacked-card layout. WELLNESS is no longer hidden (#2/#3) —
+   it stays visible with its own labeled row beneath SUMMARY. */
 @media (max-width: 1100px) {
   .lib-table__head { display: none; }
-  .lib-table__head,
   .lib-row {
-    grid-template-columns: 80px 1.4fr 1fr 2fr auto;
+    grid-template-columns: 80px 1fr auto;
+    grid-template-areas:
+      "index   name      actions"
+      "tier    tier      tier"
+      "summary summary   summary"
+      "wellness wellness wellness";
+    gap: 8px 16px;
   }
-  .lib-row__wellness { display: none; }
-  .lib-row__summary { -webkit-line-clamp: 3; }
+  .lib-row__index { grid-area: index; }
+  .lib-row__name  { grid-area: name; min-height: 44px; }
+  .lib-row__actions { grid-area: actions; }
+  .lib-row__tier  { grid-area: tier; }
+  .lib-row__summary { grid-area: summary; -webkit-line-clamp: 3; }
+  .lib-row__wellness {
+    grid-area: wellness;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+    overflow: visible;
+  }
   .lib-row__bookmark,
   .lib-row__compare,
   .lib-row__arrow { width: 44px; height: 44px; }
   .lib-row__select input[type="checkbox"] { width: 22px; height: 22px; }
-  .lib-row__name { min-height: 44px; }
 
   /* Inline column labels — replace the hidden table headers with quiet
      metadata prefixes inside each cell. Driven by data-label set in cards.js.
-     Mono, 11px, uppercase, dim. No olive accent (reserved for active states).
-     The wellness cell is itself hidden at this breakpoint, so no label there. */
+     Mono caps, dim. No olive accent (reserved for active states). */
   .lib-row__index[data-label]::before,
   .lib-row__name[data-label]::before,
   .lib-row__tier[data-label]::before,
+  .lib-row__wellness[data-label]::before,
   .lib-row__summary[data-label]::before {
     content: attr(data-label) ":\00a0";
     display: block;
@@ -781,9 +829,10 @@ kbd {
     color: var(--text-dim, var(--fg-3));
     margin-bottom: 4px;
   }
-  /* .lib-row__tier is a flex row — make the label take the full first line
-     so the badge + tier-label stay on the second line beneath it. */
-  .lib-row__tier[data-label]::before { flex: 0 0 100%; }
+  /* .lib-row__tier and .lib-row__wellness are flex rows — make the label
+     take the full first line so the chip(s) stay on the second line. */
+  .lib-row__tier[data-label]::before,
+  .lib-row__wellness[data-label]::before { flex: 0 0 100%; }
 }
 @media (max-width: 760px) {
   .lib-table__head,
