@@ -1,0 +1,137 @@
+name: Source URL liveness
+
+# Weekly check that every entries[].sources[].url in
+# peptide-info-database.json still resolves to 200. Opens an issue when
+# the broken-URL count crosses BROKEN_THRESHOLD; updates an existing
+# open issue with the same label rather than spamming.
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"  # Mondays 13:00 UTC (~9am ET, 6am PT)
+  workflow_dispatch:       # manual trigger from the Actions tab
+    inputs:
+      threshold:
+        description: "Open an issue if broken URLs ≥ this number"
+        required: false
+        default: "2"
+
+permissions:
+  contents: read
+  issues: write
+
+# Threshold default 2 to avoid noise from single transient network blips.
+# Real URL drift accumulates; one flake doesn't.
+env:
+  BROKEN_THRESHOLD: ${{ github.event.inputs.threshold || '2' }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run liveness check
+        id: liveness
+        run: |
+          node scripts/check-source-liveness.mjs --out /tmp/results.json
+          # Extract bucket counts for the run summary + issue body.
+          node -e "
+            const r = JSON.parse(require('fs').readFileSync('/tmp/results.json','utf8'));
+            const b = r.buckets;
+            const broken = b.client4xx + b.server5xx + b.network + b.timeout;
+            const lines = [];
+            lines.push('total=' + r.totalChecks);
+            lines.push('ok2xx=' + b.ok2xx);
+            lines.push('redirected=' + b.redirected);
+            lines.push('client4xx=' + b.client4xx);
+            lines.push('server5xx=' + b.server5xx);
+            lines.push('network=' + b.network);
+            lines.push('timeout=' + b.timeout);
+            lines.push('broken=' + broken);
+            for (const l of lines) console.log(l);
+            require('fs').appendFileSync(process.env.GITHUB_OUTPUT, lines.join('\n') + '\n');
+            // Per-failure detail for the issue body.
+            const failures = r.results.filter(x => !x.ok);
+            const md = failures.map(f =>
+              '- **' + f.entry + '** — ' + f.label + '\n  - ' + f.url + '\n  - status: ' + (f.status || f.error)
+            ).join('\n');
+            require('fs').writeFileSync('/tmp/failures.md', md || '_(none)_');
+          "
+
+      - name: Job summary
+        run: |
+          {
+            echo "## Source-URL liveness — \`peptide-info-database.json\`"
+            echo ""
+            echo "| Bucket | Count |"
+            echo "| --- | ---: |"
+            echo "| total checks | ${{ steps.liveness.outputs.total }} |"
+            echo "| 2xx OK (no redirect) | ${{ steps.liveness.outputs.ok2xx }} |"
+            echo "| 2xx OK (followed redirect) | ${{ steps.liveness.outputs.redirected }} |"
+            echo "| **4xx broken** | **${{ steps.liveness.outputs.client4xx }}** |"
+            echo "| 5xx server error | ${{ steps.liveness.outputs.server5xx }} |"
+            echo "| network error | ${{ steps.liveness.outputs.network }} |"
+            echo "| timeout | ${{ steps.liveness.outputs.timeout }} |"
+            echo ""
+            if [ "${{ steps.liveness.outputs.broken }}" -ge "${BROKEN_THRESHOLD}" ]; then
+              echo "### Failures"
+              cat /tmp/failures.md
+            else
+              echo "_All sources reachable. No issue opened._"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update tracking issue
+        if: steps.liveness.outputs.broken >= env.BROKEN_THRESHOLD
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const failures = fs.readFileSync('/tmp/failures.md', 'utf8');
+            const broken  = `${{ steps.liveness.outputs.broken }}`;
+            const total   = `${{ steps.liveness.outputs.total }}`;
+            const label   = 'source-liveness';
+            const title   = `Source URL liveness: ${broken} / ${total} broken`;
+            const body = [
+              `Automated weekly check from \`.github/workflows/source-liveness.yml\`.`,
+              ``,
+              `**${broken}** of **${total}** \`entries[].sources[].url\` entries in \`peptide-info-database.json\` failed liveness.`,
+              ``,
+              `## Failures`,
+              failures,
+              ``,
+              `---`,
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+
+            // Ensure the label exists (idempotent).
+            try {
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner, repo: context.repo.repo,
+                name: label, color: 'd97706', description: 'Auto-opened by source-liveness workflow',
+              });
+            } catch (e) { /* already exists */ }
+
+            // Reuse an open issue with the same label if one exists.
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: label,
+            });
+            if (open.data.length > 0) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open.data[0].number,
+                title, body,
+              });
+              core.notice(`Updated existing issue #${open.data[0].number}`);
+            } else {
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: [label],
+              });
+              core.notice(`Opened issue #${issue.data.number}`);
+            }
