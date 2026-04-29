@@ -83,10 +83,10 @@ kbd {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 32px;
-  /* Match .lib content edges so nav doesn't drift right of the centered
-     library at viewports wider than 1480px. .lib is max-width 1480px
-     with 40px padding → 1400px content; replicate that math here. */
-  padding: 14px max(40px, calc((100vw - 1400px) / 2));
+  /* Match .lib content edges so nav lines up with the centered library
+     at every viewport width. .lib is max-width 1800px with 40px padding
+     → 1720px content; replicate that math here. */
+  padding: 14px max(40px, calc((100vw - 1720px) / 2));
   background: rgba(11, 11, 10, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -208,7 +208,11 @@ kbd {
    ============================================================ */
 .lib {
   padding: 24px 40px 64px;
-  max-width: 1480px;
+  /* Bumped 1480px → 1800px to use more of wide displays. The 6-column
+     library grid distributes the extra space across the fr columns,
+     so each cell gets visibly wider rather than the whole layout
+     stretching off-axis. */
+  max-width: 1800px;
   margin: 0 auto;
 }
 .lib[hidden] { display: none; }
