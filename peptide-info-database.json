@@ -145,8 +145,16 @@
           "url": "https://en.wikipedia.org/wiki/Semaglutide"
         },
         {
-          "label": "PubMed: STEP 5 trial snapshot",
+          "label": "PubMed: Garvey STEP 5 weight-loss trial (Nat Med 2022)",
           "url": "https://pubmed.ncbi.nlm.nih.gov/36216945/"
+        },
+        {
+          "label": "PubMed: Lincoff SELECT cardiovascular outcomes (NEJM 2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37952131/"
+        },
+        {
+          "label": "PubMed: Marso SUSTAIN-6 cardiovascular in T2D (NEJM 2016)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27633186/"
         }
       ],
       "synergisticWith": [
@@ -336,7 +344,7 @@
         }
       ],
       "reportedBenefits": [
-        "Animal studies: reduced body fat and improved blood sugar control in obese mice.",
+        "Animal studies: reduced body weight, white adipose mass, and plasma cholesterol in diet-induced obese mice.",
         "Rodent data: confirmed the compound gets absorbed into the body after dosing.",
         "No human trials: there is no accepted clinical evidence that it works or is safe for people."
       ],
@@ -1057,8 +1065,12 @@
       "researchSummary": "A growth-hormone-releasing peptide that triggers your pituitary gland to release natural growth hormone in pulses. Considered \"cleaner\" than older drugs in its class because it causes less of a spike in stress hormones like cortisol. Used in wellness clinics for body composition and recovery goals.",
       "sources": [
         {
-          "label": "PubMed: ipamorelin human PK/PD",
+          "label": "PubMed: Gobburu ipamorelin PK/PD in humans (Pharm Res 1999)",
           "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/"
+        },
+        {
+          "label": "PubMed: Raun ipamorelin original characterization, GH selectivity vs cortisol/prolactin (Eur J Endocrinol 1998)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/9849822/"
         }
       ],
       "synergisticWith": [
@@ -2249,7 +2261,7 @@
       "doseGuidelines": [
         {
           "indicationOrContext": "Mitochondrial disease (clinical trials)",
-          "evidenceBasis": "pivotal_trials",
+          "evidenceBasis": "phase1_human",
           "minimumEffectiveDoseNotes": "Trial protocols use weight-based or flat milligram daily doses for specific mitochondrial conditions. There is no self-administration dosing guide outside clinical studies."
         }
       ],
@@ -2268,8 +2280,12 @@
       "researchSummary": "A small peptide (also called elamipretide) designed to protect mitochondria, the energy powerhouses inside cells. It binds to a specific fat molecule on the inner mitochondrial membrane to stabilize energy production. Being developed for rare mitochondrial diseases and heart failure.",
       "sources": [
         {
-          "label": "PubMed: SS-31 ANT aged mitochondria",
+          "label": "PubMed: Pharaoh SS-31 / ANT aged mitochondria (Geroscience 2023)",
           "url": "https://pubmed.ncbi.nlm.nih.gov/37462785/"
+        },
+        {
+          "label": "PubMed: Birk SS-31 cardiolipin binding mechanism (Br J Pharmacol 2014)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24134698/"
         }
       ],
       "synergisticWith": [
