@@ -414,18 +414,35 @@ export function bindDetailEvents() {
     pill.addEventListener("click", () => {
       const t = pill.dataset.synergyTitle;
       const entry = getEntryByTitle(t);
-      if (entry) {
+      if (!entry) return;
+      // Same queue-from-lastVisibleList rule as openDetail() — without
+      // it, navigating via a synergy pill collapsed the queue to length
+      // 1 and disabled Prev/Next.
+      if (Array.isArray(state.lastVisibleList) && state.lastVisibleList.length > 1) {
+        state.detailQueue = state.lastVisibleList;
+        const i = state.detailQueue.findIndex((e) => getEntryId(e) === getEntryId(entry));
+        state.detailIndex = i >= 0 ? i : 0;
+      } else {
         state.detailQueue = [entry];
         state.detailIndex = 0;
-        showDetailAt(0);
       }
+      showDetailAt(state.detailIndex);
     });
   });
 }
 
 export function openDetail(entry, opts = {}) {
   if (opts.multiQueue && opts.multiQueue.length > 1) {
+    // Caller supplied an explicit queue (e.g. compare-tab navigation).
     state.detailQueue = opts.multiQueue;
+    const i = state.detailQueue.findIndex((e) => getEntryId(e) === getEntryId(entry));
+    state.detailIndex = i >= 0 ? i : 0;
+  } else if (Array.isArray(state.lastVisibleList) && state.lastVisibleList.length > 1) {
+    // Single-card click: page Prev/Next through whatever the user is
+    // currently looking at (the filtered/sorted/grouped library).
+    // Without this, the queue collapsed to [entry] and both buttons
+    // were always disabled even though the counter read "N of M".
+    state.detailQueue = state.lastVisibleList;
     const i = state.detailQueue.findIndex((e) => getEntryId(e) === getEntryId(entry));
     state.detailIndex = i >= 0 ? i : 0;
   } else {
