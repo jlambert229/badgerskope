@@ -58,8 +58,11 @@ test.describe("Library — inline column labels at narrow viewports", () => {
       // ::before content surfaces the label text. Browsers may quote the
       // attr() value, so check for substring rather than equality.
       expect(l.beforeContent).toContain(l.label);
-      // Brand: mono uppercase metadata.
-      expect(l.beforeFontFamily.toLowerCase()).toMatch(/mono/);
+      // Brand: editorial uppercase metadata. Post-soften pass --font-mono
+      // aliases --font-body (Inter), so we accept either Inter (current)
+      // or any historical mono family — what matters is that the label
+      // resolves to the brand stack, not a generic system fallback.
+      expect(l.beforeFontFamily.toLowerCase()).toMatch(/inter|mono/);
       expect(l.beforeTextTransform).toBe("uppercase");
     }
   });

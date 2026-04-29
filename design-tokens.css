@@ -5,14 +5,19 @@
    ============================================================ */
 
 :root {
-  /* ---------- Surface ---------- */
-  --bg:    #0B0B0A;   /* page background */
-  --bg-2:  #131311;   /* alt section bg, card bg */
-  --bg-3:  #1B1B18;   /* tertiary surface, faded numerals */
+  /* ---------- Surface ----------
+     Softening pass: shifted off pure-near-black into clear dark warm
+     grey range. No surface uses #000 or #0B0B0A directly anymore;
+     "ink" places (tier-chip text, primary-button text) reference --bg
+     so the dark stays cohesive with the page. */
+  --bg:    #1A1A18;   /* page background — dark warm grey */
+  --bg-2:  #232320;   /* alt section bg, card bg */
+  --bg-3:  #2C2C29;   /* tertiary surface, faded numerals */
 
-  /* ---------- Hairlines ---------- */
-  --line:   #2A2A26;
-  --line-2: #3A3A35;
+  /* ---------- Hairlines ----------
+     Bumped one stop to keep visible separation against the lighter bgs. */
+  --line:   #3A3A33;
+  --line-2: #4A4A43;
 
   /* ---------- Foreground ---------- */
   --fg:   #F2EFE5;   /* primary text */
@@ -28,34 +33,35 @@
      without per-call rewrites. Surfaces that meant "olive specifically"
      (tier letter, badges, EVIDENCE > inline glyph, chevron) are
      migrated to `--accent-tier-a` explicitly. */
-  --accent-tier-a: #C8D17A;                     /* olive — Tier A */
-  --accent-brand:  #7EB6B0;                     /* desaturated teal */
+  --accent-tier-a: #CCD56F;                     /* olive — Tier A */
+  --accent-brand:  #73BCB1;                     /* teal */
   --accent-interactive: var(--accent-brand);
   --accent-link:        var(--accent-brand);
   --accent:      var(--accent-interactive);     /* legacy alias → teal */
-  --accent-soft: rgba(126, 182, 176, 0.10);     /* teal soft glow */
-  --accent-tier-a-soft: rgba(200, 209, 122, 0.10);
+  --accent-soft: rgba(115, 188, 177, 0.10);     /* teal soft glow */
+  --accent-tier-a-soft: rgba(204, 213, 111, 0.10);
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
-     Desaturated brutalist editorial ramp — yellow-green → red.
-     Earlier pass collapsed B-F into olive-greys for ink contrast and
-     lost all hue delineation; this restores semantic separation while
-     staying inside the editorial palette (no traffic-light siren).
-     Letter ink is `#0B0B0A` for A/B/C/D; F switches to `--fg` because
-     `#9C3D3D` vs `#0B0B0A` is 2.95:1 (fails AA). The text-color flip
-     for F lives in app.css / marketing.css.
+     Editorial ramp — yellow-green → red. Saturation bumped one notch
+     from the prior desaturated palette; still no traffic-light siren,
+     still readable as one cohesive editorial set, but with enough
+     chroma that the five steps don't read as muddy.
 
-       A #C8D17A  olive       12.06:1 vs #0B0B0A   (Gold Standard)
-       B #A8C77A  sage        10.42:1 vs #0B0B0A   (Promising)
-       C #D4A85C  honey        8.96:1 vs #0B0B0A   (Suggestive)
-       D #C97A4A  terracotta   5.97:1 vs #0B0B0A   (Weak / Dated)
-       F #9C3D3D  muted rust   5.80:1 vs #F2EFE5   (SLOP)
+     Letter ink uses --bg (#1A1A18) for A/B/C/D so chips stay cohesive
+     with the page. F flips to --fg because rust vs dark fails AA.
+     The text-color flip for F lives in app.css / marketing.css.
+
+       A #CCD56F  olive       ~9.4:1 vs #1A1A18   (Gold Standard)
+       B #A6CD68  sage        ~8.6:1 vs #1A1A18   (Promising)
+       C #D9A949  honey       ~7.5:1 vs #1A1A18   (Suggestive)
+       D #CE7C40  terracotta  ~5.0:1 vs #1A1A18   (Weak / Dated)
+       F #A93535  muted rust  ~5.4:1 vs #F2EFE5   (SLOP, white ink)
    */
   --tier-a: var(--accent-tier-a);   /* olive */
-  --tier-b: #A8C77A;                /* sage */
-  --tier-c: #D4A85C;                /* honey / amber */
-  --tier-d: #C97A4A;                /* terracotta */
-  --tier-f: #9C3D3D;                /* muted rust */
+  --tier-b: #A6CD68;                /* sage */
+  --tier-c: #D9A949;                /* honey / amber */
+  --tier-d: #CE7C40;                /* terracotta */
+  --tier-f: #A93535;                /* muted rust */
 
   /* ---------- Evidence tiers (legacy semantic names consumed by SPA JS) ---------- */
   --ev-approved: var(--tier-a);
@@ -70,10 +76,17 @@
   --warning: #E8B547;
   --danger:  #D97757;
 
-  /* ---------- Typography ---------- */
+  /* ---------- Typography ----------
+     Softening pass: dropped JetBrains Mono. Mono caps labels read as
+     "mechanical" / "terminal"; the brand voice reads better with a
+     uniform modern sans across body and labels. --font-mono now aliases
+     --font-body (Inter) so every existing `font-family: var(--font-mono)`
+     site picks up the sans without per-call rewrites. The aggressive
+     letter-spacing on caps labels (--tracking-mono / --tracking-mono-lg)
+     is what still gives those rows their editorial-grid feel. */
   --font-display: "Oswald", "Barlow Condensed", system-ui, sans-serif;
   --font-body:    "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-mono:    var(--font-body);   /* alias — no monospace anywhere */
 
   /* legacy aliases — kept so older surfaces don't shatter mid-migration */
   --font-sans: var(--font-body);
@@ -118,14 +131,14 @@
   --space-8:  64px;
   --space-9:  96px;
 
-  /* ---------- Radius (brutalist: zero on layout containers) ----------
-     Layout (cards, panels, sheets, table, modal, footer) stays square.
-     `--radius-micro` is the brand carve-out for INTERACTIVE controls in
-     the web app — checkboxes, badges, active-filter chips, dropdowns.
-     A 2px hint signals tappability without softening the editorial feel. */
-  --radius-sm:    0;
-  --radius-md:    0;
-  --radius-lg:    0;
+  /* ---------- Radius ----------
+     Softening pass: 2px corner radius across the board. Editorial bones
+     remain (no chubby cards, no pill buttons), just enough rounding to
+     read as "considered" instead of "stark". Layout containers, panels,
+     and interactive controls all share the same 2px hint. */
+  --radius-sm:    2px;
+  --radius-md:    2px;
+  --radius-lg:    2px;
   --radius-micro: 2px;
 
   /* ---------- Motion ---------- */
@@ -161,6 +174,31 @@ body::before {
 }
 html.no-grain body::before,
 body.no-grain::before { opacity: 0; }
+
+/* ============================================================
+   Softening pass — apply --radius-sm (2px) to layout containers
+   that previously defaulted to flat. Cross-loaded with the tokens
+   so both marketing surfaces (/) and the SPA (/web/) pick it up
+   without per-file rules. Buttons, search input, chips, etc.
+   already pull --radius-micro at their own sites.
+   ============================================================ */
+.anchor-card,
+.hero-card,
+.feature-art,
+.feature-receipts,
+.problem-card,
+.method-step,
+.faq-item,
+.sub-card,
+.doc-disclaimer,
+.modal-panel,
+.card,
+.lib-table,
+.compare-table-wrap,
+.stat-card,
+.user-notes__input {
+  border-radius: var(--radius-sm);
+}
 
 @media (prefers-reduced-motion: reduce) {
   :root { --transition-fast: 0ms; --transition-base: 0ms; --transition-slow: 0ms; }

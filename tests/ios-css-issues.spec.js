@@ -47,10 +47,10 @@ test.describe("CSS rendering (iOS WebKit)", () => {
     const fontLoaded = await page.evaluate(async () => {
       await document.fonts.ready;
       const families = [...document.fonts].map((f) => f.family);
-      // Brand stack: Oswald (display), Inter (body), JetBrains Mono (data)
+      // Brand stack post-soften pass: Oswald (display) + Inter (body & labels).
+      // Mono was retired — labels render as Inter caps with editorial tracking.
       return families.some((f) => f.includes("Oswald"))
-          && families.some((f) => f.includes("Inter"))
-          && families.some((f) => f.includes("JetBrains Mono"));
+          && families.some((f) => f.includes("Inter"));
     });
     expect(fontLoaded).toBe(true);
   });
@@ -92,9 +92,10 @@ test.describe("CSS rendering (iOS WebKit)", () => {
     }
   });
 
-  test("cards render with brutalist hairline borders (no rounding)", async ({ page }) => {
-    // The brand is brutalist — radius is 0 everywhere by design.
-    // Library rows separate via 1px bottom hairlines (no right rule, no radius).
+  test("cards render with brutalist hairline borders (2px softening)", async ({ page }) => {
+    // The brand is brutalist with a 2px softening pass — layout containers
+    // share --radius-sm (= 2px). Library rows still separate via 1px bottom
+    // hairlines (no right rule).
     const cardStyles = await page.evaluate(() => {
       const card = document.querySelector(".card");
       if (!card) return null;
@@ -105,7 +106,7 @@ test.describe("CSS rendering (iOS WebKit)", () => {
       };
     });
     expect(cardStyles).not.toBeNull();
-    expect(cardStyles.radius).toBe(0);
+    expect(cardStyles.radius).toBeLessThanOrEqual(2);
     expect(cardStyles.borderBottom).toBeGreaterThan(0);
   });
 
