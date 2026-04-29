@@ -1,0 +1,21 @@
+[
+  {
+    "id": "pubmed_eutilities",
+    "provider": "NCBI PubMed / E-utilities",
+    "policy_urls": [
+      "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+      "https://www.ncbi.nlm.nih.gov/books/NBK25497/"
+    ],
+    "allowed_operations": ["esearch", "efetch", "esummary", "elink", "rate_limited_http_get"],
+    "notes": "Send required email= and tool= parameters; respect rate limits and API key guidance."
+  },
+  {
+    "id": "clinicaltrials_gov_api_v2",
+    "provider": "ClinicalTrials.gov",
+    "policy_urls": [
+      "https://clinicaltrials.gov/data-api/about"
+    ],
+    "allowed_operations": ["studies_query", "studies_metadata"],
+    "notes": "Capture and archive the terms URL version in force at implementation time (PRD §9)."
+  }
+]

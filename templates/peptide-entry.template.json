@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "title": "REPLACE_WITH_CATALOG_SKU_TITLE",
+    "commonDrugName": "REPLACE_WITH_INN_OR_COMMON_NAME_OR_EMPTY_STRING"
+  },
+  "compoundType": "peptide",
+  "commonSideEffects": {
+    "common": [
+      "REPLACE_WITH_COMMON_SIDE_EFFECT_LINE"
+    ],
+    "serious": [
+      "REPLACE_WITH_SERIOUS_SIDE_EFFECT_LINE"
+    ]
+  },
+  "cyclingNotes": "REPLACE_WITH_CYCLING_OR_CONTINUATION_GUIDANCE",
+  "doseGuidelines": [
+    {
+      "indicationOrContext": "REPLACE_WITH_CONTEXT_LABEL",
+      "evidenceBasis": "regulatory_label",
+      "minimumEffectiveDoseNotes": "REPLACE_WITH_DOSE_EVIDENCE_SUMMARY_NOT_PRESCRIBING_INSTRUCTIONS"
+    }
+  ],
+  "dosingTimingNotes": "REPLACE_WITH_ROUTE_FREQUENCY_TIMING_NOTES",
+  "notes": "REPLACE_WITH_IDENTITY_VENDOR_SAFETY_DISCLAIMERS",
+  "potentialApplications": [
+    {
+      "evidenceNote": "REPLACE_WITH_EVIDENCE_STRENGTH_SCOPE",
+      "personCenteredBenefit": "REPLACE_WITH_PLAIN_LANGUAGE_BENEFIT_PHRASING"
+    }
+  ],
+  "reportedBenefits": [
+    "REPLACE_WITH_TIER_PREFIXED_OR_PLAIN_BENEFIT_LINE_PER_STYLE_GUIDE"
+  ],
+  "researchSummary": "REPLACE_WITH_PARAGRAPH_PLAIN_LANGUAGE_SUMMARY",
+  "sources": [
+    {
+      "label": "REPLACE_WITH_SHORT_SOURCE_LABEL",
+      "url": "https://REPLACE_WITH_PRIMARY_OR_TERTIARY_URL"
+    }
+  ],
+  "synergisticWith": [],
+  "wellnessCategories": [
+    "body_composition"
+  ],
+  "distinctiveQuality": {
+    "headline": "REPLACE_WITH_ONE_LINE_REPUTATION_SUMMARY",
+    "themes": [
+      "metabolic_incretins"
+    ],
+    "basisNote": "REPLACE_WITH_WHAT_THAT_HEADLINE_IS_BASED_ON"
+  }
+}
