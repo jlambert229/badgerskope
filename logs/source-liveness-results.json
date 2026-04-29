@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-29T14:20:37.560Z",
+  "generatedAt": "2026-04-29T14:52:35.524Z",
   "databaseEntryCount": 45,
   "databaseSchemaVersion": "3.0",
   "totalChecks": 51,
-  "elapsedSec": 5.7,
+  "elapsedSec": 2.4,
   "buckets": {
-    "ok2xx": 35,
+    "ok2xx": 37,
     "redirected": 14,
-    "client4xx": 2,
+    "client4xx": 0,
     "server5xx": 0,
     "network": 0,
     "timeout": 0
@@ -47,10 +47,10 @@
     },
     {
       "entry": "3G-RT",
-      "label": "PubMed: retatrutide obesity trial snapshot",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/",
-      "ok": false,
-      "status": 404,
+      "label": "PubMed: Jastreboff retatrutide obesity Phase 2 (NEJM 2023)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37366315/",
+      "ok": true,
+      "status": 200,
       "finalUrl": null
     },
     {
@@ -283,7 +283,7 @@
       "url": "https://link.springer.com/article/10.1007/s10522-025-10315-x",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=245d628f-ce1c-4192-b55a-ac252a464fe1"
+      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=67e0d11b-f67a-4395-ad78-e4b46516f634"
     },
     {
       "entry": "PT-141",
@@ -367,10 +367,10 @@
     },
     {
       "entry": "Survodutide",
-      "label": "NEJM: MASH phase 2 surrogate",
-      "url": "https://www.nejm.org/doi/abs/10.1056/NEJMoa2401755",
-      "ok": false,
-      "status": 403,
+      "label": "PubMed: Sanyal survodutide MASH Phase 2 (NEJM 2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38847460/",
+      "ok": true,
+      "status": 200,
       "finalUrl": null
     },
     {
