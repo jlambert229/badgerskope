@@ -37,20 +37,25 @@
   --accent-tier-a-soft: rgba(200, 209, 122, 0.10);
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
-     Each tier letter sits on its tier color with #0B0B0A ink.
-     Re-tuned for visible separation between B/C/D/F while keeping
-     all five at WCAG AA (>= 4.5:1) against that ink:
-       A #C8D17A  12.06:1   (brand olive)
-       B #BAB395   9.35:1
-       C #9F9985   6.91:1
-       D #8C8571   5.35:1
-       F #827B69   4.68:1
-     Each step is ~1.2-1.35× the next, so the steps read distinctly. */
-  --tier-a: var(--accent-tier-a);
-  --tier-b: #BAB395;
-  --tier-c: #9F9985;
-  --tier-d: #8C8571;
-  --tier-f: #827B69;
+     Desaturated brutalist editorial ramp — yellow-green → red.
+     Earlier pass collapsed B-F into olive-greys for ink contrast and
+     lost all hue delineation; this restores semantic separation while
+     staying inside the editorial palette (no traffic-light siren).
+     Letter ink is `#0B0B0A` for A/B/C/D; F switches to `--fg` because
+     `#9C3D3D` vs `#0B0B0A` is 2.95:1 (fails AA). The text-color flip
+     for F lives in app.css / marketing.css.
+
+       A #C8D17A  olive       12.06:1 vs #0B0B0A   (Gold Standard)
+       B #A8C77A  sage        10.42:1 vs #0B0B0A   (Promising)
+       C #D4A85C  honey        8.96:1 vs #0B0B0A   (Suggestive)
+       D #C97A4A  terracotta   5.97:1 vs #0B0B0A   (Weak / Dated)
+       F #9C3D3D  muted rust   5.80:1 vs #F2EFE5   (SLOP)
+   */
+  --tier-a: var(--accent-tier-a);   /* olive */
+  --tier-b: #A8C77A;                /* sage */
+  --tier-c: #D4A85C;                /* honey / amber */
+  --tier-d: #C97A4A;                /* terracotta */
+  --tier-f: #9C3D3D;                /* muted rust */
 
   /* ---------- Evidence tiers (legacy semantic names consumed by SPA JS) ---------- */
   --ev-approved: var(--tier-a);

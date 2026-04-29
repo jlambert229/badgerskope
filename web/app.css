@@ -192,7 +192,11 @@ kbd {
 .tier[data-grade="B"] .tier-letter { background: var(--tier-b); }
 .tier[data-grade="C"] .tier-letter { background: var(--tier-c); }
 .tier[data-grade="D"] .tier-letter { background: var(--tier-d); }
-.tier[data-grade="F"] .tier-letter { background: var(--tier-f); }
+.tier[data-grade="F"] .tier-letter {
+  background: var(--tier-f);
+  /* Muted rust vs #0B0B0A is 2.95:1 (fails AA). Flip ink to fg.   */
+  color: var(--fg);
+}
 
 .dotsep { color: var(--line-2); margin: 0 6px; }
 
