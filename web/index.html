@@ -50,6 +50,12 @@
           <button type="button" role="tab" id="tab-browse" class="nav-tab" aria-selected="true" aria-controls="panel-browse">LIBRARY</button>
           <button type="button" role="tab" id="tab-compare" class="nav-tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">COMPARE</button>
           <button type="button" role="tab" id="tab-stats" class="nav-tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">STATS</button>
+          <!-- Mobile-only mirrors of .nav-end so EVIDENCE / GLOSSARY / HELP remain reachable
+               from the topnav at narrow viewports. Hidden above 700px; .nav-end renders the
+               primary instances there. role="presentation" so they don't pollute the tablist. -->
+          <a href="/evidence-guide.html" class="nav-tab nav-tab--secondary" role="presentation" aria-hidden="true" tabindex="-1">EVIDENCE</a>
+          <a href="/glossary.html" class="nav-tab nav-tab--secondary" role="presentation" aria-hidden="true" tabindex="-1">GLOSSARY</a>
+          <button type="button" class="nav-tab nav-tab--secondary" id="open-help-mobile" role="presentation" aria-hidden="true" tabindex="-1">HELP</button>
         </div>
         <div class="nav-end">
           <a href="/evidence-guide.html" class="nav-link">EVIDENCE</a>
@@ -447,6 +453,15 @@
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js").catch(() => {});
       }
+      // Mobile HELP mirror inside .nav-tabs forwards to the primary #open-help button
+      // so the existing handler in src/main.js wires it for free.
+      (function () {
+        var mobileHelp = document.getElementById("open-help-mobile");
+        var primaryHelp = document.getElementById("open-help");
+        if (mobileHelp && primaryHelp) {
+          mobileHelp.addEventListener("click", function () { primaryHelp.click(); });
+        }
+      })();
     </script>
   </body>
 </html>
