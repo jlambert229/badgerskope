@@ -44,7 +44,7 @@ test.describe("Data integrity — silent data bugs users notice", () => {
   test("card count matches stats display", async ({ page }) => {
     const cardCount = await page.locator(".card").count();
     const statsText = await page.locator("#stats").textContent();
-    // Masthead reads "53 COMPOUNDS LOGGED" with no filters, or
+    // Masthead reads "45 COMPOUNDS LOGGED" with no filters, or
     // "<filtered> OF <total> SHOWING" once filters are active.
     const match = statsText.match(/(\d+)\s+(?:OF\s+\d+\s+SHOWING|COMPOUNDS\s+LOGGED)/i);
     expect(match).toBeTruthy();

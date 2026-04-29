@@ -1206,7 +1206,7 @@ kbd {
   .lib-selection .btn { padding: 8px 10px; font-size: var(--text-label); }
 
   /* Tighter tracking + tighter sep margin on phones so the default-state copy
-     ("LIBRARY · 53 COMPOUNDS LOGGED" plus the experimental-hidden hint) sits
+     ("LIBRARY · 45 COMPOUNDS LOGGED" plus the experimental-hidden hint) sits
      on a single line at 390px. white-space: nowrap forces a single line;
      the .lib container is overflow-x: hidden so any tail clips cleanly
      instead of wrapping. The [SHOW] action remains tappable at the inline
@@ -1229,7 +1229,7 @@ kbd {
   border-bottom: 1px solid var(--line);
   font-family: var(--font-mono);
   /* Responsive scale: the live region (#stats) can grow to
-     "25 OF 53 SHOWING · 12 EXPERIMENTAL HIDDEN [SHOW]". Without clamp() the
+     "25 OF 45 SHOWING · 12 EXPERIMENTAL HIDDEN [SHOW]". Without clamp() the
      UA default for <h1> (32px Inter) wins and the strip stacks to 4+ lines
      at 390px. clamp(8px, 2.2vw, var(--text-label)) keeps desktop at 11px
      and shrinks gracefully on phones so the default-state copy stays single-line. */

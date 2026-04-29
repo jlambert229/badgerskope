@@ -23,12 +23,14 @@ test.describe("Navigation and state — bugs that lose user context", () => {
 
     const cardCount = await page.locator(".card").count();
     expect(cardCount).toBeGreaterThan(0);
-    expect(cardCount).toBeLessThan(53);
+    expect(cardCount).toBeLessThan(45);
   });
 
   test("deep link to entry opens detail modal", async ({ page }) => {
-    // Catalog title must match getEntryByTitle() (case-insensitive)
-    await page.goto("/web/#entry=1G-SGT%2010mg");
+    // Catalog title must match getEntryByTitle() (case-insensitive).
+    // After the dedupe pass dropped SKU size variants, the canonical
+    // catalog title for Semaglutide is "1G-SGT" (no trailing dose).
+    await page.goto("/web/#entry=1G-SGT");
     await page.waitForSelector(".card", { timeout: 10_000 });
     await page.waitForTimeout(500);
 
@@ -50,14 +52,14 @@ test.describe("Navigation and state — bugs that lose user context", () => {
 
   test("deep link by common drug name opens same entry", async ({ page }) => {
     await page.goto(
-      "/web/#entry=" + encodeURIComponent("Semaglutide (10 mg)")
+      "/web/#entry=" + encodeURIComponent("Semaglutide")
     );
     await page.waitForSelector(".card", { timeout: 10_000 });
     await page.waitForTimeout(500);
     const sku = await page.evaluate(() =>
       document.getElementById("detail-title")?.dataset?.catalogTitle?.trim()
     );
-    expect(sku).toBe("1G-SGT 10mg");
+    expect(sku).toBe("1G-SGT");
   });
 
   test("back button does not break after modal close", async ({ page }) => {

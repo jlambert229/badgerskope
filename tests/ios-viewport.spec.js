@@ -14,7 +14,7 @@ test.describe("iOS viewport and layout", () => {
 
   test("library head fits within viewport", async ({ page }) => {
     // After the masthead strip-down, the library opens with a thin meta
-    // strip — `LIBRARY · 53 COMPOUNDS · …` — instead of a magazine mast.
+    // strip — `LIBRARY · 45 COMPOUNDS · …` — instead of a magazine mast.
     const head = page.locator(".lib-meta-strip");
     const box = await head.boundingBox();
     const viewport = page.viewportSize();
