@@ -13,7 +13,8 @@ import {
   matchesSearch, matchesCategory, matchesCompound,
   matchesKnownFor, matchesEvidence, sortEntries, populateFilters,
 } from "./filters.js";
-import { getGroupKey, getGroupLabel, getGroupOrder } from "./groups.js";
+import { GROUP_THEME_LABELS, getGroupKey, getGroupLabel, getGroupOrder } from "./groups.js";
+import { tierForKey } from "./constants.js";
 import { updateSelectionToolbar, selectedEntriesSorted } from "./selection.js";
 import { renderCard, setCardCallbacks } from "./cards.js";
 import {
@@ -42,6 +43,181 @@ import { initSportFilter } from "./features/sport-filter.js";
 import { initExperimentalToggle } from "./features/experimental-toggle.js";
 
 /* ------------------------------------------------------------------ */
+/*  Default-state, chip row, count, empty-state helpers                */
+/* ------------------------------------------------------------------ */
+
+const DEFAULT_VISIBLE_LIMIT = 25;
+
+// Flipped to true the first time any filter / sort / group control changes.
+// Lets us apply the "populated landing" override (evidence sort + cap) only
+// before the user has touched anything — otherwise we'd hijack their explicit
+// "Name A–Z" sort selection by re-applying the evidence-tier sort.
+let userHasInteracted = false;
+function markInteracted() { userHasInteracted = true; }
+
+/** True when no user filter or non-default sort/group is active AND the user
+ *  has not touched any control yet. */
+function isDefaultState({ q, cat, comp, known, ev, sortMode, groupBy }) {
+  if (userHasInteracted) return false;
+  return !q && !cat && !comp && !known && !ev && (!sortMode || sortMode === "title") && !groupBy;
+}
+
+/** Reset every filter / sort / group control back to its default. */
+function clearAllFilters() {
+  if (els.search) els.search.value = "";
+  if (els.category) els.category.value = "";
+  if (els.compound) els.compound.value = "";
+  if (els.knownFor) els.knownFor.value = "";
+  if (els.evidenceFilter) els.evidenceFilter.value = "";
+  if (els.sort) els.sort.value = "title";
+  const groupByEl = document.getElementById("group-by");
+  if (groupByEl) groupByEl.value = "";
+}
+
+/** Friendly label for a select-control option (uses the option's text). */
+function readSelectLabel(selectEl, value) {
+  if (!selectEl || !value) return "";
+  const opt = [...selectEl.options].find((o) => o.value === value);
+  return (opt?.textContent || value).trim();
+}
+
+/** Render a single chip button. Returns the element. */
+function buildChip({ label, valueText, onRemove }) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "chip-active";
+  btn.setAttribute("aria-label", `Remove filter: ${label}: ${valueText}`);
+  btn.innerHTML =
+    `<span class="chip-active__x" aria-hidden="true">&times;</span>` +
+    `<span class="chip-active__label">${escapeHtml(label)}:</span> ` +
+    `<span class="chip-active__value">${escapeHtml(valueText)}</span>`;
+  btn.addEventListener("click", () => {
+    onRemove();
+    render();
+  });
+  return btn;
+}
+
+/** Re-render the active-filter chip row from current filter state. */
+function renderActiveFilters() {
+  const container = document.getElementById("active-filters");
+  if (!container) return;
+  container.replaceChildren();
+
+  const q = els.search?.value.trim() || "";
+  const cat = els.category?.value || "";
+  const comp = els.compound?.value || "";
+  const known = els.knownFor?.value || "";
+  const ev = els.evidenceFilter?.value || "";
+  const sortMode = els.sort?.value || "";
+  const groupByEl = document.getElementById("group-by");
+  const groupBy = groupByEl?.value || "";
+
+  const chips = [];
+
+  if (q) {
+    chips.push(buildChip({
+      label: "SEARCH",
+      valueText: q.toUpperCase(),
+      onRemove: () => { if (els.search) els.search.value = ""; },
+    }));
+  }
+  if (cat) {
+    chips.push(buildChip({
+      label: "WELLNESS",
+      valueText: (readSelectLabel(els.category, cat) || cat).toUpperCase(),
+      onRemove: () => { if (els.category) els.category.value = ""; },
+    }));
+  }
+  if (comp) {
+    chips.push(buildChip({
+      label: "SUBSTANCE",
+      valueText: (readSelectLabel(els.compound, comp) || comp).toUpperCase(),
+      onRemove: () => { if (els.compound) els.compound.value = ""; },
+    }));
+  }
+  if (known) {
+    const themeLabel = GROUP_THEME_LABELS[known] || known.replace(/_/g, " ");
+    chips.push(buildChip({
+      label: "THEME",
+      valueText: themeLabel.toUpperCase(),
+      onRemove: () => { if (els.knownFor) els.knownFor.value = ""; },
+    }));
+  }
+  if (ev) {
+    const tier = tierForKey(ev);
+    const tierText = tier?.grade ? `${tier.grade} — ${tier.label}` : ev;
+    chips.push(buildChip({
+      label: "TIER",
+      valueText: tierText.toUpperCase(),
+      onRemove: () => { if (els.evidenceFilter) els.evidenceFilter.value = ""; },
+    }));
+  }
+  if (sortMode && sortMode !== "title") {
+    chips.push(buildChip({
+      label: "SORT",
+      valueText: (readSelectLabel(els.sort, sortMode) || sortMode).toUpperCase(),
+      onRemove: () => { if (els.sort) els.sort.value = "title"; },
+    }));
+  }
+  if (groupBy) {
+    chips.push(buildChip({
+      label: "GROUP",
+      valueText: (readSelectLabel(groupByEl, groupBy) || groupBy).toUpperCase(),
+      onRemove: () => { if (groupByEl) groupByEl.value = ""; },
+    }));
+  }
+
+  for (const chip of chips) container.appendChild(chip);
+  // CSS :empty selector handles collapse, but also flag the state for tests/styling.
+  container.classList.toggle("active-filters--has-chips", chips.length > 0);
+}
+
+/** Update the "Showing N of M entries" line. */
+function renderRowCount(visibleCount, totalCount) {
+  const el = document.getElementById("row-count");
+  if (!el) return;
+  if (totalCount <= 0) {
+    el.textContent = "";
+    return;
+  }
+  el.textContent = `Showing ${visibleCount} of ${totalCount} entries`;
+}
+
+/** Build the brutalist empty-state panel for 0-result filter combos.
+ *  Keeps `.empty` as a compatibility class so existing tests/selectors still work. */
+function buildEmptyStatePanel(hiddenExperimental) {
+  const panel = document.createElement("div");
+  panel.className = "empty-state empty";
+  panel.setAttribute("role", "status");
+
+  const heading = document.createElement("p");
+  heading.className = "empty-state__heading";
+  heading.textContent = "NO MATCHES";
+  panel.appendChild(heading);
+
+  const hint = document.createElement("p");
+  hint.className = "empty-state__hint";
+  hint.textContent = hiddenExperimental > 0
+    ? `No peptides match your current filters. ${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry is" : "entries are"} hidden — clear filters or enable experimental.`
+    : "No peptides match your current filters. Try clearing them.";
+  panel.appendChild(hint);
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "empty-state__clear";
+  btn.id = "empty-state-clear";
+  btn.textContent = "CLEAR ALL FILTERS";
+  btn.addEventListener("click", () => {
+    clearAllFilters();
+    render();
+  });
+  panel.appendChild(btn);
+
+  return panel;
+}
+
+/* ------------------------------------------------------------------ */
 /*  Grid render                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -67,11 +243,26 @@ function render() {
     matchesKnownFor(e, known) &&
     matchesEvidence(e, ev);
 
+  const groupByForState = document.getElementById("group-by")?.value || "";
+  const isDefault = isDefaultState({ q, cat, comp, known, ev, sortMode, groupBy: groupByForState });
+
   let list = state.db.entries.filter(
     (e) => (state.showExperimental || hasSafetyData(e)) && matchesOtherFilters(e),
   );
-  list = sortEntries(list, sortMode);
+  // Default landing experience: sort by evidence (A → F) and cap to 25 so
+  // first paint is "populated table" instead of headers + empty body.
+  // The full set is one filter-touch away.
+  if (isDefault) {
+    list = sortEntries(list, "evidence");
+    if (list.length > DEFAULT_VISIBLE_LIMIT) list = list.slice(0, DEFAULT_VISIBLE_LIMIT);
+  } else {
+    list = sortEntries(list, sortMode);
+  }
   state.lastVisibleList = list;
+
+  // Active-filter chips + row count update on every render.
+  renderActiveFilters();
+  renderRowCount(list.length, state.db.entries.length);
 
   const frag = document.createDocumentFragment();
   const selN = state.selectedIds.size;
@@ -118,14 +309,7 @@ function render() {
   const groupBy = document.getElementById("group-by")?.value || "";
 
   if (list.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "empty";
-    if (hiddenExperimental > 0) {
-      empty.textContent = `No peptides match your current filters. ${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry" : "entries"} would match — turn on "Show experimental" to see ${hiddenExperimental === 1 ? "it" : "them"}.`;
-    } else {
-      empty.textContent = "No peptides match your current filters. Try broadening your search.";
-    }
-    frag.appendChild(empty);
+    frag.appendChild(buildEmptyStatePanel(hiddenExperimental));
   } else if (groupBy) {
     const groups = new Map();
     for (const e of list) {
@@ -270,27 +454,25 @@ async function init() {
   updateBookmarksBar();
   applyHashOnLoad();
 
-  // Filter events
+  // Filter events. Each change marks "user has interacted" so the
+  // PR-D landing override (evidence-tier sort + 25-row cap) stops applying
+  // and the user's explicit selections (incl. "Name A-Z") take effect.
   const debouncedRender = debounce(render, 150);
-  if (els.search) els.search.addEventListener("input", debouncedRender);
-  if (els.category) els.category.addEventListener("change", render);
-  if (els.compound) els.compound.addEventListener("change", render);
-  if (els.knownFor) els.knownFor.addEventListener("change", render);
-  if (els.sort) els.sort.addEventListener("change", render);
-  if (els.evidenceFilter) els.evidenceFilter.addEventListener("change", render);
+  const onFilterChange = () => { markInteracted(); render(); };
+  const onSearchInput = () => { markInteracted(); debouncedRender(); };
+  if (els.search) els.search.addEventListener("input", onSearchInput);
+  if (els.category) els.category.addEventListener("change", onFilterChange);
+  if (els.compound) els.compound.addEventListener("change", onFilterChange);
+  if (els.knownFor) els.knownFor.addEventListener("change", onFilterChange);
+  if (els.sort) els.sort.addEventListener("change", onFilterChange);
+  if (els.evidenceFilter) els.evidenceFilter.addEventListener("change", onFilterChange);
   const groupByEl = document.getElementById("group-by");
-  if (groupByEl) groupByEl.addEventListener("change", render);
+  if (groupByEl) groupByEl.addEventListener("change", onFilterChange);
 
   const resetBtn = document.getElementById("reset-filters");
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
-      els.search.value = "";
-      els.category.value = "";
-      els.compound.value = "";
-      els.knownFor.value = "";
-      if (els.evidenceFilter) els.evidenceFilter.value = "";
-      els.sort.value = "title";
-      if (groupByEl) groupByEl.value = "";
+      clearAllFilters();
       render();
     });
   }

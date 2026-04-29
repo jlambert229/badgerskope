@@ -164,6 +164,12 @@
 
         <p id="load-error" class="lib-error" hidden></p>
 
+        <!-- Active filter chips (populated by app.js; collapses when empty) -->
+        <div class="active-filters" id="active-filters" aria-label="Active filters" aria-live="polite"></div>
+
+        <!-- "Showing N of M entries" — updates with filters/sort/group -->
+        <div class="row-count" id="row-count" aria-live="polite"></div>
+
         <div class="lib-table" aria-label="Peptide library">
           <div class="lib-table__head" aria-hidden="true">
             <div>FILE</div>

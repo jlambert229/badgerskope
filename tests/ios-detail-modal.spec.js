@@ -4,6 +4,11 @@ test.describe("Detail modal on iOS", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
+    // PR D added a "populated landing" override (evidence-tier sort + 25-row
+    // cap) before any filter is touched. These tests rely on the alphabetical
+    // first card, so flip back to title-sort by triggering a user interaction.
+    await page.locator("#sort").selectOption("title");
+    await page.waitForTimeout(200);
   });
 
   test("modal scrolls independently (iOS overflow issue)", async ({ page }) => {
