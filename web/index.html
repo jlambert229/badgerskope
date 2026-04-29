@@ -109,48 +109,55 @@
         </div>
 
         <section class="filter-strip" id="filter-strip" aria-label="Library filters">
-          <div class="filter-strip__row filter-strip__row--selects">
-            <label class="lib-field">
-              <span class="lib-field-label">BODY AREA</span>
-              <select id="category" class="lib-field-input"></select>
-            </label>
-            <label class="lib-field">
-              <span class="lib-field-label">SUBSTANCE</span>
-              <select id="compound" class="lib-field-input"></select>
-            </label>
-            <label class="lib-field">
-              <span class="lib-field-label">RESEARCH</span>
-              <select id="known-for" class="lib-field-input"></select>
-            </label>
-            <label class="lib-field">
-              <span class="lib-field-label">EVIDENCE</span>
-              <select id="evidence-filter" class="lib-field-input"></select>
-            </label>
-            <label class="lib-field">
-              <span class="lib-field-label">SORT</span>
-              <select id="sort" class="lib-field-input">
-                <option value="title">Name A–Z</option>
-                <option value="title-desc">Name Z–A</option>
-                <option value="evidence">Strongest evidence first</option>
-                <option value="type">By substance type</option>
-              </select>
-            </label>
-            <label class="lib-field">
-              <span class="lib-field-label">GROUP</span>
-              <select id="group-by" class="lib-field-input">
-                <option value="">No grouping</option>
-                <option value="theme">Researched theme</option>
-                <option value="compound">Substance type</option>
-                <option value="evidence">Evidence tier</option>
-                <option value="category">Wellness area</option>
-              </select>
-            </label>
+          <div class="filter-strip__row filter-strip__row--selects" role="group" aria-label="Filters">
+            <span class="filter-strip__rowlabel" aria-hidden="true">FILTERS:</span>
+            <div class="filter-strip__cells">
+              <label class="lib-field">
+                <span class="lib-field-label">BODY AREA</span>
+                <select id="category" class="lib-field-input"></select>
+              </label>
+              <label class="lib-field">
+                <span class="lib-field-label">SUBSTANCE</span>
+                <select id="compound" class="lib-field-input"></select>
+              </label>
+              <label class="lib-field">
+                <span class="lib-field-label">RESEARCH</span>
+                <select id="known-for" class="lib-field-input"></select>
+              </label>
+              <label class="lib-field">
+                <span class="lib-field-label">EVIDENCE</span>
+                <select id="evidence-filter" class="lib-field-input"></select>
+              </label>
+            </div>
           </div>
-          <div class="filter-strip__row filter-strip__row--toggles">
+          <div class="filter-strip__row filter-strip__row--toggles" role="group" aria-label="Toggles">
+            <span class="filter-strip__rowlabel" aria-hidden="true">TOGGLES:</span>
             <div class="filter-strip__toggles" id="filter-strip-toggles"></div>
-            <div class="filter-strip__meta">
-              <div class="filter-strip__sport" id="filter-strip-sport"></div>
-              <span class="filter-strip__count" id="result-count" hidden></span>
+            <div class="filter-strip__sport" id="filter-strip-sport"></div>
+            <span class="filter-strip__count" id="result-count" hidden></span>
+          </div>
+          <div class="filter-strip__row filter-strip__row--view" role="group" aria-label="View">
+            <span class="filter-strip__rowlabel" aria-hidden="true">VIEW:</span>
+            <div class="filter-strip__cells">
+              <label class="lib-field">
+                <span class="lib-field-label">SORT</span>
+                <select id="sort" class="lib-field-input">
+                  <option value="title">Name A–Z</option>
+                  <option value="title-desc">Name Z–A</option>
+                  <option value="evidence">Strongest evidence first</option>
+                  <option value="type">By substance type</option>
+                </select>
+              </label>
+              <label class="lib-field">
+                <span class="lib-field-label">GROUP</span>
+                <select id="group-by" class="lib-field-input">
+                  <option value="">No grouping</option>
+                  <option value="theme">Researched theme</option>
+                  <option value="compound">Substance type</option>
+                  <option value="evidence">Evidence tier</option>
+                  <option value="category">Wellness area</option>
+                </select>
+              </label>
             </div>
           </div>
         </section>
