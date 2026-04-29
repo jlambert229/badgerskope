@@ -19,11 +19,11 @@ function addNotesFeature() {
     const entryId = bookmarkBtn?.dataset.entryId;
     if (!entryId) return;
 
-    const section = document.createElement("div");
+    const section = document.createElement("details");
     section.className = "detail__section user-notes";
     const existing = userNotes[entryId] || "";
     section.innerHTML = `
-      <h3>Your private notes</h3>
+      <summary><h3>Your private notes</h3></summary>
       <p class="detail__help">Only stored on this device. Never sent anywhere.</p>
       <textarea class="user-notes__input" placeholder="Add your own notes about this compound..." rows="3">${escapeHtml(existing)}</textarea>
       <div class="user-notes__actions">
