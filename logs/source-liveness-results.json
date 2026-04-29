@@ -1,0 +1,425 @@
+{
+  "generatedAt": "2026-04-29T14:20:37.560Z",
+  "databaseEntryCount": 45,
+  "databaseSchemaVersion": "3.0",
+  "totalChecks": 51,
+  "elapsedSec": 5.7,
+  "buckets": {
+    "ok2xx": 35,
+    "redirected": 14,
+    "client4xx": 2,
+    "server5xx": 0,
+    "network": 0,
+    "timeout": 0
+  },
+  "results": [
+    {
+      "entry": "1G-SGT",
+      "label": "Wikipedia: Semaglutide",
+      "url": "https://en.wikipedia.org/wiki/Semaglutide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "1G-SGT",
+      "label": "PubMed: STEP 5 trial snapshot",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36216945/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "2G-TZ",
+      "label": "Wikipedia: Tirzepatide",
+      "url": "https://en.wikipedia.org/wiki/Tirzepatide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "2G-TZ",
+      "label": "PubMed: tirzepatide metabolic trials (example)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "3G-RT",
+      "label": "PubMed: retatrutide obesity trial snapshot",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/",
+      "ok": false,
+      "status": 404,
+      "finalUrl": null
+    },
+    {
+      "entry": "5-amino-1mq",
+      "label": "PubMed: NNMT small-molecule inhibitors and diet-induced obesity (mouse)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29155147/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "5-amino-1mq",
+      "label": "PubMed: LC-MS/MS PK for 5-amino-1-methylquinolinium in rats",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34304009/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "AOD-9604",
+      "label": "Compare: hGH fragment discussion (journal compare article)",
+      "url": "https://peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides"
+    },
+    {
+      "entry": "ARA-290",
+      "label": "IUPHAR/BPS: cibinetide ligand page",
+      "url": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=9677&tab=clinical",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "BPC-157",
+      "label": "Wikipedia: BPC-157",
+      "url": "https://en.wikipedia.org/wiki/BPC-157",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Bronchogen",
+      "label": "Example descriptive overview (commercial)",
+      "url": "https://pickpeptides.com/peptides/bronchogen/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cag",
+      "label": "Wikipedia: Cagrilintide/semaglutide",
+      "url": "https://en.wikipedia.org/wiki/Cagrilintide/semaglutide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 (no DAC) + IPA",
+      "label": "PubMed: CJC-1295 clinical proteomics paper",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2787983/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2787983/"
+    },
+    {
+      "entry": "CJC-1295 (no DAC) + IPA",
+      "label": "PubMed: ipamorelin human PK/PD",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "DSIP",
+      "label": "PubMed: DSIP update review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/3550726/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Epithalon",
+      "label": "Wikipedia: Epitalon",
+      "url": "https://en.wikipedia.org/wiki/Epitalon",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "FOXO4-DRI",
+      "label": "PMC: senolytic chondrocyte paper (example)",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8261234/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8261234/"
+    },
+    {
+      "entry": "GHK-Cu",
+      "label": "PMC: GHK review (example)",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359723/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3359723/"
+    },
+    {
+      "entry": "GLOW 70",
+      "label": "Example blend description (retail)",
+      "url": "https://luminpeptides.com/products/ghk-cu-bpc-157-tb-500-blend/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Glutathione",
+      "label": "Wikipedia: Glutathione",
+      "url": "https://en.wikipedia.org/wiki/Glutathione",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Ipamorelin",
+      "label": "PubMed: ipamorelin human PK/PD",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Kisspeptin",
+      "label": "PMC: kisspeptin signaling review",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4678402/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4678402/"
+    },
+    {
+      "entry": "KLOW",
+      "label": "Example blend breakdown (retail blog)",
+      "url": "https://klow-peptide.com/en/articles/klow-peptide/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "KPV",
+      "label": "PubMed: KPV anti-inflammatory dissection",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12750433/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "LIPO-C with B12",
+      "label": "Example clinical explainer (compounding clinic)",
+      "url": "https://www.defymedical.com/blog/what-is-in-lipo-c/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "LL-37",
+      "label": "Wikipedia: LL-37",
+      "url": "https://en.wikipedia.org/wiki/LL-37",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "MOTS-c",
+      "label": "PMC: MOTS-c review",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9570330/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9570330/"
+    },
+    {
+      "entry": "MT-1",
+      "label": "Wikipedia: Afamelanotide",
+      "url": "https://en.wikipedia.org/wiki/Afamelanotide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "MT-II",
+      "label": "Wikipedia: Melanotan II",
+      "url": "https://en.wikipedia.org/wiki/Melanotan_II",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "N-acetyl Selank Amidate",
+      "label": "Frontiers: Selank molecular review (example)",
+      "url": "https://www.frontiersin.org/articles/10.3389/fphar.2016.00031",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2016.00031/full"
+    },
+    {
+      "entry": "N-acetyl Semax Amidate",
+      "label": "PMC: Semax transcriptome ischemia study (example)",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7350263/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7350263/"
+    },
+    {
+      "entry": "NAD+",
+      "label": "Wikipedia: NAD+",
+      "url": "https://en.wikipedia.org/wiki/Nicotinamide_adenine_dinucleotide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Oxytocin",
+      "label": "Wikipedia: Oxytocin",
+      "url": "https://en.wikipedia.org/wiki/Oxytocin",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Pinealon",
+      "label": "Springer Biogerontology (epithalon family context)",
+      "url": "https://link.springer.com/article/10.1007/s10522-025-10315-x",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=245d628f-ce1c-4192-b55a-ac252a464fe1"
+    },
+    {
+      "entry": "PT-141",
+      "label": "Wikipedia: Bremelanotide",
+      "url": "https://en.wikipedia.org/wiki/Bremelanotide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Selank",
+      "label": "PubMed: Selank depression model (example)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18661785/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax",
+      "label": "PubMed: Semax neurochemical journal article",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19139978/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Sermorelin",
+      "label": "Wikipedia: Sermorelin",
+      "url": "https://en.wikipedia.org/wiki/Sermorelin",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SLU-PP-332",
+      "label": "Wikipedia: SLU-PP-332",
+      "url": "https://en.wikipedia.org/wiki/SLU-PP-332",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SLU-PP-332",
+      "label": "PubMed: metabolism paper",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37739806/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)",
+      "label": "MedlinePlus: tesamorelin drug info",
+      "url": "https://medlineplus.gov/druginfo/meds/a611035.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)",
+      "label": "PubMed: ipamorelin human PK/PD",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SS-31",
+      "label": "PubMed: SS-31 ANT aged mitochondria",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37462785/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Survodutide",
+      "label": "PubMed: survodutide obesity phase 2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38330987/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Survodutide",
+      "label": "NEJM: MASH phase 2 surrogate",
+      "url": "https://www.nejm.org/doi/abs/10.1056/NEJMoa2401755",
+      "ok": false,
+      "status": 403,
+      "finalUrl": null
+    },
+    {
+      "entry": "TB-500",
+      "label": "PMC: Thymosin β4 function review",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8724243/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724243/"
+    },
+    {
+      "entry": "Tesa",
+      "label": "PMC: tesamorelin HIV lipodystrophy review",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3103937/"
+    },
+    {
+      "entry": "Thymosin Alpha-1",
+      "label": "PMC: thymosin alpha-1 comprehensive review",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7747025/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7747025/"
+    },
+    {
+      "entry": "Vilon",
+      "label": "Khavinson bioregulator explainer (secondary)",
+      "url": "https://calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.calcmypeptide.com/blog/khavinson-bioregulators-epithalon-guide"
+    },
+    {
+      "entry": "VIP",
+      "label": "PMC: VIP physiology review",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6743256/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6743256/"
+    },
+    {
+      "entry": "Wolverine",
+      "label": "Neutral explainer (educational vendor)",
+      "url": "https://www.peptidedeck.com/blog/what-is-the-wolverine-stack",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    }
+  ]
+}
