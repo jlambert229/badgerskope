@@ -144,7 +144,7 @@
       </div>
       <p class="anchor-card__summary">
         BPC-157 is the most popular peptide on the internet and has
-        <span class="redact">nine</span> human trials to its name. Both
+        <span class="redact">two</span> registered human trials to its name. Both
         of those things are true at the same time.
       </p>
       <a class="anchor-card__cta" href="/web/#entry=BPC-157%2010mg" data-anchor-cta>
@@ -159,8 +159,8 @@
       </li>
       <li class="anchor-card__claim">
         <span class="anchor-card__claim-label">The literature says</span>
-        Consistent tendon and gut healing in rats. Six completed human trials,
-        none double-blinded, none larger than N=80.
+        Consistent tendon and gut healing in rats. Two registered human trials
+        (one Phase 1 PK, one Phase 2 hamstring), neither completed, largest N=120.
       </li>
       <li class="anchor-card__claim">
         <span class="anchor-card__claim-label">The honest verdict</span>
@@ -339,8 +339,8 @@
     </div>
 
     <div class="library-foot">
-      <div id="library-count">SHOWING 8 OF 142 FILES</div>
-      <a href="/web/" class="link-arrow">BROWSE ALL 142 &rarr;</a>
+      <div id="library-count">SHOWING 8 OF 45 FILES</div>
+      <a href="/web/" class="link-arrow">BROWSE ALL 45 &rarr;</a>
     </div>
   </section>
 
@@ -354,7 +354,7 @@
     </div>
     <article class="feature-art">
       <header class="feature-head">
-        <span class="filed"><span class="filed-dot" aria-hidden="true"></span>FILED&nbsp;&#8470;0142</span>
+        <span class="filed"><span class="filed-dot" aria-hidden="true"></span>FILED&nbsp;&#8470;0042</span>
         <h2 class="feature-title" id="feature-h2">THE BPC-157<br>RECEIPT.</h2>
         <div class="feature-meta">
           <span>BY THE BADGER</span>
@@ -373,7 +373,7 @@
         <div class="feature-cols">
           <div>
             <p>A pentadecapeptide derived from a protective protein in human gastric juice. Animal data &mdash; and there is a lot of it &mdash; shows consistent effects on tendon healing, gut barrier integrity, and wound recovery. The mechanism is plausible. The model organisms are mostly rats.</p>
-            <p>Human data is where the gap appears. As of April 2026, we count <strong>nine</strong> registered human trials, six completed, three with published results. Two are open-label. None exceed N=80. None are double-blinded RCTs in healthy adults.</p>
+            <p>Human data is where the gap appears. As of April 2026, ClinicalTrials.gov lists only <strong>two</strong> BPC-157 interventional trials: a Phase 1 PK study (N=42, status unknown since 2021) and a recently-recruiting Phase 2 hamstring trial (N=120). Neither has reported results.</p>
           </div>
           <div>
             <p>That isn't damning. It's where most peptides sit &mdash; somewhere between &ldquo;the rats love it&rdquo; and &ldquo;your insurance will cover it.&rdquo; The honest framing is <strong>promising-but-unproven</strong>, not <strong>basically aspirin</strong>.</p>
@@ -389,11 +389,9 @@
         <div class="feature-receipts">
           <div class="receipts-h">RECEIPTS</div>
           <ol>
-            <li><span class="mono">[01]</span> Sikiric et al. <em>J Pharm Sci</em> 2018 &mdash; tendon healing in rat Achilles, N=72</li>
-            <li><span class="mono">[02]</span> Chang et al. <em>Eur J Pharm</em> 2014 &mdash; anastomotic healing, rat colon</li>
-            <li><span class="mono">[03]</span> ClinicalTrials.gov NCT04938843 &mdash; human pilot, knee, completed 2023</li>
-            <li><span class="mono">[04]</span> ClinicalTrials.gov NCT05521022 &mdash; human IBD, recruiting 2026</li>
-            <li><span class="mono">[05]</span> Vendor audit &mdash; 7 of 11 sellers reviewed had no batch COA on file</li>
+            <li><span class="mono">[01]</span> ClinicalTrials.gov <a href="https://clinicaltrials.gov/study/NCT02637284" target="_blank" rel="noopener">NCT02637284</a> &mdash; PCO-02 (BPC-157) safety / PK, Phase 1, N=42, status unknown since 2021</li>
+            <li><span class="mono">[02]</span> ClinicalTrials.gov <a href="https://clinicaltrials.gov/study/NCT07437547" target="_blank" rel="noopener">NCT07437547</a> &mdash; BPC 157 for acute hamstring strain, Phase 2, N=120, recruiting</li>
+            <li><span class="mono">[03]</span> Wikipedia / WADA <a href="https://en.wikipedia.org/wiki/BPC-157" target="_blank" rel="noopener">BPC-157</a> &mdash; added to WADA prohibited list (S0) in 2022</li>
           </ol>
         </div>
       </div>
@@ -579,7 +577,7 @@
   // Ticker — 12 items duplicated for seamless loop
   // ===========================================================
   const tickerItems = [
-    'BPC-157 · TIER B · 14 HUMAN TRIALS LOGGED',
+    'BPC-157 · TIER B · 2 HUMAN TRIALS REGISTERED',
     'TB-500 · TIER C · ANIMAL DATA ONLY',
     'RETATRUTIDE · TIER A · PHASE 3 ACTIVE',
     'GHK-CU · TIER B · TOPICAL EVIDENCE STRONG',
@@ -637,7 +635,8 @@
         <div class="lib-arrow" aria-hidden="true">→</div>
       </a>
     `).join('');
-    countEl.textContent = `SHOWING ${visible.length} OF 142 FILES`;
+    // Total count must match peptide-info-database.json meta.entryCount.
+    countEl.textContent = `SHOWING ${visible.length} OF 45 FILES`;
   };
   renderLibrary('ALL');
   document.querySelectorAll('.library-filter .chip').forEach(chip => {
