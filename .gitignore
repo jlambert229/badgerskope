@@ -7,6 +7,15 @@ test-results/
 # AI tooling state
 .claude-flow/
 .swarm/
+.claude/settings.local.json
+.claude/worktrees/
+
+# Ad-hoc debug / scratch scripts (committed scripts have stable names)
+scripts/_*.mjs
+scripts/qa-debug*.mjs
+scripts/qa-deep.mjs
+scripts/qa-iter2.mjs
+scripts/which-rule.mjs
 
 # Netlify local state
 .netlify/
