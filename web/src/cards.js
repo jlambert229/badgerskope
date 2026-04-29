@@ -48,12 +48,14 @@ export function renderCard(entry, catIndex, cardIndex) {
   // ── INDEX (mono FILE №NNNN) ──────────────────────────────────────────
   const indexCell = document.createElement("div");
   indexCell.className = "lib-row__index card__file";
+  indexCell.dataset.label = "FILE";
   indexCell.textContent = `FILE №${fileIndex}`;
 
   // ── COMPOUND (name + AKA stack) — clickable, opens detail ────────────
   const nameCell = document.createElement("button");
   nameCell.type = "button";
   nameCell.className = "lib-row__name card__main";
+  nameCell.dataset.label = "COMPOUND";
   nameCell.setAttribute("aria-label", `View details for ${displayName}`);
   const titleEl = document.createElement("h2");
   titleEl.className = "lib-row__title card__title";
@@ -70,6 +72,7 @@ export function renderCard(entry, catIndex, cardIndex) {
   // ── EVIDENCE chip ────────────────────────────────────────────────────
   const tierCell = document.createElement("div");
   tierCell.className = "lib-row__tier";
+  tierCell.dataset.label = "EVIDENCE";
   tierCell.innerHTML = `
     <span class="tier" data-grade="${grade}">
       <span class="tier-letter">${grade}</span>
@@ -80,6 +83,7 @@ export function renderCard(entry, catIndex, cardIndex) {
   // ── WELLNESS chip ────────────────────────────────────────────────────
   const wellnessCell = document.createElement("div");
   wellnessCell.className = "lib-row__wellness";
+  wellnessCell.dataset.label = "WELLNESS";
   if (wellnessShort) {
     wellnessCell.innerHTML = `<span class="card__category">${escapeHtml(wellnessShort)}</span>`;
   }
@@ -87,6 +91,7 @@ export function renderCard(entry, catIndex, cardIndex) {
   // ── SUMMARY ──────────────────────────────────────────────────────────
   const summaryCell = document.createElement("div");
   summaryCell.className = "lib-row__summary card__summary";
+  summaryCell.dataset.label = "SUMMARY";
   summaryCell.textContent = summary;
 
   // ── ACTIONS (bookmark, select, open arrow) ───────────────────────────
