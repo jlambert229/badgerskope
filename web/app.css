@@ -132,6 +132,13 @@ kbd {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
+/* Mobile-only mirrors of .nav-end items inside .nav-tabs. Hidden by default;
+   revealed at <=700px where .nav-end is hidden, so all six destinations stay
+   reachable via the horizontal scroll row. */
+.nav-tab--secondary {
+  display: none;
+  text-decoration: none;
+}
 .nav-end {
   display: flex; gap: 24px; align-items: center;
 }
@@ -1115,7 +1122,28 @@ kbd {
     grid-template-columns: auto 1fr;
     padding: 12px 16px;
   }
-  .nav-tabs { grid-column: 1 / -1; justify-content: flex-start; gap: 0; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; overflow-x: auto; }
+  .nav-tabs {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+    margin-top: 8px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex: 0 0 auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  /* Reveal mobile mirrors so EVIDENCE / GLOSSARY / HELP remain reachable. */
+  .nav-tab--secondary { display: inline-flex; }
   .nav-end { display: none; }
   .lib { padding: 12px 16px 32px; }
   .filter-strip__row--selects .filter-strip__cells { grid-template-columns: repeat(2, 1fr); }
@@ -1126,31 +1154,61 @@ kbd {
   .modal-panel { padding: 20px; }
   .help-list > div { grid-template-columns: 1fr; gap: 4px; }
   .shortcuts-list > div { grid-template-columns: 100px 1fr; }
-}
 
+  /* Selection bar — restored from an orphan block that lost its @media wrapper
+     in PR #24 (commit 44b3eef). The stray closing `}` was poisoning the CSS
+     parser and silently dropping the .lib-meta-strip rule below. */
   .lib-selection-actions { gap: 6px; flex-shrink: 0; }
   .lib-selection .btn { padding: 8px 10px; font-size: 10px; }
+
+  /* Tighter tracking + tighter sep margin on phones so the default-state copy
+     ("LIBRARY · 53 COMPOUNDS LOGGED" plus the experimental-hidden hint) sits
+     on a single line at 390px. white-space: nowrap forces a single line;
+     the .lib container is overflow-x: hidden so any tail clips cleanly
+     instead of wrapping. The [SHOW] action remains tappable at the inline
+     position before the clip. */
+  .lib-meta-strip {
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lib-meta-strip__label { letter-spacing: 0.06em; }
+  .lib-meta-strip__sep { margin: 0 4px; }
 }
 
 .lib-meta-strip {
-  display: flex; align-items: center; gap: 12px;
+  display: block;
   margin: 0 0 24px;
   padding: 14px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: var(--tracking-mono-lg);
+  /* Responsive scale: the live region (#stats) can grow to
+     "25 OF 53 SHOWING · 12 EXPERIMENTAL HIDDEN [SHOW]". Without clamp() the
+     UA default for <h1> (32px Inter) wins and the strip stacks to 4+ lines
+     at 390px. clamp(8px, 2.2vw, 11px) keeps desktop at 11px and shrinks
+     gracefully on phones so the default-state copy stays single-line. */
+  font-size: clamp(8px, 2.2vw, 11px);
+  line-height: 1.5;
+  letter-spacing: var(--tracking-mono-lg);
   color: var(--fg-3);
   font-weight: 400;
   text-transform: uppercase;
 }
 .lib-meta-strip__label { color: var(--fg); letter-spacing: 0.18em; }
-.lib-meta-strip__sep { color: var(--line-2); }
+.lib-meta-strip__sep {
+  color: var(--line-2);
+  margin: 0 8px;
+}
 .lib-meta-strip__count { color: var(--fg-2); }
 
 .lib-meta-strip__action {
   font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: var(--tracking-mono-lg);
+  /* Inherit from .lib-meta-strip so the button rides the same responsive
+     scale and doesn't inflate the H1 line height on phones. */
+  font-size: inherit;
+  letter-spacing: inherit;
   color: var(--accent);
   background: transparent;
   border: 0;
