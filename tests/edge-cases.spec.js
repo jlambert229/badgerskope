@@ -77,7 +77,7 @@ test.describe("Edge cases — the bugs users find first", () => {
 
     const cards = await page.locator(".card").count();
     expect(cards).toBeGreaterThan(0);
-    expect(cards).toBeLessThan(53);
+    expect(cards).toBeLessThan(45);
   });
 
   test("opening many modals in sequence doesn't leak memory/state", async ({ page }) => {

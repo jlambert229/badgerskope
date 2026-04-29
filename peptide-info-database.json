@@ -2,7 +2,7 @@
   "disclaimer": "For research literacy and catalog cross-reference only. Not medical advice, prescribing guidance, or an endorsement of any product. Regulatory status and indications vary by jurisdiction; many entries are not FDA-approved for human use. Verify every vial identity with certificates of analysis and licensed professionals. Reported benefits, timing, and cycling fields summarize literature, labels, or typical preclinical models only. They are not individualized instructions. Controlled drugs and prescription peptides require licensed supervision. synergisticWith links describe co-use or combination narratives in trials, labels, named stacks, or speculative mechanistic themes; they are not recommendations to combine agents. potentialApplications state person-centered benefit language for education only; evidenceNote on each line limits the claim. Not a promise of results for any catalog SKU. doseGuidelines summarize published label, trial, or animal literature about doses where effects were seen. They are not instructions to self-dose, convert animal doses, or match grey-market vials to pharmaceuticals. distinctiveQuality summarizes class reputation and discourse only; it is not a verified identity claim for grey-market SKUs, not individualized advice, and filter themes are educational groupings only. reportedBenefits lines are evidence-tier-labeled summaries from labels, trials, or bench literature; they are not individualized outcome promises for grey-market products.",
   "meta": {
     "builtAt": "2026-04-07T23:08:32.564Z",
-    "entryCount": 53,
+    "entryCount": 45,
     "schemaVersion": "3.0",
     "wellnessCategoryIndex": {
       "appetite_satiety": "Appetite, feeling full, and eating behavior research",
@@ -84,8 +84,8 @@
   "entries": [
     {
       "catalog": {
-        "title": "1G-SGT 10mg",
-        "commonDrugName": "Semaglutide (10 mg)"
+        "title": "1G-SGT",
+        "commonDrugName": "Semaglutide"
       },
       "compoundType": "peptide_incretin",
       "commonSideEffects": {
@@ -116,7 +116,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide \u2014 the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
+      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide — the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
@@ -173,97 +173,8 @@
     },
     {
       "catalog": {
-        "title": "1G-SGT 20mg",
-        "commonDrugName": "Semaglutide (20 mg)"
-      },
-      "compoundType": "peptide_incretin",
-      "commonSideEffects": {
-        "common": [
-          "Nausea, especially when starting or stepping up the dose",
-          "Diarrhea or constipation",
-          "Stomach pain, vomiting, or feeling overly full",
-          "Headache and tiredness in the first few weeks"
-        ],
-        "serious": [
-          "Pancreatitis (severe stomach pain that won't go away)",
-          "Gallbladder problems, including gallstones",
-          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
-          "Possible thyroid tumor risk seen in animal studies (boxed warning on the label)"
-        ]
-      },
-      "cyclingNotes": "Doses are gradually increased under medical supervision, not cycled on and off. Stopping suddenly in diabetes can cause blood sugar to worsen without a transition plan.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "Type 2 diabetes (pharmacy semaglutide)",
-          "evidenceBasis": "regulatory_label",
-          "minimumEffectiveDoseNotes": "Start at a low dose and increase every 4 weeks. Many people stay on 0.5 mg or 1 mg once weekly for blood sugar control. The starting doses are ramp-up steps, not the final effective dose. Check the current prescribing information for exact numbers."
-        },
-        {
-          "indicationOrContext": "Weight loss (pharmacy semaglutide 2.4 mg program)",
-          "evidenceBasis": "pivotal_trials",
-          "minimumEffectiveDoseNotes": "Trials ramped up to 2.4 mg once weekly for maximum weight loss. Lower doses still beat placebo, but 2.4 mg weekly was the target maintenance dose after the ramp-up period."
-        }
-      ],
-      "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide \u2014 the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
-          "personCenteredBenefit": "Help people with type 2 diabetes bring blood sugar down when used as prescribed GLP-1 therapy."
-        },
-        {
-          "evidenceNote": "Strong controlled trial evidence for semaglutide; not interchangeable with unverified powders.",
-          "personCenteredBenefit": "Help some adults lose a meaningful amount of weight combined with diet and movement support."
-        },
-        {
-          "evidenceNote": "SELECT-style cardiovascular trial context for semaglutide class.",
-          "personCenteredBenefit": "May lower risk of major heart events in certain high-risk adults (trial-defined group)."
-        }
-      ],
-      "reportedBenefits": [
-        "Clinical trials: significantly lowers blood sugar (HbA1c) in people with type 2 diabetes.",
-        "Clinical trials (STEP program): produces meaningful weight loss when combined with diet and exercise.",
-        "Heart health (SELECT trial): reduced major heart events in people with obesity and heart disease.",
-        "Also reported: modest drops in blood pressure and cholesterol in trial participants.",
-        "How it works: slows stomach emptying and reduces appetite, leading to eating less and better blood sugar control."
-      ],
-      "researchSummary": "A weekly injectable in the same family as Ozempic (semaglutide). It mimics a natural gut hormone called GLP-1 that tells your brain you are full and helps your body manage blood sugar. Large clinical trials showed meaningful weight loss and better blood sugar control. The vendor code \"1G-SGT\" is shorthand; always confirm the actual contents with a certificate of analysis.",
-      "sources": [
-        {
-          "label": "Wikipedia: Semaglutide",
-          "url": "https://en.wikipedia.org/wiki/Semaglutide"
-        },
-        {
-          "label": "PubMed: STEP 5 trial snapshot",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/36216945/"
-        }
-      ],
-      "synergisticWith": [
-        {
-          "catalogTitles": [
-            "Cag-10mg"
-          ],
-          "evidenceBasis": "clinical_fixed_combo_development",
-          "rationale": "Semaglutide is being combined with cagrilintide in a phase 3 drug program called CagriSema, pairing a gut-hormone drug with a fullness-signaling drug for stronger weight loss than either alone."
-        }
-      ],
-      "wellnessCategories": [
-        "appetite_satiety",
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "Best known as a semaglutide-class weight-loss and blood-sugar drug, one of the most widely prescribed injectable peptides in the world.",
-        "themes": [
-          "metabolic_incretins"
-        ],
-        "basisNote": "Based on major human trials and approved drug labels; the vendor's code name is not a separate scientific claim."
-      }
-    },
-    {
-      "catalog": {
-        "title": "2G-TZ 10mg",
-        "commonDrugName": "Tirzepatide (10 mg)"
+        "title": "2G-TZ",
+        "commonDrugName": "Tirzepatide"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
@@ -335,365 +246,8 @@
     },
     {
       "catalog": {
-        "title": "2G-TZ 15mg",
-        "commonDrugName": "Tirzepatide (15 mg)"
-      },
-      "compoundType": "peptide_incretin",
-      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
-          "evidenceBasis": "regulatory_label",
-          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
-        }
-      ],
-      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
-          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
-        },
-        {
-          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
-          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
-        }
-      ],
-      "reportedBenefits": [
-        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
-        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
-        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
-        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
-      ],
-      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
-      "sources": [
-        {
-          "label": "Wikipedia: Tirzepatide",
-          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
-        },
-        {
-          "label": "PubMed: tirzepatide metabolic trials (example)",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
-        }
-      ],
-      "wellnessCategories": [
-        "appetite_satiety",
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
-        "themes": [
-          "metabolic_incretins"
-        ],
-        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Nausea, especially when starting treatment or increasing the dose",
-          "Diarrhea",
-          "Vomiting",
-          "Constipation",
-          "Decreased appetite and indigestion",
-          "Stomach (abdominal) pain"
-        ],
-        "serious": [
-          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
-          "Pancreatitis (severe stomach pain that may radiate to the back)",
-          "Gallbladder problems, including gallstones and inflammation",
-          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
-          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
-        ]
-      }
-    },
-    {
-      "catalog": {
-        "title": "2G-TZ 30mg",
-        "commonDrugName": "Tirzepatide (30 mg)"
-      },
-      "compoundType": "peptide_incretin",
-      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
-          "evidenceBasis": "regulatory_label",
-          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
-        }
-      ],
-      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
-          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
-        },
-        {
-          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
-          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
-        }
-      ],
-      "reportedBenefits": [
-        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
-        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
-        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
-        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
-      ],
-      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
-      "sources": [
-        {
-          "label": "Wikipedia: Tirzepatide",
-          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
-        },
-        {
-          "label": "PubMed: tirzepatide metabolic trials (example)",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
-        }
-      ],
-      "wellnessCategories": [
-        "appetite_satiety",
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
-        "themes": [
-          "metabolic_incretins"
-        ],
-        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Nausea, especially when starting treatment or increasing the dose",
-          "Diarrhea",
-          "Vomiting",
-          "Constipation",
-          "Decreased appetite and indigestion",
-          "Stomach (abdominal) pain"
-        ],
-        "serious": [
-          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
-          "Pancreatitis (severe stomach pain that may radiate to the back)",
-          "Gallbladder problems, including gallstones and inflammation",
-          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
-          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
-        ]
-      }
-    },
-    {
-      "catalog": {
-        "title": "2G-TZ 60mg",
-        "commonDrugName": "Tirzepatide (60 mg)"
-      },
-      "compoundType": "peptide_incretin",
-      "cyclingNotes": "Same as other prescription weight-loss injections: doses are increased slowly to manage nausea. Stopping suddenly can be risky for people with diabetes.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "Type 2 diabetes or weight loss (pharmacy tirzepatide)",
-          "evidenceBasis": "regulatory_label",
-          "minimumEffectiveDoseNotes": "Start at 2.5 mg once weekly and increase monthly. The first dose is mainly to build tolerance. The effective maintenance doses in trials were in the mid-range of available strengths. Check the current Mounjaro or Zepbound label for the exact schedule."
-        }
-      ],
-      "dosingTimingNotes": "Injected under the skin once a week with gradual dose increases. Follow the label for timing around meals.",
-      "notes": "Tirzepatide is the active ingredient in the FDA-approved prescription medicines Mounjaro (for type 2 diabetes) and Zepbound (for chronic weight management), both made by Eli Lilly. It works on two gut-hormone receptors (GLP-1 and GIP) that influence blood sugar and appetite. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Robust dual GIP/GLP-1 trial data at approved doses.",
-          "personCenteredBenefit": "Improve blood sugar control in type 2 diabetes when the molecule is pharmacy tirzepatide used as directed."
-        },
-        {
-          "evidenceNote": "Trial-supported for tirzepatide where licensed.",
-          "personCenteredBenefit": "Support substantial weight loss in obesity when used as prescribed."
-        }
-      ],
-      "reportedBenefits": [
-        "Clinical trials: lowers blood sugar more effectively than many single-target diabetes drugs.",
-        "Clinical trials (SURMOUNT program): produces greater weight loss than older single-pathway drugs, including in head-to-head comparisons.",
-        "Also reported: reductions in waist size and improvements in heart-risk blood markers.",
-        "How it works: activates two gut-hormone receptors (GIP and GLP-1) for stronger appetite and blood sugar control than either alone."
-      ],
-      "researchSummary": "A weekly injectable related to Mounjaro/Zepbound (tirzepatide). It works on two gut-hormone pathways (GIP and GLP-1) instead of one, which in trials produced even larger drops in weight and blood sugar than older single-pathway drugs. Doses are raised gradually to manage side effects like nausea.",
-      "sources": [
-        {
-          "label": "Wikipedia: Tirzepatide",
-          "url": "https://en.wikipedia.org/wiki/Tirzepatide"
-        },
-        {
-          "label": "PubMed: tirzepatide metabolic trials (example)",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/34170614/"
-        }
-      ],
-      "wellnessCategories": [
-        "appetite_satiety",
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "Best known as a dual-action weight-loss and diabetes drug (tirzepatide class) that targets two hormone receptors at once.",
-        "themes": [
-          "metabolic_incretins"
-        ],
-        "basisNote": "Based on major human trials for tirzepatide; always confirm that the vial contents match the pharmacy drug."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Nausea, especially when starting treatment or increasing the dose",
-          "Diarrhea",
-          "Vomiting",
-          "Constipation",
-          "Decreased appetite and indigestion",
-          "Stomach (abdominal) pain"
-        ],
-        "serious": [
-          "Possible thyroid C-cell tumors, including medullary thyroid carcinoma (boxed warning); not for people with a personal or family history of MTC or MEN 2",
-          "Pancreatitis (severe stomach pain that may radiate to the back)",
-          "Gallbladder problems, including gallstones and inflammation",
-          "Low blood sugar, mainly when combined with insulin or sulfonylureas",
-          "Kidney injury linked to dehydration from vomiting or diarrhea, plus reports of serious allergic reactions and worsening diabetic eye disease"
-        ]
-      }
-    },
-    {
-      "catalog": {
-        "title": "3G-RT 10mg",
-        "commonDrugName": "Retatrutide (10 mg)"
-      },
-      "compoundType": "peptide_incretin",
-      "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "Weight loss (investigational retatrutide)",
-          "evidenceBasis": "pivotal_trials",
-          "minimumEffectiveDoseNotes": "Phase 2 trials used weekly doses that were slowly increased. Meaningful weight loss appeared at mid-range doses and got bigger at higher doses. No consumer dosing guide exists outside of clinical trials."
-        }
-      ],
-      "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
-      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is a triple agonist that acts on three hormone receptors (GLP-1, GIP, and glucagon). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
-          "personCenteredBenefit": "May produce large weight reductions in trial volunteers when the agent is a triple incretin under study."
-        },
-        {
-          "evidenceNote": "Development-stage; retail codes may not match trial material.",
-          "personCenteredBenefit": "May improve glucose markers alongside weight in study participants."
-        }
-      ],
-      "reportedBenefits": [
-        "Phase 2 trials: produced some of the largest average weight-loss numbers reported for any drug in this class.",
-        "Also reported: improvements in fasting blood sugar and insulin levels at higher doses.",
-        "Early data: positive shifts in triglycerides and liver enzyme markers in some participants.",
-        "Still in development: combines three hormone pathways (GIP, GLP-1, glucagon) for weight and blood sugar effects."
-      ],
-      "researchSummary": "An investigational injectable (retatrutide class) that hits three hormone receptors: GIP, GLP-1, and glucagon. Early trials reported some of the largest average weight reductions seen for any drug in this space. Still in development and not yet approved anywhere.",
-      "sources": [
-        {
-          "label": "PubMed: retatrutide obesity trial snapshot",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/"
-        }
-      ],
-      "wellnessCategories": [
-        "appetite_satiety",
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "Best known as a next-generation triple-action weight-loss peptide still in clinical trials, with some of the largest weight-loss numbers reported so far.",
-        "themes": [
-          "metabolic_incretins"
-        ],
-        "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Nausea, most often during dose increases",
-          "Diarrhea",
-          "Vomiting",
-          "Constipation",
-          "Decreased appetite",
-          "Mild, temporary increases in heart rate"
-        ],
-        "serious": [
-          "Pancreatitis was reported in a small number of trial participants",
-          "Gallbladder-related events such as gallstones",
-          "Modest rises in heart rate that warrant monitoring",
-          "Because it activates the glucagon receptor, effects on blood sugar control and liver enzymes are being watched closely",
-          "Long-term safety, including any thyroid risk seen with related drugs, is still being studied"
-        ]
-      }
-    },
-    {
-      "catalog": {
-        "title": "3G-RT 20mg",
-        "commonDrugName": "Retatrutide (20 mg)"
-      },
-      "compoundType": "peptide_incretin",
-      "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "Weight loss (investigational retatrutide)",
-          "evidenceBasis": "pivotal_trials",
-          "minimumEffectiveDoseNotes": "Phase 2 trials used weekly doses that were slowly increased. Meaningful weight loss appeared at mid-range doses and got bigger at higher doses. No consumer dosing guide exists outside of clinical trials."
-        }
-      ],
-      "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
-      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is a triple agonist that acts on three hormone receptors (GLP-1, GIP, and glucagon). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
-          "personCenteredBenefit": "May produce large weight reductions in trial volunteers when the agent is a triple incretin under study."
-        },
-        {
-          "evidenceNote": "Development-stage; retail codes may not match trial material.",
-          "personCenteredBenefit": "May improve glucose markers alongside weight in study participants."
-        }
-      ],
-      "reportedBenefits": [
-        "Phase 2 trials: produced some of the largest average weight-loss numbers reported for any drug in this class.",
-        "Also reported: improvements in fasting blood sugar and insulin levels at higher doses.",
-        "Early data: positive shifts in triglycerides and liver enzyme markers in some participants.",
-        "Still in development: combines three hormone pathways (GIP, GLP-1, glucagon) for weight and blood sugar effects."
-      ],
-      "researchSummary": "An investigational injectable (retatrutide class) that hits three hormone receptors: GIP, GLP-1, and glucagon. Early trials reported some of the largest average weight reductions seen for any drug in this space. Still in development and not yet approved anywhere.",
-      "sources": [
-        {
-          "label": "PubMed: retatrutide obesity trial snapshot",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/37015090/"
-        }
-      ],
-      "wellnessCategories": [
-        "appetite_satiety",
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "Best known as a next-generation triple-action weight-loss peptide still in clinical trials, with some of the largest weight-loss numbers reported so far.",
-        "themes": [
-          "metabolic_incretins"
-        ],
-        "basisNote": "Based on retatrutide clinical trial reports; grey-market product labels may not match the quality of pharmaceutical-grade material."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Nausea, most often during dose increases",
-          "Diarrhea",
-          "Vomiting",
-          "Constipation",
-          "Decreased appetite",
-          "Mild, temporary increases in heart rate"
-        ],
-        "serious": [
-          "Pancreatitis was reported in a small number of trial participants",
-          "Gallbladder-related events such as gallstones",
-          "Modest rises in heart rate that warrant monitoring",
-          "Because it activates the glucagon receptor, effects on blood sugar control and liver enzymes are being watched closely",
-          "Long-term safety, including any thyroid risk seen with related drugs, is still being studied"
-        ]
-      }
-    },
-    {
-      "catalog": {
-        "title": "3G-RT 36mg",
-        "commonDrugName": "Retatrutide (36 mg)"
+        "title": "3G-RT",
+        "commonDrugName": "Retatrutide"
       },
       "compoundType": "peptide_incretin",
       "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
@@ -811,7 +365,7 @@
     },
     {
       "catalog": {
-        "title": "AOD-9604 5mg",
+        "title": "AOD-9604",
         "commonDrugName": "AOD-9604"
       },
       "compoundType": "peptide",
@@ -910,7 +464,7 @@
     },
     {
       "catalog": {
-        "title": "BPC-157 10mg",
+        "title": "BPC-157",
         "commonDrugName": "BPC-157"
       },
       "compoundType": "peptide",
@@ -1014,8 +568,8 @@
     },
     {
       "catalog": {
-        "title": "Cag-10mg",
-        "commonDrugName": "Cagrilintide (10 mg)"
+        "title": "Cag",
+        "commonDrugName": "Cagrilintide"
       },
       "compoundType": "peptide_blend_incretin",
       "cyclingNotes": "Should follow supervised dose increases if used medically. Informal cycling is not established.",
@@ -1156,7 +710,7 @@
     },
     {
       "catalog": {
-        "title": "DSIP 10mg",
+        "title": "DSIP",
         "commonDrugName": "DSIP"
       },
       "compoundType": "peptide",
@@ -1255,7 +809,7 @@
     },
     {
       "catalog": {
-        "title": "FOXO4-DRI 10mg",
+        "title": "FOXO4-DRI",
         "commonDrugName": "FOXO4-DRI"
       },
       "compoundType": "peptide",
@@ -1421,7 +975,7 @@
     },
     {
       "catalog": {
-        "title": "Glutathione 1500mg",
+        "title": "Glutathione",
         "commonDrugName": "Glutathione"
       },
       "compoundType": "peptide",
@@ -1476,7 +1030,7 @@
     },
     {
       "catalog": {
-        "title": "Ipamorelin 10mg",
+        "title": "Ipamorelin",
         "commonDrugName": "Ipamorelin"
       },
       "compoundType": "peptide_secretagogue",
@@ -1765,7 +1319,7 @@
     },
     {
       "catalog": {
-        "title": "LL-37 5mg",
+        "title": "LL-37",
         "commonDrugName": "LL-37"
       },
       "compoundType": "peptide",
@@ -2002,7 +1556,7 @@
     },
     {
       "catalog": {
-        "title": "N-acetyl Selank Amidate 10mg",
+        "title": "N-acetyl Selank Amidate",
         "commonDrugName": "N-acetyl Selank amidate"
       },
       "compoundType": "peptide",
@@ -2058,7 +1612,7 @@
     },
     {
       "catalog": {
-        "title": "N-acetyl Semax Amidate 10mg",
+        "title": "N-acetyl Semax Amidate",
         "commonDrugName": "N-acetyl Semax amidate"
       },
       "compoundType": "peptide",
@@ -2113,7 +1667,7 @@
     },
     {
       "catalog": {
-        "title": "NAD+ 500mg",
+        "title": "NAD+",
         "commonDrugName": "NAD+"
       },
       "compoundType": "cofactor",
@@ -2206,7 +1760,7 @@
     },
     {
       "catalog": {
-        "title": "Oxytocin 2mg",
+        "title": "Oxytocin",
         "commonDrugName": "Oxytocin"
       },
       "compoundType": "peptide_hormone",
@@ -2394,7 +1948,7 @@
     },
     {
       "catalog": {
-        "title": "Selank 10mg",
+        "title": "Selank",
         "commonDrugName": "Selank"
       },
       "compoundType": "peptide",
@@ -2450,7 +2004,7 @@
     },
     {
       "catalog": {
-        "title": "Semax 10mg",
+        "title": "Semax",
         "commonDrugName": "Semax"
       },
       "compoundType": "peptide",
@@ -2505,7 +2059,7 @@
     },
     {
       "catalog": {
-        "title": "Sermorelin 10mg",
+        "title": "Sermorelin",
         "commonDrugName": "Sermorelin"
       },
       "compoundType": "peptide",
@@ -2576,7 +2130,7 @@
     },
     {
       "catalog": {
-        "title": "SLU-PP-332 5mg",
+        "title": "SLU-PP-332",
         "commonDrugName": "SLU-PP-332"
       },
       "compoundType": "small_molecule",
@@ -2741,7 +2295,7 @@
     },
     {
       "catalog": {
-        "title": "Survodutide 10mg",
+        "title": "Survodutide",
         "commonDrugName": "Survodutide"
       },
       "compoundType": "peptide_incretin",
@@ -2810,7 +2364,7 @@
     },
     {
       "catalog": {
-        "title": "TB-500 10mg",
+        "title": "TB-500",
         "commonDrugName": "TB-500"
       },
       "compoundType": "peptide",
@@ -2837,7 +2391,7 @@
       "researchSummary": "A synthetic version of a fragment from thymosin beta-4, a natural protein involved in cell movement and tissue repair. Popular in sports recovery for claims about faster healing of injuries. Animal evidence is solid, but human clinical trials are scarce. Flagged in anti-doping contexts.",
       "sources": [
         {
-          "label": "PMC: Thymosin \u03b24 function review",
+          "label": "PMC: Thymosin β4 function review",
           "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8724243/"
         }
       ],
@@ -2867,8 +2421,8 @@
     },
     {
       "catalog": {
-        "title": "Tesa-10mg",
-        "commonDrugName": "Tesamorelin (10 mg)"
+        "title": "Tesa",
+        "commonDrugName": "Tesamorelin"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
@@ -2939,152 +2493,8 @@
     },
     {
       "catalog": {
-        "title": "Tesa-15mg",
-        "commonDrugName": "Tesamorelin (15 mg)"
-      },
-      "compoundType": "peptide",
-      "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "HIV-related belly fat (FDA-approved)",
-          "evidenceBasis": "regulatory_label",
-          "minimumEffectiveDoseNotes": "The approved dose is 2 mg injected into the abdomen once daily. This is the tested effective dose, not a starting point for gradual increase."
-        }
-      ],
-      "dosingTimingNotes": "Injected under the skin of the abdomen once daily per the FDA label. IGF-1 and blood sugar levels should be monitored during use.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Daily monitoring themes on glucose and IGF-1; off-label cosmetic visceral fat claims are weaker.",
-          "personCenteredBenefit": "Shrinks dangerous deep belly fat in people with HIV lipodystrophy when used as labeled tesamorelin."
-        }
-      ],
-      "reportedBenefits": [
-        "FDA-approved: significantly reduces belly fat in people with HIV-related lipodystrophy versus placebo.",
-        "Monitoring required: can raise blood sugar and insulin resistance, so regular lab work is needed during use.",
-        "Off-label use: popular in anti-aging clinics for body composition goals, but that use lacks the same level of clinical evidence."
-      ],
-      "researchSummary": "Tesamorelin is an FDA-approved growth-hormone-releasing peptide specifically indicated for reducing excess belly fat in people with HIV-related lipodystrophy. It works by signaling the pituitary gland to produce more growth hormone. Used off-label in anti-aging clinics for body composition goals.",
-      "sources": [
-        {
-          "label": "PMC: tesamorelin HIV lipodystrophy review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/"
-        }
-      ],
-      "synergisticWith": [
-        {
-          "catalogTitles": [
-            "Ipamorelin 10mg",
-            "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
-          ],
-          "evidenceBasis": "named_stack_product",
-          "rationale": "Tesamorelin and ipamorelin are combined in SomatoPulse to stimulate growth hormone release through two different pathways."
-        }
-      ],
-      "wellnessCategories": [
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "An FDA-approved growth-hormone peptide for HIV-related belly fat, also used off-label for body-composition goals.",
-        "themes": [
-          "growth_hormone_axis"
-        ],
-        "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Joint pain or stiffness",
-          "Redness, itching, rash, or bruising at the injection site",
-          "Muscle pain",
-          "Swelling in the hands or feet (fluid retention)",
-          "Tingling or numbness in the hands",
-          "Upset stomach or nausea"
-        ],
-        "serious": [
-          "Higher blood sugar, which may worsen or trigger diabetes",
-          "Serious allergic reactions (hives, trouble breathing, swelling of the face)",
-          "Possible increased risk of cancer growth in people with active cancer",
-          "Fluid buildup around the wrist nerve causing carpal tunnel symptoms"
-        ]
-      },
-      "notes": "Tesamorelin, sold under the brand name Egrifta, is an FDA-approved injectable medicine that prompts the body to release more of its own growth hormone. It is approved specifically to reduce excess belly fat in adults living with HIV who have lipodystrophy. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
-    },
-    {
-      "catalog": {
-        "title": "Tesa-20mg",
-        "commonDrugName": "Tesamorelin (20 mg)"
-      },
-      "compoundType": "peptide",
-      "cyclingNotes": "Continued based on medical assessment, not informal on/off cycles. The label defines when to stop or continue.",
-      "doseGuidelines": [
-        {
-          "indicationOrContext": "HIV-related belly fat (FDA-approved)",
-          "evidenceBasis": "regulatory_label",
-          "minimumEffectiveDoseNotes": "The approved dose is 2 mg injected into the abdomen once daily. This is the tested effective dose, not a starting point for gradual increase."
-        }
-      ],
-      "dosingTimingNotes": "Injected under the skin of the abdomen once daily per the FDA label. IGF-1 and blood sugar levels should be monitored during use.",
-      "potentialApplications": [
-        {
-          "evidenceNote": "Daily monitoring themes on glucose and IGF-1; off-label cosmetic visceral fat claims are weaker.",
-          "personCenteredBenefit": "Shrinks dangerous deep belly fat in people with HIV lipodystrophy when used as labeled tesamorelin."
-        }
-      ],
-      "reportedBenefits": [
-        "FDA-approved: significantly reduces belly fat in people with HIV-related lipodystrophy versus placebo.",
-        "Monitoring required: can raise blood sugar and insulin resistance, so regular lab work is needed during use.",
-        "Off-label use: popular in anti-aging clinics for body composition goals, but that use lacks the same level of clinical evidence."
-      ],
-      "researchSummary": "Tesamorelin is an FDA-approved growth-hormone-releasing peptide specifically indicated for reducing excess belly fat in people with HIV-related lipodystrophy. It works by signaling the pituitary gland to produce more growth hormone. Used off-label in anti-aging clinics for body composition goals.",
-      "sources": [
-        {
-          "label": "PMC: tesamorelin HIV lipodystrophy review",
-          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3103937/"
-        }
-      ],
-      "synergisticWith": [
-        {
-          "catalogTitles": [
-            "Ipamorelin 10mg",
-            "SomatoPulse (Tesa 10mg/Ipamorelin 3mg)"
-          ],
-          "evidenceBasis": "named_stack_product",
-          "rationale": "Tesamorelin and ipamorelin are combined in SomatoPulse to stimulate growth hormone release through two different pathways."
-        }
-      ],
-      "wellnessCategories": [
-        "body_composition",
-        "cardiovascular_metabolic"
-      ],
-      "distinctiveQuality": {
-        "headline": "An FDA-approved growth-hormone peptide for HIV-related belly fat, also used off-label for body-composition goals.",
-        "themes": [
-          "growth_hormone_axis"
-        ],
-        "basisNote": "Off-label use for body shaping is not what the FDA actually approved it for."
-      },
-      "commonSideEffects": {
-        "common": [
-          "Joint pain or stiffness",
-          "Redness, itching, rash, or bruising at the injection site",
-          "Muscle pain",
-          "Swelling in the hands or feet (fluid retention)",
-          "Tingling or numbness in the hands",
-          "Upset stomach or nausea"
-        ],
-        "serious": [
-          "Higher blood sugar, which may worsen or trigger diabetes",
-          "Serious allergic reactions (hives, trouble breathing, swelling of the face)",
-          "Possible increased risk of cancer growth in people with active cancer",
-          "Fluid buildup around the wrist nerve causing carpal tunnel symptoms"
-        ]
-      },
-      "notes": "Tesamorelin, sold under the brand name Egrifta, is an FDA-approved injectable medicine that prompts the body to release more of its own growth hormone. It is approved specifically to reduce excess belly fat in adults living with HIV who have lipodystrophy. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it."
-    },
-    {
-      "catalog": {
-        "title": "Thymosin Alpha-1 10mg",
-        "commonDrugName": "Thymalfasin (T\u03b11)"
+        "title": "Thymosin Alpha-1",
+        "commonDrugName": "Thymalfasin (Tα1)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment courses are defined for specific conditions (e.g. alongside hepatitis antivirals).",
@@ -3150,7 +2560,7 @@
     },
     {
       "catalog": {
-        "title": "Vilon 20mg",
+        "title": "Vilon",
         "commonDrugName": "Vilon"
       },
       "compoundType": "peptide_bioregulator",
@@ -3206,7 +2616,7 @@
     },
     {
       "catalog": {
-        "title": "VIP 10mg",
+        "title": "VIP",
         "commonDrugName": "VIP"
       },
       "compoundType": "peptide",
@@ -3251,7 +2661,7 @@
     },
     {
       "catalog": {
-        "title": "Wolverine 20mg",
+        "title": "Wolverine",
         "commonDrugName": "Wolverine blend (BPC-157 / TB-500)"
       },
       "compoundType": "peptide_blend",
