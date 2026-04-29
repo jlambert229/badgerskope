@@ -273,31 +273,60 @@ kbd {
   align-items: stretch;
   flex-wrap: nowrap;
 }
-.filter-strip__row--selects {
+/* Row label — small mono uppercase, muted, fixed-width so the three rows align */
+.filter-strip__rowlabel {
+  flex: 0 0 auto;
+  width: 88px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-right: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-mono-lg);
+  color: var(--fg-3);
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+}
+/* Cells container holds the lib-field grid for filter / view rows */
+.filter-strip__cells {
+  flex: 1 1 auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  min-width: 0;
+}
+.filter-strip__row--view .filter-strip__cells {
+  grid-template-columns: repeat(2, 1fr);
+}
+.filter-strip__row--selects {
+  border-bottom: 1px solid var(--line);
 }
 .filter-strip__row--toggles {
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 16px;
-  border-top: 1px solid var(--line);
+  gap: 18px;
+  padding-right: 16px;
+  border-bottom: 1px solid var(--line);
   flex-wrap: wrap;
+}
+.filter-strip__row--toggles .filter-strip__rowlabel {
+  /* Toggle row has no select cells with their own padding — pad here */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-self: stretch;
 }
 .filter-strip__toggles {
   display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
 }
-.filter-strip__meta {
-  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-  margin-left: auto;
+.filter-strip__sport {
+  display: inline-flex; align-items: center;
 }
-.filter-strip__sport { display: inline-flex; align-items: center; }
 .filter-strip__count {
   font-family: var(--font-mono);
   font-size: 11px; letter-spacing: var(--tracking-mono-lg);
   color: var(--accent);
   text-transform: uppercase;
+  margin-left: auto;
 }
 
 /* lib-field cell — borderless select with tiny mono label above */
@@ -1027,10 +1056,10 @@ kbd {
   .nav-bar { padding: 12px 24px; gap: 16px; }
   .nav-end { gap: 16px; }
   .lib { padding: 16px 24px 48px; }
-  .filter-strip__row--selects { grid-template-columns: repeat(3, 1fr); }
-  .lib-field:nth-child(3n) { border-right: 0; }
+  .filter-strip__row--selects .filter-strip__cells { grid-template-columns: repeat(2, 1fr); }
   .lib-field { border-bottom: 1px solid var(--line); }
-  .lib-field:nth-last-child(-n+3) { border-bottom: 0; }
+  .filter-strip__cells .lib-field:nth-last-child(-n+2):nth-child(odd),
+  .filter-strip__cells .lib-field:last-child { border-bottom: 0; }
   .stats-dashboard { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
@@ -1053,8 +1082,7 @@ kbd {
   .nav-tabs { grid-column: 1 / -1; justify-content: flex-start; gap: 0; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; overflow-x: auto; }
   .nav-end { display: none; }
   .lib { padding: 12px 16px 32px; }
-  .filter-strip__row--selects { grid-template-columns: repeat(2, 1fr); }
-  .lib-field:nth-child(2n) { border-right: 0; }
+  .filter-strip__row--selects .filter-strip__cells { grid-template-columns: repeat(2, 1fr); }
   .filter-strip__row--toggles { padding: 10px 12px; }
   .footer { padding: 40px 16px 16px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
