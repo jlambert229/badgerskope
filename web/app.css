@@ -1318,3 +1318,260 @@ kbd {
   outline: none;
   box-shadow: none;
 }
+
+/* ============================================================
+   MOBILE FILTER SHEET (≤768px)
+   - Hides the three-row desktop filter strip
+   - Shows a full-width FILTERS · N trigger button above the table
+   - Bottom sheet pattern: backdrop + sliding panel + DONE/RESET/APPLY
+   - Square brutalist edges, mono caps, olive accent
+   ============================================================ */
+
+/* Defaults — hidden until the breakpoint kicks in. The sheet itself stays
+   in the DOM (no display:none) so reparented controls remain queryable
+   by tests; visual hiding is done via transform offscreen + visibility. */
+.mobile-filter-trigger { display: none; }
+.mobile-filter-trigger[hidden] { display: none; }
+.mobile-filter-backdrop { display: none; }
+.mobile-filter-backdrop[hidden] { display: none; }
+.mobile-filter-sheet {
+  /* Default desktop state — fully hidden, no layout impact. */
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* When the body is in mobile-filters mode, hide the desktop strip and
+     show the trigger + sheet machinery. The body class is toggled by JS
+     once it has reparented the controls into the sheet body. */
+  body.is-mobile-filters .filter-strip {
+    display: none;
+  }
+
+  /* Trigger button — full-width, square, mono caps. ≥44px tap target. */
+  body.is-mobile-filters .mobile-filter-trigger:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    margin: 12px 0 0;
+    padding: 12px 16px;
+    background: var(--bg-2);
+    color: var(--fg);
+    border: 1px solid var(--line-2);
+    border-radius: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--tracking-mono-lg);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  body.is-mobile-filters .mobile-filter-trigger:hover,
+  body.is-mobile-filters .mobile-filter-trigger:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    outline: none;
+  }
+  .mobile-filter-trigger__label { color: var(--fg-2); }
+  .mobile-filter-trigger__sep { color: var(--fg-3); }
+  .mobile-filter-trigger__count {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Backdrop — sits above grain overlay, below sheet. */
+  body.is-mobile-filters .mobile-filter-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.74);
+    z-index: 200;
+  }
+
+  /* Sheet — slides up from bottom, ~85vh tall, square edges. The sheet
+     stays in the DOM at all times on mobile (so reparented controls
+     remain queryable by automated tests). It is visually hidden via
+     transform + visibility when closed. */
+  body.is-mobile-filters .mobile-filter-sheet {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 210;
+    max-height: 85vh;
+    height: 85vh;
+    background: var(--bg);
+    border-top: 1px solid var(--line-2);
+    border-radius: 0;
+    transform: translateY(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 200ms ease-out, visibility 0s linear 200ms;
+  }
+  body.is-mobile-filters .mobile-filter-sheet.mobile-filter-sheet--open {
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 200ms ease-out, visibility 0s linear 0s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body.is-mobile-filters .mobile-filter-sheet,
+    body.is-mobile-filters .mobile-filter-sheet.mobile-filter-sheet--open {
+      transition: none;
+    }
+  }
+
+  .mobile-filter-sheet__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    flex: 0 0 auto;
+  }
+  .mobile-filter-sheet__title {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--tracking-mono-lg);
+    color: var(--fg);
+    text-transform: uppercase;
+  }
+  .mobile-filter-sheet__done {
+    min-height: 44px;
+    padding: 10px 16px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--tracking-mono-lg);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+  }
+  .mobile-filter-sheet__done:hover,
+  .mobile-filter-sheet__done:focus-visible {
+    background: var(--accent);
+    color: #0B0B0A;
+    outline: none;
+  }
+
+  .mobile-filter-sheet__body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  /* Reparented filter strip rows inside the sheet body — stack vertically,
+     full-width controls, no row labels visible. */
+  .mobile-filter-sheet__body .filter-strip__row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-filter-sheet__body .filter-strip__row:last-child { border-bottom: 0; }
+  .mobile-filter-sheet__body .filter-strip__rowlabel {
+    width: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 10px 16px;
+    font-size: 10px;
+    color: var(--fg-3);
+    background: var(--bg-2);
+  }
+  .mobile-filter-sheet__body .filter-strip__cells {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+    gap: 0;
+  }
+  .mobile-filter-sheet__body .lib-field {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 12px 16px;
+  }
+  .mobile-filter-sheet__body .lib-field:last-child { border-bottom: 0; }
+  .mobile-filter-sheet__body .lib-field-input {
+    font-size: 14px;
+    min-height: 32px;
+  }
+  .mobile-filter-sheet__body .filter-strip__toggles,
+  .mobile-filter-sheet__body .filter-strip__sport {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+  }
+  .mobile-filter-sheet__body .filter-strip__toggles label,
+  .mobile-filter-sheet__body .filter-strip__sport label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .mobile-filter-sheet__body .filter-strip__toggles label:last-child,
+  .mobile-filter-sheet__body .filter-strip__sport label:last-child { border-bottom: 0; }
+  .mobile-filter-sheet__body .filter-strip__count { display: none; }
+
+  .mobile-filter-sheet__footer {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--line-2);
+    background: var(--bg);
+    flex: 0 0 auto;
+  }
+  .mobile-filter-sheet__btn {
+    flex: 1 1 50%;
+    min-height: 52px;
+    padding: 14px 16px;
+    border-radius: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: var(--tracking-mono-lg);
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 0;
+  }
+  .mobile-filter-sheet__btn--ghost {
+    background: transparent;
+    color: var(--fg-2);
+    border-right: 1px solid var(--line-2);
+  }
+  .mobile-filter-sheet__btn--ghost:hover,
+  .mobile-filter-sheet__btn--ghost:focus-visible {
+    color: var(--accent);
+    outline: none;
+  }
+  .mobile-filter-sheet__btn--primary {
+    background: var(--accent);
+    color: #0B0B0A;
+  }
+  .mobile-filter-sheet__btn--primary:hover,
+  .mobile-filter-sheet__btn--primary:focus-visible {
+    background: var(--fg);
+    outline: none;
+  }
+
+  /* Body scroll lock when sheet is open. */
+  body.is-mobile-filter-sheet-open {
+    overflow: hidden;
+  }
+}

@@ -1,8 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 async function openAdvancedFilters(page) {
-  // Filters are always visible in the data-first redesign — no drawer to open.
-  await page.locator(".filter-strip").waitFor({ state: "visible" });
+  // Filters are always reachable — open the mobile sheet if at ≤768px.
+  await ensureFiltersReachable(page);
 }
 
 test.describe("Edge cases — the bugs users find first", () => {

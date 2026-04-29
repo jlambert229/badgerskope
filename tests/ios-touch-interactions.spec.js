@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 test.describe("Touch interactions (iOS)", () => {
   test.beforeEach(async ({ page }) => {
@@ -58,8 +59,8 @@ test.describe("Touch interactions (iOS)", () => {
   });
 
   test("filter dropdown responds", async ({ page }) => {
-    // Filter strip is always visible in the data-first redesign.
-    await page.locator(".filter-strip").waitFor({ state: "visible" });
+    // PR C: at ≤768px the strip moves into a sheet — open it first.
+    await ensureFiltersReachable(page);
 
     const select = page.locator("#category");
     await select.selectOption({ index: 1 });
@@ -68,8 +69,12 @@ test.describe("Touch interactions (iOS)", () => {
     const value = await select.inputValue();
     expect(value).not.toBe("");
 
-    const hasResults = await page.locator("#result-count").isVisible();
-    expect(hasResults).toBe(true);
+    // PR C: `#result-count` lives inside the toggle row, which is reparented
+    // into the sheet on mobile (and hidden by sheet CSS). The user-facing
+    // confirmation that filtering happened is now `#row-count` ("Showing N
+    // of M entries"), which lives outside the strip and is always visible.
+    const rowCountText = await page.locator("#row-count").innerText();
+    expect(rowCountText).toMatch(/Showing \d+ of \d+ entries/i);
   });
 
   test("scroll through cards works", async ({ page }) => {

@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 test.describe("Navigation and state — bugs that lose user context", () => {
   test("search state persists in URL hash", async ({ page }) => {
@@ -126,12 +127,20 @@ test.describe("Navigation and state — bugs that lose user context", () => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
-    // Filter strip is always visible — no drawer to open.
-    await page.locator(".filter-strip").waitFor({ state: "visible" });
+    // Filter strip is always reachable — open the mobile sheet if needed.
+    await ensureFiltersReachable(page);
 
     await page.fill("#search", "test");
     await page.locator("#category").selectOption({ index: 1 });
     await page.waitForTimeout(300);
+
+    // PR C: close the sheet before clicking the search-bar reset, since
+    // the sheet covers the bottom 85vh on mobile.
+    const trigger = page.locator("#mobile-filter-trigger");
+    if (await trigger.isVisible()) {
+      const done = page.locator("#mobile-filter-done");
+      if (await done.isVisible()) await done.click();
+    }
 
     // Reset
     await page.click("#reset-filters");

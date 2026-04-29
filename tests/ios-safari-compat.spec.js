@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { ensureFiltersReachable } from "./helpers/mobile-filters.js";
 
 test.describe("iOS Safari compatibility", () => {
   test.beforeEach(async ({ page }) => {
@@ -68,8 +69,8 @@ test.describe("iOS Safari compatibility", () => {
   });
 
   test("select dropdowns are interactive", async ({ page }) => {
-    // Filter strip is always visible in the data-first redesign.
-    await page.locator(".filter-strip").waitFor({ state: "visible" });
+    // PR C: at ≤768px the strip moves into a sheet — open it first.
+    await ensureFiltersReachable(page);
 
     const category = page.locator("#category");
     await expect(category).toBeVisible();
