@@ -262,6 +262,25 @@ details.detail__section--note[open]::after { display: none; }
   font-style: italic;
 }
 
+/* Inline glossary tooltips — wrapping <abbr class="glossary-term">.
+   Subtle dotted underline cues that hover reveals a definition; native
+   browser title-attr tooltip handles the actual reveal. cursor: help is
+   the standard affordance. Color-cued in the brand teal (--accent) on
+   hover so the dotted line reads as interactive without being noisy
+   at rest. */
+.glossary-term {
+  border-bottom: 1px dotted var(--line-2);
+  cursor: help;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.glossary-term:hover,
+.glossary-term:focus-visible {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
 /* evidence-in-context bar chart */
 .ev-compare {
   display: flex; flex-direction: column; gap: 8px;

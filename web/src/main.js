@@ -39,6 +39,7 @@ import { initScroll } from "./features/scroll.js";
 import { initNotes } from "./features/notes.js";
 import { initDoping } from "./features/doping.js";
 import { initInteractions } from "./features/interactions.js";
+import { initGlossaryTooltips } from "./features/glossary-tooltips.js";
 import { initSportFilter } from "./features/sport-filter.js";
 import { initExperimentalToggle } from "./features/experimental-toggle.js";
 import { initMobileFilterSheet } from "./features/mobile-filter-sheet.js";
@@ -618,6 +619,7 @@ async function init() {
   initDoping();
   initSportFilter();
   initInteractions();
+  initGlossaryTooltips();
   initMobileFilterSheet({ onApply: render, onReset: render });
 }
 

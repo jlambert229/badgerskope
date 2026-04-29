@@ -14,6 +14,7 @@ import {
 } from './constants.js';
 import { GROUP_THEME_LABELS } from './groups.js';
 import { toggleBookmark } from './bookmarks.js';
+import { decorateDetailBody } from './features/glossary-tooltips.js';
 
 /* Late-bound callbacks injected by main.js to avoid circular deps */
 let _render = null;
@@ -391,6 +392,7 @@ export function showDetailAt(index) {
   const entry = state.detailQueue[state.detailIndex];
   if (!entry) return;
   els.detailBody.innerHTML = renderDetailHtml(entry);
+  decorateDetailBody();
   syncDetailNav();
   bindDetailEvents();
   if (_updateHash) {
