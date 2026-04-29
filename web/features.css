@@ -113,12 +113,65 @@
   text-transform: uppercase;
   margin: 0 0 16px;
 }
+/* Collapsible-section affordance for <details>-based sections.
+   Plain <div> sections (e.g. --safety, --note when authored as div)
+   keep the legacy h3-margin layout. */
+details.detail__section { padding: 0; }
+details.detail__section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 28px 32px 28px 0;
+  position: relative;
+  outline: none;
+  user-select: none;
+}
+details.detail__section > summary::-webkit-details-marker { display: none; }
+details.detail__section > summary > h3 {
+  display: inline-block;
+  margin: 0;
+}
+/* Chevron: right-pointing when closed, rotates to point down when open.
+   Positioned right so it never collides with bullet markers on the left. */
+details.detail__section > summary::after {
+  content: "";
+  position: absolute;
+  right: 4px; top: 50%;
+  width: 8px; height: 8px;
+  border-right: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  transform: translateY(-75%) rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+details.detail__section[open] > summary::after {
+  transform: translateY(-25%) rotate(45deg);
+}
+details.detail__section > summary:hover > h3,
+details.detail__section > summary:focus-visible > h3 {
+  color: var(--fg);
+}
+details.detail__section > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+/* Restore body padding inside the open panel so content sits clear of
+   the summary's bottom edge. */
+details.detail__section[open] > :not(summary) { margin-top: 0; }
+details.detail__section[open]::after {
+  content: "";
+  display: block;
+  height: 28px;
+}
+
 .detail__section--note {
   background: var(--bg-2);
   border-left: 3px solid var(--accent);
   padding: 24px;
   margin: 24px 0;
 }
+details.detail__section--note { padding: 0; }
+details.detail__section--note > summary { padding: 20px 32px 20px 24px; }
+details.detail__section--note[open] > :not(summary) { padding: 0 24px 24px; }
+details.detail__section--note[open]::after { display: none; }
 .detail__section--safety h3 { color: var(--warning); }
 
 .detail__label {
@@ -164,7 +217,9 @@
 .detail__benefits li::before,
 .detail__apps li::before,
 .safety-list li::before {
-  content: "›";
+  /* En dash, not chevron — keeps the bullet marker visually distinct
+     from the rotating chevron used by collapsible <summary> headers. */
+  content: "–";
   position: absolute; left: 0; top: 12px;
   font-family: var(--font-mono);
   color: var(--accent);

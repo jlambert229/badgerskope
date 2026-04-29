@@ -231,22 +231,22 @@ export function renderDetailHtml(entry) {
           </div>`;
         }).join("");
 
-      return `<div class="detail__section">
-        <h3>How strong is the evidence?</h3>
+      return `<details class="detail__section" open>
+        <summary><h3>How strong is the evidence?</h3></summary>
         <p class="ev-compare__verdict" style="color:${thisTier.color}"><strong>${escapeHtml(position)}</strong> in ${escapeHtml(catName)} (${totalInCat} entries).</p>
         <div class="ev-compare">${barHtml}</div>
-      </div>`;
+      </details>`;
     })()}
 
-    ${benefits ? `<div class="detail__section">
-      <h3>What researchers found</h3>
+    ${benefits ? `<details class="detail__section" open>
+      <summary><h3>What researchers found</h3></summary>
       <ul class="detail__benefits">${benefits}</ul>
-    </div>` : ""}
+    </details>` : ""}
 
-    ${apps ? `<div class="detail__section">
-      <h3>People research this for</h3>
+    ${apps ? `<details class="detail__section">
+      <summary><h3>People research this for</h3></summary>
       <ul class="detail__apps">${apps}</ul>
-    </div>` : ""}
+    </details>` : ""}
 
     ${(() => {
       const se = entry.commonSideEffects;
@@ -254,29 +254,29 @@ export function renderDetailHtml(entry) {
       const common = (se.common || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
       const serious = (se.serious || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
       if (!common && !serious) return "";
-      return `<div class="detail__section">
-        <h3>Common side effects</h3>
+      return `<details class="detail__section" open>
+        <summary><h3>Common side effects</h3></summary>
         ${common ? `<p class="detail__label">Most common</p><ul class="detail__benefits">${common}</ul>` : ""}
         ${serious ? `<p class="detail__label">Serious but rare</p><ul class="detail__benefits">${serious}</ul>` : ""}
         <p class="detail__help">Reported in trials and prescribing information. Not a complete list — your doctor has the full picture.</p>
-      </div>`;
+      </details>`;
     })()}
 
-    ${entry.dosingTimingNotes ? `<div class="detail__section">
-      <h3>How people use it</h3>
+    ${entry.dosingTimingNotes ? `<details class="detail__section">
+      <summary><h3>How people use it</h3></summary>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes)}</p>
       <p class="detail__help">Reported in studies and forums. Not a dosing guide for you.</p>
-    </div>` : ""}
+    </details>` : ""}
 
-    ${entry.cyclingNotes ? `<div class="detail__section">
-      <h3>${tier.tier === "approved" ? "Starting and stopping" : "Cycling pattern"}</h3>
+    ${entry.cyclingNotes ? `<details class="detail__section">
+      <summary><h3>${tier.tier === "approved" ? "Starting and stopping" : "Cycling pattern"}</h3></summary>
       <p class="detail__prose">${escapeHtml(entry.cyclingNotes)}</p>
       ${tier.tier === "approved" ? "" : `<p class="detail__help">Community reports and limited research. Your needs may differ.</p>`}
-    </div>` : ""}
+    </details>` : ""}
 
     ${doseRows
-      ? `<div class="detail__section">
-      <h3>Doses from published research</h3>
+      ? `<details class="detail__section">
+      <summary><h3>Doses from published research</h3></summary>
       <div class="table-wrap">
         <table class="doses">
           <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
@@ -284,29 +284,29 @@ export function renderDetailHtml(entry) {
         </table>
       </div>
       <p class="detail__help">Numbers from published studies. Not personal dosing instructions.</p>
-    </div>`
+    </details>`
       : ""
     }
 
-    ${synergy ? `<div class="detail__section">
-      <h3>Often mentioned alongside</h3>
+    ${synergy ? `<details class="detail__section">
+      <summary><h3>Often mentioned alongside</h3></summary>
       <ul class="synergy-list">${synergy}</ul>
       <p class="detail__help">Appear together in research. Not a recommendation to combine.</p>
-    </div>` : ""}
+    </details>` : ""}
 
-    ${dqThemes ? `<div class="detail__section">
-      <h3>Research themes</h3>
+    ${dqThemes ? `<details class="detail__section">
+      <summary><h3>Research themes</h3></summary>
       <div class="detail__row">${dqThemes}</div>${dq?.basisNote ? `<p class="detail__muted">${escapeHtml(dq.basisNote)}</p>` : ""}
-    </div>` : ""}
+    </details>` : ""}
 
-    ${entry.notes ? `<div class="detail__section detail__section--note">
-      <h3>About this listing</h3>
+    ${entry.notes ? `<details class="detail__section detail__section--note">
+      <summary><h3>About this listing</h3></summary>
       <p class="detail__prose">${escapeHtml(entry.notes)}</p>
-    </div>` : ""}
+    </details>` : ""}
 
     ${(() => {
       const srcList = entry.sources || [];
-      if (srcList.length === 0) return '<div class="detail__section"><h3>Sources</h3><p class="detail__muted">No linked sources for this entry.</p></div>';
+      if (srcList.length === 0) return '<details class="detail__section"><summary><h3>Sources</h3></summary><p class="detail__muted">No linked sources for this entry.</p></details>';
 
       let pubmed = 0, pmc = 0, wiki = 0, fda = 0, other = 0;
       srcList.forEach(s => {
@@ -329,11 +329,11 @@ export function renderDetailHtml(entry) {
       const pct = maxScore > 0 ? Math.round((qualityScore / maxScore) * 100) : 0;
       const barColor = pct >= 75 ? "#22c55e" : pct >= 50 ? "#14b8a6" : pct >= 25 ? "#f59e0b" : "#9ca3af";
 
-      return `<div class="detail__section">
-        <h3>Sources</h3>
+      return `<details class="detail__section">
+        <summary><h3>Sources</h3></summary>
         <p class="detail__help">${qualityParts.join(" \u00b7 ")}</p>
         <ul class="detail__sources">${sources}</ul>
-      </div>`;
+      </details>`;
     })()}
 
     <div class="detail__disclaimer">

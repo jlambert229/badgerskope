@@ -43,10 +43,10 @@ export function initInteractions() {
 
     if (overlaps.length === 0) return;
 
-    const section = document.createElement("div");
+    const section = document.createElement("details");
     section.className = "detail__section interaction-check";
     section.innerHTML = `
-      <h3>Heads up \u2014 overlapping bookmarks</h3>
+      <summary><h3>Heads up \u2014 overlapping bookmarks</h3></summary>
       <p class="detail__help">These bookmarked compounds share mechanisms or categories with this entry. Overlapping compounds may have additive effects or redundancies worth understanding.</p>
       <ul class="interaction-list">
         ${overlaps.map(o => `<li><strong>${escapeHtml(o.title)}</strong> <span class="interaction-reason">${escapeHtml(o.reason)}</span></li>`).join("")}
