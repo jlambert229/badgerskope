@@ -7,7 +7,10 @@
    DETAIL VIEW
    ============================================================ */
 .detail__answer-zone {
-  padding: 24px 0 32px;
+  /* Bumped left padding 0 → 24px so content (FDA chip, kicker, body,
+     bookmark button) sits inside the tier left-rule with breathing
+     room instead of flush against it. */
+  padding: 24px 0 32px 24px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   margin-bottom: 32px;

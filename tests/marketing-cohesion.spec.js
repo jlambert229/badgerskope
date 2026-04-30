@@ -104,7 +104,7 @@ test.describe("Marketing landing — combined cohesion pass", () => {
         accent: cs.getPropertyValue("--accent").trim(),
       };
     });
-    expect(tokens.tierA.toUpperCase()).toBe("#CCD56F");
+    expect(tokens.tierA.toUpperCase()).toBe("#D2DD55");
     expect(tokens.brand.toUpperCase()).toBe("#73BCB1");
     // `--accent` aliases the brand (interactive) token.
     expect(tokens.accent).toBeTruthy();
