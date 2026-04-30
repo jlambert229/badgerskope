@@ -17,17 +17,9 @@ test.describe("Touch interactions (iOS)", () => {
     expect(open).toBe(true);
   });
 
-  test("checkbox tap toggles selection", async ({ page }) => {
-    const checkbox = page.locator(".card__select input").first();
-    await checkbox.check();
-    await page.waitForTimeout(200);
-
-    const checked = await checkbox.isChecked();
-    expect(checked).toBe(true);
-
-    const countText = await page.locator("#selection-count").textContent();
-    expect(countText).toContain("1");
-  });
+  // "checkbox tap toggles selection" — removed. The select-for-compare
+  // checkbox no longer exists in library rows; the COMPARE feature was
+  // retired along with the per-row +/− and checkbox affordances.
 
   test("tab bar switches panels", async ({ page }) => {
     await page.locator("#tab-stats").click();

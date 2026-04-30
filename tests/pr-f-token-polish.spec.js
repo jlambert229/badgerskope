@@ -12,15 +12,9 @@ import { test, expect } from "@playwright/test";
  */
 
 test.describe("PR F — token + tactile polish", () => {
-  test(".lib-row__select wrapper has >=44×44 hit area", async ({ page }) => {
-    await page.goto("/web/");
-    await page.waitForSelector(".card", { timeout: 10_000 });
-
-    const box = await page.locator(".lib-row__select").first().boundingBox();
-    expect(box).not.toBeNull();
-    expect(box.width).toBeGreaterThanOrEqual(44);
-    expect(box.height).toBeGreaterThanOrEqual(44);
-  });
+  // ".lib-row__select wrapper has >=44×44 hit area" — removed. The
+  // select-for-compare wrapper no longer exists; the COMPARE feature was
+  // retired along with the per-row select checkbox.
 
   test("'APPETITE & FULLNESS' wellness chip renders on a single line", async ({ page, viewport }) => {
     // Skip on viewports where .lib-row__wellness is hidden by responsive CSS
