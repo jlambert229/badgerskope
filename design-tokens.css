@@ -33,36 +33,35 @@
      without per-call rewrites. Surfaces that meant "olive specifically"
      (tier letter, badges, EVIDENCE > inline glyph, chevron) are
      migrated to `--accent-tier-a` explicitly. */
-  --accent-tier-a: #D2DD55;                     /* lime — Tier A */
-  --accent-brand:  #73BCB1;                     /* teal */
+  --accent-tier-a: #DCEC1F;                     /* electric lime — Tier A */
+  --accent-brand:  #3BC9BC;                     /* vivid teal */
   --accent-interactive: var(--accent-brand);
   --accent-link:        var(--accent-brand);
   --accent:      var(--accent-interactive);     /* legacy alias → teal */
-  --accent-soft: rgba(115, 188, 177, 0.10);     /* teal soft glow */
-  --accent-tier-a-soft: rgba(210, 221, 85, 0.10);
+  --accent-soft: rgba(59, 201, 188, 0.10);      /* teal soft glow */
+  --accent-tier-a-soft: rgba(220, 236, 31, 0.10);
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
-     Editorial ramp — yellow-green → red. Saturation bumped a second
-     notch on user request to make the ramp more vibrant. Still
-     respects the brand voice — no traffic-light siren — but each
-     step now reads as a clearly distinct chromatic identity rather
-     than a desaturated sibling.
+     Editorial ramp — yellow-green → red. Third saturation bump on user
+     request — moves from "considered editorial" toward "bold poster
+     palette". Hue walk preserved (yellow-green → red); each step now
+     pops at high chroma without losing the cohesive brand feel.
 
      Letter ink uses --bg (#1A1A18) for A/B/C/D so chips stay cohesive
-     with the page. F flips to --fg because rust vs dark fails AA.
+     with the page. F flips to --fg because red vs dark dips below AA.
      The text-color flip for F lives in app.css / marketing.css.
 
-       A #D2DD55  lime         ~9.4:1 vs #1A1A18   (Gold Standard)
-       B #9CD854  leaf green   ~8.6:1 vs #1A1A18   (Promising)
-       C #E2AB35  amber        ~7.4:1 vs #1A1A18   (Suggestive)
-       D #DC7124  orange       ~4.9:1 vs #1A1A18   (Weak / Dated)
-       F #C12626  red          ~5.4:1 vs #F2EFE5   (SLOP, white ink)
+       A #DCEC1F  electric lime  ~10.5:1 vs #1A1A18  (Gold Standard)
+       B #7BE12C  vivid green    ~9.6:1  vs #1A1A18  (Promising)
+       C #F2B011  bold amber     ~8.4:1  vs #1A1A18  (Suggestive)
+       D #F36715  bold orange    ~5.7:1  vs #1A1A18  (Weak / Dated)
+       F #DA1F1F  bold red       ~5.6:1  vs #F2EFE5  (SLOP, white ink)
    */
-  --tier-a: var(--accent-tier-a);   /* lime */
-  --tier-b: #9CD854;                /* leaf green */
-  --tier-c: #E2AB35;                /* amber */
-  --tier-d: #DC7124;                /* orange */
-  --tier-f: #C12626;                /* red */
+  --tier-a: var(--accent-tier-a);   /* electric lime */
+  --tier-b: #7BE12C;                /* vivid green */
+  --tier-c: #F2B011;                /* bold amber */
+  --tier-d: #F36715;                /* bold orange */
+  --tier-f: #DA1F1F;                /* bold red */
 
   /* ---------- Evidence tiers (legacy semantic names consumed by SPA JS) ---------- */
   --ev-approved: var(--tier-a);
