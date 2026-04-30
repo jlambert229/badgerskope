@@ -24,12 +24,12 @@ export const KNOWN_FOR_THEME_ORDER = [
 // ramp lives at the same hex values; if you bump one, bump both.
 // Two categories map to A (approved + pivotal): the label distinguishes them.
 export const EVIDENCE_TIERS = [
-  { key: "regulatory_label",    tier: "approved",    grade: "A", color: "#DCEC1F", label: "FDA approved",        subtitle: "Regulators reviewed the data and said yes",            rank: 0 },
-  { key: "pivotal_trials",      tier: "pivotal",     grade: "A", color: "#DCEC1F", label: "Strong human trials", subtitle: "Tested on thousands of people in controlled studies",  rank: 1 },
-  { key: "phase1_human",        tier: "phase1",      grade: "B", color: "#7BE12C", label: "Early human studies", subtitle: "Small studies on people, but not conclusive yet",      rank: 2 },
-  { key: "preclinical_animal",  tier: "preclinical", grade: "C", color: "#F2B011", label: "Animal studies only", subtitle: "Only tested on animals so far",                        rank: 3 },
-  { key: "compounded_practice", tier: "practice",    grade: "D", color: "#F36715", label: "Clinic practice",     subtitle: "Used by some clinics, but little controlled research", rank: 4 },
-  { key: "unknown_identity",    tier: "unknown",     grade: "F", color: "#DA1F1F", label: "Unknown",             subtitle: "Not enough data to grade",                             rank: 5 },
+  { key: "regulatory_label",    tier: "approved",    grade: "A", color: "#9DB813", label: "FDA approved",        subtitle: "Regulators reviewed the data and said yes",            rank: 0 },
+  { key: "pivotal_trials",      tier: "pivotal",     grade: "A", color: "#9DB813", label: "Strong human trials", subtitle: "Tested on thousands of people in controlled studies",  rank: 1 },
+  { key: "phase1_human",        tier: "phase1",      grade: "B", color: "#4A9F1F", label: "Early human studies", subtitle: "Small studies on people, but not conclusive yet",      rank: 2 },
+  { key: "preclinical_animal",  tier: "preclinical", grade: "C", color: "#C68A0A", label: "Animal studies only", subtitle: "Only tested on animals so far",                        rank: 3 },
+  { key: "compounded_practice", tier: "practice",    grade: "D", color: "#D9621B", label: "Clinic practice",     subtitle: "Used by some clinics, but little controlled research", rank: 4 },
+  { key: "unknown_identity",    tier: "unknown",     grade: "F", color: "#9C1818", label: "Unknown",             subtitle: "Not enough data to grade",                             rank: 5 },
 ];
 
 export function tierForKey(key) {

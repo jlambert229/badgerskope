@@ -664,14 +664,15 @@ html {
   text-transform: uppercase;
 }
 
-.lib-row__wellness { display: flex; min-width: 0; overflow: hidden; flex-wrap: wrap; gap: 4px; }
+.lib-row__wellness { display: flex; min-width: 0; flex-wrap: wrap; gap: 4px; }
 .card__category {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  /* No min-width: was 140px which overflowed the wellness column
+     (minmax 0, 120px) and clipped both ends of "APPETITE & FULLNESS"
+     because the chip is justify-content:center inside an
+     overflow:hidden cell. Sizing to natural content fits the cell. */
   padding: 4px 10px;
-  /* Fits "APPETITE & FULLNESS" on a single line at --text-label (11px). */
-  min-width: 140px;
   font-family: var(--font-mono);
   font-size: var(--text-label); letter-spacing: var(--tracking-mono);
   color: var(--fg-2);
