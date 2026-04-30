@@ -447,11 +447,18 @@ export function openDetail(entry, opts = {}) {
     const i = state.detailQueue.findIndex((e) => getEntryId(e) === getEntryId(entry));
     state.detailIndex = i >= 0 ? i : 0;
   } else if (Array.isArray(state.lastVisibleList) && state.lastVisibleList.length > 1) {
-    // Single-card click: page Prev/Next through whatever the user is
-    // currently looking at (the filtered/sorted/grouped library).
-    // Without this, the queue collapsed to [entry] and both buttons
-    // were always disabled even though the counter read "N of M".
+    // Single-card click after a render: page Prev/Next through whatever
+    // the user is currently looking at (the filtered/sorted library).
     state.detailQueue = state.lastVisibleList;
+    const i = state.detailQueue.findIndex((e) => getEntryId(e) === getEntryId(entry));
+    state.detailIndex = i >= 0 ? i : 0;
+  } else if (Array.isArray(state.db?.entries) && state.db.entries.length > 1) {
+    // Hash-direct deep-link (e.g. /web/#entry=MT-1 from the marketing
+    // landing): render() hasn't populated lastVisibleList yet, so fall
+    // back to the full corpus. Without this branch the queue collapsed
+    // to a single entry and both Prev/Next stayed disabled — counter
+    // showed "1 of 1" instead of paging through all 45 entries.
+    state.detailQueue = state.db.entries;
     const i = state.detailQueue.findIndex((e) => getEntryId(e) === getEntryId(entry));
     state.detailIndex = i >= 0 ? i : 0;
   } else {
