@@ -1148,6 +1148,11 @@ img { display: block; max-width: 100%; }
   .footer-mega {
     margin-inline: -20px;
     padding-inline: 20px;
+    /* Override the desktop clamp(80, 14vw, 240) — the 80px MIN was
+       overflowing 390px-wide phones, so "EVIDENCE > HYPE" only showed
+       "IDENCE > HY" at the visible edge. New ramp scales naturally
+       with viewport and tops out below the desktop minimum. */
+    font-size: clamp(40px, 12vw, 64px);
   }
 }
 
