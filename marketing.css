@@ -1228,6 +1228,19 @@ a.rule-row:focus-visible {
      column wide. Stack so heading + deck get full width and chips
      flow beneath. */
   .library-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+
+  /* FAQ grid on mobile: same pattern as method-head — desktop 64px
+     column gap turned into a 64px+ vertical hole between the H2
+     ("YOU ASKED.") and the question list once stacked. Tightened
+     gap + reduced section-h2 trailing margin so the H2 leads
+     directly into the first FAQ row. */
+  .faq-grid { gap: 24px; }
+  .faq-grid > .section-h2 { margin: 16px 0 8px; }
+  /* Dial back the answer's left indent (was 84px to align with the
+     desktop file-number column) — at 390px viewport that left only
+     ~250px for the answer prose. */
+  .faq-a { padding-left: 12px; }
+  .faq-item.is-open .faq-a { padding-bottom: 16px; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .hero-meta {
     font-size: 9px; gap: 8px;
