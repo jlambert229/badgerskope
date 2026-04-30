@@ -88,25 +88,9 @@ test.describe("Navigation and state — bugs that lose user context", () => {
     expect(hash).toContain("tab=stats");
   });
 
-  test("selection survives tab switching", async ({ page }) => {
-    await page.goto("/web/");
-    await page.waitForSelector(".card", { timeout: 10_000 });
-
-    // Select two cards
-    await page.locator(".card__select input").nth(0).check();
-    await page.locator(".card__select input").nth(1).check();
-    await page.waitForTimeout(200);
-
-    // Switch to stats and back
-    await page.click("#tab-stats");
-    await page.waitForTimeout(300);
-    await page.click("#tab-browse");
-    await page.waitForTimeout(300);
-
-    // Selections should persist
-    const count = await page.locator("#selection-count").textContent();
-    expect(count).toContain("2");
-  });
+  // "selection survives tab switching" — removed. The COMPARE feature
+  // was retired along with the per-row select checkbox and the
+  // selection-count bar. Nothing to persist across tab switches anymore.
 
   test("bookmarks survive page reload", async ({ page }) => {
     await page.goto("/web/");

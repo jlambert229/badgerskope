@@ -119,53 +119,11 @@ export function renderCard(entry, catIndex, cardIndex) {
     article.classList.toggle("card--bookmarked", nowOn);
   });
 
-  const selectLabel = document.createElement("label");
-  selectLabel.className = "lib-row__select card__select";
-  selectLabel.title = `Select ${displayName} for comparison`;
-  const cb = document.createElement("input");
-  cb.type = "checkbox";
-  cb.checked = selected;
-  cb.setAttribute("aria-label", `Select ${displayName}`);
-  cb.addEventListener("click", (e) => e.stopPropagation());
-  cb.addEventListener("change", () => {
-    if (cb.checked) state.selectedIds.add(id);
-    else state.selectedIds.delete(id);
-    article.classList.toggle("card--selected", state.selectedIds.has(id));
-    if (_updateSelectionToolbar) _updateSelectionToolbar();
-  });
-  selectLabel.appendChild(cb);
-
-  // hidden compare button kept for keyboard / a11y access; the visible
-  // affordance is the checkbox + selection toolbar
-  const compareBtn = document.createElement("button");
-  compareBtn.type = "button";
-  compareBtn.className = "lib-row__compare card__compare-btn";
-  compareBtn.textContent = selected ? "−" : "+";
-  compareBtn.title = selected
-    ? `Remove ${displayName} from comparison`
-    : `Add ${displayName} to comparison`;
-  compareBtn.setAttribute("aria-label", `Toggle compare for ${displayName}`);
-  compareBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (state.selectedIds.has(id)) {
-      state.selectedIds.delete(id);
-      cb.checked = false;
-    } else {
-      state.selectedIds.add(id);
-      cb.checked = true;
-    }
-    const nowSelected = state.selectedIds.has(id);
-    article.classList.toggle("card--selected", nowSelected);
-    compareBtn.textContent = nowSelected ? "−" : "+";
-    compareBtn.title = nowSelected
-      ? `Remove ${displayName} from comparison`
-      : `Add ${displayName} to comparison`;
-    if (_updateSelectionToolbar) _updateSelectionToolbar();
-  });
-
+  // Compare feature was removed from the library — the row no longer
+  // renders the select checkbox or the +/− compare button. Bookmark
+  // remains the only quick action; opening the modal is the primary
+  // affordance for everything else.
   actionsCell.appendChild(bookmarkBtn);
-  actionsCell.appendChild(selectLabel);
-  actionsCell.appendChild(compareBtn);
 
   article.appendChild(indexCell);
   article.appendChild(nameCell);

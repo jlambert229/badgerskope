@@ -48,7 +48,6 @@
         </a>
         <div class="nav-tabs" role="tablist" aria-label="Library sections">
           <button type="button" role="tab" id="tab-browse" class="nav-tab" aria-selected="true" aria-controls="panel-browse">LIBRARY</button>
-          <button type="button" role="tab" id="tab-compare" class="nav-tab" aria-selected="false" aria-controls="panel-compare" tabindex="-1">COMPARE</button>
           <button type="button" role="tab" id="tab-stats" class="nav-tab" aria-selected="false" aria-controls="panel-stats" tabindex="-1">STATS</button>
           <!-- Mobile-only mirrors of .nav-end so EVIDENCE / GLOSSARY / HELP remain reachable
                from the topnav at narrow viewports. Hidden above 700px; .nav-end renders the
@@ -68,18 +67,6 @@
            MAIN LANDMARK — wraps the three tabpanels for screen readers
            ============================================================ -->
       <main class="app-main">
-      <!-- ============================================================
-           SELECTION BAR — global, persists across LIBRARY/COMPARE/STATS
-           ============================================================ -->
-      <section class="lib-selection" id="selection-bar" hidden aria-label="Selection actions">
-        <span class="lib-selection-count" id="selection-count">0 SELECTED</span>
-        <div class="lib-selection-actions">
-          <button type="button" class="btn btn-ghost btn-sm" id="select-visible">SELECT ALL</button>
-          <button type="button" class="btn btn-ghost btn-sm" id="clear-selection" disabled>CLEAR</button>
-          <button type="button" class="btn btn-primary btn-sm" id="compare-selected" disabled>COMPARE &rarr;</button>
-          <button type="button" class="btn btn-primary btn-sm" id="view-selected" disabled>VIEW DETAILS &rarr;</button>
-        </div>
-      </section>
       <!-- ============================================================
            BROWSE / LIBRARY (the home / landing screen)
            ============================================================ -->
@@ -253,31 +240,6 @@
       </section>
 
       <!-- ============================================================
-           COMPARE
-           ============================================================ -->
-      <section
-        role="tabpanel"
-        class="lib"
-        id="panel-compare"
-        aria-labelledby="tab-compare"
-        tabindex="0"
-        hidden
-      >
-        <div class="lib-rule">
-          <span class="lib-rule-label">FILE 07 &mdash; SIDE-BY-SIDE</span>
-          <span class="lib-rule-line"></span>
-        </div>
-        <h1 class="lib-h1">COMPARE.</h1>
-
-        <div class="compare-empty" id="compare-empty">
-          <div class="compare-empty-mark" aria-hidden="true">∅</div>
-          <p class="compare-empty-title">NOTHING TO COMPARE.</p>
-          <p class="compare-empty-hint">Select 2+ entries from the Library tab and come back.</p>
-        </div>
-        <div class="compare-table-wrap" id="compare-table"></div>
-      </section>
-
-      <!-- ============================================================
            STATS
            ============================================================ -->
       <section
@@ -407,15 +369,6 @@
             <div><dt>Open detail</dt><dd>Click any card to read the full audit — evidence in context, source quality, dosing notes, side-effect profile, and synergy data.</dd></div>
             <div><dt>Collapsible sections</dt><dd>Detail-view sections (Evidence, What researchers found, Sources, etc.) collapse and expand — click any header to toggle.</dd></div>
             <div><dt>Sport flags</dt><dd>WADA-banned compounds show an amber flag on the card and a banner in the detail view.</dd></div>
-          </dl>
-        </div>
-
-        <div class="help-section">
-          <h3>SELECTING &amp; COMPARING</h3>
-          <dl class="help-list">
-            <div><dt>Select</dt><dd>Use the checkbox on each card or hit <strong>SELECT ALL</strong> in the toolbar.</dd></div>
-            <div><dt>Compare</dt><dd>With 2+ entries selected, switch to the COMPARE tab. Differences are highlighted side-by-side.</dd></div>
-            <div><dt>Stack synergy</dt><dd>The compare view also shows which selected compounds are discussed together in research or product lines.</dd></div>
           </dl>
         </div>
 
