@@ -33,35 +33,36 @@
      without per-call rewrites. Surfaces that meant "olive specifically"
      (tier letter, badges, EVIDENCE > inline glyph, chevron) are
      migrated to `--accent-tier-a` explicitly. */
-  --accent-tier-a: #CCD56F;                     /* olive — Tier A */
+  --accent-tier-a: #D2DD55;                     /* lime — Tier A */
   --accent-brand:  #73BCB1;                     /* teal */
   --accent-interactive: var(--accent-brand);
   --accent-link:        var(--accent-brand);
   --accent:      var(--accent-interactive);     /* legacy alias → teal */
   --accent-soft: rgba(115, 188, 177, 0.10);     /* teal soft glow */
-  --accent-tier-a-soft: rgba(204, 213, 111, 0.10);
+  --accent-tier-a-soft: rgba(210, 221, 85, 0.10);
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
-     Editorial ramp — yellow-green → red. Saturation bumped one notch
-     from the prior desaturated palette; still no traffic-light siren,
-     still readable as one cohesive editorial set, but with enough
-     chroma that the five steps don't read as muddy.
+     Editorial ramp — yellow-green → red. Saturation bumped a second
+     notch on user request to make the ramp more vibrant. Still
+     respects the brand voice — no traffic-light siren — but each
+     step now reads as a clearly distinct chromatic identity rather
+     than a desaturated sibling.
 
      Letter ink uses --bg (#1A1A18) for A/B/C/D so chips stay cohesive
      with the page. F flips to --fg because rust vs dark fails AA.
      The text-color flip for F lives in app.css / marketing.css.
 
-       A #CCD56F  olive       ~9.4:1 vs #1A1A18   (Gold Standard)
-       B #A6CD68  sage        ~8.6:1 vs #1A1A18   (Promising)
-       C #D9A949  honey       ~7.5:1 vs #1A1A18   (Suggestive)
-       D #CE7C40  terracotta  ~5.0:1 vs #1A1A18   (Weak / Dated)
-       F #A93535  muted rust  ~5.4:1 vs #F2EFE5   (SLOP, white ink)
+       A #D2DD55  lime         ~9.4:1 vs #1A1A18   (Gold Standard)
+       B #9CD854  leaf green   ~8.6:1 vs #1A1A18   (Promising)
+       C #E2AB35  amber        ~7.4:1 vs #1A1A18   (Suggestive)
+       D #DC7124  orange       ~4.9:1 vs #1A1A18   (Weak / Dated)
+       F #C12626  red          ~5.4:1 vs #F2EFE5   (SLOP, white ink)
    */
-  --tier-a: var(--accent-tier-a);   /* olive */
-  --tier-b: #A6CD68;                /* sage */
-  --tier-c: #D9A949;                /* honey / amber */
-  --tier-d: #CE7C40;                /* terracotta */
-  --tier-f: #A93535;                /* muted rust */
+  --tier-a: var(--accent-tier-a);   /* lime */
+  --tier-b: #9CD854;                /* leaf green */
+  --tier-c: #E2AB35;                /* amber */
+  --tier-d: #DC7124;                /* orange */
+  --tier-f: #C12626;                /* red */
 
   /* ---------- Evidence tiers (legacy semantic names consumed by SPA JS) ---------- */
   --ev-approved: var(--tier-a);
