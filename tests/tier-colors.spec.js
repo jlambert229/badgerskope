@@ -14,19 +14,19 @@ import { test, expect } from "@playwright/test";
  */
 
 const TIER_RGB = {
-  A: "rgb(210, 221, 85)", // #D2DD55 lime
-  B: "rgb(156, 216, 84)", // #9CD854 leaf green
-  C: "rgb(226, 171, 53)", // #E2AB35 amber
-  D: "rgb(220, 113, 36)", // #DC7124 orange
-  F: "rgb(193, 38, 38)",  // #C12626 red
+  A: "rgb(220, 236, 31)", // #DCEC1F electric lime
+  B: "rgb(123, 225, 44)", // #7BE12C vivid green
+  C: "rgb(242, 176, 17)", // #F2B011 bold amber
+  D: "rgb(243, 103, 21)", // #F36715 bold orange
+  F: "rgb(218, 31, 31)",  // #DA1F1F bold red
 };
 
 const TIER_HEX = {
-  A: "#D2DD55",
-  B: "#9CD854",
-  C: "#E2AB35",
-  D: "#DC7124",
-  F: "#C12626",
+  A: "#DCEC1F",
+  B: "#7BE12C",
+  C: "#F2B011",
+  D: "#F36715",
+  F: "#DA1F1F",
 };
 
 test.describe("tier color delineation", () => {
