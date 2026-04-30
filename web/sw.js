@@ -1,4 +1,12 @@
-const CACHE_NAME = "badgerskope-v8-data-first";
+// Cache name MUST be bumped on every code change so the activate
+// handler nukes the old cache and forces a fresh download. Without
+// this bump, browsers that already registered an older SW version
+// keep serving the OLD app.css / detail.js / index.html from disk
+// even after a successful Netlify deploy. (Bug observed 2026-04-29:
+// users still saw the broken Prev/Next + old modal layout 6+ hours
+// after the fix shipped.)
+const CACHE_NAME = "badgerskope-v9-network-first";
+
 const STATIC_ASSETS = [
   "/web/",
   "/web/index.html",
@@ -32,6 +40,8 @@ const STATIC_ASSETS = [
   "/web/src/features/start-here.js",
   "/web/src/features/sport-filter.js",
   "/web/src/features/experimental-toggle.js",
+  "/web/src/features/glossary-tooltips.js",
+  "/web/src/features/mobile-filter-sheet.js",
   "/web/badger-180.png",
   "/web/badger-256.png",
 ];
@@ -41,7 +51,7 @@ const DATA_URL = "/peptide-info-database.json";
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)),
   );
   self.skipWaiting();
 });
@@ -49,8 +59,10 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+      Promise.all(
+        keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)),
+      ),
+    ),
   );
   self.clients.claim();
 });
@@ -58,8 +70,11 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
 
-  // For the JSON database, always try network first (stale-while-revalidate)
-  if (url.pathname === DATA_URL || url.pathname.endsWith("peptide-info-database.json")) {
+  // For the JSON database, try network first; fall back to cache when offline.
+  if (
+    url.pathname === DATA_URL ||
+    url.pathname.endsWith("peptide-info-database.json")
+  ) {
     e.respondWith(
       fetch(e.request)
         .then((res) => {
@@ -67,20 +82,25 @@ self.addEventListener("fetch", (e) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
           return res;
         })
-        .catch(() => caches.match(e.request))
+        .catch(() => caches.match(e.request)),
     );
     return;
   }
 
-  // For static assets, try cache first then network
+  // Static app assets: NETWORK-FIRST with cache fallback. The previous
+  // cache-first strategy made deploys invisible to returning users —
+  // they would see the old code indefinitely until they manually cleared
+  // site data. Network-first means a successful fetch always wins, with
+  // the cache as an offline / slow-network safety net.
   e.respondWith(
-    caches.match(e.request).then((cached) => {
-      const fetched = fetch(e.request).then((res) => {
-        const clone = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+    fetch(e.request)
+      .then((res) => {
+        if (res && res.status === 200 && res.type !== "opaque") {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+        }
         return res;
-      });
-      return cached || fetched;
-    })
+      })
+      .catch(() => caches.match(e.request)),
   );
 });
