@@ -14,7 +14,7 @@ import { test, expect } from "@playwright/test";
  */
 
 const TIER_RGB = {
-  A: "rgb(157, 184, 19)", // #9DB813 dark chartreuse
+  A: "rgb(45, 168, 156)", // #2DA89C deep teal
   B: "rgb(74, 159, 31)",  // #4A9F1F forest green
   C: "rgb(198, 138, 10)", // #C68A0A mustard
   D: "rgb(217, 98, 27)",  // #D9621B burnt orange
@@ -22,7 +22,7 @@ const TIER_RGB = {
 };
 
 const TIER_HEX = {
-  A: "#9DB813",
+  A: "#2DA89C",
   B: "#4A9F1F",
   C: "#C68A0A",
   D: "#D9621B",
