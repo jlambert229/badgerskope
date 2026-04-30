@@ -1205,6 +1205,29 @@ a.rule-row:focus-visible {
      stacked single-column on mobile turned that into a 64px vertical
      hole. */
   .method-head { gap: 16px; margin-bottom: 32px; }
+
+  /* Legend row at mobile: desktop grid was 80/220/1fr/280; the ≤1100
+     override left it at 60/180/1fr which squished the description to
+     ~110px at 390-viewport and wrapped it to 5+ lines. Stack the chip
+     in column 1 (spanning both rows) with label + description stacked
+     in column 2. */
+  .legend-row {
+    grid-template-columns: 44px 1fr;
+    grid-auto-flow: row;
+    gap: 4px 14px;
+    padding: 16px 0;
+    align-items: start;
+  }
+  .legend-row > .tier { grid-row: 1 / 3; align-self: center; }
+  .legend-row > .legend-label,
+  .legend-row > .legend-desc { grid-column: 2; }
+  .legend-label { font-size: 18px; }
+
+  /* Library section header on mobile: 1fr auto grid kept the filter
+     chips alongside the heading, squeezing the deck sentence to one
+     column wide. Stack so heading + deck get full width and chips
+     flow beneath. */
+  .library-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .hero-meta {
     font-size: 9px; gap: 8px;
