@@ -1193,6 +1193,18 @@ a.rule-row:focus-visible {
   .anchor-card { padding-left: 20px; padding-right: 20px; }
   .problem-grid, .method-grid { grid-template-columns: 1fr; }
   .problem-card, .method-step { border-right: 0 !important; }
+  /* Drop the desktop min-heights at single-column mobile — they bloated
+     each card to 280–320px even when content was 4 lines, leaving dead
+     vertical space between every step. Sizing to natural content. */
+  .problem-card { min-height: 0; padding: 24px 0; }
+  .method-step { min-height: 0; padding: 32px 0; }
+  .method-title { margin-top: 56px; }
+  .method-n { font-size: 64px; top: 16px; right: 12px; }
+  /* Method-head: tighten the gap between H2 ("FOUR STEPS. NO VIBES.")
+     and the deck sentence — desktop allowed 64px between grid columns,
+     stacked single-column on mobile turned that into a 64px vertical
+     hole. */
+  .method-head { gap: 16px; margin-bottom: 32px; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .hero-meta {
     font-size: 9px; gap: 8px;
