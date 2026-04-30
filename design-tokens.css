@@ -33,31 +33,32 @@
      without per-call rewrites. Surfaces that meant "olive specifically"
      (tier letter, badges, EVIDENCE > inline glyph, chevron) are
      migrated to `--accent-tier-a` explicitly. */
-  --accent-tier-a: #9DB813;                     /* dark chartreuse — Tier A */
-  --accent-brand:  #2DA89C;                     /* deep teal */
+  --accent-tier-a: #2DA89C;                     /* deep teal — Tier A */
+  --accent-brand:  #2DA89C;                     /* deep teal (shared with tier A) */
   --accent-interactive: var(--accent-brand);
   --accent-link:        var(--accent-brand);
   --accent:      var(--accent-interactive);     /* legacy alias → teal */
   --accent-soft: rgba(45, 168, 156, 0.10);      /* teal soft glow */
-  --accent-tier-a-soft: rgba(157, 184, 19, 0.10);
+  --accent-tier-a-soft: rgba(45, 168, 156, 0.10);
 
   /* ---------- Tier ramp (Evidence / Safety / Access) ----------
-     Editorial ramp — yellow-green → red. Stepped DOWN from the bold
-     "poster" palette per user request — they wanted darker, clearer
-     jewel tones rather than highlighter neons. Hue walk preserved.
-     Each step is now a saturated mid-dark with high distinctness.
+     Cool-to-warm editorial ramp: teal → forest → mustard → burnt
+     orange → crimson. Tier A unified with the brand teal so the
+     "FDA approved" chip and the interactive-accent share one identity.
+     Reuse is fine because they appear in different contexts (chip vs
+     link / focus ring / hover state).
 
      Letter ink uses --bg (#1A1A18) for A/B/C/D so chips stay cohesive
      with the page. F flips to --fg because crimson vs dark dips below
      AA. The text-color flip for F lives in app.css / marketing.css.
 
-       A #9DB813  dark chartreuse  ~7.4:1 vs #1A1A18  (Gold Standard)
-       B #4A9F1F  forest green     ~5.0:1 vs #1A1A18  (Promising)
-       C #C68A0A  mustard          ~5.2:1 vs #1A1A18  (Suggestive)
-       D #D9621B  burnt orange     ~4.7:1 vs #1A1A18  (Weak / Dated)
-       F #9C1818  crimson          ~6.4:1 vs #F2EFE5  (SLOP, white ink)
+       A #2DA89C  deep teal     ~5.7:1 vs #1A1A18  (Gold Standard)
+       B #4A9F1F  forest green  ~5.0:1 vs #1A1A18  (Promising)
+       C #C68A0A  mustard       ~5.2:1 vs #1A1A18  (Suggestive)
+       D #D9621B  burnt orange  ~4.7:1 vs #1A1A18  (Weak / Dated)
+       F #9C1818  crimson       ~6.4:1 vs #F2EFE5  (SLOP, white ink)
    */
-  --tier-a: var(--accent-tier-a);   /* dark chartreuse */
+  --tier-a: var(--accent-tier-a);   /* deep teal */
   --tier-b: #4A9F1F;                /* forest green */
   --tier-c: #C68A0A;                /* mustard */
   --tier-d: #D9621B;                /* burnt orange */
