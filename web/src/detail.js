@@ -152,7 +152,14 @@ export function renderDetailHtml(entry) {
     })
     .join("");
 
-  const compoundDesc = entry.compoundType ? compoundTypeExplainer(entry.compoundType) : "";
+  // Skip the generic "peptide" explainer ("A chain of amino acids…") — it
+  // shows on every plain peptide entry and adds zero entry-specific info,
+  // pushing the headline + summary down. Keep the explainer for non-trivial
+  // types (peptide_incretin, peptide_blend, small_molecule, cofactor, etc.)
+  // where it actually distinguishes the compound class.
+  const compoundDesc = entry.compoundType && entry.compoundType !== "peptide"
+    ? compoundTypeExplainer(entry.compoundType)
+    : "";
 
   return `
     <div class="detail__answer-zone" style="border-left: 4px solid ${tier.color}">
