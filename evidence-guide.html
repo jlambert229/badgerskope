@@ -211,6 +211,45 @@
       .nav-brand span { display: none; }
     }
 
+    /* TOC — sticky-ish in-page anchor list at the top of the article.
+       Quiet brutalist edge-bordered block; mono caps numbered links.
+       Helps orient on long mobile scrolls. */
+    .doc-toc {
+      margin: 0 0 56px;
+      padding: 24px 24px 28px;
+      border: 1px solid var(--line-2);
+      border-left: 3px solid var(--accent);
+      background: var(--bg-2);
+    }
+    .doc-toc__label {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: var(--tracking-mono-lg);
+      color: var(--fg-3);
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+    .doc-toc ol {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+    }
+    @media (max-width: 700px) { .doc-toc ol { grid-template-columns: 1fr; } }
+    .doc-toc a {
+      display: block;
+      padding: 6px 0;
+      font-family: var(--font-mono);
+      font-size: 13px; letter-spacing: 0.04em;
+      color: var(--fg-2);
+      border-bottom: 1px dashed var(--line);
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+    .doc-toc a:hover,
+    .doc-toc a:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      outline: none;
+    }
+
     /* disclaimer */
     .doc-disclaimer {
       margin-top: 24px;
@@ -284,6 +323,21 @@
   </section>
 
   <div class="doc-wrap">
+
+    <nav class="doc-toc" aria-label="On this page">
+      <p class="doc-toc__label">On this page</p>
+      <ol>
+        <li><a href="#basics">01 — The basics</a></li>
+        <li><a href="#tiers">02 — The system</a></li>
+        <li><a href="#flags">03 — Watch out</a></li>
+        <li><a href="#verify">04 — Do it yourself</a></li>
+        <li><a href="#scope">05 — Scope</a></li>
+        <li><a href="#vial-verification">06 — Verification</a></li>
+        <li><a href="#summaries-not-instructions">07 — Summaries, not instructions</a></li>
+        <li><a href="#education-only">08 — Educational groupings</a></li>
+        <li><a href="#disclaimer">09 — Fine print that matters</a></li>
+      </ol>
+    </nav>
 
     <section class="doc-section" id="basics">
       <span class="rule-label" style="display:block; margin-bottom:8px;">01 &mdash; THE BASICS</span>

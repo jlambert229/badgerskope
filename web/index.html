@@ -317,7 +317,7 @@
     <!-- ============================================================
          DETAIL MODAL
          ============================================================ -->
-    <dialog class="modal" id="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+    <dialog class="modal" id="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title" aria-describedby="detail-hint">
       <div class="modal-panel">
         <button type="button" class="modal-close modal-close--floating" id="detail-close" aria-label="Close">&times;</button>
         <nav class="detail-nav" id="detail-nav" aria-label="Selected entries" hidden>
@@ -326,7 +326,7 @@
           <button type="button" class="btn btn-ghost btn-sm" id="detail-next" aria-label="Next entry">NEXT &rarr;</button>
         </nav>
         <div id="detail-body"></div>
-        <p class="modal-hint">Press <kbd>Esc</kbd> to close &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> to navigate</p>
+        <p class="modal-hint" id="detail-hint">Press <kbd>Esc</kbd> to close &middot; <kbd>&larr;</kbd><kbd>&rarr;</kbd> to navigate</p>
       </div>
     </dialog>
 
