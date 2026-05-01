@@ -12,7 +12,7 @@
   <meta property="og:title" content="Glossary &mdash; BadgerSkope">
   <meta property="og:description" content="A searchable dictionary of peptide and medical terms, translated into plain English. No jargon, no gatekeeping.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.badgerskope.com/glossary.html">
+  <meta property="og:url" content="https://www.badgerskope.com/glossary">
   <meta property="og:image" content="https://www.badgerskope.com/lockup-og.png">
 
   <!-- Twitter -->
@@ -248,7 +248,7 @@
   <div class="nav-links">
     <a href="/web/">LIBRARY</a>
     <a href="/evidence-guide.html">EVIDENCE</a>
-    <a href="/glossary.html" style="color: var(--accent);">GLOSSARY</a>
+    <a href="/glossary.html" aria-current="page" style="color: var(--accent);">GLOSSARY</a>
     <a href="/#faq">FAQ</a>
   </div>
   <div class="nav-cta-group">
@@ -274,7 +274,7 @@
       <div class="search-wrap">
         <span class="search-icon" aria-hidden="true">/</span>
         <input
-          type="text"
+          type="search"
           class="search-input"
           id="glossary-search"
           placeholder="SEARCH TERMS — GLP-1, BIOAVAILABILITY, PLACEBO..."
@@ -283,7 +283,7 @@
           aria-label="Search glossary"
         >
       </div>
-      <div class="search-count" id="search-count"></div>
+      <div class="search-count" id="search-count" aria-live="polite" aria-atomic="true"></div>
     </div>
   </section>
 
@@ -453,8 +453,14 @@
       a.textContent = l;
       a.href = '#letter-' + l;
       if (activeLetters.indexOf(l) === -1) {
+        // No glossary terms for this letter — flag as inert. Without
+        // aria-disabled and tabindex=-1, screen readers announce these
+        // as focusable links that go nowhere.
         a.classList.add('disabled');
         a.removeAttribute('href');
+        a.setAttribute('aria-disabled', 'true');
+        a.setAttribute('tabindex', '-1');
+        a.setAttribute('aria-label', l + ' (no terms)');
       }
       letterNav.appendChild(a);
     });
@@ -527,8 +533,12 @@
           a.classList.toggle('disabled', !hasVisible);
           if (hasVisible) {
             a.href = '#letter-' + letter;
+            a.removeAttribute('aria-disabled');
+            a.removeAttribute('tabindex');
           } else {
             a.removeAttribute('href');
+            a.setAttribute('aria-disabled', 'true');
+            a.setAttribute('tabindex', '-1');
           }
         }
       });
