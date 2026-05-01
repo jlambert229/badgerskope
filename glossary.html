@@ -170,6 +170,9 @@
       margin-left: 16px;
     }
 
+    .glossary-dl {
+      margin: 0; padding: 0;
+    }
     .term-card {
       padding: 20px 0;
       border-bottom: 1px solid var(--line);
@@ -177,6 +180,7 @@
       grid-template-columns: 220px 1fr;
       gap: 32px;
       align-items: start;
+      margin: 0;
     }
     .term-card.hidden { display: none; }
     .term-name {
@@ -487,12 +491,18 @@
       heading.textContent = letter;
       section.appendChild(heading);
 
+      // Definition list — proper <dl><dt>term</dt><dd>definition</dd>
+      // semantics so screen readers announce term/definition pairs
+      // correctly. Keeps the .term-card class on the wrapper so
+      // existing styles + search filtering still work.
+      var dl = document.createElement('dl');
+      dl.classList.add('glossary-dl');
       grouped[letter].forEach(function (t) {
         var card = document.createElement('div');
         card.classList.add('term-card');
         card.setAttribute('data-search', (t.term + ' ' + t.full + ' ' + t.def).toLowerCase());
 
-        var nameEl = document.createElement('div');
+        var nameEl = document.createElement('dt');
         nameEl.classList.add('term-name');
         if (t.full) {
           nameEl.innerHTML = '<span class="term-abbr">' + escapeHtml(t.term) + '</span><br>' + escapeHtml(t.full);
@@ -500,14 +510,15 @@
           nameEl.textContent = t.term;
         }
 
-        var defEl = document.createElement('div');
+        var defEl = document.createElement('dd');
         defEl.classList.add('term-def');
         defEl.textContent = t.def;
 
         card.appendChild(nameEl);
         card.appendChild(defEl);
-        section.appendChild(card);
+        dl.appendChild(card);
       });
+      section.appendChild(dl);
 
       container.appendChild(section);
     });
