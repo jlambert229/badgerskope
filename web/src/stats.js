@@ -57,7 +57,7 @@ export function renderStatsDashboard() {
       compSorted
         .map(
           ([k, c]) =>
-            `<div class="stat-bar stat-bar--clickable" data-filter-type="compound" data-filter-value="${escapeHtml(k)}">
+            `<div class="stat-bar stat-bar--clickable" role="button" tabindex="0" aria-label="Filter library by ${escapeHtml(formatCompoundType(k))}" data-filter-type="compound" data-filter-value="${escapeHtml(k)}">
               <span class="stat-bar__label">${escapeHtml(formatCompoundType(k))}</span>
               <div class="stat-bar__track">
                 <div class="stat-bar__fill" style="--pct:${((c / compMax) * 100).toFixed(1)}%"></div>
@@ -85,7 +85,7 @@ export function renderStatsDashboard() {
       catSorted
         .map(
           ([k, c]) =>
-            `<div class="stat-bar stat-bar--clickable" data-filter-type="category" data-filter-value="${escapeHtml(k)}">
+            `<div class="stat-bar stat-bar--clickable" role="button" tabindex="0" aria-label="Filter library by ${escapeHtml(FRIENDLY_CATEGORIES[k] || k.replace(/_/g, " "))}" data-filter-type="category" data-filter-value="${escapeHtml(k)}">
               <span class="stat-bar__label">${escapeHtml(FRIENDLY_CATEGORIES[k] || k.replace(/_/g, " "))}</span>
               <div class="stat-bar__track">
                 <div class="stat-bar__fill" style="--pct:${((c / catMax) * 100).toFixed(1)}%"></div>
@@ -114,7 +114,7 @@ export function renderStatsDashboard() {
       evSorted
         .map(
           ([label, c, color, key]) =>
-            `<div class="stat-bar stat-bar--clickable" data-filter-type="evidence" data-filter-value="${escapeHtml(key)}">
+            `<div class="stat-bar stat-bar--clickable" role="button" tabindex="0" aria-label="Filter library by evidence tier ${escapeHtml(label)}" data-filter-type="evidence" data-filter-value="${escapeHtml(key)}">
               <span class="stat-bar__label">
                 <span class="stat-bar__dot" style="background:${color}"></span>
                 ${escapeHtml(label)}
@@ -145,7 +145,7 @@ export function renderStatsDashboard() {
       themeSorted
         .map(
           ([k, c]) =>
-            `<div class="stat-bar stat-bar--clickable" data-filter-type="known-for" data-filter-value="${escapeHtml(k)}">
+            `<div class="stat-bar stat-bar--clickable" role="button" tabindex="0" aria-label="Filter library by theme ${escapeHtml(GROUP_THEME_LABELS[k] || k.replace(/_/g, " "))}" data-filter-type="known-for" data-filter-value="${escapeHtml(k)}">
               <span class="stat-bar__label">${escapeHtml(GROUP_THEME_LABELS[k] || k.replace(/_/g, " "))}</span>
               <div class="stat-bar__track">
                 <div class="stat-bar__fill" style="--pct:${((c / themeMax) * 100).toFixed(1)}%"></div>
@@ -157,17 +157,26 @@ export function renderStatsDashboard() {
         .join("");
   }
 
-  /* Click-to-filter on stat bars */
+  /* Click-to-filter on stat bars (keyboard + pointer). Bars carry
+     role="button" tabindex="0" so they're focusable; Enter or Space
+     activates them just like a real button. */
+  const activate = (bar) => {
+    const type = bar.dataset.filterType;
+    const value = bar.dataset.filterValue;
+    if (type === "compound" && els.compound) els.compound.value = value;
+    else if (type === "category" && els.category) els.category.value = value;
+    else if (type === "evidence" && els.evidenceFilter) els.evidenceFilter.value = value;
+    else if (type === "known-for" && els.knownFor) els.knownFor.value = value;
+    if (_switchTab) _switchTab("browse");
+    if (_render) _render();
+  };
   els.statsDashboard.querySelectorAll(".stat-bar--clickable").forEach(bar => {
-    bar.addEventListener("click", () => {
-      const type = bar.dataset.filterType;
-      const value = bar.dataset.filterValue;
-      if (type === "compound" && els.compound) els.compound.value = value;
-      else if (type === "category" && els.category) els.category.value = value;
-      else if (type === "evidence" && els.evidenceFilter) els.evidenceFilter.value = value;
-      else if (type === "known-for" && els.knownFor) els.knownFor.value = value;
-      if (_switchTab) _switchTab("browse");
-      if (_render) _render();
+    bar.addEventListener("click", () => activate(bar));
+    bar.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        activate(bar);
+      }
     });
   });
 }

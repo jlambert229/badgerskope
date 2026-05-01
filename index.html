@@ -624,18 +624,22 @@
   ];
   const rowsEl = document.getElementById('library-rows');
   const countEl = document.getElementById('library-count');
-  const tierChip = (g) => `<span class="tier" data-grade="${g}"><span class="tier-letter">${g}</span></span>`;
+  // Tier-letter expansion for screen readers — without an aria-label,
+  // the badges read as bare letters ("A B C") with no semantic meaning.
+  const TIER_NAMES = { A: 'Gold standard', B: 'Promising', C: 'Suggestive', D: 'Weak / dated', F: 'Slop' };
+  const tierChip = (g, axis) =>
+    `<span class="tier" data-grade="${g}" aria-label="${axis}: tier ${g}, ${TIER_NAMES[g] || ''}"><span class="tier-letter" aria-hidden="true">${g}</span></span>`;
   const renderLibrary = (filter) => {
     const visible = filter === 'ALL' ? files : files.filter(f => f.e === filter);
     rowsEl.innerHTML = visible.map(f => `
-      <a class="library-row" href="/web/#entry=${encodeURIComponent(f.slug)}">
+      <a class="library-row" href="/web/#entry=${encodeURIComponent(f.slug)}" aria-label="${f.name}, evidence tier ${f.e}, safety tier ${f.s}, access tier ${f.a}">
         <div class="lib-name">
           <div class="lib-name-main">${f.name}</div>
           <div class="lib-name-aka">${f.aka}</div>
         </div>
-        <div>${tierChip(f.e)}</div>
-        <div>${tierChip(f.s)}</div>
-        <div>${tierChip(f.a)}</div>
+        <div>${tierChip(f.e, 'Evidence')}</div>
+        <div>${tierChip(f.s, 'Safety')}</div>
+        <div>${tierChip(f.a, 'Access')}</div>
         <div class="mono">${f.n.toLocaleString()}</div>
         <div class="lib-claim">${f.claim}</div>
         <div class="mono lib-filed">${f.filed}</div>

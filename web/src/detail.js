@@ -440,7 +440,18 @@ export function bindDetailEvents() {
   });
 }
 
+// Last element to receive focus before the dialog opened. We restore
+// focus here on close so keyboard / screen-reader users return to
+// where they were instead of being dumped at the body. Set lazily
+// each open; cleared on close.
+let _detailReturnFocus = null;
+
 export function openDetail(entry, opts = {}) {
+  // Capture the trigger so we can return focus to it on close (a11y
+  // requirement — without this, screen readers lose place after Esc).
+  _detailReturnFocus = document.activeElement instanceof HTMLElement
+    ? document.activeElement
+    : null;
   if (opts.multiQueue && opts.multiQueue.length > 1) {
     // Caller supplied an explicit queue (e.g. compare-tab navigation).
     state.detailQueue = opts.multiQueue;
@@ -482,4 +493,11 @@ export function closeDetail() {
     delete params.entry;
     _writeHashParams(params);
   }
+  // Restore focus to the element that triggered the dialog. Without
+  // this, focus lands on document.body after .close() and screen
+  // readers / keyboard users lose their place in the page.
+  if (_detailReturnFocus && document.contains(_detailReturnFocus)) {
+    _detailReturnFocus.focus({ preventScroll: false });
+  }
+  _detailReturnFocus = null;
 }

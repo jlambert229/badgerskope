@@ -312,7 +312,7 @@
     <!-- ============================================================
          DETAIL MODAL
          ============================================================ -->
-    <dialog class="modal" id="detail-dialog" aria-labelledby="detail-title">
+    <dialog class="modal" id="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
       <div class="modal-panel">
         <button type="button" class="modal-close modal-close--floating" id="detail-close" aria-label="Close">&times;</button>
         <nav class="detail-nav" id="detail-nav" aria-label="Selected entries" hidden>
@@ -328,7 +328,7 @@
     <!-- ============================================================
          SHORTCUTS DIALOG
          ============================================================ -->
-    <dialog class="modal modal--compact" id="shortcuts-dialog" aria-labelledby="shortcuts-title">
+    <dialog class="modal modal--compact" id="shortcuts-dialog" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
       <div class="modal-panel">
         <button type="button" class="modal-close" id="shortcuts-close" aria-label="Close shortcuts">&times;</button>
         <h2 id="shortcuts-title" class="modal-title">KEYBOARD SHORTCUTS.</h2>
@@ -347,7 +347,7 @@
     <!-- ============================================================
          HELP DIALOG
          ============================================================ -->
-    <dialog class="modal" id="help-dialog" aria-labelledby="help-title">
+    <dialog class="modal" id="help-dialog" role="dialog" aria-modal="true" aria-labelledby="help-title">
       <div class="modal-panel modal-panel--wide">
         <button type="button" class="modal-close" id="help-close" aria-label="Close">&times;</button>
         <h2 id="help-title" class="modal-title">HOW TO USE THE LIBRARY.</h2>
