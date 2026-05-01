@@ -303,6 +303,16 @@ function render() {
     }
     if (selN) html += ` \u00b7 ${selN} SELECTED`;
     els.stats.innerHTML = html;
+    // Mirror the count to the off-screen live region for screen
+    // readers \u2014 the visible #stats span is now aria-hidden inside
+    // the H1 to avoid polluting the document outline.
+    const liveStatus = document.getElementById("lib-status");
+    if (liveStatus) {
+      const plain = list.length === total
+        ? `${total} compounds in library`
+        : `Showing ${list.length} of ${total} compounds`;
+      liveStatus.textContent = plain + (hiddenExperimental > 0 ? `, ${hiddenExperimental} experimental hidden` : "");
+    }
     const showBtn = document.getElementById("show-experimental-inline");
     if (showBtn) {
       showBtn.addEventListener("click", () => {
@@ -473,6 +483,24 @@ async function init() {
   updateSelectionToolbar();
   updateBookmarksBar();
   applyHashOnLoad();
+
+  // Bookmarks bar is now a toggle button — click flips the
+  // BOOKMARKED-ONLY filter so users can narrow the library to their
+  // saved entries from anywhere on the page. (Was visually styled
+  // as a button but did nothing.)
+  const bookmarksBar = document.getElementById("bookmarks-bar");
+  if (bookmarksBar) {
+    bookmarksBar.addEventListener("click", () => {
+      // The bookmarks-toggle feature renders checkboxes both inside
+      // the filter strip and (on mobile) inside the filter sheet.
+      // Flip the FIRST one and let the feature module sync the rest.
+      const cb = document.querySelector(".bookmarks-toggle input[type='checkbox']");
+      if (!cb) return;
+      cb.checked = !cb.checked;
+      cb.dispatchEvent(new Event("change", { bubbles: true }));
+      bookmarksBar.setAttribute("aria-pressed", String(cb.checked));
+    });
+  }
 
   // Filter events. Each change marks "user has interacted" so the
   // PR-D landing override (evidence-tier sort + 25-row cap) stops applying

@@ -77,11 +77,16 @@
         aria-labelledby="tab-browse"
         tabindex="0"
       >
-        <h1 class="lib-meta-strip" aria-label="Library status">
+        <h1 class="lib-meta-strip">
           <span class="lib-meta-strip__label">LIBRARY</span>
           <span class="lib-meta-strip__sep" aria-hidden="true">&middot;</span>
-          <span id="stats" aria-live="polite" class="lib-meta-strip__count">&mdash;</span>
+          <span id="stats" class="lib-meta-strip__count" aria-hidden="true">&mdash;</span>
         </h1>
+        <!-- Off-screen live region announces the count to screen
+             readers without polluting the H1's document outline.
+             #stats above carries the same text for sighted users
+             but is aria-hidden so it doesn't double-announce. -->
+        <div id="lib-status" class="visually-hidden" aria-live="polite" aria-atomic="true" role="status"></div>
 
         <p class="lib-disclaimer-banner" role="note">
           Educational reference only &mdash; not medical advice.
@@ -269,22 +274,22 @@
           </div>
 
           <div class="stat-card" id="stat-evidence">
-            <h3 class="stat-card__title">BY EVIDENCE TIER</h3>
+            <h2 class="stat-card__title">BY EVIDENCE TIER</h2>
             <div class="stat-card__body"></div>
           </div>
 
           <div class="stat-card" id="stat-compounds">
-            <h3 class="stat-card__title">BY COMPOUND TYPE</h3>
+            <h2 class="stat-card__title">BY COMPOUND TYPE</h2>
             <div class="stat-card__body"></div>
           </div>
 
           <div class="stat-card" id="stat-categories">
-            <h3 class="stat-card__title">BY WELLNESS AREA</h3>
+            <h2 class="stat-card__title">BY WELLNESS AREA</h2>
             <div class="stat-card__body"></div>
           </div>
 
           <div class="stat-card" id="stat-themes">
-            <h3 class="stat-card__title">BY RESEARCH THEME</h3>
+            <h2 class="stat-card__title">BY RESEARCH THEME</h2>
             <div class="stat-card__body"></div>
           </div>
         </section>
@@ -390,11 +395,11 @@
     <!-- ============================================================
          BOOKMARKS BAR + BACK TO TOP
          ============================================================ -->
-    <div class="bookmarks-bar" id="bookmarks-bar" aria-live="polite" hidden>
+    <button type="button" class="bookmarks-bar" id="bookmarks-bar" aria-pressed="false" aria-label="Show bookmarked compounds only" hidden>
       <span class="bookmarks-bar__icon" aria-hidden="true">★</span>
-      <span class="bookmarks-bar__count" id="bookmarks-count">0</span>
+      <span class="bookmarks-bar__count" id="bookmarks-count" aria-live="polite">0</span>
       <span class="bookmarks-bar__label">BOOKMARKED</span>
-    </div>
+    </button>
 
     <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>↑</button>
 

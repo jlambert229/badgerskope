@@ -74,6 +74,17 @@ export function applyHashOnLoad() {
   if (els.knownFor)       els.knownFor.value       = params["known-for"]  || "";
   if (els.evidenceFilter) els.evidenceFilter.value = params.evidence      || "";
 
+  // Allow deep-linking the sort + group selects from external URLs
+  // (footer "By evidence tier" → /web/#sort=evidence). Ignored if the
+  // value isn't a known option.
+  if (els.sort && params.sort && [...els.sort.options].some(o => o.value === params.sort)) {
+    els.sort.value = params.sort;
+  }
+  const groupBy = document.getElementById("group-by");
+  if (groupBy && params.group && [...groupBy.options].some(o => o.value === params.group)) {
+    groupBy.value = params.group;
+  }
+
   // Open deep-linked entry before switchTab/render. Otherwise updateHashFromState()
   // runs while the dialog is still closed and drops entry= from the URL.
   if (params.entry && _openDetail) {
