@@ -220,7 +220,7 @@ img { display: block; max-width: 100%; }
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 14px 0;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 .hero-grid {
   display: grid;
@@ -295,7 +295,7 @@ img { display: block; max-width: 100%; }
 
 .hero-cta {
   display: flex; gap: 12px;
-  margin-bottom: 56px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
 }
 .btn {
@@ -864,8 +864,9 @@ img { display: block; max-width: 100%; }
 .sub-form button {
   background: var(--accent); color: var(--bg);
   font-family: var(--font-mono);
-  font-size: 13px; letter-spacing: var(--tracking-mono);
-  padding: 0 28px;
+  font-size: 13px; line-height: 1.2;
+  letter-spacing: var(--tracking-mono);
+  padding: 18px 28px;
   border: 1px solid var(--accent);
   transition: background var(--transition-fast),
               border-color var(--transition-fast);
@@ -911,7 +912,7 @@ img { display: block; max-width: 100%; }
 }
 .footer-top {
   display: grid; grid-template-columns: 1fr 2fr;
-  gap: 64px;
+  gap: 40px;
   padding-bottom: 56px;
 }
 .wordmark { display: flex; align-items: center; gap: 16px; }
@@ -1193,7 +1194,7 @@ img { display: block; max-width: 100%; }
        overflowing 390px-wide phones, so "EVIDENCE > HYPE" only showed
        "IDENCE > HY" at the visible edge. New ramp scales naturally
        with viewport and tops out below the desktop minimum. */
-    font-size: clamp(40px, 12vw, 64px);
+    font-size: clamp(32px, 10vw, 40px);
   }
 }
 
@@ -1231,6 +1232,12 @@ a.rule-row:focus-visible {
   .feature, .faq, .subscribe, .footer {
     padding-left: 20px; padding-right: 20px;
   }
+  /* Mobile section padding-top: desktop 96px (or hero 56px) over a 390px
+     viewport leaves a third of the screen blank above content. Reset all
+     section blocks to 64px top, hero to 32px top. Bottom padding kept. */
+  .hero { padding-top: 32px; }
+  .problem, .method, .legend, .library,
+  .feature, .faq, .subscribe { padding-top: 64px; }
   .anchor-card { padding-left: 20px; padding-right: 20px; }
   .problem-grid, .method-grid { grid-template-columns: 1fr; }
   .problem-card, .method-step { border-right: 0 !important; }
@@ -1270,6 +1277,12 @@ a.rule-row:focus-visible {
      flow beneath. */
   .library-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
 
+  /* Tighten filter chips on mobile so all six (ALL + TIER A–F) fit one row
+     at 390px — desktop padding (8/14) wraps TIER D + TIER F to a second
+     line and orphans them. */
+  .library-filter { gap: 4px; }
+  .library-filter .chip { padding: 6px 8px; letter-spacing: 0.06em; }
+
   /* FAQ grid on mobile: same pattern as method-head — desktop 64px
      column gap turned into a 64px+ vertical hole between the H2
      ("YOU ASKED.") and the question list once stacked. Tightened
@@ -1284,7 +1297,7 @@ a.rule-row:focus-visible {
   .faq-item.is-open .faq-a { padding-bottom: 16px; }
   .hero-stats { grid-template-columns: 1fr 1fr; }
   .hero-meta {
-    font-size: 9px; gap: 8px;
+    font-size: 11px; gap: 8px;
     flex-wrap: wrap;
   }
   .hero-card { padding: 20px; }
@@ -1297,8 +1310,12 @@ a.rule-row:focus-visible {
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .sub-form { grid-template-columns: 1fr; }
   .footer-bot { flex-direction: column; gap: 12px; }
+  /* minmax(0, …) prevents intrinsic min-content (nested .lib-name-main +
+     .lib-name-aka in rows vs. plain text in TH) from skewing fr-based
+     column widths — without it the COMPOUND header column rendered ~9px
+     narrower than the row name column at 390px. */
   .library-th, .library-row {
-    grid-template-columns: 1.4fr 0.7fr 0.7fr 0.4fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr) minmax(0, 0.6fr) 32px;
   }
   .library-th > div:nth-child(3),
   .library-row > *:nth-child(3),
