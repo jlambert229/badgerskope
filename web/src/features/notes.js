@@ -92,7 +92,8 @@ function addExportNotes() {
   exportBtn.type = "button";
   exportBtn.className = "nav-link";
   exportBtn.textContent = "Export notes";
-  exportBtn.title = "Download all your personal notes";
+  exportBtn.title = "Download all your private notes as a text file";
+  exportBtn.setAttribute("aria-label", "Export your private notes as a text file");
   exportBtn.id = "export-notes";
 
   const helpBtn = document.getElementById("open-help");
