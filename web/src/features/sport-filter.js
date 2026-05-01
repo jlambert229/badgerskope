@@ -17,8 +17,9 @@ export function initSportFilter() {
 
   const wrap = document.createElement("label");
   wrap.className = "sport-filter";
+  wrap.htmlFor = "toggle-sport-banned";
   wrap.innerHTML = `
-    <input type="checkbox" class="sport-filter__cb" />
+    <input type="checkbox" class="sport-filter__cb" id="toggle-sport-banned" aria-label="Hide WADA sport-banned compounds" />
     <span class="sport-filter__label">HIDE SPORT-BANNED</span>
   `;
 
