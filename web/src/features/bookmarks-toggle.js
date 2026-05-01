@@ -31,7 +31,11 @@ export function initBookmarksToggle() {
   function createToggle(parent, position, label) {
     const toggle = document.createElement("label");
     toggle.className = "bookmarks-toggle";
-    toggle.innerHTML = `<input type="checkbox"> <span>${label}</span>`;
+    // Unique id per toggle instance so multiple bookmarks-toggles
+    // (sticky bar + filter sheet) get distinct label-input associations.
+    const inputId = "toggle-bookmarks-" + (checkboxes.length + 1);
+    toggle.htmlFor = inputId;
+    toggle.innerHTML = `<input type="checkbox" id="${inputId}" aria-label="${label}"> <span>${label}</span>`;
     if (position === "prepend") parent.prepend(toggle);
     else parent.appendChild(toggle);
     const cb = toggle.querySelector("input");

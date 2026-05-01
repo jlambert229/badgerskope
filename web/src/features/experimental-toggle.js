@@ -27,8 +27,9 @@ export function initExperimentalToggle({ onChange } = {}) {
   label.title =
     "Show entries without documented side-effect data (early-stage, " +
     "preclinical, or grey-market peptides)";
+  label.htmlFor = "toggle-experimental";
   label.innerHTML =
-    '<input type="checkbox"> <span>SHOW EXPERIMENTAL</span>';
+    '<input type="checkbox" id="toggle-experimental" aria-label="Show experimental compounds"> <span>SHOW EXPERIMENTAL</span>';
   slot.appendChild(label);
 
   const cb = label.querySelector("input");

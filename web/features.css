@@ -276,6 +276,16 @@ details.detail__section--note[open]::after { display: none; }
   transition: all var(--transition-fast);
 }
 .synergy-pill:hover { border-color: var(--accent); color: var(--accent); }
+/* Unlinked variant — used when the synergy target ("Cag-10mg") doesn't
+   match an entry. Renders as a quiet tag, not a button: dashed border,
+   muted color, no hover affordance, cursor: default so users don't
+   expect a click target. */
+.synergy-pill--unlinked {
+  border-style: dashed;
+  color: var(--fg-3);
+  cursor: default;
+}
+.synergy-pill--unlinked:hover { border-color: var(--line-2); color: var(--fg-3); }
 
 .detail__disclaimer {
   margin-top: 24px;

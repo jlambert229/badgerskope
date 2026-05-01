@@ -70,6 +70,31 @@ export function formatEvidenceBasis(key) {
 /*  Synergy pills                                                      */
 /* ------------------------------------------------------------------ */
 
+/** Resolve a synergy target like "Cag-10mg" or "BPC-157 10mg" to a real
+ *  entry. Vendor-SKU dose suffixes ("-10mg", " 20mg") often don't match
+ *  the entry's clean catalog.title, so fall through with the suffix
+ *  stripped before giving up. */
+function resolveSynergyTarget(t) {
+  if (!t) return null;
+  const entries = state.db?.entries || [];
+  // Exact match against catalog.title or commonDrugName.
+  const exact = entries.find(
+    (e) => getCatalogTitle(e) === t ||
+           (e.catalog?.commonDrugName && e.catalog.commonDrugName === t),
+  );
+  if (exact) return exact;
+  // Strip trailing "-NNNmg" or " NNNmg" / " NNNmcg" / " NNNmg/...mg".
+  const stripped = t.replace(/[\s-][\d./]+\s*(mg|mcg|µg|iu)\b.*$/i, "").trim();
+  if (stripped && stripped !== t) {
+    const m = entries.find(
+      (e) => getCatalogTitle(e).toLowerCase() === stripped.toLowerCase() ||
+             (e.catalog?.commonDrugName || "").toLowerCase() === stripped.toLowerCase(),
+    );
+    if (m) return m;
+  }
+  return null;
+}
+
 export function renderSynergyPills(synergyList) {
   return (synergyList || [])
     .map((s) => {
@@ -77,11 +102,16 @@ export function renderSynergyPills(synergyList) {
       const titles = s.catalogTitles || [];
       const pills = titles
         .map((t) => {
-          const linked = (state.db?.entries || []).find(
-            (e) => getCatalogTitle(e) === t,
-          );
+          const linked = resolveSynergyTarget(t);
           const display = linked ? getDisplayName(linked) : t;
-          return `<button type="button" class="synergy-pill" data-synergy-title="${escapeHtml(t)}" title="${escapeHtml(t)}">${escapeHtml(display)}</button>`;
+          if (!linked) {
+            // No matching entry — render as a quiet, non-interactive
+            // tag so it still conveys context but doesn't pretend to
+            // be clickable. (Was a <button> with no handler.)
+            return `<span class="synergy-pill synergy-pill--unlinked" aria-label="Mentioned with: ${escapeHtml(t)} (no entry yet)" title="${escapeHtml(t)} — not in the library">${escapeHtml(display)}</span>`;
+          }
+          const targetTitle = getCatalogTitle(linked);
+          return `<button type="button" class="synergy-pill" data-synergy-title="${escapeHtml(targetTitle)}" aria-label="View ${escapeHtml(display)} (often paired with this compound)" title="View ${escapeHtml(display)}">${escapeHtml(display)}</button>`;
         })
         .join(" ");
       return `<li>${pills}
@@ -394,12 +424,27 @@ export function syncDetailNav() {
   }
 }
 
+/** Mirror native <details> open state to aria-expanded on the
+ *  enclosed <summary>. iOS VoiceOver historically under-reports the
+ *  state of native <details> elements; an explicit aria-expanded
+ *  ensures consistent screen-reader announcement on toggle. */
+function syncDetailsAria(root) {
+  root.querySelectorAll("details.detail__section").forEach((d) => {
+    const sum = d.querySelector(":scope > summary");
+    if (!sum) return;
+    const setExpanded = () => sum.setAttribute("aria-expanded", String(d.open));
+    setExpanded();
+    d.addEventListener("toggle", setExpanded);
+  });
+}
+
 export function showDetailAt(index) {
   state.detailIndex = index;
   const entry = state.detailQueue[state.detailIndex];
   if (!entry) return;
   els.detailBody.innerHTML = renderDetailHtml(entry);
   decorateDetailBody();
+  syncDetailsAria(els.detailBody);
   syncDetailNav();
   bindDetailEvents();
   if (_updateHash) {

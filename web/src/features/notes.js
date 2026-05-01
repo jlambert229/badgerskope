@@ -22,13 +22,17 @@ function addNotesFeature() {
     const section = document.createElement("details");
     section.className = "detail__section user-notes";
     const existing = userNotes[entryId] || "";
+    const titleEl = detailBody.querySelector(".detail__title");
+    const entryName = (titleEl?.textContent || "this entry").trim();
+    const ta = `note-${entryId.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
     section.innerHTML = `
       <summary><h3>Your private notes</h3></summary>
       <p class="detail__help">Only stored on this device. Never sent anywhere.</p>
-      <textarea class="user-notes__input" placeholder="Add your own notes about this compound..." rows="3">${escapeHtml(existing)}</textarea>
+      <label class="visually-hidden" for="${ta}">Your notes for ${escapeHtml(entryName)}</label>
+      <textarea id="${ta}" class="user-notes__input" placeholder="Add your own notes about this compound..." rows="3" aria-label="Your notes for ${escapeHtml(entryName)}">${escapeHtml(existing)}</textarea>
       <div class="user-notes__actions">
-        <button type="button" class="user-notes__save">Save note</button>
-        ${existing ? '<button type="button" class="user-notes__clear">Clear</button>' : ''}
+        <button type="button" class="user-notes__save" aria-label="Save note for ${escapeHtml(entryName)}">Save note</button>
+        ${existing ? `<button type="button" class="user-notes__clear" aria-label="Clear note for ${escapeHtml(entryName)}">Clear</button>` : ''}
       </div>
     `;
 

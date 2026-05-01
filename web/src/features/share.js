@@ -20,7 +20,9 @@ function addShareButton() {
     btn.type = "button";
     btn.className = "share-btn";
     btn.textContent = "Copy link";
-    btn.title = "Copy shareable link to this entry";
+    const entryName = (title.textContent || "").trim();
+    btn.title = `Copy shareable link to ${entryName}`;
+    btn.setAttribute("aria-label", `Copy link to ${entryName}`);
     btn.addEventListener("click", () => {
       const catalog =
         title.dataset.catalogTitle || title.textContent || "";
@@ -59,12 +61,15 @@ function addPrintButton() {
     if (!detailBody || detailBody.querySelector(".print-btn")) return;
     const header = detailBody.querySelector(".detail__answer-actions") || detailBody.querySelector(".detail__header");
     if (!header) return;
+    const title = detailBody.querySelector(".detail__title");
+    const entryName = (title?.textContent || "").trim();
 
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "print-btn";
     btn.textContent = "Print";
-    btn.title = "Print this entry";
+    btn.title = `Print ${entryName} entry`;
+    btn.setAttribute("aria-label", `Print ${entryName} entry`);
     btn.addEventListener("click", () => {
       window.print();
     });
