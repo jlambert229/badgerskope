@@ -143,7 +143,7 @@
       </div>
       <p class="anchor-card__summary">
         BPC-157 is the most popular peptide on the internet and has
-        <span class="redact">two</span> registered human trials to its name. Both
+        two registered human trials to its name. Both
         of those things are true at the same time.
       </p>
       <a class="anchor-card__cta" href="/web/#entry=BPC-157%2010mg" data-anchor-cta>
@@ -153,8 +153,8 @@
     <ul class="anchor-card__claim-list">
       <li class="anchor-card__claim">
         <span class="anchor-card__claim-label">Vendor copy says</span>
-        It's <span class="redact">a miracle peptide</span> &mdash;
-        <span class="redact">basically Wolverine</span> in a vial.
+        It's <span class="redact" title="Vendor / podcast hype — hover or scroll to reveal what's being audited">a miracle peptide</span> &mdash;
+        <span class="redact" title="Vendor / podcast hype — hover or scroll to reveal what's being audited">basically Wolverine</span> in a vial.
       </li>
       <li class="anchor-card__claim">
         <span class="anchor-card__claim-label">The literature says</span>
@@ -366,7 +366,7 @@
 
       <div class="feature-body">
         <div class="feature-lede">
-          BPC-157 has been called a &ldquo;<span class="redact">miracle peptide</span>,&rdquo; a &ldquo;<span class="redact">Wolverine drug</span>,&rdquo; and &ldquo;the closest thing to <span class="redact">actual regeneration</span>.&rdquo; It might also be useful. Both can be true.
+          BPC-157 has been called a &ldquo;<span class="redact" title="Vendor / podcast hype — hover or scroll to reveal what's being audited">miracle peptide</span>,&rdquo; a &ldquo;<span class="redact" title="Vendor / podcast hype — hover or scroll to reveal what's being audited">Wolverine drug</span>,&rdquo; and &ldquo;the closest thing to <span class="redact" title="Vendor / podcast hype — hover or scroll to reveal what's being audited">actual regeneration</span>.&rdquo; It might also be useful. Both can be true.
         </div>
 
         <div class="feature-cols">
@@ -570,6 +570,13 @@
     }, { threshold: 0.7 });
     redactTargets.forEach((el) => io.observe(el));
   }
+  // Tap-to-toggle for touch devices (hover doesn't fire on tap; the
+  // scroll-in reveal only triggers once per page load). Clicking a
+  // bar removes the .is-redacted class to reveal the phrase, or
+  // re-adds it to re-redact.
+  redactTargets.forEach((el) => {
+    el.addEventListener('click', () => el.classList.toggle('is-redacted'));
+  });
 
   // ===========================================================
   // Ticker — 12 items duplicated for seamless loop
