@@ -1228,6 +1228,15 @@ a.rule-row:focus-visible {
 
 @media (max-width: 700px) {
   .nav { padding: 14px 20px; gap: 12px; }
+  /* Nav overflow at mobile: with both CTAs + brand icon, total nav width
+     is ~547px against a 375–430px viewport, clipping SUBSCRIBE entirely
+     and partially clipping OPEN LIBRARY. Drop the SUBSCRIBE CTA (entry
+     point preserved by hero, in-page subscribe section, and footer) and
+     drop the badger mark to recover ~50px so OPEN LIBRARY fits at 390+.
+     At ≤480px (iPhone SE) hide the remaining CTA too — the hero CTA is
+     immediately below the nav. */
+  .nav-mark { display: none; }
+  .nav-cta-group .nav-cta:nth-child(2) { display: none; }
   .hero, .problem, .method, .legend, .library,
   .feature, .faq, .subscribe, .footer {
     padding-left: 20px; padding-right: 20px;
@@ -1279,9 +1288,11 @@ a.rule-row:focus-visible {
 
   /* Tighten filter chips on mobile so all six (ALL + TIER A–F) fit one row
      at 390px — desktop padding (8/14) wraps TIER D + TIER F to a second
-     line and orphans them. */
+     line and orphans them. Vertical padding (9px) is the touch-target
+     side: keeps chips ≥36px tall while horizontal padding (8px) stays
+     tight enough to fit all six in 350px. */
   .library-filter { gap: 4px; }
-  .library-filter .chip { padding: 6px 8px; letter-spacing: 0.06em; }
+  .library-filter .chip { padding: 9px 8px; letter-spacing: 0.06em; }
 
   /* FAQ grid on mobile: same pattern as method-head — desktop 64px
      column gap turned into a 64px+ vertical hole between the H2
@@ -1313,9 +1324,12 @@ a.rule-row:focus-visible {
   /* minmax(0, …) prevents intrinsic min-content (nested .lib-name-main +
      .lib-name-aka in rows vs. plain text in TH) from skewing fr-based
      column widths — without it the COMPOUND header column rendered ~9px
-     narrower than the row name column at 390px. */
+     narrower than the row name column at 390px.
+     Three columns, not four: the ≤1100px hide rule above already removes
+     children 4 and 7, and this block hides 3, 5, 6 — leaving only
+     children 1 (name), 2 (evidence tier), and 8 (arrow) visible. */
   .library-th, .library-row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr) minmax(0, 0.6fr) 32px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr) 32px;
   }
   .library-th > div:nth-child(3),
   .library-row > *:nth-child(3),
@@ -1323,4 +1337,13 @@ a.rule-row:focus-visible {
   .library-row > *:nth-child(5),
   .library-th > div:nth-child(6),
   .library-row > *:nth-child(6) { display: none; }
+}
+
+/* iPhone SE (375px) and narrower: hide the remaining nav CTA so the
+   wordmark has breathing room. With brand 156px + OPEN LIBRARY 166px +
+   gaps + padding, the nav needs ≥386px to render without overlap; at
+   ≤380 the CTA gets dropped (hero CTA is immediately below). iPhone 14
+   (390px) and larger keep the OPEN LIBRARY CTA visible. */
+@media (max-width: 380px) {
+  .nav-cta-group { display: none; }
 }
