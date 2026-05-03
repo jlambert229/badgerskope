@@ -1,0 +1,74 @@
+name: Tests (WebKit)
+
+# Informational WebKit run on schedule + manual dispatch.
+# Not required for PR merge — WebKit fails environmentally on the dev
+# Linux host, but may pass on GitHub's runners. If this consistently
+# stays green for several cycles, promote to required by removing
+# PLAYWRIGHT_WEBKIT=0 from test.yml.
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"  # Mondays 14:00 UTC, 1h after source-liveness
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  playwright:
+    name: Playwright (WebKit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve Playwright version
+        id: pw
+        run: |
+          VERSION=$(node -p "require('@playwright/test/package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-webkit-${{ runner.os }}-${{ steps.pw.outputs.version }}
+
+      - name: Install Playwright (WebKit)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps webkit
+
+      - name: Install Playwright system deps (cache hit)
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps webkit
+
+      - name: Run Playwright tests (WebKit projects)
+        run: npx playwright test --project=safari-ios --project=safari-ios-landscape --project=ipad --project=safari-desktop --reporter=github,html
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-webkit
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Upload test results (failures)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-webkit
+          path: test-results/
+          retention-days: 14
