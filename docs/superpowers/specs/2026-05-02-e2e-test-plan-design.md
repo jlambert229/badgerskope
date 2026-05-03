@@ -376,7 +376,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-tier-001 | Each tier (E1–E4) has distinct accent color sourced from `--tier-*` CSS vars (no JS hardcoding) | happy | mobile | `tests/tier-colors.spec.js` | covered |
+| LIB-tier-001 | Each tier (E1–E4) has distinct accent color sourced from `--tier-*` CSS vars (no JS hardcoding) | happy | mobile | `tests/tier-colors.spec.js` | partial |
 | LIB-tier-002 | Tier badges render with consistent label format | happy | mobile | — | gap |
 
 ### 5.18 Offline / PWA
