@@ -1,7 +1,7 @@
 # E2E Test Plan — design
 
 **Date**: 2026-05-02
-**Status**: Draft for review (revision 2 — trimmed after shipped-surface audit)
+**Status**: Draft for review (revision 3 — verified against actual spec assertions)
 **Author**: jlambert229 (with Claude)
 
 ---
