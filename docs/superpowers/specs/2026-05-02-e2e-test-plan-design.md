@@ -112,8 +112,8 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-bootstrap-001 | Page returns 200, `<main>` renders, all declared section IDs (`hero-h1`, `anchor-card`, `problem`, `method`, `legend`, `library`, `receipts`, `faq`, `subscribe`) present | happy | mobile | `tests/app-loads.spec.js` | partial |
-| MKT-bootstrap-002 | No console errors on initial load | failure | mobile | `tests/edge-cases.spec.js` | partial |
+| MKT-bootstrap-001 | Page returns 200, `<main>` renders, all declared section IDs (`hero-h1`, `anchor-card`, `problem`, `method`, `legend`, `library`, `receipts`, `faq`, `subscribe`) present | happy | mobile | — | gap |
+| MKT-bootstrap-002 | No console errors on initial load | failure | mobile | — | gap |
 | MKT-bootstrap-003 | Page renders without JS | happy | mobile | — | out-of-scope |
 
 ### 4.2 Hero
@@ -148,7 +148,7 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 |----|----------|------|----------|-----------|--------|
 | MKT-library-001 | `library-rows` populates with example rows; `library-count` shows non-zero integer | happy | mobile | — | gap |
 | MKT-library-002 | "Open library" CTA links to `web/` | happy | mobile | — | gap |
-| MKT-library-003 | Tier badges in preview match `--tier-*` token colors | happy | mobile | `tests/tier-colors.spec.js` | covered |
+| MKT-library-003 | Tier badges in preview match `--tier-*` token colors | happy | mobile | `tests/tier-colors.spec.js` | partial |
 | MKT-library-004 | Library preview header layout at 390px | happy | mobile | `tests/mobile-spacing-pass.spec.js` | partial |
 
 ### 4.6 Receipts / Ticker
@@ -164,8 +164,8 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | MKT-faq-001 | All five FAQ entries (`faq-answer-01`–`05`) render | happy | mobile | — | gap |
-| MKT-faq-002 | FAQ disclosure toggles answers on click + keyboard | a11y | mobile | `tests/accessibility.spec.js` | partial |
-| MKT-faq-003 | FAQ uses semantic `<details>`/`<summary>` or proper ARIA | a11y | mobile | `tests/accessibility.spec.js` | partial |
+| MKT-faq-002 | FAQ disclosure toggles answers on click + keyboard | a11y | mobile | — | gap |
+| MKT-faq-003 | FAQ uses semantic `<details>`/`<summary>` or proper ARIA | a11y | mobile | — | gap |
 | MKT-faq-004 | FAQ spacing budget at 390px | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
 
 ### 4.8 Subscribe form
@@ -175,7 +175,7 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 | MKT-subscribe-001 | Subscribe form renders with `sub-email` input typed `email` and required | happy | mobile | — | gap |
 | MKT-subscribe-002 | Submit shows success state for valid email | happy | mobile | — | gap |
 | MKT-subscribe-003 | Submit shows error for invalid email | failure | mobile | — | gap |
-| MKT-subscribe-004 | Submit button has accessible label | a11y | mobile | `tests/accessibility.spec.js` | partial |
+| MKT-subscribe-004 | Submit button has accessible label | a11y | mobile | — | gap |
 
 ### 4.9 Site nav + CTAs
 
@@ -186,7 +186,7 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 | MKT-nav-003 | "Subscribe" CTA hidden at ≤700px (per PR #79) | happy | mobile | — | gap |
 | MKT-nav-004 | Nav-cta-group hidden entirely at ≤380px (iPhone SE) | happy | mobile | — | gap |
 | MKT-nav-005 | Nav doesn't horizontally overflow viewport at 375/390/430px | happy | mobile | — | gap |
-| MKT-nav-006 | Nav landmark has accessible label | a11y | mobile | `tests/accessibility.spec.js` | partial |
+| MKT-nav-006 | Nav landmark has accessible label | a11y | mobile | — | gap |
 
 ### 4.10 Footer
 
@@ -201,7 +201,7 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | MKT-brand-001 | No rounded corners on marketing surface elements | happy | mobile | — | gap |
-| MKT-brand-002 | Olive accent `#C8D17A` applied via `--accent` token (not hardcoded) | happy | mobile | `tests/tier-colors.spec.js` | partial |
+| MKT-brand-002 | Olive accent `#C8D17A` applied via `--accent` token (not hardcoded) | happy | mobile | — | gap |
 | MKT-brand-003 | Film grain overlay element present (load-bearing per brand spec) | happy | mobile | — | gap |
 | MKT-brand-004 | Oswald, Inter, JetBrains Mono fonts loaded | happy | mobile | — | gap |
 
@@ -219,9 +219,9 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-bootstrap-001 | App loads, `lib-status` reaches "ready", initial library data renders ≥1 entry | happy | mobile | `tests/app-loads.spec.js` | covered |
+| LIB-bootstrap-001 | App loads, `lib-status` reaches "ready", initial library data renders ≥1 entry | happy | mobile | `tests/app-loads.spec.js` | partial |
 | LIB-bootstrap-002 | `load-error` renders when data fetch fails | failure | mobile | — | gap |
-| LIB-bootstrap-003 | No console errors on initial load | failure | mobile | `tests/edge-cases.spec.js` | partial |
+| LIB-bootstrap-003 | No console errors on initial load | failure | mobile | — | gap |
 | LIB-bootstrap-004 | Service worker (`sw.js`) registers successfully | happy | mobile | `tests/offline-pwa.spec.js` | covered |
 
 ### 5.2 Tab navigation (Browse / Stats / Compare)
@@ -240,7 +240,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | LIB-search-002 | Empty search shows full library; no-match query shows empty state | happy | mobile | `tests/library-default-state.spec.js` | partial |
 | LIB-search-003 | Search debounces (no thrashing on fast typing) | happy | mobile | — | gap |
 | LIB-search-004 | Search prefix SVG icon renders (per PR I) | happy | mobile | `tests/pr-i-search-floating.spec.js` | covered |
-| LIB-search-005 | Search input has accessible label | a11y | mobile | `tests/accessibility.spec.js` | partial |
+| LIB-search-005 | Search input has accessible label | a11y | mobile | `tests/accessibility.spec.js` | covered |
 | LIB-search-006 | Autocomplete dropdown suggests entries (`features/search-enhance.js`) | happy | mobile | — | gap |
 | LIB-search-007 | Search highlighting visually marks matched substrings | happy | mobile | — | gap |
 
@@ -254,7 +254,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | LIB-filter-004 | Default-state chips render when no filter applied | happy | mobile+desktop | `tests/library-default-state.spec.js` | covered |
 | LIB-filter-005 | Chip touch target ≥37px height at mobile (per PR #79) | a11y | mobile | — | gap |
 | LIB-filter-006 | Clickable category chips on cards filter the grid (`features/chips.js`) | happy | mobile | — | gap |
-| LIB-filter-007 | Chips are keyboard-operable | a11y | desktop | `tests/accessibility.spec.js` | partial |
+| LIB-filter-007 | Chips are keyboard-operable | a11y | desktop | — | gap |
 
 ### 5.5 Mobile filter sheet
 
@@ -283,7 +283,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | LIB-grid-002 | Mobile grid uses 3-column layout (name / tier / arrow) | happy | mobile | `tests/mobile-spacing-pass.spec.js` | partial |
 | LIB-grid-003 | Desktop grid shows full column set; iPad hides cols 4 and 7 | happy | desktop+ipad | — | gap |
 | LIB-grid-004 | Inline column labels render at narrow viewports | a11y | mobile | `tests/library-responsive-labels.spec.js` | covered |
-| LIB-grid-005 | Tier badge color matches `--tier-*` token | happy | mobile | `tests/tier-colors.spec.js` | covered |
+| LIB-grid-005 | Tier badge color matches `--tier-*` token | happy | mobile | `tests/tier-colors.spec.js` | partial |
 | LIB-grid-006 | Library dedupes by base compound | happy | mobile | `tests/library-dedupe.spec.js` | covered |
 | LIB-grid-007 | `result-count` and `row-count` reflect filtered list size | happy | mobile | — | gap |
 | LIB-grid-008 | Card key navigation (arrow keys move focus) | a11y | desktop | `tests/accessibility.spec.js` | partial |
@@ -368,23 +368,23 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-theme-001 | Theme toggle switches modes; preference persists across reload | happy | desktop | `tests/navigation-state.spec.js` | partial |
+| LIB-theme-001 | Theme toggle switches modes; preference persists across reload | happy | desktop | — | gap |
 | LIB-theme-002 | Auto-theme respects `prefers-color-scheme` on first visit | happy | desktop | — | gap |
-| LIB-theme-003 | Tier colors remain WCAG-passing in both themes | a11y | desktop | `tests/tier-colors.spec.js` | partial |
+| LIB-theme-003 | Tier colors remain WCAG-passing in both themes | a11y | desktop | — | gap |
 
 ### 5.17 Evidence tier visual system
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | LIB-tier-001 | Each tier (E1–E4) has distinct accent color sourced from `--tier-*` CSS vars (no JS hardcoding) | happy | mobile | `tests/tier-colors.spec.js` | covered |
-| LIB-tier-002 | Tier badges render with consistent label format | happy | mobile | `tests/tier-colors.spec.js` | partial |
+| LIB-tier-002 | Tier badges render with consistent label format | happy | mobile | — | gap |
 
 ### 5.18 Offline / PWA
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | LIB-offline-001 | Service worker registers on first visit | happy | mobile | `tests/offline-pwa.spec.js` | covered |
-| LIB-offline-002 | Page and library data load from cache when offline | failure | mobile | `tests/offline-pwa.spec.js` | partial |
+| LIB-offline-002 | Page and library data load from cache when offline | failure | mobile | `tests/offline-pwa.spec.js` | covered |
 | LIB-offline-003 | App is installable as PWA (manifest + icons) | happy | mobile | — | gap |
 | LIB-offline-004 | Offline indicator visible to user | failure | mobile | — | gap |
 
@@ -440,15 +440,15 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | LIB-chrome-002 | Floating UI (back-to-top + bookmark bar) doesn't collide | happy | mobile | `tests/pr-i-search-floating.spec.js` | covered |
 | LIB-chrome-003 | Scroll progress bar tracks position (`features/scroll.js`) | happy | mobile | — | gap |
 | LIB-chrome-004 | `footer-meta` renders with site metadata | happy | mobile | — | gap |
-| LIB-chrome-005 | Site nav landmark has accessible label | a11y | mobile | `tests/accessibility.spec.js` | partial |
+| LIB-chrome-005 | Site nav landmark has accessible label | a11y | mobile | — | gap |
 
 ### 5.26 Data invariants
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-data-001 | `peptide-info-database.json` parses and every entry has unique `id` and ≥1 evidence tier | invariant | mobile | `tests/data-integrity.spec.js` | covered |
+| LIB-data-001 | `peptide-info-database.json` parses and every entry has unique `id` and ≥1 evidence tier | invariant | mobile | `tests/data-integrity.spec.js` | partial |
 | LIB-data-002 | Every source URL is well-formed | invariant | mobile | `tests/data-integrity.spec.js` | partial |
-| LIB-data-003 | WADA-flagged entries declare the flag explicitly | invariant | mobile | `tests/data-integrity.spec.js` | partial |
+| LIB-data-003 | WADA-flagged entries declare the flag explicitly | invariant | mobile | — | gap |
 | LIB-data-004 | Schema/legend disclaimers present on entries that need them | invariant | mobile | — | gap |
 
 ---
@@ -520,7 +520,7 @@ Reference page explaining evidence tiers, methodology, and disclaimers.
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | EVD-tiers-001 | All four tiers (E1–E4) defined with examples; tier order canonical (descending strength) | happy | mobile | — | gap |
-| EVD-tiers-002 | Tier badge colors match `--tier-*` tokens | happy | mobile | `tests/tier-colors.spec.js` | partial |
+| EVD-tiers-002 | Tier badge colors match `--tier-*` tokens | happy | mobile | — | gap |
 | EVD-tiers-003 | Tier definitions use plain English | happy | mobile | — | gap |
 
 ### 7.3 Methodology sections
