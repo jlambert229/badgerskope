@@ -221,7 +221,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 |----|----------|------|----------|-----------|--------|
 | LIB-bootstrap-001 | App loads, `lib-status` reaches "ready", initial library data renders ≥1 entry | happy | mobile | `tests/app-loads.spec.js` | partial |
 | LIB-bootstrap-002 | `load-error` renders when data fetch fails | failure | mobile | — | gap |
-| LIB-bootstrap-003 | No console errors on initial load | failure | mobile | — | gap |
+| LIB-bootstrap-003 | No console errors on initial load | failure | mobile | `tests/app-loads.spec.js` | partial |
 | LIB-bootstrap-004 | Service worker (`sw.js`) registers successfully | happy | mobile | `tests/offline-pwa.spec.js` | covered |
 
 ### 5.2 Tab navigation (Browse / Stats / Compare)
