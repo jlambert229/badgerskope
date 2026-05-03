@@ -44,7 +44,7 @@ Single document with two functions:
 
 | Status | Meaning |
 |--------|---------|
-| `covered` | At least one assertion in an existing spec maps directly to this row's scenario (presumed; pending verification pass) |
+| `covered` | At least one assertion in an existing spec maps directly to this row's scenario |
 | `partial` | Scenario is partly covered (e.g., presence asserted but behavior isn't) |
 | `gap` | No existing assertion covers this row; future test obligation |
 | `out-of-scope` | Intentionally not covered — explained in the row's notes column or section 1's exclusions |
