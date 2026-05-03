@@ -228,7 +228,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-tabs-001 | `tab-browse` is active by default; switching to `tab-stats` swaps panels | happy | mobile | `tests/library-default-state.spec.js` | partial |
+| LIB-tabs-001 | `tab-browse` is active by default; switching to `tab-stats` swaps panels | happy | mobile | — | gap |
 | LIB-tabs-002 | Tab keyboard navigation (arrow keys, Home/End) and ARIA roles correct | a11y | mobile | `tests/accessibility.spec.js` | partial |
 | LIB-tabs-003 | Tab state persists in URL hash (per `router.js`) and across reload | happy | mobile | `tests/navigation-state.spec.js` | partial |
 
@@ -262,7 +262,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 |----|----------|------|----------|-----------|--------|
 | LIB-msheet-001 | `mobile-filter-trigger` visible at ≤768px and hidden above | happy | mobile+ipad+desktop | `tests/library-mobile-filter-sheet.spec.js` | covered |
 | LIB-msheet-002 | Tapping trigger opens sheet with backdrop and reparented filter controls | happy | mobile | `tests/library-mobile-filter-sheet.spec.js` | covered |
-| LIB-msheet-003 | Apply commits pending filters and closes; Reset clears pending; Done closes without applying | happy | mobile | `tests/library-mobile-filter-sheet.spec.js` | covered |
+| LIB-msheet-003 | Apply commits pending filters and closes; Reset clears pending; Done closes without applying | happy | mobile | `tests/library-mobile-filter-sheet.spec.js` | partial |
 | LIB-msheet-004 | `mobile-filter-count` badge shows pending filter count | happy | mobile | `tests/library-mobile-filter-sheet.spec.js` | partial |
 | LIB-msheet-005 | Backdrop click and Escape key close the sheet | happy | mobile | `tests/library-mobile-filter-sheet.spec.js` | partial |
 | LIB-msheet-006 | Sheet traps focus and returns focus to trigger on close | a11y | mobile | — | gap |
@@ -279,9 +279,9 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-grid-001 | Grid renders one row per entry showing name, evidence tier, arrow | happy | mobile | `tests/library-mobile-shell.spec.js` | covered |
+| LIB-grid-001 | Grid renders one row per entry showing name, evidence tier, arrow | happy | mobile | — | gap |
 | LIB-grid-002 | Mobile grid uses 3-column layout (name / tier / arrow) | happy | mobile | `tests/mobile-spacing-pass.spec.js` | partial |
-| LIB-grid-003 | Desktop grid shows full column set; iPad hides cols 4 and 7 | happy | desktop+ipad | `tests/library-mobile-shell.spec.js` | partial |
+| LIB-grid-003 | Desktop grid shows full column set; iPad hides cols 4 and 7 | happy | desktop+ipad | — | gap |
 | LIB-grid-004 | Inline column labels render at narrow viewports | a11y | mobile | `tests/library-responsive-labels.spec.js` | covered |
 | LIB-grid-005 | Tier badge color matches `--tier-*` token | happy | mobile | `tests/tier-colors.spec.js` | covered |
 | LIB-grid-006 | Library dedupes by base compound | happy | mobile | `tests/library-dedupe.spec.js` | covered |
@@ -299,9 +299,9 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | LIB-detail-003 | `detail-close`, backdrop click, and Escape all close modal | happy+a11y | mobile | `tests/ios-detail-modal.spec.js` | partial |
 | LIB-detail-004 | `detail-prev` / `detail-next` navigate to adjacent entry; `detail-nav-pos` shows "X of Y" | happy | mobile | — | gap |
 | LIB-detail-005 | Modal traps focus while open and returns focus to trigger on close | a11y | mobile | `tests/accessibility.spec.js` | partial |
-| LIB-detail-006 | Swipe nav works on mobile (touch gestures) | happy | mobile | `tests/ios-touch-interactions.spec.js` | partial |
-| LIB-detail-007 | Modal scroll-locks the page body | happy | mobile | `tests/ios-detail-modal.spec.js` | partial |
-| LIB-detail-008 | Modal renders without iOS-specific layout bugs | failure | mobile | `tests/ios-css-issues.spec.js` | covered |
+| LIB-detail-006 | Swipe nav works on mobile (touch gestures) | happy | mobile | — | gap |
+| LIB-detail-007 | Modal scroll-locks the page body | happy | mobile | — | gap |
+| LIB-detail-008 | Modal renders without iOS-specific layout bugs | failure | mobile | `tests/ios-css-issues.spec.js` | partial |
 
 ### 5.9 Notes (per-entry)
 
@@ -436,7 +436,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| LIB-chrome-001 | `back-to-top` appears after scroll threshold and scrolls to top | happy | mobile | `tests/pr-i-search-floating.spec.js` | partial |
+| LIB-chrome-001 | `back-to-top` appears after scroll threshold and scrolls to top | happy | mobile | — | gap |
 | LIB-chrome-002 | Floating UI (back-to-top + bookmark bar) doesn't collide | happy | mobile | `tests/pr-i-search-floating.spec.js` | covered |
 | LIB-chrome-003 | Scroll progress bar tracks position (`features/scroll.js`) | happy | mobile | — | gap |
 | LIB-chrome-004 | `footer-meta` renders with site metadata | happy | mobile | — | gap |
