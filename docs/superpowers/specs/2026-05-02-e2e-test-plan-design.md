@@ -211,7 +211,7 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 
 The interactive peptide library. ES-module SPA entered at `web/src/main.js`, with feature modules under `web/src/features/`.
 
-**Note (revision 2)**: legacy `web/app.js` and `web/features.js` are not loaded by `web/index.html`; they are dead code. Rows below correspond to behaviors actually shipping via `web/src/`.
+**Note (audit finding, still accurate)**: legacy `web/app.js` and `web/features.js` are not loaded by `web/index.html`; they are dead code. Rows below correspond to behaviors actually shipping via `web/src/`.
 
 **Default viewport**: `chrome-iphone` (mobile).
 
