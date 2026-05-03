@@ -120,9 +120,9 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-hero-001 | "EVIDENCE > HYPE" wordmark + inline-SVG `>` chevron render above the fold | happy | mobile+desktop | `tests/marketing-cohesion.spec.js` | covered |
+| MKT-hero-001 | "EVIDENCE > HYPE" wordmark + inline-SVG `>` chevron render above the fold | happy | mobile+desktop | — | gap |
 | MKT-hero-002 | Hero CTA links resolve to in-page anchors | happy | mobile | — | gap |
-| MKT-hero-003 | Heading uses Oswald display font | happy | mobile | `tests/marketing-cohesion.spec.js` | partial |
+| MKT-hero-003 | Heading uses Oswald display font | happy | mobile | — | gap |
 | MKT-hero-004 | Hero respects per-viewport spacing budget at 390px | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
 
 ### 4.3 Anchor card
@@ -130,32 +130,32 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | MKT-anchor-001 | Anchor card displays a representative peptide name | happy | mobile | `tests/marketing-cohesion.spec.js` | covered |
-| MKT-anchor-002 | Card uses brutalist editorial styling (no rounded corners) | happy | mobile | `tests/pr-f-token-polish.spec.js` | partial |
+| MKT-anchor-002 | Card uses brutalist editorial styling (no rounded corners) | happy | mobile | — | gap |
 | MKT-anchor-003 | Redaction affordance + claim hierarchy render | happy | mobile | — | gap |
 
 ### 4.4 Problem + Method + Legend sections
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-content-001 | Problem, Method, and Legend sections render with headings and body copy | happy | mobile | `tests/marketing-cohesion.spec.js` | covered |
+| MKT-content-001 | Problem, Method, and Legend sections render with headings and body copy | happy | mobile | `tests/marketing-cohesion.spec.js` | partial |
 | MKT-content-002 | Method scroll trigger fires when section enters viewport | happy | mobile | — | gap |
 | MKT-content-003 | Evidence-tier legend rows render in canonical order with token-derived colors | happy | mobile | `tests/tier-colors.spec.js` | partial |
-| MKT-content-004 | Spacing budgets at 390px hold for problem/method/legend | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
+| MKT-content-004 | Spacing budgets at 390px hold for problem/method/legend | happy | mobile | — | gap |
 
 ### 4.5 Library preview
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-library-001 | `library-rows` populates with example rows; `library-count` shows non-zero integer | happy | mobile | `tests/marketing-cohesion.spec.js` | covered |
-| MKT-library-002 | "Open library" CTA links to `web/` | happy | mobile | `tests/marketing-cohesion.spec.js` | partial |
+| MKT-library-001 | `library-rows` populates with example rows; `library-count` shows non-zero integer | happy | mobile | — | gap |
+| MKT-library-002 | "Open library" CTA links to `web/` | happy | mobile | — | gap |
 | MKT-library-003 | Tier badges in preview match `--tier-*` token colors | happy | mobile | `tests/tier-colors.spec.js` | covered |
-| MKT-library-004 | Library preview header layout at 390px | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
+| MKT-library-004 | Library preview header layout at 390px | happy | mobile | `tests/mobile-spacing-pass.spec.js` | partial |
 
 ### 4.6 Receipts / Ticker
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-receipts-001 | `ticker-track` renders with content and animates continuously | happy | mobile | `tests/marketing-cohesion.spec.js` | partial |
+| MKT-receipts-001 | `ticker-track` renders with content and animates continuously | happy | mobile | — | gap |
 | MKT-receipts-002 | Ticker pauses on hover/focus | a11y | desktop | — | gap |
 | MKT-receipts-003 | Ticker animation runs without layout shift | happy | mobile | — | out-of-scope |
 
@@ -181,26 +181,26 @@ The marketing landing page. Static content with progressive enhancements (FAQ di
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-nav-001 | `site-nav` renders with logo and primary CTAs | happy | mobile+desktop | `tests/marketing-cohesion.spec.js` | covered |
-| MKT-nav-002 | "Open library" CTA visible at all supported viewports ≥390px | happy | mobile+ipad+desktop | `tests/mobile-spacing-pass.spec.js` | covered |
-| MKT-nav-003 | "Subscribe" CTA hidden at ≤700px (per PR #79) | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
-| MKT-nav-004 | Nav-cta-group hidden entirely at ≤380px (iPhone SE) | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
-| MKT-nav-005 | Nav doesn't horizontally overflow viewport at 375/390/430px | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
+| MKT-nav-001 | `site-nav` renders with logo and primary CTAs | happy | mobile+desktop | — | gap |
+| MKT-nav-002 | "Open library" CTA visible at all supported viewports ≥390px | happy | mobile+ipad+desktop | — | gap |
+| MKT-nav-003 | "Subscribe" CTA hidden at ≤700px (per PR #79) | happy | mobile | — | gap |
+| MKT-nav-004 | Nav-cta-group hidden entirely at ≤380px (iPhone SE) | happy | mobile | — | gap |
+| MKT-nav-005 | Nav doesn't horizontally overflow viewport at 375/390/430px | happy | mobile | — | gap |
 | MKT-nav-006 | Nav landmark has accessible label | a11y | mobile | `tests/accessibility.spec.js` | partial |
 
 ### 4.10 Footer
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-footer-001 | Mega-wordmark renders in footer (per brand v2) | happy | mobile+desktop | `tests/marketing-cohesion.spec.js` | covered |
+| MKT-footer-001 | Mega-wordmark renders in footer (per brand v2) | happy | mobile+desktop | — | gap |
 | MKT-footer-002 | Footer secondary links resolve | happy | mobile | — | gap |
-| MKT-footer-003 | Footer integrity (no broken layout) at all viewports | happy | mobile+desktop | `tests/marketing-cohesion.spec.js` | partial |
+| MKT-footer-003 | Footer integrity (no broken layout) at all viewports | happy | mobile+desktop | — | gap |
 
 ### 4.11 Brand integrity (cross-cutting)
 
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
-| MKT-brand-001 | No rounded corners on marketing surface elements | happy | mobile | `tests/pr-f-token-polish.spec.js` | partial |
+| MKT-brand-001 | No rounded corners on marketing surface elements | happy | mobile | — | gap |
 | MKT-brand-002 | Olive accent `#C8D17A` applied via `--accent` token (not hardcoded) | happy | mobile | `tests/tier-colors.spec.js` | partial |
 | MKT-brand-003 | Film grain overlay element present (load-bearing per brand spec) | happy | mobile | — | gap |
 | MKT-brand-004 | Oswald, Inter, JetBrains Mono fonts loaded | happy | mobile | — | gap |
@@ -252,7 +252,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | LIB-filter-002 | Each filter type narrows results; multiple filters compose with AND semantics | happy | desktop | — | gap |
 | LIB-filter-003 | Active filters render in `active-filters` summary; `reset-filters` clears all | happy | mobile+desktop | `tests/library-default-state.spec.js` | covered |
 | LIB-filter-004 | Default-state chips render when no filter applied | happy | mobile+desktop | `tests/library-default-state.spec.js` | covered |
-| LIB-filter-005 | Chip touch target ≥37px height at mobile (per PR #79) | a11y | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
+| LIB-filter-005 | Chip touch target ≥37px height at mobile (per PR #79) | a11y | mobile | — | gap |
 | LIB-filter-006 | Clickable category chips on cards filter the grid (`features/chips.js`) | happy | mobile | — | gap |
 | LIB-filter-007 | Chips are keyboard-operable | a11y | desktop | `tests/accessibility.spec.js` | partial |
 
@@ -280,7 +280,7 @@ The interactive peptide library. ES-module SPA entered at `web/src/main.js`, wit
 | ID | Scenario | Type | Viewport | Spec file | Status |
 |----|----------|------|----------|-----------|--------|
 | LIB-grid-001 | Grid renders one row per entry showing name, evidence tier, arrow | happy | mobile | `tests/library-mobile-shell.spec.js` | covered |
-| LIB-grid-002 | Mobile grid uses 3-column layout (name / tier / arrow) | happy | mobile | `tests/mobile-spacing-pass.spec.js` | covered |
+| LIB-grid-002 | Mobile grid uses 3-column layout (name / tier / arrow) | happy | mobile | `tests/mobile-spacing-pass.spec.js` | partial |
 | LIB-grid-003 | Desktop grid shows full column set; iPad hides cols 4 and 7 | happy | desktop+ipad | `tests/library-mobile-shell.spec.js` | partial |
 | LIB-grid-004 | Inline column labels render at narrow viewports | a11y | mobile | `tests/library-responsive-labels.spec.js` | covered |
 | LIB-grid-005 | Tier badge color matches `--tier-*` token | happy | mobile | `tests/tier-colors.spec.js` | covered |
