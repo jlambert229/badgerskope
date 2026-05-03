@@ -25,7 +25,7 @@ Single document with two functions:
 - Backend / data ingestion (no backend; data is a static JSON file)
 - No-JS fallbacks (the SPA and marketing surfaces both require JS for primary behavior)
 
-**Status disclaimer (revision 2)**: covered/partial markings are *presumed* based on spec filename and feature mapping, not verified by reading every assertion. A verification pass is queued in the writing-plans backlog. Treat day-one statuses as directional, not authoritative.
+**Status verified (revision 3)**: covered/partial markings were verified against actual spec assertions on 2026-05-02. Statuses are authoritative as of that date.
 
 ---
 
@@ -84,15 +84,15 @@ Each row represents one independent test obligation — narrow enough that a sin
 
 ## 3. Master matrix
 
-### Counts (initial inventory, 2026-05-02)
+### Counts (verified, 2026-05-02)
 
 | Surface | covered | partial | gap | out-of-scope | total |
 |---------|--------:|--------:|----:|-------------:|------:|
-| Marketing (MKT) | 15 | 14 | 11 | 2 | 42 |
-| Library SPA (LIB) | 20 | 23 | 63 | 0 | 106 |
+| Marketing (MKT) | 3 | 4 | 33 | 2 | 42 |
+| Library SPA (LIB) | 13 | 17 | 76 | 0 | 106 |
 | Glossary (GLO) | 0 | 0 | 15 | 0 | 15 |
-| Evidence Guide (EVD) | 0 | 1 | 14 | 0 | 15 |
-| **Total** | **35** | **38** | **103** | **2** | **178** |
+| Evidence Guide (EVD) | 0 | 0 | 15 | 0 | 15 |
+| **Total** | **16** | **21** | **139** | **2** | **178** |
 
 > Counts update after each PR that flips a row. Glossary and Evidence Guide are nearly 100% gap — largest concentration relative to surface complexity.
 
@@ -678,10 +678,6 @@ Not a percentage. The bar is:
 > Every `gap` row has either a documented reason (move to `out-of-scope`), or appears in the writing-plans backlog (planned coverage).
 
 A `gap` is acceptable only if intentional + explained. A silent `gap` is debt.
-
-### Verification debt (revision 2)
-
-The current matrix marks rows `covered`/`partial` based on filename + ID heuristics, not by reading every assertion. The first task in the writing-plans backlog is a verification pass: open each spec file, confirm assertions match claimed rows, and downgrade/upgrade status accordingly.
 
 ### Style for new rows
 
