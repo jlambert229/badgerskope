@@ -47,7 +47,13 @@ img { display: block; max-width: 100%; }
   font-size: 12px; letter-spacing: var(--tracking-mono);
   z-index: 200;
 }
-.skip-link:focus { left: 16px; top: 16px; outline: 2px solid var(--bg); outline-offset: 2px; box-shadow: 0 0 0 4px var(--accent); }
+.skip-link:focus {
+  left: 16px;
+  top: max(16px, env(safe-area-inset-top));
+  outline: 2px solid var(--bg);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--accent);
+}
 
 /* =================================================================
    NAV
@@ -84,6 +90,8 @@ img { display: block; max-width: 100%; }
 .nav-links a { transition: color var(--transition-fast); }
 .nav-links a:hover,
 .nav-links a:focus-visible { color: var(--accent); outline: none; }
+.nav-links a[aria-current="page"],
+.nav-sheet__list a[aria-current="page"] { color: var(--accent); }
 .nav-cta-group {
   display: flex; gap: 8px; flex-wrap: nowrap;
 }

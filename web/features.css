@@ -687,7 +687,10 @@ table.compare { table-layout: fixed; }
    ============================================================ */
 .bookmarks-bar {
   position: fixed;
-  bottom: 24px; left: 24px;
+  /* env(safe-area-inset-bottom) keeps this above the iPhone home
+     indicator. Falls back to the 24px desktop offset. */
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 24px;
   z-index: 50;
   display: flex; align-items: center; gap: 8px;
   padding: 10px 14px;
@@ -727,7 +730,8 @@ table.compare { table-layout: fixed; }
    ============================================================ */
 .back-to-top {
   position: fixed;
-  bottom: 24px; right: 24px;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  right: 24px;
   /* Above .bookmarks-bar so any edge overlap leaves the back-to-top
      button clickable. */
   z-index: 51;

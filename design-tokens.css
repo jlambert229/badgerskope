@@ -22,7 +22,8 @@
   /* ---------- Foreground ---------- */
   --fg:   #F2EFE5;   /* primary text */
   --fg-2: #C9C5B6;   /* secondary text */
-  --fg-3: #8A8775;   /* muted, mono labels, dates */
+  --fg-3: #A6A290;   /* muted, mono labels, dates — lifted from #8A8775
+                       to clear ~4.6:1 on --bg-2 #232320 (was 3.7:1, AA fail) */
 
   /* ---------- Accent (all-teal) ----------
      One brand color: deep teal #2DA89C, used as both the
