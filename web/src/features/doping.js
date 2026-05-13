@@ -4,7 +4,9 @@
 
 import { escapeHtml } from "../utils.js";
 
-const WADA_BANNED = {
+// Exported so detail.js can render the same flag in the inline Safety &
+// status row without duplicating the title-substring \u2192 reason mapping.
+export const WADA_BANNED = {
   "BPC-157": "Banned by WADA since 2022",
   "TB-500": "Banned by WADA (thymosin beta-4 related)",
   "Ipamorelin": "Growth hormone secretagogue \u2014 banned in sport",
@@ -17,6 +19,17 @@ const WADA_BANNED = {
   "SLU-PP-332": "Exercise mimetic \u2014 not approved for any use",
   "FOXO4-DRI": "Experimental senolytic \u2014 no approved human use",
 };
+
+/** Returns a sport/doping reason string if the title matches a WADA-listed
+ *  compound, otherwise an empty string. Used by both the card-level flag
+ *  and the Safety & status row inside the detail modal. */
+export function findDopingReason(title) {
+  if (!title) return "";
+  for (const [key, reason] of Object.entries(WADA_BANNED)) {
+    if (title.includes(key)) return reason;
+  }
+  return "";
+}
 
 export function initDoping() {
   // On cards
@@ -45,7 +58,11 @@ export function initDoping() {
     applyToCards();
   }
 
-  // On detail modal
+  // On detail modal \u2014 prior implementation inserted the banner after
+  // `.detail__hero-bar`, a class that no longer exists in the template.
+  // The banner was dead code for every entry. Insert before the wellness
+  // chips row (.detail__cats) when present, otherwise after the answer
+  // zone \u2014 both selectors are real in the current template.
   const detailObs = new MutationObserver(() => {
     const detailBody = document.getElementById("detail-body");
     if (!detailBody || detailBody.querySelector(".doping-banner")) return;
@@ -54,9 +71,12 @@ export function initDoping() {
       if (title.includes(key)) {
         const banner = document.createElement("div");
         banner.className = "doping-banner";
-        banner.innerHTML = `<strong>\u26A0 Sport/Doping notice:</strong> ${escapeHtml(reason)}`;
-        const heroBar = detailBody.querySelector(".detail__hero-bar");
-        if (heroBar) heroBar.after(banner);
+        banner.setAttribute("role", "note");
+        banner.innerHTML = `<strong>\u26A0 Sport / doping notice:</strong> ${escapeHtml(reason)}`;
+        const anchor = detailBody.querySelector(".detail__cats")
+          || detailBody.querySelector(".detail__answer-zone");
+        if (anchor) anchor.after(banner);
+        else detailBody.prepend(banner);
         break;
       }
     }

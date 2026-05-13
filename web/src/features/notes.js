@@ -5,10 +5,37 @@
 import { escapeHtml } from "../utils.js";
 
 const NOTES_KEY = "peptide-notes";
-let userNotes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
+
+// Guard the initial parse — a corrupt localStorage value (browser
+// extension, manual edit, cross-origin write) would throw and abort
+// module init, breaking the detail modal entirely. Reset on failure.
+let userNotes = {};
+try {
+  const raw = localStorage.getItem(NOTES_KEY);
+  if (raw) userNotes = JSON.parse(raw);
+  if (typeof userNotes !== "object" || userNotes === null) userNotes = {};
+} catch (_err) {
+  userNotes = {};
+}
 
 function saveNotes() {
-  localStorage.setItem(NOTES_KEY, JSON.stringify(userNotes));
+  try {
+    localStorage.setItem(NOTES_KEY, JSON.stringify(userNotes));
+  } catch (_err) {
+    /* quota full or storage unavailable — silently no-op so the rest
+       of the UI keeps working */
+  }
+}
+
+function readNotes() {
+  try {
+    const raw = localStorage.getItem(NOTES_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return (typeof parsed === "object" && parsed !== null) ? parsed : {};
+  } catch {
+    return {};
+  }
 }
 
 function addNotesFeature() {
@@ -44,15 +71,25 @@ function addNotesFeature() {
     const saveBtn = section.querySelector(".user-notes__save");
     const clearBtn = section.querySelector(".user-notes__clear");
 
-    saveBtn.addEventListener("click", () => {
+    // Auto-save on input (debounced). Without this, navigating to the
+    // next entry mid-typing destroys the textarea via innerHTML rebuild
+    // before any Save click; users lose work silently.
+    let saveTimer = null;
+    const persist = () => {
       const val = textarea.value.trim();
-      if (val) {
-        userNotes[entryId] = val;
-      } else {
-        delete userNotes[entryId];
-      }
+      if (val) userNotes[entryId] = val;
+      else delete userNotes[entryId];
       saveNotes();
       updateExportVisibility();
+    };
+    textarea.addEventListener("input", () => {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(persist, 400);
+    });
+
+    saveBtn.addEventListener("click", () => {
+      clearTimeout(saveTimer);
+      persist();
       saveBtn.textContent = "Saved!";
       saveBtn.classList.add("user-notes__save--done");
       setTimeout(() => {
@@ -103,7 +140,7 @@ function addExportNotes() {
   updateExportVisibility();
 
   exportBtn.addEventListener("click", () => {
-    const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || "{}");
+    const notes = readNotes();
     if (Object.keys(notes).length === 0) return;
     let text = "BadgerSkope \u2014 Personal Notes Export\n";
     text += "Exported: " + new Date().toLocaleString() + "\n";

@@ -26,7 +26,7 @@ import { renderStatsDashboard, setStatsCallbacks } from "./stats.js";
 import { switchTab, setTabCallbacks } from "./tabs.js";
 import {
   readHashParams, writeHashParams, updateHash,
-  updateHashFromState, applyHashOnLoad, setRouterCallbacks,
+  updateHashFromState, applyHashOnLoad, setRouterCallbacks, isWritingHash,
 } from "./router.js";
 import { initKeyboard, setKeyboardCallbacks } from "./keyboard.js";
 
@@ -561,12 +561,12 @@ async function init() {
   // Detail navigation
   if (els.detailPrev) {
     els.detailPrev.addEventListener("click", () => {
-      if (state.detailIndex > 0) showDetailAt(state.detailIndex - 1);
+      if (state.detailIndex > 0) showDetailAt(state.detailIndex - 1, { push: true });
     });
   }
   if (els.detailNext) {
     els.detailNext.addEventListener("click", () => {
-      if (state.detailIndex < state.detailQueue.length - 1) showDetailAt(state.detailIndex + 1);
+      if (state.detailIndex < state.detailQueue.length - 1) showDetailAt(state.detailIndex + 1, { push: true });
     });
   }
   if (els.detailClose) els.detailClose.addEventListener("click", closeDetail);
@@ -632,7 +632,10 @@ async function init() {
 
   // Hash change — re-apply filter state and tab/entry. Without this,
   // back/forward navigation through filter states wouldn't work.
+  // Skip when we're the ones writing the hash (Prev/Next pushState
+  // would otherwise self-loop into applyHashOnLoad → openDetail).
   window.addEventListener("hashchange", () => {
+    if (isWritingHash()) return;
     applyHashOnLoad();
   });
 

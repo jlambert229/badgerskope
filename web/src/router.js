@@ -38,9 +38,33 @@ export function writeHashParams(params) {
   }
 }
 
-export function updateHash(override) {
+// Internal flag — true while THIS module is rewriting the hash. The
+// page-level hashchange handler in main.js inspects this and skips
+// applyHashOnLoad when set, preventing a self-loop where pushState
+// fires hashchange, the handler reopens the modal, and the modal-
+// open path re-writes the hash again.
+let _writingHash = false;
+export function isWritingHash() { return _writingHash; }
+
+/** Update the URL hash.
+ *  - With `override`: writes the literal `#<override>` string. Used to deep-
+ *    link the open modal to a specific entry. Pass `{push: true}` to add a
+ *    real history entry (so browser back goes to the previous entry instead
+ *    of leaving the modal) — used by Prev/Next inside detail.js. Default is
+ *    replaceState so opening the modal doesn't pollute history.
+ *  - Without `override`: re-serialize current filter state. */
+export function updateHash(override, opts = {}) {
   if (override) {
-    history.replaceState(null, "", "#" + override);
+    const url = "#" + override;
+    _writingHash = true;
+    try {
+      if (opts.push) history.pushState(null, "", url);
+      else history.replaceState(null, "", url);
+    } finally {
+      // Reset on next microtask — the hashchange event fires async after
+      // pushState, so we want the flag to still be set when the handler runs.
+      Promise.resolve().then(() => { _writingHash = false; });
+    }
     return;
   }
   updateHashFromState();

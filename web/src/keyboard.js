@@ -85,8 +85,8 @@ export function initKeyboard() {
         state.detailIndex = idx;
       }
       if (queue.length <= 1) return;
-      if (e.key === "ArrowLeft" && idx > 0 && _showDetailAt) _showDetailAt(idx - 1);
-      else if (e.key === "ArrowRight" && idx < queue.length - 1 && _showDetailAt) _showDetailAt(idx + 1);
+      if (e.key === "ArrowLeft" && idx > 0 && _showDetailAt) _showDetailAt(idx - 1, { push: true });
+      else if (e.key === "ArrowRight" && idx < queue.length - 1 && _showDetailAt) _showDetailAt(idx + 1, { push: true });
       return;
     }
   });

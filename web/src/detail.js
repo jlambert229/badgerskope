@@ -15,6 +15,7 @@ import {
 import { GROUP_THEME_LABELS } from './groups.js';
 import { toggleBookmark } from './bookmarks.js';
 import { decorateDetailBody } from './features/glossary-tooltips.js';
+import { findDopingReason } from './features/doping.js';
 
 /* Late-bound callbacks injected by main.js to avoid circular deps */
 let _render = null;
@@ -227,9 +228,10 @@ export function renderDetailHtml(entry) {
         tier.tier === "phase1" ? "Not FDA-approved (early research)" :
         tier.tier === "preclinical" ? "Not FDA-approved (animal studies only)" :
         tier.tier === "practice" ? "Not FDA-approved (clinic use only)" : "Unknown regulatory status";
-      const dopingFlag = entry.dopingStatus?.prohibited
-        ? "Banned in competitive sport (athletes risk disqualification)"
-        : "";
+      // entry.dopingStatus is not in the JSON schema; the WADA flag is
+      // computed from a title-substring lookup that's shared with the
+      // banner injection in features/doping.js.
+      const dopingFlag = findDopingReason(getCatalogTitle(entry) + " " + getDisplayName(entry));
       const srcCount = (entry.sources || []).length;
 
       return `<div class="detail__section detail__section--safety">
@@ -364,11 +366,6 @@ export function renderDetailHtml(entry) {
       if (wiki > 0) qualityParts.push(`${wiki} reference link${wiki !== 1 ? "s" : ""}`);
       if (other > 0) qualityParts.push(`${other} other`);
 
-      const qualityScore = fda * 4 + (pubmed + pmc) * 3 + wiki * 1 + other * 1;
-      const maxScore = srcList.length * 4;
-      const pct = maxScore > 0 ? Math.round((qualityScore / maxScore) * 100) : 0;
-      const barColor = pct >= 75 ? "#22c55e" : pct >= 50 ? "#14b8a6" : pct >= 25 ? "#f59e0b" : "#9ca3af";
-
       return `<details class="detail__section">
         <summary><h3>Sources</h3></summary>
         <p class="detail__help">${qualityParts.join(" \u00b7 ")}</p>
@@ -440,7 +437,7 @@ function syncDetailsAria(root) {
   });
 }
 
-export function showDetailAt(index) {
+export function showDetailAt(index, opts = {}) {
   state.detailIndex = index;
   const entry = state.detailQueue[state.detailIndex];
   if (!entry) return;
@@ -449,8 +446,13 @@ export function showDetailAt(index) {
   syncDetailsAria(els.detailBody);
   syncDetailNav();
   bindDetailEvents();
+  // Reset scroll on the panel so each new entry starts at the top.
+  els.dialog?.querySelector(".modal-panel")?.scrollTo(0, 0);
   if (_updateHash) {
-    _updateHash("entry=" + encodeURIComponent(getCatalogTitle(entry)));
+    // {push: true} means each Prev/Next navigation pushes a real
+    // history entry — back-button now traverses the entry stack instead
+    // of leaving the modal entirely. Initial open uses replaceState.
+    _updateHash("entry=" + encodeURIComponent(getCatalogTitle(entry)), { push: !!opts.push });
   }
 }
 
@@ -525,7 +527,10 @@ export function openDetail(entry, opts = {}) {
   }
   showDetailAt(state.detailIndex);
   els.dialog.showModal();
-  els.dialog.querySelector(".modal__panel")?.scrollTo(0, 0);
+  // Reset scroll on the actual panel (the BEM class is .modal-panel
+  // with a hyphen, not .modal__panel — the prior selector silently
+  // no-opped and left scroll position from the previous open).
+  els.dialog.querySelector(".modal-panel")?.scrollTo(0, 0);
 }
 
 export function closeDetail() {
