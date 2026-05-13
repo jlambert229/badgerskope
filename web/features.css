@@ -7,13 +7,14 @@
    DETAIL VIEW
    ============================================================ */
 .detail__answer-zone {
-  /* Bumped left padding 0 → 24px so content (FDA chip, kicker, body,
-     bookmark button) sits inside the tier left-rule with breathing
-     room instead of flush against it. */
-  padding: 24px 0 32px 24px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 32px;
+  /* Left padding sits inside the inline 4px tier-color left rule
+     (set via inline style on the element). Border-top removed; the
+     PREV/NEXT bar above already supplies a hairline. Bottom border
+     also dropped — the wellness chips row below has its own
+     separating border via .detail__cats { border-bottom }, and
+     stacking three hairlines in 80px reads as accidental ruling. */
+  padding: 24px 0 24px 24px;
+  margin-bottom: 24px;
 }
 .detail__title {
   font-family: var(--font-display);
@@ -118,7 +119,9 @@
 
 .detail__cats {
   display: flex; gap: 6px; flex-wrap: wrap;
-  margin: 16px 0;
+  margin: 0 0 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
 }
 .detail__badge {
   display: inline-block;
@@ -190,17 +193,20 @@ details.detail__section[open]::after {
   height: 28px;
 }
 
+/* "About this listing" used to be elevated with a teal left rule + bg-2
+   panel — but it's an editor's caveat, not the headline. The audit
+   flagged it as outranking the answer zone visually. Now it renders
+   like every other collapsible section. */
 .detail__section--note {
-  background: var(--bg-2);
-  border-left: 3px solid var(--accent);
-  padding: 24px;
   margin: 24px 0;
 }
-details.detail__section--note { padding: 0; }
-details.detail__section--note > summary { padding: 20px 32px 20px 24px; }
-details.detail__section--note[open] > :not(summary) { padding: 0 24px 24px; }
-details.detail__section--note[open]::after { display: none; }
-.detail__section--safety h3 { color: var(--warning); }
+
+/* "Safety & status" heading used to render in --warning (amber), which
+   visually overloaded the section as a danger band even when status
+   was fine. Now it inherits the same --accent heading as every other
+   section; the actual warning signal lives in the doping banner above
+   and (if relevant) the regulatory-status row content. */
+.detail__section--safety h3 { color: var(--accent); }
 
 .detail__label {
   font-family: var(--font-mono);
@@ -210,11 +216,14 @@ details.detail__section--note[open]::after { display: none; }
   text-transform: uppercase;
 }
 .detail__help {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: 0.06em;
-  color: var(--fg-3);
+  /* Was 10px italic mono fg-3 — read as legal-fine-print and was
+     literally below the SC 1.4.3 contrast floor for small text. Now
+     12px body Inter at fg-2, lined up with the actual content
+     rather than receded into the chrome. */
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--fg-2);
   margin-top: 12px;
-  font-style: italic;
 }
 .detail__prose {
   font-size: 16px; line-height: 1.6;
@@ -288,14 +297,18 @@ details.detail__section--note[open]::after { display: none; }
 .synergy-pill--unlinked:hover { border-color: var(--line-2); color: var(--fg-3); }
 
 .detail__disclaimer {
-  margin-top: 24px;
-  padding-top: 16px;
+  /* The legal anchor was rendering as 10px italic mono fg-3 — quieter
+     than the keyboard-shortcut hint sitting just below it. Now reads
+     as a real footer paragraph: 13px Inter at fg-2, separated by a
+     hairline + comfortable gap. */
+  margin-top: 32px;
+  padding: 20px 0 8px;
   border-top: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: var(--tracking-mono);
-  color: var(--fg-3);
-  font-style: italic;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg-2);
 }
+.detail__disclaimer strong { color: var(--fg); }
 
 /* Inline glossary tooltips — wrapping <abbr class="glossary-term">.
    Subtle dotted underline cues that hover reveals a definition; native
@@ -325,6 +338,20 @@ details.detail__section--note[open]::after { display: none; }
   display: grid;
   grid-template-columns: 180px 1fr 60px;
   gap: 12px; align-items: center;
+}
+@media (max-width: 700px) {
+  /* On narrow viewports the 180px label column ate most of the row
+     and left the bar track ~80px wide — useless for a comparison
+     visualization. Stack label above the bar, count to the right of
+     the bar. */
+  .ev-compare__bar {
+    grid-template-columns: 1fr 60px;
+    grid-template-areas: "label label" "track count";
+    row-gap: 4px;
+  }
+  .ev-compare__label { grid-area: label; }
+  .ev-compare__track { grid-area: track; height: 6px; }
+  .ev-compare__count { grid-area: count; text-align: right; }
 }
 .ev-compare__bar--current .ev-compare__label { color: var(--accent); font-weight: 500; }
 .ev-compare__label {

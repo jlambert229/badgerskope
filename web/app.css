@@ -989,8 +989,16 @@ html {
    row of space. The hairline-divider on .detail-nav still reads as the
    panel's actionable header bar. */
 .modal-close--floating {
-  position: absolute;
-  top: 16px; right: 16px;
+  /* Sticky so the close stays reachable when the user scrolls deep
+     into the modal. Previously absolute-positioned inside the
+     overflow:auto panel, which meant the close scrolled offscreen
+     and the only exit was Esc (desktop) or back-button (mobile).
+     The float keeps it right-aligned even though .modal-panel is
+     block-flow (sticky doesn't honor margin-left:auto on a block
+     child without flex). */
+  position: sticky;
+  top: 16px;
+  float: right;
   z-index: 2;
 }
 
@@ -999,12 +1007,21 @@ html {
 .detail-nav {
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px;
-  /* Right padding leaves room for the floating close button so the
-     NEXT button doesn't sit underneath it. */
-  padding: 12px 56px 12px 0;
+  /* Close button is now sticky-floated to the right at top of panel,
+     so the right-side padding can drop — PREV/NEXT no longer fight
+     the close for that 56px slot. */
+  padding: 12px 0;
   margin-bottom: 24px;
-  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  /* Clear the float of the sticky close button above so the nav row
+     starts at the panel's left edge rather than flowing around it. */
+  clear: both;
+}
+@media (max-width: 700px) {
+  /* Compact mobile nav: drop the outlined Prev/Next pills to small
+     chevron-only buttons + counter. Frees ~40px of vertical chrome. */
+  .detail-nav .btn { padding: 8px 12px; font-size: 11px; min-height: 40px; }
+  .detail-nav-pos { font-size: 10px; }
 }
 .detail-nav-pos {
   font-family: var(--font-mono);
