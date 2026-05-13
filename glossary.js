@@ -194,9 +194,9 @@
 
     function updateCount(n) {
       if (searchInput.value.trim()) {
-        searchCount.textContent = n + ' TERM' + (n !== 1 ? 'S' : '') + ' FOUND';
+        searchCount.textContent = n + ' match' + (n !== 1 ? 'es' : '');
       } else {
-        searchCount.textContent = terms.length + ' TERMS IN THE GLOSSARY';
+        searchCount.textContent = terms.length + ' terms in the glossary';
       }
     }
 

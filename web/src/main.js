@@ -194,9 +194,9 @@ function renderRowCount(visibleCount, totalCount) {
  *  One headline is picked per session so the same user doesn't see three
  *  different jokes within one filter sweep. */
 const SARCASTIC_EMPTY_HEADINGS = [
-  "Couldn't find that. Neither could PubMed.",
-  "0 results. Try a real word.",
-  "Empty. The good news is — that's exactly the kind of negative signal this site exists for.",
+  "No matches in the library.",
+  "Nothing here. Try a shorter or different word.",
+  "Empty. Either we don't cover it yet, or the search needs to be looser.",
 ];
 let _sessionEmptyHeading = null;
 function pickSessionEmptyHeading() {
@@ -219,15 +219,15 @@ function buildEmptyStatePanel(hiddenExperimental) {
   const hint = document.createElement("p");
   hint.className = "empty-state__hint";
   hint.textContent = hiddenExperimental > 0
-    ? `${hiddenExperimental} experimental ${hiddenExperimental === 1 ? "entry is" : "entries are"} hidden behind the experimental toggle. Or clear the filters and start over.`
-    : "Clear the filters and try a less specific query — or just clear and browse.";
+    ? `${hiddenExperimental} early-research ${hiddenExperimental === 1 ? "file is" : "files are"} hidden by default. Toggle them on, or clear the filters and start over.`
+    : "Try a broader search, or clear all filters to start over.";
   panel.appendChild(hint);
 
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "empty-state__clear";
   btn.id = "empty-state-clear";
-  btn.textContent = "CLEAR ALL FILTERS";
+  btn.textContent = "Clear all filters";
   btn.addEventListener("click", () => {
     clearAllFilters();
     render();

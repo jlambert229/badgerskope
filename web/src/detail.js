@@ -227,15 +227,17 @@ export function renderDetailHtml(entry) {
         tier.tier === "phase1" ? "Not FDA-approved (early research)" :
         tier.tier === "preclinical" ? "Not FDA-approved (animal studies only)" :
         tier.tier === "practice" ? "Not FDA-approved (clinic use only)" : "Unknown regulatory status";
-      const dopingFlag = entry.dopingStatus?.prohibited ? "Prohibited by WADA/sport agencies" : "";
+      const dopingFlag = entry.dopingStatus?.prohibited
+        ? "Banned in competitive sport (athletes risk disqualification)"
+        : "";
       const srcCount = (entry.sources || []).length;
 
       return `<div class="detail__section detail__section--safety">
-        <h3>Safety & status</h3>
+        <h3>Safety &amp; status</h3>
         <ul class="safety-list">
-          <li><strong>Regulatory:</strong> ${escapeHtml(fdaStatus)}</li>
+          <li><strong>Regulatory status:</strong> ${escapeHtml(fdaStatus)}</li>
           ${dopingFlag ? `<li><strong>Sport:</strong> ${escapeHtml(dopingFlag)}</li>` : ""}
-          <li><strong>Sources:</strong> ${srcCount} published reference${srcCount !== 1 ? "s" : ""} linked below</li>
+          <li><strong>Sources used:</strong> ${srcCount} reference${srcCount !== 1 ? "s" : ""} linked below</li>
         </ul>
       </div>`;
     })()}
@@ -270,19 +272,19 @@ export function renderDetailHtml(entry) {
         }).join("");
 
       return `<details class="detail__section" open>
-        <summary><h3>How strong is the evidence?</h3></summary>
-        <p class="ev-compare__verdict" style="color:${thisTier.color}"><strong>${escapeHtml(position)}</strong> in ${escapeHtml(catName)} (${totalInCat} entries).</p>
+        <summary><h3>How this compares to similar compounds</h3></summary>
+        <p class="ev-compare__verdict" style="color:${thisTier.color}"><strong>${escapeHtml(position)}</strong> evidence in ${escapeHtml(catName)} (${totalInCat} compounds in this category).</p>
         <div class="ev-compare">${barHtml}</div>
       </details>`;
     })()}
 
     ${benefits ? `<details class="detail__section" open>
-      <summary><h3>What researchers found</h3></summary>
+      <summary><h3>What the research has shown</h3></summary>
       <ul class="detail__benefits">${benefits}</ul>
     </details>` : ""}
 
     ${apps ? `<details class="detail__section">
-      <summary><h3>People research this for</h3></summary>
+      <summary><h3>What people use it for</h3></summary>
       <ul class="detail__apps">${apps}</ul>
     </details>` : ""}
 
@@ -293,43 +295,43 @@ export function renderDetailHtml(entry) {
       const serious = (se.serious || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("");
       if (!common && !serious) return "";
       return `<details class="detail__section" open>
-        <summary><h3>Common side effects</h3></summary>
-        ${common ? `<p class="detail__label">Most common</p><ul class="detail__benefits">${common}</ul>` : ""}
+        <summary><h3>Side effects</h3></summary>
+        ${common ? `<p class="detail__label">Common</p><ul class="detail__benefits">${common}</ul>` : ""}
         ${serious ? `<p class="detail__label">Serious but rare</p><ul class="detail__benefits">${serious}</ul>` : ""}
-        <p class="detail__help">Reported in trials and prescribing information. Not a complete list — your doctor has the full picture.</p>
+        <p class="detail__help">These are what's been reported in trials and on the drug label. Your doctor has access to the full list.</p>
       </details>`;
     })()}
 
     ${entry.dosingTimingNotes ? `<details class="detail__section">
-      <summary><h3>How people use it</h3></summary>
+      <summary><h3>How people typically use it</h3></summary>
       <p class="detail__prose">${escapeHtml(entry.dosingTimingNotes)}</p>
-      <p class="detail__help">Reported in studies and forums. Not a dosing guide for you.</p>
+      <p class="detail__help">A summary of what published studies and online discussions describe. Not a recommendation for what you should do.</p>
     </details>` : ""}
 
     ${entry.cyclingNotes ? `<details class="detail__section">
-      <summary><h3>${tier.tier === "approved" ? "Starting and stopping" : "Cycling pattern"}</h3></summary>
+      <summary><h3>${tier.tier === "approved" ? "How to start and stop" : "Common cycling patterns"}</h3></summary>
       <p class="detail__prose">${escapeHtml(entry.cyclingNotes)}</p>
-      ${tier.tier === "approved" ? "" : `<p class="detail__help">Community reports and limited research. Your needs may differ.</p>`}
+      ${tier.tier === "approved" ? "" : `<p class="detail__help">Drawn from community discussions and the limited research available. Your situation may differ.</p>`}
     </details>` : ""}
 
     ${doseRows
       ? `<details class="detail__section">
-      <summary><h3>Doses from published research</h3></summary>
+      <summary><h3>Doses used in published studies</h3></summary>
       <div class="table-wrap">
         <table class="doses">
-          <thead><tr><th>What it was used for</th><th>Evidence</th><th>What the research found</th></tr></thead>
+          <thead><tr><th>What it was used for</th><th>Evidence level</th><th>What the study found</th></tr></thead>
           <tbody>${doseRows}</tbody>
         </table>
       </div>
-      <p class="detail__help">Numbers from published studies. Not personal dosing instructions.</p>
+      <p class="detail__help">These are doses described in research papers and drug labels. They are not a dosing guide for you.</p>
     </details>`
       : ""
     }
 
     ${synergy ? `<details class="detail__section">
-      <summary><h3>Often mentioned alongside</h3></summary>
+      <summary><h3>Often paired with</h3></summary>
       <ul class="synergy-list">${synergy}</ul>
-      <p class="detail__help">Appear together in research. Not a recommendation to combine.</p>
+      <p class="detail__help">These compounds show up alongside this one in trials, on labels, or in vendor marketing. Not a recommendation to combine.</p>
     </details>` : ""}
 
     ${dqThemes ? `<details class="detail__section">
@@ -344,7 +346,7 @@ export function renderDetailHtml(entry) {
 
     ${(() => {
       const srcList = entry.sources || [];
-      if (srcList.length === 0) return '<details class="detail__section"><summary><h3>Sources</h3></summary><p class="detail__muted">No linked sources for this entry.</p></details>';
+      if (srcList.length === 0) return '<details class="detail__section"><summary><h3>Sources</h3></summary><p class="detail__muted">No sources have been linked to this file yet.</p></details>';
 
       let pubmed = 0, pmc = 0, wiki = 0, fda = 0, other = 0;
       srcList.forEach(s => {
@@ -357,9 +359,9 @@ export function renderDetailHtml(entry) {
       });
 
       const qualityParts = [];
-      if (fda > 0) qualityParts.push(`${fda} regulatory`);
-      if (pubmed + pmc > 0) qualityParts.push(`${pubmed + pmc} peer-reviewed`);
-      if (wiki > 0) qualityParts.push(`${wiki} reference`);
+      if (fda > 0) qualityParts.push(`${fda} from drug regulators`);
+      if (pubmed + pmc > 0) qualityParts.push(`${pubmed + pmc} from peer-reviewed studies`);
+      if (wiki > 0) qualityParts.push(`${wiki} reference link${wiki !== 1 ? "s" : ""}`);
       if (other > 0) qualityParts.push(`${other} other`);
 
       const qualityScore = fda * 4 + (pubmed + pmc) * 3 + wiki * 1 + other * 1;
@@ -375,7 +377,7 @@ export function renderDetailHtml(entry) {
     })()}
 
     <div class="detail__disclaimer">
-      <strong>Reminder:</strong> This is a research summary, not medical advice. Consult a licensed professional before making health decisions.
+      <strong>Reminder:</strong> This is a research summary, not medical advice. Talk to a licensed clinician before making any health decision based on what you read here.
     </div>
   `;
 }
