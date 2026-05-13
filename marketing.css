@@ -1359,11 +1359,14 @@ body.is-nav-open { overflow: hidden; }
   .footer-mega {
     margin-inline: -20px;
     padding-inline: 20px;
-    /* Override the desktop clamp(80, 14vw, 240) — the 80px MIN was
-       overflowing 390px-wide phones, so "EVIDENCE > HYPE" only showed
-       "IDENCE > HY" at the visible edge. New ramp scales naturally
-       with viewport and tops out below the desktop minimum. */
-    font-size: clamp(32px, 10vw, 40px);
+    /* Mobile masthead: scale-to-fit. The string 'EVIDENCE > HYPE' is
+       ~17 glyphs of Oswald Bold; at 12vw the line just fills a 390px
+       viewport. Larger clamps over-shoot and clip the E / E off the
+       edges (the parent is white-space: nowrap + overflow: hidden).
+       Old ramp capped at 40px which read as body text; this peaks
+       around 54px on phones — still masthead-sized, fully visible. */
+    font-size: clamp(40px, 13vw, 64px);
+    padding-block: 20px;
   }
 }
 

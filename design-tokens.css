@@ -133,14 +133,15 @@
   --space-9:  96px;
 
   /* ---------- Radius ----------
-     Softening pass: 2px corner radius across the board. Editorial bones
-     remain (no chubby cards, no pill buttons), just enough rounding to
-     read as "considered" instead of "stark". Layout containers, panels,
-     and interactive controls all share the same 2px hint. */
-  --radius-sm:    2px;
-  --radius-md:    2px;
-  --radius-lg:    2px;
-  --radius-micro: 2px;
+     Editorial brutalist — sharp corners. The brand is explicit about
+     this, and a 2px softening pass had crept in across cards, modals,
+     and the library table; reverted. The few interactive controls
+     that want a tactile hint use --radius-micro = 1px so they don't
+     look razor-thin against a finger; everything else is 0. */
+  --radius-sm:    0;
+  --radius-md:    0;
+  --radius-lg:    0;
+  --radius-micro: 1px;
 
   /* ---------- Motion ---------- */
   --transition-fast: 150ms ease;
@@ -176,30 +177,9 @@ body::before {
 html.no-grain body::before,
 body.no-grain::before { opacity: 0; }
 
-/* ============================================================
-   Softening pass — apply --radius-sm (2px) to layout containers
-   that previously defaulted to flat. Cross-loaded with the tokens
-   so both marketing surfaces (/) and the SPA (/web/) pick it up
-   without per-file rules. Buttons, search input, chips, etc.
-   already pull --radius-micro at their own sites.
-   ============================================================ */
-.anchor-card,
-.hero-card,
-.feature-art,
-.feature-receipts,
-.problem-card,
-.method-step,
-.faq-item,
-.sub-card,
-.doc-disclaimer,
-.modal-panel,
-.card,
-.lib-table,
-.compare-table-wrap,
-.stat-card,
-.user-notes__input {
-  border-radius: var(--radius-sm);
-}
+/* Brutalist: layout containers stay sharp (--radius-sm = 0).
+   The block below is intentionally a no-op; kept so the per-file
+   selectors are documented in one place if the brand softens later. */
 
 @media (prefers-reduced-motion: reduce) {
   :root { --transition-fast: 0ms; --transition-base: 0ms; --transition-slow: 0ms; }
