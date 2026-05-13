@@ -8,8 +8,10 @@
   <meta name="description" content="Independent peptide-research literacy. We read the trials, decode vendor copy, and grade compounds on what they actually do — not what podcast hosts promise.">
   <meta name="theme-color" content="#1A1A18">
 
+  <link rel="canonical" href="https://www.badgerskope.com/">
   <link rel="icon" type="image/png" href="./badger-256.png">
   <link rel="apple-touch-icon" href="./badger-180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <meta property="og:title" content="BadgerSkope — Evidence > Hype">
   <meta property="og:description" content="Independent peptide-research literacy. Compounds graded on data, not vibes.">
@@ -28,6 +30,39 @@
   <link rel="stylesheet" href="./design-tokens.css">
   <link rel="stylesheet" href="./marketing.css">
   <script src="./marketing-nav.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.badgerskope.com/#org",
+        "name": "BadgerSkope",
+        "url": "https://www.badgerskope.com/",
+        "logo": "https://www.badgerskope.com/lockup-og.png",
+        "description": "Independent peptide-research literacy. Compounds graded on what they actually do."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.badgerskope.com/#site",
+        "url": "https://www.badgerskope.com/",
+        "name": "BadgerSkope",
+        "publisher": { "@id": "https://www.badgerskope.com/#org" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Are you telling me what to take?", "acceptedAnswer": { "@type": "Answer", "text": "No. BadgerSkope is education, not advice. We grade evidence; you (and your physician) decide if that evidence is enough for you." } },
+          { "@type": "Question", "name": "Who pays for this?", "acceptedAnswer": { "@type": "Answer", "text": "Readers. Subscriptions only. We don't take ad money from peptide vendors, supplement brands, or anyone whose product we might grade." } },
+          { "@type": "Question", "name": "How often do grades change?", "acceptedAnswer": { "@type": "Answer", "text": "Quarterly review for everything; immediate review when a major trial reads out. Each file shows its last-reviewed date and grade history." } },
+          { "@type": "Question", "name": "Why the badger?", "acceptedAnswer": { "@type": "Answer", "text": "Badgers don't care. They dig until they hit the thing. They aren't impressed by anyone's podcast. Same energy." } },
+          { "@type": "Question", "name": "What if I disagree with a grade?", "acceptedAnswer": { "@type": "Answer", "text": "Cite the paper. We re-grade in public when a reader brings a primary source we missed. Grade history is part of every file." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 

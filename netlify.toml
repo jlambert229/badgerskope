@@ -1,19 +1,99 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/web/*"
-  to = "/web/:splat"
-  status = 200
-
+# /web/ is the SPA. The redirect rule below is preserved so /app
+# bookmarks keep landing on the SPA root. The old /web/* → /web/:splat
+# rewrite was a no-op (path → same path) and has been removed.
 [[redirects]]
   from = "/app"
   to = "/web/"
   status = 302
 
+# Internal scaffolding directories are NOT meant to ship to the
+# public site, but the publish=. root drags everything along. 404
+# them explicitly until we move public assets into a public/ dir.
+[[redirects]]
+  from = "/config/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/db/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/templates/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/tests/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/logs/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/.netlify/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/.swarm/*"
+  to = "/404"
+  status = 404
+[[redirects]]
+  from = "/.github/*"
+  to = "/404"
+  status = 404
+
+# Global security + privacy headers.
+# Notes:
+#   * Content-Security-Policy permits inline <script> blocks (used by
+#     index.html, glossary.html, evidence-guide.html) and the
+#     fonts.googleapis.com style sheet. Tighten further by extracting
+#     inline blocks to files and dropping 'unsafe-inline' once done.
+#   * HSTS is one year + preload. Only safe because the site is
+#     HTTPS-only on www.badgerskope.com.
+#   * Permissions-Policy denies every capability the site does not
+#     use, including interest-cohort (FLoC).
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    X-Frame-Options       = "DENY"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+    Referrer-Policy       = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Permissions-Policy    = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+
+# Static assets — long max-age, immutable would be safer once files
+# have content-hashed names. For now revalidate hourly.
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+[[headers]]
+  for = "/web/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Peptide database JSON: short max-age and no public indexing
+# (search engines should crawl the rendered pages instead).
+[[headers]]
+  for = "/peptide-info-database.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
+    X-Robots-Tag  = "noindex"
+
+# Brand assets — long max-age, served from root.
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

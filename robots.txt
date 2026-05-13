@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /peptide-info-database.json
+Disallow: /scripts/
+Disallow: /templates/
+Disallow: /config/
+Disallow: /db/
+Disallow: /.netlify/
+Disallow: /.swarm/
+Disallow: /.github/
+Disallow: /tests/
+Disallow: /logs/
+
+Sitemap: https://www.badgerskope.com/sitemap.xml
