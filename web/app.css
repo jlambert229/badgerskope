@@ -100,7 +100,7 @@ kbd {
      at every viewport width. .lib is max-width 1800px with 40px padding
      → 1720px content; replicate that math here. */
   padding: 14px max(40px, calc((100vw - 1720px) / 2));
-  background: rgba(11, 11, 10, 0.78);
+  background: rgba(26, 26, 24, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -439,7 +439,7 @@ html {
   text-transform: uppercase;
   outline: none;
   appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23C8D17A' d='M0 0h10L5 6z'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%232DA89C' d='M0 0h10L5 6z'/></svg>");
   background-repeat: no-repeat;
   background-position: right 0 center;
   width: 100%;

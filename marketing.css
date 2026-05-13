@@ -2,16 +2,11 @@
    BADGERSKOPE — Marketing landing
    Editorial brutalist. Dark only. "EVIDENCE > HYPE."
 
-   Accent split (PR: marketing-and-cohesion-pass):
-     - Olive  #C8D17A → `--accent-tier-a` (Tier A semantic ONLY:
-       legend-bar fill, tier-A letter chip, "filed" press stamp).
-     - Teal   #7EB6B0 → `--accent-brand` aliased to `--accent`.
-       Used everywhere `var(--accent)` already lived — links,
-       hover, focus rings, active chips, ticker mark, FAQ toggle,
-       primary CTA, EVIDENCE > chevron, ::selection.
-     The default `--accent` alias points to teal, so most existing
-     rules pick up the new accent without rewrites; surfaces that
-     should remain olive use `--accent-tier-a` explicitly.
+   Accent: single brand color, deep teal #2DA89C. Used as both the
+   interactive accent (links, hover, focus rings, active chips, ticker
+   mark, FAQ toggle, primary CTA, EVIDENCE > chevron, ::selection) and
+   the Tier-A semantic chip (legend-bar fill, tier-A letter chip,
+   "filed" press stamp). Token aliases live in design-tokens.css.
    ============================================================ */
 
 * { box-sizing: border-box; }
@@ -64,14 +59,14 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 32px;
   padding: 18px 40px;
-  background: rgba(11, 11, 10, 0.7);
+  background: rgba(26, 26, 24, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: background var(--transition-slow), border-color var(--transition-slow);
 }
 .nav.is-scrolled {
-  background: rgba(11, 11, 10, 0.92);
+  background: rgba(26, 26, 24, 0.92);
   border-bottom-color: var(--line);
 }
 .nav-brand {
@@ -696,8 +691,8 @@ img { display: block; max-width: 100%; }
 }
 .feature-cols p { margin: 0 0 16px; }
 .feature-cols strong {
-  color: var(--accent);
-  font-weight: 500;
+  color: var(--fg);
+  font-weight: 600;
 }
 
 .pullquote {
@@ -799,7 +794,7 @@ img { display: block; max-width: 100%; }
 .subscribe {
   padding: 96px 40px;
   background:
-    radial-gradient(circle at 50% 30%, rgba(126,182,176,0.08), transparent 60%),
+    radial-gradient(circle at 50% 30%, rgba(45, 168, 156, 0.10), transparent 60%),
     var(--bg);
 }
 .sub-card {
@@ -924,7 +919,7 @@ img { display: block; max-width: 100%; }
 .wordmark-tag {
   font-family: var(--font-mono);
   font-size: 10px; letter-spacing: var(--tracking-mono-lg);
-  color: var(--accent);
+  color: var(--fg-3);
   margin-top: 4px;
 }
 .footer-cols {
@@ -1101,7 +1096,7 @@ img { display: block; max-width: 100%; }
   font-size: 11px;
   letter-spacing: var(--tracking-mono-lg);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--fg-3);
   font-weight: 500;
   margin-bottom: 8px;
 }

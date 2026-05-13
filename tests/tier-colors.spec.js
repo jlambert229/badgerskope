@@ -45,8 +45,8 @@ test.describe("tier color delineation", () => {
       };
     });
 
-    // --tier-a is var(--accent-tier-a) which itself is #C8D17A; lower-cased
-    // hex compare so we don't trip on case.
+    // --tier-a is var(--accent-tier-a) which itself is #2DA89C deep teal;
+    // lower-cased hex compare so we don't trip on case.
     expect(tokens.a).toBe(TIER_HEX.A.toLowerCase());
     expect(tokens.b).toBe(TIER_HEX.B.toLowerCase());
     expect(tokens.c).toBe(TIER_HEX.C.toLowerCase());
