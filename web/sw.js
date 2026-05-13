@@ -66,6 +66,30 @@ self.addEventListener("activate", (e) => {
   self.clients.claim();
 });
 
+// Network-first race: resolve to whichever finishes first between a
+// real fetch and a 5s "give up" timer. On slow/lossy mobile networks
+// (5G hand-off, captive portal, transit tunnel) the unbounded fetch
+// could hang the full TCP timeout (~30s on iOS) before the cached
+// response surfaced. Racing keeps first-paint snappy.
+const NETWORK_TIMEOUT_MS = 5000;
+
+function networkFirstWithTimeout(request) {
+  const cachePromise = caches.match(request);
+  const timeoutPromise = new Promise((resolve) => {
+    setTimeout(() => cachePromise.then((c) => resolve(c || Response.error())), NETWORK_TIMEOUT_MS);
+  });
+  const fetchPromise = fetch(request)
+    .then((res) => {
+      if (res && res.status === 200 && res.type !== "opaque") {
+        const clone = res.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+      }
+      return res;
+    })
+    .catch(() => cachePromise);
+  return Promise.race([fetchPromise, timeoutPromise]).then((r) => r || cachePromise);
+}
+
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
 
@@ -74,32 +98,12 @@ self.addEventListener("fetch", (e) => {
     url.pathname === DATA_URL ||
     url.pathname.endsWith("peptide-info-database.json")
   ) {
-    e.respondWith(
-      fetch(e.request)
-        .then((res) => {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
-          return res;
-        })
-        .catch(() => caches.match(e.request)),
-    );
+    e.respondWith(networkFirstWithTimeout(e.request));
     return;
   }
 
-  // Static app assets: NETWORK-FIRST with cache fallback. The previous
-  // cache-first strategy made deploys invisible to returning users —
-  // they would see the old code indefinitely until they manually cleared
-  // site data. Network-first means a successful fetch always wins, with
-  // the cache as an offline / slow-network safety net.
-  e.respondWith(
-    fetch(e.request)
-      .then((res) => {
-        if (res && res.status === 200 && res.type !== "opaque") {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
-        }
-        return res;
-      })
-      .catch(() => caches.match(e.request)),
-  );
+  // Static app assets: NETWORK-FIRST (with timeout) and cache fallback.
+  // Previous cache-first strategy made deploys invisible to returning
+  // users; pure network-first hung on slow networks. Race wins both.
+  e.respondWith(networkFirstWithTimeout(e.request));
 });
