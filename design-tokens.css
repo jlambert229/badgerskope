@@ -203,3 +203,12 @@ body.no-grain::before { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   :root { --transition-fast: 0ms; --transition-base: 0ms; --transition-slow: 0ms; }
 }
+
+/* ============================================================
+   Brand-mark badger inside <svg> — the PNG is forced to white via
+   a filter chain. Moved off inline style= (CSP unsafe-inline) to a
+   reusable class.
+   ============================================================ */
+.brand-mark__bg {
+  filter: brightness(0) invert(1) contrast(1.5);
+}

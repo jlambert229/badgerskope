@@ -62,4 +62,19 @@
       setOpen(false);
     }
   }, { passive: true });
+
+  // Pause the homepage ticker animation while it's scrolled out of view.
+  // CSS keeps it paused by default; we flip .is-visible only when at
+  // least one fragment is intersecting the viewport.
+  var ticker = document.querySelector('.ticker');
+  if (ticker && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        ticker.classList.toggle('is-visible', e.isIntersecting);
+      });
+    }, { threshold: 0 });
+    io.observe(ticker);
+  } else if (ticker) {
+    ticker.classList.add('is-visible');
+  }
 })();
