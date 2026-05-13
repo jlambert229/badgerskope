@@ -683,6 +683,23 @@ html {
   margin: 4px 0 0;
 }
 
+/* Inline badge under the summary cell when entry.sources is empty.
+   The brand promises 'evidence > hype' — flag missing receipts before
+   the reader opens the file. Rendered as a small mono-caps amber-ish
+   chip so it reads as a flag, not as part of the prose. */
+.lib-row__no-sources {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--warning);
+  border: 1px solid var(--warning);
+  background: transparent;
+}
+
 .lib-row__tier {
   display: flex; align-items: center; gap: 10px;
   flex-wrap: wrap;
@@ -1089,6 +1106,17 @@ html {
   margin-top: 32px;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
+}
+.stat-overview {
+  grid-column: 1 / -1;
+  margin: 0 0 8px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-2);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--fg);
 }
 .stat-banner {
   grid-column: 1 / -1;

@@ -42,6 +42,25 @@ export function renderStatsDashboard() {
     totalSubEl.textContent = `${withSources} with linked sources`;
   }
 
+  /* At-a-glance overview — a single plain-English sentence describing
+     the library mix. Counted from the actual data so it stays honest
+     as compounds get re-graded. Inserted into a banner if present. */
+  const overviewEl = document.getElementById("stat-overview");
+  if (overviewEl) {
+    const byGrade = { A: 0, B: 0, C: 0, D: 0, F: 0 };
+    for (const e of entries) {
+      const t = highestTier(e);
+      if (t && t.grade) byGrade[t.grade] = (byGrade[t.grade] || 0) + 1;
+    }
+    const approved = byGrade.A;
+    const promising = byGrade.B;
+    const earlyOrUnknown = byGrade.C + byGrade.D + byGrade.F;
+    overviewEl.textContent =
+      `Of ${total} files in the library, ${approved} have strong human evidence ` +
+      `(FDA-approved or major trials), ${promising} are promising but not yet proven in people, ` +
+      `and the remaining ${earlyOrUnknown} are early-stage, animal-only, or unverified.`;
+  }
+
   /* Compound types */
   const compoundCounts = {};
   for (const e of entries) {

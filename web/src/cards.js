@@ -93,6 +93,17 @@ export function renderCard(entry, catIndex, cardIndex) {
   summaryCell.className = "lib-row__summary card__summary";
   summaryCell.dataset.label = "SUMMARY";
   summaryCell.textContent = summary;
+  // Entries with no sources are flagged inline so readers see the
+  // missing receipts before they open the file. This is rare but the
+  // brand is 'evidence > hype' — silently rendering an unsourced entry
+  // would undermine that.
+  if (!(entry.sources && entry.sources.length > 0)) {
+    const noSrc = document.createElement("span");
+    noSrc.className = "lib-row__no-sources";
+    noSrc.textContent = "No sources filed yet";
+    summaryCell.appendChild(document.createTextNode(" "));
+    summaryCell.appendChild(noSrc);
+  }
 
   // ── ACTIONS (bookmark, select, open arrow) ───────────────────────────
   const actionsCell = document.createElement("div");

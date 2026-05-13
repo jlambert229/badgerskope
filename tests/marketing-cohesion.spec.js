@@ -78,8 +78,11 @@ test.describe("Marketing landing — combined cohesion pass", () => {
   test("(#1a) hype phrases are wrapped in .redact spans", async ({ page }) => {
     await page.goto("/");
     const redacts = await page.locator(".redact").count();
-    // Anchor card has 3 + lede 3 + summary 1 ≈ at least 5
-    expect(redacts).toBeGreaterThanOrEqual(5);
+    // After the iteration pass, only the feature article keeps the
+    // redact-bar mechanic (3 phrases). Anchor card uses plain prose.
+    // Threshold lowered from 5 to 2 — assert the mechanic still exists
+    // somewhere on the page rather than its previous saturation.
+    expect(redacts).toBeGreaterThanOrEqual(2);
   });
 
   test("(#3) HYPE word renders as ghost type with text-stroke", async ({ page }) => {
