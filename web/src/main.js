@@ -295,13 +295,15 @@ function render() {
   if (els.stats) {
     const total = state.db.entries.length;
     let html = list.length === total
-      ? `${total} COMPOUNDS LOGGED`
-      : `${list.length} OF ${total} SHOWING`;
+      ? `${total} files logged`
+      : `${list.length} of ${total} files`;
     if (hiddenExperimental > 0) {
       // Promote the experimental count to a click target so users can reveal them inline.
-      html += ` \u00b7 ${hiddenExperimental} EXPERIMENTAL HIDDEN <button type="button" id="show-experimental-inline" class="lib-meta-strip__action">[SHOW]</button>`;
+      // Two-line layout on mobile keeps the [SHOW ALL] action reachable
+      // without horizontal text-overflow on narrow viewports.
+      html += `<span class="lib-meta-strip__sep" aria-hidden="true"> &middot; </span><span class="lib-meta-strip__hidden">${hiddenExperimental} early-research files hidden by default</span> <button type="button" id="show-experimental-inline" class="lib-meta-strip__action">SHOW ALL</button>`;
     }
-    if (selN) html += ` \u00b7 ${selN} SELECTED`;
+    if (selN) html += `<span class="lib-meta-strip__sep" aria-hidden="true"> &middot; </span>${selN} selected`;
     els.stats.innerHTML = html;
     // Mirror the count to the off-screen live region for screen
     // readers \u2014 the visible #stats span is now aria-hidden inside

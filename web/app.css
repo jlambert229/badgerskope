@@ -1318,62 +1318,59 @@ html {
   .lib-selection-actions { gap: 6px; flex-shrink: 0; }
   .lib-selection .btn { padding: 8px 10px; font-size: var(--text-label); }
 
-  /* Tighter tracking + tighter sep margin on phones so the default-state copy
-     ("LIBRARY · 45 COMPOUNDS LOGGED" plus the experimental-hidden hint) sits
-     on a single line at 390px. white-space: nowrap forces a single line;
-     the .lib container is overflow-x: hidden so any tail clips cleanly
-     instead of wrapping. The [SHOW] action remains tappable at the inline
-     position before the clip. */
-  .lib-meta-strip {
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .lib-meta-strip__label { letter-spacing: 0.06em; }
-  .lib-meta-strip__sep { margin: 0 4px; }
+  /* Library H1 — slightly smaller display size on phones. The
+     count line (a separate <p>, no longer inside the H1) wraps
+     naturally and the SHOW ALL action stays reachable. */
+  .lib-meta-strip { font-size: 28px; }
 }
 
 .lib-meta-strip {
   display: block;
-  margin: 0 0 24px;
-  padding: 14px 0;
+  margin: 0 0 8px;
+  padding: 14px 0 8px;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono);
-  /* Responsive scale: the live region (#stats) can grow to
-     "25 OF 45 SHOWING · 12 EXPERIMENTAL HIDDEN [SHOW]". Without clamp() the
-     UA default for <h1> (32px Inter) wins and the strip stacks to 4+ lines
-     at 390px. clamp(8px, 2.2vw, var(--text-label)) keeps desktop at 11px
-     and shrinks gracefully on phones so the default-state copy stays single-line. */
-  font-size: clamp(8px, 2.2vw, var(--text-label));
-  line-height: 1.5;
-  letter-spacing: var(--tracking-mono-lg);
-  color: var(--fg-3);
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+  color: var(--fg);
+  font-weight: 600;
   text-transform: uppercase;
 }
-.lib-meta-strip__label { color: var(--fg); letter-spacing: 0.18em; }
-.lib-meta-strip__sep {
-  color: var(--line-2);
-  margin: 0 8px;
+.lib-meta-strip__label { color: var(--fg); }
+/* The count-line sits below the H1 — it's an info banner, not part
+   of the document outline. Wraps freely on mobile so [SHOW ALL]
+   never clips. */
+.lib-meta-strip__count-line {
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.6;
+  letter-spacing: var(--tracking-mono-lg);
+  color: var(--fg-3);
+  text-transform: uppercase;
+  display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline;
 }
+.lib-meta-strip__sep { color: var(--line-2); }
 .lib-meta-strip__count { color: var(--fg-2); }
+.lib-meta-strip__hidden { color: var(--fg-3); text-transform: none; letter-spacing: 0.02em; font-family: var(--font-body); font-size: 13px; }
 
 .lib-meta-strip__action {
   font-family: var(--font-mono);
-  /* Inherit from .lib-meta-strip so the button rides the same responsive
-     scale and doesn't inflate the H1 line height on phones. */
-  font-size: inherit;
-  letter-spacing: inherit;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-mono);
   color: var(--accent);
   background: transparent;
-  border: 0;
-  padding: 0 4px;
+  border: 1px solid var(--accent);
+  padding: 6px 12px;
   cursor: pointer;
-  transition: opacity var(--transition-fast);
+  text-transform: uppercase;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  border-radius: var(--radius-micro);
 }
-.lib-meta-strip__action:hover { opacity: 0.7; }
+.lib-meta-strip__action:hover { background: var(--accent); color: var(--bg); }
 .lib-meta-strip__action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ============================================================
