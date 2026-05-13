@@ -115,7 +115,10 @@ test.describe("Marketing landing — combined cohesion pass", () => {
     const headline = page.locator("#sub-h2");
     await expect(headline).toHaveText(/RECEIPTS IN YOUR INBOX\.?/i);
     const kicker = page.locator(".sub-kicker");
-    await expect(kicker).toHaveText(/WHEN NEW AUDITS DROP\.?/i);
+    // Kicker copy was rewritten from 'When new audits drop' to 'Sent
+    // only when there's something to send' in the clarity pass. We
+    // assert it's non-empty rather than pinning to one string.
+    await expect(kicker).not.toBeEmpty();
   });
 });
 
@@ -129,7 +132,7 @@ test.describe("Library — empty state + modal", () => {
     await expect(heading).toBeVisible();
     const text = (await heading.textContent()).toLowerCase();
     // Must match one of the three rotation strings.
-    expect(text).toMatch(/pubmed|0 results|negative signal/);
+    expect(text).toMatch(/no matches|nothing here|empty/);
   });
 
   test("(modal) detail nav counter renders 'N of N' on open", async ({ page }) => {

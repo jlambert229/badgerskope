@@ -68,7 +68,9 @@ test.describe("Detail modal on iOS", () => {
 
     // Should have at minimum these sections
     expect(sections.length).toBeGreaterThan(2);
-    expect(sections).toContain("What researchers found");
+    // 'What researchers found' was rewritten to 'What the research has
+    // shown' in the clarity pass.
+    expect(sections).toContain("What the research has shown");
   });
 
   test("synergy pills navigate to other entries", async ({ page }) => {
