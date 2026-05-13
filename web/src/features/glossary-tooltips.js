@@ -47,18 +47,27 @@ const TERMS = {
   // Phrases
   "bioavailability":  "How much of a substance actually reaches the bloodstream and its target after dosing.",
   "double-blind":     "Study design where neither participants nor researchers know who got treatment vs placebo.",
+  "glucagon":         "A hormone that raises blood sugar. Activating its receptor unexpectedly helps with weight loss by burning calories — the differentiator for retatrutide.",
   "half-life":        "Time for half of a substance to be cleared from the body — drives dosing frequency.",
   "in vitro":         "Done in a test tube or petri dish — outside a living organism.",
   "in vivo":          "Done in a living organism. More relevant than in-vitro, less than human trials.",
+  "incretin":         "A gut hormone (GLP-1, GIP) that triggers insulin release after eating. The drug class behind Ozempic and Mounjaro.",
   "lipodystrophy":    "Abnormal fat distribution — the FDA-approved indication for tesamorelin in HIV-related cases.",
   "lyophilized":      "Freeze-dried — how most research peptides are stored before reconstitution.",
+  "medullary thyroid carcinoma": "A rare thyroid cancer. People with a personal/family history are excluded from GLP-1 drug trials.",
+  "MEN 2":            "Multiple Endocrine Neoplasia syndrome type 2 — an inherited condition that contraindicates GLP-1 drugs.",
   "off-label":        "Using an FDA-approved drug for a purpose outside its official approval.",
+  "Phase 1":          "First testing in humans — small group of healthy volunteers, focused on safety and dosing.",
+  "Phase 2":          "Mid-stage trial: hundreds of patients, tests whether the drug actually works for a condition.",
+  "Phase 3":          "Late-stage trial: thousands of patients across multiple sites. The big test that drives FDA approval.",
   "preclinical":      "Research in animals or cell cultures, before any human testing.",
   "secretagogue":     "A substance that triggers the body to release a hormone, rather than replacing it directly.",
   "subcutaneous":     "Injected under the skin into the fat layer (most common peptide route).",
   "tachyphylaxis":    "Rapid drop in response to a drug after repeated doses — why some peptides need cycling.",
   "telomere":         "Protective cap on chromosome ends. Shortens each cell division; linked to aging.",
   "telomerase":       "Enzyme that rebuilds telomeres, counteracting their natural shortening.",
+  "triple agonist":   "A drug that activates three hormone receptors at once. Retatrutide hits GLP-1, GIP, and glucagon.",
+  "tri-agonist":      "Same as triple agonist — activates three hormone receptors at once.",
 };
 
 // Build a single regex that matches any term, longest first to avoid

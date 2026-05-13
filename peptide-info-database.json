@@ -116,7 +116,7 @@
         }
       ],
       "dosingTimingNotes": "Injected under the skin once a week on any chosen day. The oral version has different rules. Research-grade vials sold online are not the same as the pharmacy product.",
-      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide — the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
+      "notes": "The vendor code \"1G-SGT\" is shorthand for semaglutide \u2014 the same active ingredient as Ozempic and Wegovy. The wording on this page describes semaglutide as it appears in published trials and on the FDA label, not this specific vial. Confirm the contents with a certificate of analysis before relying on it.",
       "potentialApplications": [
         {
           "evidenceNote": "Strong trial data for pharmacy semaglutide; identity of research vials must match.",
@@ -258,37 +258,45 @@
         "commonDrugName": "Retatrutide"
       },
       "compoundType": "peptide_incretin",
-      "cyclingNotes": "Still in clinical trials with no consumer dosing standard. Gradual dose increases are expected to manage gut side effects.",
+      "cyclingNotes": "There is no 'cycling' pattern for retatrutide \u2014 it is not on the market and not legally available outside clinical trials. Inside trials, dosing is continuous with a titration ramp.",
       "doseGuidelines": [
         {
-          "indicationOrContext": "Weight loss (investigational retatrutide)",
+          "indicationOrContext": "Weight loss (investigational; clinical-trial protocol)",
           "evidenceBasis": "pivotal_trials",
-          "minimumEffectiveDoseNotes": "Phase 2 trials used weekly doses that were slowly increased. Meaningful weight loss appeared at mid-range doses and got bigger at higher doses. No consumer dosing guide exists outside of clinical trials."
+          "minimumEffectiveDoseNotes": "Phase 2 used weekly subcutaneous doses of 1, 4, 8, or 12mg with gradual titration to manage nausea. Meaningful weight loss appeared by week 24 and continued through 48 weeks; higher doses produced larger reductions. These are trial protocols, not consumer dosing \u2014 the drug is not legally available outside enrolled trials."
         }
       ],
-      "dosingTimingNotes": "Injected weekly with gradual dose increases in clinical trials. The exact schedule depends on the study protocol.",
-      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is a triple agonist that acts on three hormone receptors (GLP-1, GIP, and glucagon). It is not approved by the FDA and is not available by prescription. The vendor code on this listing is shorthand; confirm the actual contents with a certificate of analysis before relying on it.",
+      "dosingTimingNotes": "Weekly subcutaneous self-injection in trials, with stepped dose increases over the first several weeks to reduce gut side effects. Trial protocol \u2014 not a consumer schedule.",
+      "notes": "Retatrutide is an investigational once-weekly injectable being developed by Eli Lilly for obesity and type 2 diabetes. It is the first triple agonist (GLP-1 + GIP + glucagon) to reach late-stage trials. It is not approved by the FDA or any other regulator, and it is not available by prescription \u2014 only through enrolled clinical trials. People with a personal or family history of medullary thyroid carcinoma or Multiple Endocrine Neoplasia syndrome type 2 (MEN 2) are excluded from enrollment in related drug classes; that contraindication is expected to carry to retatrutide if approved. The vendor code on this listing is shorthand \u2014 anything sold under it outside an approved trial is grey-market, and the contents are not verified by any regulator.",
       "potentialApplications": [
         {
-          "evidenceNote": "Retatrutide-class trials; not a guaranteed outcome for grey-market products.",
-          "personCenteredBenefit": "May produce large weight reductions in trial volunteers when the agent is a triple incretin under study."
+          "evidenceNote": "From Phase 2 trial data (Jastreboff 2023). Real-world results may differ \u2014 and the drug is not yet available outside trials.",
+          "personCenteredBenefit": "Trial volunteers at higher doses lost more weight on average than any other published drug in the class."
         },
         {
-          "evidenceNote": "Development-stage; retail codes may not match trial material.",
-          "personCenteredBenefit": "May improve glucose markers alongside weight in study participants."
+          "evidenceNote": "Phase 2 secondary endpoints; clinical relevance depends on regulatory review.",
+          "personCenteredBenefit": "Fasting glucose, insulin, triglycerides, and liver-enzyme markers all moved in favorable directions at higher doses."
         }
       ],
       "reportedBenefits": [
-        "Phase 2 trials: produced some of the largest average weight-loss numbers reported for any drug in this class.",
-        "Also reported: improvements in fasting blood sugar and insulin levels at higher doses.",
-        "Early data: positive shifts in triglycerides and liver enzyme markers in some participants.",
-        "Still in development: combines three hormone pathways (GIP, GLP-1, glucagon) for weight and blood sugar effects."
+        "Phase 2 trial: ~24% average weight loss at the highest dose (12mg weekly) over 48 weeks \u2014 a high-end result for this drug class.",
+        "Lower doses (1\u20138mg weekly) produced a dose-dependent gradient: ~8% to ~22% weight loss.",
+        "Also reported: improvements in fasting blood sugar, insulin, triglycerides, and liver-enzyme markers at higher doses.",
+        "Mechanism: combines three hormone pathways (GLP-1, GIP, glucagon) \u2014 the glucagon arm is what differentiates retatrutide from semaglutide (GLP-1 only) and tirzepatide (GLP-1 + GIP)."
       ],
-      "researchSummary": "An investigational injectable (retatrutide class) that hits three hormone receptors: GIP, GLP-1, and glucagon. Early trials reported some of the largest average weight reductions seen for any drug in this space. Still in development and not yet approved anywhere.",
+      "researchSummary": "An investigational once-weekly injectable from Eli Lilly. It activates three hormone receptors (GIP, GLP-1, and glucagon), the first compound to do all three in late-stage trials. Published Phase 2 data showed about 24% weight loss at the highest dose over 48 weeks. Phase 3 trials (TRIUMPH-1 through TRIUMPH-4) are in progress. Not yet FDA-approved and not available by prescription.",
       "sources": [
         {
-          "label": "PubMed: Jastreboff retatrutide obesity Phase 2 (NEJM 2023)",
+          "label": "Jastreboff et al., Triple-Hormone-Receptor Agonist Retatrutide for Obesity \u2014 NEJM 2023",
           "url": "https://pubmed.ncbi.nlm.nih.gov/37366315/"
+        },
+        {
+          "label": "ClinicalTrials.gov: TRIUMPH-1 (Phase 3, obesity)",
+          "url": "https://clinicaltrials.gov/study/NCT05929066"
+        },
+        {
+          "label": "ClinicalTrials.gov: TRIUMPH-2 (Phase 3, obesity + type 2 diabetes)",
+          "url": "https://clinicaltrials.gov/study/NCT05882045"
         }
       ],
       "wellnessCategories": [
@@ -297,7 +305,7 @@
         "cardiovascular_metabolic"
       ],
       "distinctiveQuality": {
-        "headline": "Best known as a next-generation triple-action weight-loss peptide still in clinical trials, with some of the largest weight-loss numbers reported so far.",
+        "headline": "An investigational weight-loss drug from Eli Lilly that hits three hormone systems at once (GLP-1, GIP, and glucagon). Phase 2 reported weight loss in the high-20%s; Phase 3 (the TRIUMPH program) is the next readout.",
         "themes": [
           "metabolic_incretins"
         ],
@@ -310,14 +318,17 @@
           "Vomiting",
           "Constipation",
           "Decreased appetite",
-          "Mild, temporary increases in heart rate"
+          "Mild, temporary increases in heart rate",
+          "Injection-site reactions"
         ],
         "serious": [
-          "Pancreatitis was reported in a small number of trial participants",
-          "Gallbladder-related events such as gallstones",
-          "Modest rises in heart rate that warrant monitoring",
-          "Because it activates the glucagon receptor, effects on blood sugar control and liver enzymes are being watched closely",
-          "Long-term safety, including any thyroid risk seen with related drugs, is still being studied"
+          "Pancreatitis \u2014 reported in a small number of trial participants; pancreatitis is a class warning for all GLP-1 agonists",
+          "Gallbladder events including gallstones (also class-wide)",
+          "Approved GLP-1 drugs in this family carry a boxed warning for medullary thyroid carcinoma based on rodent studies \u2014 long-term thyroid safety for retatrutide is still being studied",
+          "Worsening of pre-existing diabetic retinopathy has been seen with closely related drugs; should be monitored",
+          "Severe gut side effects can cause dehydration that has been linked to kidney injury",
+          "Because it activates the glucagon receptor, blood sugar control and liver enzymes are being watched in trials more closely than for GLP-1-only drugs",
+          "If combined with insulin or sulfonylureas, the risk of low blood sugar goes up \u2014 relevant for people with type 2 diabetes"
         ]
       }
     },
@@ -2407,7 +2418,7 @@
       "researchSummary": "A synthetic version of a fragment from thymosin beta-4, a natural protein involved in cell movement and tissue repair. Popular in sports recovery for claims about faster healing of injuries. Animal evidence is solid, but human clinical trials are scarce. Flagged in anti-doping contexts.",
       "sources": [
         {
-          "label": "PMC: Thymosin β4 function review",
+          "label": "PMC: Thymosin \u03b24 function review",
           "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724243/"
         }
       ],
@@ -2510,7 +2521,7 @@
     {
       "catalog": {
         "title": "Thymosin Alpha-1",
-        "commonDrugName": "Thymalfasin (Tα1)"
+        "commonDrugName": "Thymalfasin (T\u03b11)"
       },
       "compoundType": "peptide",
       "cyclingNotes": "Treatment courses are defined for specific conditions (e.g. alongside hepatitis antivirals).",
