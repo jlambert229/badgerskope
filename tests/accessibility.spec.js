@@ -89,8 +89,11 @@ test.describe("Accessibility — issues that lock out users", () => {
       };
     });
 
-    expect(roles.tabCount).toBe(3);
-    expect(roles.panelCount).toBe(3);
+    // Library + Stats are the two real tabs; the Compare tab was removed
+    // in an earlier pass. Mobile EVIDENCE/GLOSSARY/HELP mirrors live in
+    // .nav-tabs with role='presentation' so they don't count here.
+    expect(roles.tabCount).toBe(2);
+    expect(roles.panelCount).toBe(2);
     expect(roles.tabsHaveAriaSelected).toBe(true);
     expect(roles.panelsHaveLabels).toBe(true);
   });

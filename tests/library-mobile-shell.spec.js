@@ -21,28 +21,26 @@ const PHONE = { width: 390, height: 844 };
 const DESKTOP = { width: 1280, height: 900 };
 
 test.describe("Library — mobile shell @ 390x844", () => {
-  test("H1 (lib-meta-strip) is on a single visual line", async ({ page }) => {
+  test("H1 (lib-meta-strip) renders 'THE LIBRARY' as a display headline", async ({ page }) => {
     await page.setViewportSize(PHONE);
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
 
-    // Every direct-child <span> of the H1 must share the same y-baseline.
-    // If any wrap, their `top` values diverge by ~line-height.
-    const tops = await page.$$eval(
-      "h1.lib-meta-strip > span",
-      (els) => els.map((e) => Math.round(e.getBoundingClientRect().top)),
-    );
-    expect(tops.length).toBeGreaterThanOrEqual(2);
-    const uniqueTops = [...new Set(tops)];
-    expect(uniqueTops.length).toBe(1);
+    // The H1 now reads "THE LIBRARY" — a single Oswald display headline.
+    // The count + experimental-hidden hint live in a sibling <p> below.
+    const h1Text = await page.locator("h1.lib-meta-strip").textContent();
+    expect(h1Text.trim().toUpperCase()).toContain("LIBRARY");
 
-    // Sanity: clamp() shrunk the size below 11px on a 390px viewport.
+    // Display-scale font (Oswald), ≥24px on mobile.
     const fontSize = await page.evaluate(() => {
       const h = document.querySelector("h1.lib-meta-strip");
       return parseFloat(getComputedStyle(h).fontSize);
     });
-    expect(fontSize).toBeLessThan(11);
-    expect(fontSize).toBeGreaterThanOrEqual(8);
+    expect(fontSize).toBeGreaterThanOrEqual(24);
+
+    // The count-line below the H1 must be present and contain a number.
+    const countText = await page.locator(".lib-meta-strip__count-line").textContent();
+    expect(countText).toMatch(/\d+/);
   });
 
   test("EVIDENCE / GLOSSARY / HELP are reachable in the tab row", async ({ page }) => {
@@ -108,10 +106,12 @@ test.describe("Library — desktop shell @ 1280x900", () => {
     );
     expect(mirrorDisplay).toBe("none");
 
-    // Desktop H1 stays at the top of the clamp range (11px).
+    // Desktop H1 renders at the top of the clamp(28, 4vw, 44) range —
+    // 4vw of 1280 = 51, capped at 44 by the clamp's upper bound.
     const fs = await page.evaluate(() =>
       parseFloat(getComputedStyle(document.querySelector("h1.lib-meta-strip")).fontSize),
     );
-    expect(fs).toBeCloseTo(11, 0);
+    expect(fs).toBeGreaterThanOrEqual(28);
+    expect(fs).toBeLessThanOrEqual(44);
   });
 });

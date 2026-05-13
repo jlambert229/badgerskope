@@ -60,8 +60,8 @@ test.describe("Edge cases — the bugs users find first", () => {
     // App should be in a consistent state
     const cards = await page.locator(".card").count();
     const statsText = await page.locator("#stats").textContent();
-    // Masthead reads "<n> OF <total> SHOWING" or "<n> COMPOUNDS LOGGED".
-    const match = statsText.match(/(\d+)\s+(?:OF\s+\d+\s+SHOWING|COMPOUNDS\s+LOGGED)/i);
+    // Count line reads "<n> of <total> files" or "<n> files logged".
+    const match = statsText.match(/(\d+)\s+(?:of\s+\d+\s+files|files\s+logged)/i);
     expect(match).toBeTruthy();
     expect(parseInt(match[1])).toBe(cards);
   });

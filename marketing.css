@@ -997,7 +997,11 @@ body.is-nav-open { overflow: hidden; }
 .sub-form button {
   background: var(--accent); color: var(--bg);
   font-family: var(--font-mono);
-  font-size: 13px; line-height: 1.2;
+  /* Match the input's 16px font-size so both controls share the
+     same intrinsic height (~58px including 18px padding × 2 + line-
+     height). Without this, the button rendered ~5px shorter than
+     the input and the mobile-spacing pass test flagged the gap. */
+  font-size: 16px; line-height: 1.2;
   letter-spacing: var(--tracking-mono);
   padding: 18px 28px;
   border: 1px solid var(--accent);
