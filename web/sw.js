@@ -5,7 +5,7 @@
 // even after a successful Netlify deploy. (Bug observed 2026-04-29:
 // users still saw the broken Prev/Next + old modal layout 6+ hours
 // after the fix shipped.)
-const CACHE_NAME = "badgerskope-v9-network-first";
+const CACHE_NAME = "badgerskope-v10-network-first";
 
 const STATIC_ASSETS = [
   "/web/",
@@ -37,7 +37,6 @@ const STATIC_ASSETS = [
   "/web/src/features/notes.js",
   "/web/src/features/doping.js",
   "/web/src/features/interactions.js",
-  "/web/src/features/start-here.js",
   "/web/src/features/sport-filter.js",
   "/web/src/features/experimental-toggle.js",
   "/web/src/features/glossary-tooltips.js",
