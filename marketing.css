@@ -502,6 +502,12 @@ body.is-nav-open { overflow: hidden; }
   border-bottom: 1px solid var(--line);
   margin-bottom: 16px;
 }
+.hero-card-tier-caption {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--fg-3);
+  margin: 16px 0 10px;
+}
 .hero-card-row {
   display: flex; justify-content: space-between;
   padding: 8px 0;
