@@ -88,6 +88,88 @@ img { display: block; max-width: 100%; }
   display: flex; gap: 8px; flex-wrap: nowrap;
 }
 
+/* Hamburger trigger + slide-down sheet. Visible only at ≤700px (see
+   responsive block far below). When body.is-nav-open the sheet drops
+   into view as a vertical stack of all primary links and CTAs. */
+.nav-toggle {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1px solid var(--line-2);
+  color: var(--fg);
+  cursor: pointer;
+  border-radius: var(--radius-micro);
+}
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  display: block;
+  width: 20px; height: 2px;
+  background: currentColor;
+  position: relative;
+}
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  content: "";
+  position: absolute; left: 0;
+}
+.nav-toggle__bars::before { top: -6px; }
+.nav-toggle__bars::after  { top:  6px; }
+body.is-nav-open .nav-toggle__bars { background: transparent; }
+body.is-nav-open .nav-toggle__bars::before { top: 0; transform: rotate(45deg); }
+body.is-nav-open .nav-toggle__bars::after  { top: 0; transform: rotate(-45deg); }
+.nav-sheet {
+  display: none;
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  padding: 24px 20px max(28px, env(safe-area-inset-bottom));
+  z-index: 90;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  overflow-y: auto;
+}
+.nav-sheet__list {
+  display: flex; flex-direction: column; gap: 0;
+  list-style: none; margin: 0; padding: 0;
+}
+.nav-sheet__list a,
+.nav-sheet__list button {
+  display: block;
+  padding: 16px 4px;
+  font-family: var(--font-mono);
+  font-size: 14px; letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--fg);
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.nav-sheet__cta {
+  margin-top: 16px;
+  padding: 14px 18px !important;
+  border: 1px solid var(--accent) !important;
+  color: var(--accent) !important;
+  border-radius: var(--radius-micro);
+  text-align: center !important;
+}
+.nav-sheet__cta--primary {
+  background: var(--accent) !important;
+  color: var(--bg) !important;
+}
+body.is-nav-open .nav-sheet {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+body.is-nav-open { overflow: hidden; }
+
 /* Subpage breadcrumb (Evidence Guide, Glossary). Quiet by design —
    "← BadgerSkope · Glossary" pattern in mono caps just under the nav,
    above the article hero. Anchors orient screen-reader users with a
@@ -1008,7 +1090,8 @@ img { display: block; max-width: 100%; }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
   .feature-cols { grid-template-columns: 1fr; gap: 0; }
   .faq-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
+  /* At this breakpoint nav-links + CTAs stay inline; the responsive
+     block at ≤700px below replaces them with the hamburger sheet. */
 }
 /* =================================================================
    #2 ANCHOR COMPOUND CARD — focal point under the hero.
@@ -1222,16 +1305,16 @@ a.rule-row:focus-visible {
 }
 
 @media (max-width: 700px) {
-  .nav { padding: 14px 20px; gap: 12px; }
-  /* Nav overflow at mobile: with both CTAs + brand icon, total nav width
-     is ~547px against a 375–430px viewport, clipping SUBSCRIBE entirely
-     and partially clipping OPEN LIBRARY. Drop the SUBSCRIBE CTA (entry
-     point preserved by hero, in-page subscribe section, and footer) and
-     drop the badger mark to recover ~50px so OPEN LIBRARY fits at 390+.
-     At ≤480px (iPhone SE) hide the remaining CTA too — the hero CTA is
-     immediately below the nav. */
-  .nav-mark { display: none; }
-  .nav-cta-group .nav-cta:nth-child(2) { display: none; }
+  .nav { padding: 14px 20px; gap: 12px; justify-content: space-between; }
+  /* Mobile nav: hide the inline links + CTAs and surface a hamburger
+     trigger that opens the full menu in a slide-down sheet. Without
+     this, all primary destinations were unreachable from the nav at
+     ≤700px (the prior breakpoint hid .nav-links at ≤1100 with no
+     fallback). */
+  .nav-links { display: none; }
+  .nav-cta-group { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .nav-sheet { display: block; }
   .hero, .problem, .method, .legend, .library,
   .feature, .faq, .subscribe, .footer {
     padding-left: 20px; padding-right: 20px;
@@ -1334,11 +1417,6 @@ a.rule-row:focus-visible {
   .library-row > *:nth-child(6) { display: none; }
 }
 
-/* iPhone SE (375px) and narrower: hide the remaining nav CTA so the
-   wordmark has breathing room. With brand 156px + OPEN LIBRARY 166px +
-   gaps + padding, the nav needs ≥386px to render without overlap; at
-   ≤380 the CTA gets dropped (hero CTA is immediately below). iPhone 14
-   (390px) and larger keep the OPEN LIBRARY CTA visible. */
-@media (max-width: 380px) {
-  .nav-cta-group { display: none; }
-}
+/* iPhone SE (375px): no special-casing — at ≤700px the hamburger
+   sheet already replaces the inline CTAs, so the wordmark has all
+   the breathing room it needs. */

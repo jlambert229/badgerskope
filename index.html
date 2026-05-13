@@ -27,6 +27,7 @@
 
   <link rel="stylesheet" href="./design-tokens.css">
   <link rel="stylesheet" href="./marketing.css">
+  <script src="./marketing-nav.js" defer></script>
 </head>
 <body>
 
@@ -54,7 +55,27 @@
     <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
     <a href="#subscribe" class="nav-cta">SUBSCRIBE &rarr;</a>
   </div>
+  <button
+    type="button"
+    id="nav-toggle"
+    class="nav-toggle"
+    aria-label="Open menu"
+    aria-controls="nav-sheet"
+    aria-expanded="false"
+  ><span class="nav-toggle__bars" aria-hidden="true"></span></button>
 </nav>
+
+<aside id="nav-sheet" class="nav-sheet" aria-hidden="true" aria-label="Mobile menu">
+  <ul class="nav-sheet__list">
+    <li><a href="#method">METHOD</a></li>
+    <li><a href="#receipts">RECEIPTS</a></li>
+    <li><a href="./evidence-guide.html">EVIDENCE</a></li>
+    <li><a href="./glossary.html">GLOSSARY</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="/web/" class="nav-sheet__cta nav-sheet__cta--primary">OPEN LIBRARY &rarr;</a></li>
+    <li><a href="#subscribe" class="nav-sheet__cta">SUBSCRIBE &rarr;</a></li>
+  </ul>
+</aside>
 
 <main id="top">
 
@@ -539,13 +560,9 @@
 </footer>
 
 <script type="module">
-  // ===========================================================
-  // Nav scroll state
-  // ===========================================================
-  const nav = document.getElementById('site-nav');
-  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 30);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // Nav scroll-state + mobile hamburger sheet live in marketing-nav.js
+  // (loaded in <head>). The remainder of this block handles homepage-
+  // only behaviors (redaction, ticker, library mini-list, FAQ, sub).
 
   // ===========================================================
   // Redaction theater — auto-redact hype phrases on scroll-in.

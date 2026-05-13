@@ -32,6 +32,7 @@
 
   <link rel="stylesheet" href="./design-tokens.css">
   <link rel="stylesheet" href="./marketing.css">
+  <script src="./marketing-nav.js" defer></script>
   <style>
     /* ============================================================
        Evidence guide — content-page extensions on top of marketing.css
@@ -202,14 +203,8 @@
     }
     .step-list li a:hover { border-bottom-color: var(--accent); }
 
-    /* nav cta group — keep both CTAs visible across breakpoints. On
-       narrow viewports compact the padding and drop the brand wordmark
-       text (badger SVG remains) so OPEN LIBRARY + SUBSCRIBE don't clip. */
-    .nav-cta-group { display: flex; gap: 8px; flex-wrap: nowrap; }
-    @media (max-width: 700px) {
-      .nav-cta-group .nav-cta { padding: 8px 10px; font-size: 11px; letter-spacing: 0.1em; }
-      .nav-brand span { display: none; }
-    }
+    /* Wordmark stays visible at every viewport. At ≤700px the
+       hamburger sheet handles the CTAs; nothing else has to disappear. */
 
     /* TOC — sticky-ish in-page anchor list at the top of the article.
        Quiet brutalist edge-bordered block; mono caps numbered links.
@@ -288,7 +283,26 @@
     <a href="/web/" class="nav-cta">OPEN LIBRARY &rarr;</a>
     <a href="/#subscribe" class="nav-cta">SUBSCRIBE &rarr;</a>
   </div>
+  <button
+    type="button"
+    id="nav-toggle"
+    class="nav-toggle"
+    aria-label="Open menu"
+    aria-controls="nav-sheet"
+    aria-expanded="false"
+  ><span class="nav-toggle__bars" aria-hidden="true"></span></button>
 </nav>
+
+<aside id="nav-sheet" class="nav-sheet" aria-hidden="true" aria-label="Mobile menu">
+  <ul class="nav-sheet__list">
+    <li><a href="/web/">LIBRARY</a></li>
+    <li><a href="/evidence-guide.html" aria-current="page">EVIDENCE</a></li>
+    <li><a href="/glossary.html">GLOSSARY</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/web/" class="nav-sheet__cta nav-sheet__cta--primary">OPEN LIBRARY &rarr;</a></li>
+    <li><a href="/#subscribe" class="nav-sheet__cta">SUBSCRIBE &rarr;</a></li>
+  </ul>
+</aside>
 
 <main id="main">
 
@@ -585,18 +599,6 @@
     <div class="mono">v.027.04 &middot; BUILT IN A BURROW</div>
   </div>
 </footer>
-
-<script>
-  (function () {
-    var nav = document.getElementById('site-nav');
-    if (!nav) return;
-    var onScroll = function () {
-      nav.classList.toggle('is-scrolled', window.scrollY > 30);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  })();
-</script>
 
 </body>
 </html>
