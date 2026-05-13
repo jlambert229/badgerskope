@@ -327,14 +327,21 @@ html {
 .lib-search-input {
   width: 100%;
   height: 60px;
-  padding: 0 110px 0 44px;
+  /* Right padding shrinks when CLEAR is hidden (handled by sibling
+     selector below) so the placeholder doesn't clip on mobile. */
+  padding: 0 24px 0 44px;
   background: var(--bg-2);
   border: 1px solid var(--line-2);
   color: var(--fg);
   font-family: var(--font-mono);
-  font-size: 14px; letter-spacing: 0.06em;
+  /* 16px prevents iOS Safari from zooming on focus. Letter-spacing
+     gives the brutalist density read without dropping pixel size. */
+  font-size: 16px; letter-spacing: 0.04em;
   outline: none;
   transition: border-color var(--transition-fast);
+}
+.lib-search:has(.lib-search-reset:not([hidden])) .lib-search-input {
+  padding-right: 110px;
 }
 .lib-search-input:focus { border-color: var(--accent); }
 .lib-search-input::placeholder { color: var(--fg-3); }
@@ -1595,8 +1602,8 @@ html {
     right: 0;
     bottom: 0;
     z-index: 210;
-    max-height: 85vh;
-    height: 85vh;
+    max-height: 85dvh;
+    height: 85dvh;
     background: var(--bg);
     border-top: 1px solid var(--line-2);
     border-radius: 0;

@@ -89,8 +89,9 @@
       border: 1px solid var(--line-2);
       color: var(--fg);
       font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: 0.06em;
+      /* 16px prevents iOS Safari focus-zoom. */
+      font-size: 16px;
+      letter-spacing: 0.04em;
       outline: none;
       transition: border-color var(--transition-fast);
     }
@@ -316,9 +317,13 @@
           type="search"
           class="search-input"
           id="glossary-search"
-          placeholder="SEARCH TERMS — GLP-1, BIOAVAILABILITY, PLACEBO..."
+          placeholder="Try Ozempic, peptide, GLP-1, dosing"
           autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
           spellcheck="false"
+          inputmode="search"
+          enterkeyhint="search"
           aria-label="Search glossary"
         >
       </div>
