@@ -69,18 +69,20 @@
   color: var(--fg-3);
 }
 .detail__known-for {
-  /* Was display font at clamp(20, 2vw, 28px) — competed visually with
-     the H1 title. The headline is a kicker / lede sentence that sets up
-     the research summary; should read as subordinate. Switched to body
-     font, smaller cap, italic for editorial pull-quote feel. */
+  /* Lede sentence that sets up the research summary. Was italic for
+     'editorial pull-quote feel' but italics on dark prose read as
+     legal-fine-print and added scanning friction on every entry. Now
+     plain non-italic, but with a thin teal left rule so it still
+     reads as a distinct lede block rather than part of the summary. */
   font-family: var(--font-body);
   font-weight: 500;
-  font-style: italic;
   font-size: clamp(16px, 1.5vw, 19px);
-  line-height: 1.45;
+  line-height: 1.5;
   letter-spacing: 0;
   color: var(--fg);
-  margin: 16px 0;
+  margin: 16px 0 20px;
+  padding-left: 16px;
+  border-left: 2px solid var(--accent);
   max-width: 64ch;
 }
 .detail__summary-prose {

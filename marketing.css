@@ -759,7 +759,12 @@ body.is-nav-open { overflow: hidden; }
 .library-table { border-top: 1px solid var(--line); }
 .library-th, .library-row {
   display: grid;
-  grid-template-columns: 1.6fr 0.8fr 0.8fr 0.8fr 0.8fr 2.4fr 0.9fr 0.4fr;
+  /* 6 columns: name | evidence | people-studied | summary | updated |
+     arrow. Was 8 (added Safety + Access chips); collapsed to one
+     evidence chip so the preview reads as a clean editorial table
+     rather than a 24-chip rainbow. Full tier breakdown is one tap
+     away in /web/. */
+  grid-template-columns: 1.6fr 0.8fr 0.9fr 2.4fr 0.9fr 0.4fr;
   gap: 16px; align-items: center;
   padding: 18px 12px;
   border-bottom: 1px solid var(--line);
@@ -1173,13 +1178,15 @@ body.is-nav-open { overflow: hidden; }
   .method-head { grid-template-columns: 1fr; }
   .legend-row { grid-template-columns: 60px 180px 1fr; }
   .legend-bar { display: none; }
+  /* Mobile: drop people-studied (col 3) and updated (col 5).
+     Renders: COMPOUND / EVIDENCE / SUMMARY / arrow. */
   .library-th, .library-row {
-    grid-template-columns: 1.6fr 0.8fr 0.8fr 0.8fr 2fr 0.4fr;
+    grid-template-columns: 1.5fr 0.8fr 2fr 0.4fr;
   }
-  .library-th > div:nth-child(4),
-  .library-row > *:nth-child(4),
-  .library-th > div:nth-child(7),
-  .library-row > *:nth-child(7) { display: none; }
+  .library-th > div:nth-child(3),
+  .library-row > *:nth-child(3),
+  .library-th > div:nth-child(5),
+  .library-row > *:nth-child(5) { display: none; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
   .feature-cols { grid-template-columns: 1fr; gap: 0; }

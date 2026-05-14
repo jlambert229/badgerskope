@@ -597,7 +597,9 @@ html {
 .lib-table__head,
 .lib-row {
   display: grid;
-  grid-template-columns: 88px 1.6fr 1.2fr minmax(0, 120px) 2.4fr 168px;
+  /* Wellness column bumped 120 → 160 so 'APPETITE & FULLNESS' fits
+     without truncation. */
+  grid-template-columns: 88px 1.6fr 1.2fr minmax(0, 160px) 2.4fr 96px;
   gap: 16px;
   align-items: start;
   padding: 14px 16px;
@@ -780,11 +782,17 @@ html {
 .card__category {
   display: inline-flex;
   align-items: center;
-  /* No min-width: was 140px which overflowed the wellness column
-     (minmax 0, 120px) and clipped both ends of "APPETITE & FULLNESS"
-     because the chip is justify-content:center inside an
-     overflow:hidden cell. Sizing to natural content fits the cell. */
+  /* Opaque bg covers the summary column behind the chip — was
+     transparent, so a long wellness label that overflowed the
+     column visually ghosted over the summary text in the next
+     cell. Ellipsis-truncation is a belt-and-braces in case the
+     column is forced narrower than the chip natural width (mobile
+     filter sheet, etc). */
+  background: var(--bg);
   padding: 4px 10px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: var(--font-mono);
   font-size: var(--text-label); letter-spacing: var(--tracking-mono);
   color: var(--fg-2);
