@@ -1411,7 +1411,7 @@
       "dosingTimingNotes": "Animal studies use repeated daily or multi-day injection schedules. Human dosing timing is still experimental.",
       "potentialApplications": [
         {
-          "evidenceNote": "Translation to humans is early; no OTC miracle dose.",
+          "evidenceNote": "Translation to humans is early; no validated consumer dose.",
           "personCenteredBenefit": "Mouse data suggest better insulin sensitivity, exercise-like metabolism, and healthier aging trajectories."
         }
       ],
@@ -2342,11 +2342,11 @@
         }
       ],
       "reportedBenefits": [
-        "Clinical trials: showed significant weight loss and blood sugar improvements versus placebo.",
-        "How it works: the GLP-1 side reduces appetite while the glucagon side increases calorie burning, attacking weight from both directions.",
-        "Development stage: still in trials and not yet approved; being compared against other next-generation weight-loss drugs."
+        "Mid-stage trials: showed greater weight loss and blood-sugar improvement than placebo. Specific figures depend on dose and trial \u2014 not yet a settled number.",
+        "Mechanism: the GLP-1 arm lowers appetite; the glucagon arm raises energy expenditure.",
+        "Development stage: still in trials, not approved by any regulator."
       ],
-      "researchSummary": "An investigational injectable that activates both the GLP-1 and glucagon receptors. GLP-1 reduces appetite while glucagon increases energy burning, potentially offering weight loss from both sides. In early trials it showed significant weight reduction. Not yet approved.",
+      "researchSummary": "An investigational injectable that activates both the GLP-1 and glucagon receptors \u2014 GLP-1 to reduce appetite, glucagon to raise energy expenditure. Mid-stage human trials have reported weight loss versus placebo. Not yet approved by any regulator.",
       "sources": [
         {
           "label": "PubMed: survodutide obesity phase 2",
@@ -2364,7 +2364,7 @@
         "gastrointestinal"
       ],
       "distinctiveQuality": {
-        "headline": "A next-generation dual-action weight-loss peptide that reduces appetite and increases calorie burning simultaneously.",
+        "headline": "An investigational GLP-1 / glucagon dual agonist for weight loss, in mid-stage human trials. Not yet approved.",
         "themes": [
           "metabolic_incretins"
         ],

@@ -25,7 +25,7 @@ export const KNOWN_FOR_THEME_ORDER = [
 // Two categories map to A (approved + pivotal): the label distinguishes them.
 export const EVIDENCE_TIERS = [
   { key: "regulatory_label",    tier: "approved",    grade: "A", color: "#2DA89C", label: "FDA approved",        subtitle: "Reviewed and approved by drug regulators",                            rank: 0 },
-  { key: "pivotal_trials",      tier: "pivotal",     grade: "A", color: "#2DA89C", label: "Strong human trials", subtitle: "Tested on thousands of people in carefully designed studies",         rank: 1 },
+  { key: "pivotal_trials",      tier: "pivotal",     grade: "A", color: "#2DA89C", label: "Strong human trials", subtitle: "Backed by large, controlled human trials",                            rank: 1 },
   { key: "phase1_human",        tier: "phase1",      grade: "B", color: "#4A9F1F", label: "Early human studies", subtitle: "Tested on a small number of people — promising, but not proof",  rank: 2 },
   { key: "preclinical_animal",  tier: "preclinical", grade: "C", color: "#C68A0A", label: "Animal studies only", subtitle: "Tested in mice or rats, not yet in humans",                           rank: 3 },
   { key: "compounded_practice", tier: "practice",    grade: "D", color: "#D9621B", label: "Clinic practice",     subtitle: "Used by some clinics, but no controlled studies to back it up",       rank: 4 },
@@ -61,7 +61,7 @@ export function evidenceTierExplainer(tierKey) {
 export function compoundTypeExplainer(type) {
   const map = {
     peptide: "A short chain of amino acids \u2014 the building blocks of proteins.",
-    peptide_incretin: "A peptide that copies gut hormones involved in appetite and blood-sugar control (the same family as Ozempic).",
+    peptide_incretin: "A peptide that mimics gut hormones involved in appetite and blood-sugar control. A few drugs in this broad class are FDA-approved (semaglutide / Ozempic, tirzepatide / Mounjaro) — but most compounds sold under this label are not.",
     peptide_secretagogue: "A peptide that tells your body to release one of its own hormones \u2014 usually growth hormone.",
     peptide_blend: "A vendor's mix of two or more peptides in a single product.",
     peptide_blend_secretagogue: "A vendor mix of peptides designed to release growth hormone.",

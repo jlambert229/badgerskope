@@ -47,7 +47,7 @@ const TERMS = {
   // Phrases
   "bioavailability":  "How much of a substance actually reaches the bloodstream and its target after dosing.",
   "double-blind":     "Study design where neither participants nor researchers know who got treatment vs placebo.",
-  "glucagon":         "A hormone that raises blood sugar. Activating its receptor unexpectedly helps with weight loss by burning calories — the differentiator for retatrutide.",
+  "glucagon":         "A hormone best known for raising blood sugar. Drugs that activate its receptor can also raise energy expenditure — the third pathway retatrutide adds on top of GLP-1 and GIP.",
   "half-life":        "Time for half of a substance to be cleared from the body — drives dosing frequency.",
   "in vitro":         "Done in a test tube or petri dish — outside a living organism.",
   "in vivo":          "Done in a living organism. More relevant than in-vitro, less than human trials.",
