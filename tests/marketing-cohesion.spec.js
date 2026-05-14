@@ -149,7 +149,9 @@ test.describe("Library — empty state + modal", () => {
     const counter = page.locator(".modal-nav__counter");
     await expect(counter).toBeVisible();
     const text = (await counter.textContent()).trim();
-    expect(text).toMatch(/^\d+\s+of\s+\d+$/);
+    // Counter copy is 'Entry X of Y' (the layperson audit added the
+    // noun so cold deep-link visitors get context).
+    expect(text).toMatch(/^Entry\s+\d+\s+of\s+\d+$/);
   });
 
   test("(modal) max-height computed style includes a non-zero height", async ({ page }) => {

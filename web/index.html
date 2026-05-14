@@ -29,6 +29,41 @@
     <link rel="stylesheet" href="/design-tokens.css" />
     <link rel="stylesheet" href="./app.css" />
     <link rel="stylesheet" href="./features.css" />
+
+    <!-- modulepreload: main.js statically imports ~27 second-level
+         modules. Without preload hints the browser discovers them
+         only after parsing main.js, serializing the cold-load
+         waterfall. With preload, all of them stream in parallel
+         from the first byte of HTML. The data file is preloaded too. -->
+    <link rel="modulepreload" href="./src/main.js" />
+    <link rel="modulepreload" href="./src/state.js" />
+    <link rel="modulepreload" href="./src/dom.js" />
+    <link rel="modulepreload" href="./src/utils.js" />
+    <link rel="modulepreload" href="./src/constants.js" />
+    <link rel="modulepreload" href="./src/filters.js" />
+    <link rel="modulepreload" href="./src/groups.js" />
+    <link rel="modulepreload" href="./src/bookmarks.js" />
+    <link rel="modulepreload" href="./src/cards.js" />
+    <link rel="modulepreload" href="./src/detail.js" />
+    <link rel="modulepreload" href="./src/router.js" />
+    <link rel="modulepreload" href="./src/keyboard.js" />
+    <link rel="modulepreload" href="./src/tabs.js" />
+    <link rel="modulepreload" href="./src/stats.js" />
+    <link rel="modulepreload" href="./src/compare.js" />
+    <link rel="modulepreload" href="./src/selection.js" />
+    <link rel="modulepreload" href="./src/theme.js" />
+    <link rel="modulepreload" href="./src/features/bookmarks-toggle.js" />
+    <link rel="modulepreload" href="./src/features/chips.js" />
+    <link rel="modulepreload" href="./src/features/doping.js" />
+    <link rel="modulepreload" href="./src/features/experimental-toggle.js" />
+    <link rel="modulepreload" href="./src/features/glossary-tooltips.js" />
+    <link rel="modulepreload" href="./src/features/interactions.js" />
+    <link rel="modulepreload" href="./src/features/mobile-filter-sheet.js" />
+    <link rel="modulepreload" href="./src/features/scroll.js" />
+    <link rel="modulepreload" href="./src/features/search-enhance.js" />
+    <link rel="modulepreload" href="./src/features/share.js" />
+    <link rel="modulepreload" href="./src/features/sport-filter.js" />
+    <link rel="preload" as="fetch" href="/peptide-info-database.json" crossorigin />
   </head>
   <body>
     <a href="#panel-browse" class="skip-link">Skip to library</a>

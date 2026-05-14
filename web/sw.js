@@ -5,7 +5,7 @@
 // even after a successful Netlify deploy. (Bug observed 2026-04-29:
 // users still saw the broken Prev/Next + old modal layout 6+ hours
 // after the fix shipped.)
-const CACHE_NAME = "badgerskope-v11-network-first";
+const CACHE_NAME = "badgerskope-v12-swr";
 
 const STATIC_ASSETS = [
   "/web/",
@@ -65,44 +65,37 @@ self.addEventListener("activate", (e) => {
   self.clients.claim();
 });
 
-// Network-first race: resolve to whichever finishes first between a
-// real fetch and a 5s "give up" timer. On slow/lossy mobile networks
-// (5G hand-off, captive portal, transit tunnel) the unbounded fetch
-// could hang the full TCP timeout (~30s on iOS) before the cached
-// response surfaced. Racing keeps first-paint snappy.
-const NETWORK_TIMEOUT_MS = 5000;
-
-function networkFirstWithTimeout(request) {
-  const cachePromise = caches.match(request);
-  const timeoutPromise = new Promise((resolve) => {
-    setTimeout(() => cachePromise.then((c) => resolve(c || Response.error())), NETWORK_TIMEOUT_MS);
+// Stale-while-revalidate: serve cached immediately (zero-latency
+// first paint on repeat visits), kick off a network revalidation in
+// the background, update the cache for next time. Same UX on slow
+// networks as on fast — first byte is always instant.
+//
+// Why not pure cache-first? Returning users would be stuck on the
+// old code until a manual clear. Why not the old network-first race?
+// Even with a 5 s race, the user sat on first-paint for up to 5 s on
+// a slow connection. SWR is the iOS-PWA-native pattern for static
+// reference content like this. The trade-off is one stale render on
+// each deploy; cache version bumps shorten that window.
+function staleWhileRevalidate(request) {
+  return caches.open(CACHE_NAME).then((cache) => {
+    return cache.match(request).then((cached) => {
+      const networkFetch = fetch(request)
+        .then((res) => {
+          if (res && res.status === 200 && res.type !== "opaque") {
+            cache.put(request, res.clone());
+          }
+          return res;
+        })
+        .catch(() => cached);
+      return cached || networkFetch;
+    });
   });
-  const fetchPromise = fetch(request)
-    .then((res) => {
-      if (res && res.status === 200 && res.type !== "opaque") {
-        const clone = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-      }
-      return res;
-    })
-    .catch(() => cachePromise);
-  return Promise.race([fetchPromise, timeoutPromise]).then((r) => r || cachePromise);
 }
 
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
-
-  // For the JSON database, try network first; fall back to cache when offline.
-  if (
-    url.pathname === DATA_URL ||
-    url.pathname.endsWith("peptide-info-database.json")
-  ) {
-    e.respondWith(networkFirstWithTimeout(e.request));
-    return;
-  }
-
-  // Static app assets: NETWORK-FIRST (with timeout) and cache fallback.
-  // Previous cache-first strategy made deploys invisible to returning
-  // users; pure network-first hung on slow networks. Race wins both.
-  e.respondWith(networkFirstWithTimeout(e.request));
+  // Only handle same-origin GETs. Cross-origin (Google Fonts) and
+  // non-GET requests fall through to the network without interception.
+  if (e.request.method !== "GET" || url.origin !== self.location.origin) return;
+  e.respondWith(staleWhileRevalidate(e.request));
 });

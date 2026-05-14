@@ -82,11 +82,19 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 32px;
   padding: 18px 40px;
-  background: rgba(26, 26, 24, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Solid-bg on mobile (no backdrop-filter); desktop gets the blur.
+     Mobile alpha is bumped higher so the nav reads as opaque without
+     the blur layer behind it. */
+  background: rgba(26, 26, 24, 0.92);
   border-bottom: 1px solid transparent;
   transition: background var(--transition-slow), border-color var(--transition-slow);
+}
+@media (min-width: 769px) {
+  .nav {
+    background: rgba(26, 26, 24, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 .nav.is-scrolled {
   background: rgba(26, 26, 24, 0.92);

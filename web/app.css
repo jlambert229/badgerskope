@@ -152,9 +152,13 @@ kbd {
      → 1720px content; replicate that math here. */
   padding: 14px max(40px, calc((100vw - 1720px) / 2));
   background: rgba(26, 26, 24, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Desktop only — backdrop-filter is GPU-expensive on iOS Safari and
+     causes scroll judder on iPhone 12-class hardware. Mobile gets a
+     solid rgba bg instead via the media query below. */
   border-bottom: 1px solid var(--line);
+}
+@media (min-width: 769px) {
+  .nav-bar { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 }
 .nav-brand {
   display: flex; align-items: center; gap: 14px;
@@ -1012,9 +1016,15 @@ html {
   max-height: 90dvh;   /* iOS Safari + modern: dynamic viewport height */
 }
 .modal::backdrop {
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.82);
+  /* Backdrop blur on mobile = scroll judder + battery hit. Desktop
+     gets it; mobile leans on the higher alpha solid color instead. */
+}
+@media (min-width: 769px) {
+  .modal::backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }
 .modal-panel {
   background: var(--bg);

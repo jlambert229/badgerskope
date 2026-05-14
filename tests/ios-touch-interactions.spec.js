@@ -40,13 +40,14 @@ test.describe("Touch interactions (iOS)", () => {
   });
 
   test("bookmark star toggles", async ({ page }) => {
+    // Bookmark glyph is now inline <svg>; state lives on the
+    // .is-bookmarked class (filled teal vs outlined). Test the
+    // class transition instead of textContent.
     const star = page.locator(".card__bookmark").first();
-    const before = await star.textContent();
-
+    const before = await star.evaluate((el) => el.classList.contains("is-bookmarked"));
     await star.click();
     await page.waitForTimeout(200);
-
-    const after = await star.textContent();
+    const after = await star.evaluate((el) => el.classList.contains("is-bookmarked"));
     expect(after).not.toBe(before);
   });
 
