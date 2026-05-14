@@ -34,7 +34,16 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { background: var(--bg); overflow-x: clip; }
+html {
+  background: var(--bg);
+  overflow-x: clip;
+  /* Disable iOS pull-to-refresh on the SPA — a peptide reference
+     has no 'refresh' semantic, and the bounce gesture only ever
+     interrupts users mid-scroll. Containing the overscroll also
+     prevents glitchy bouncing when the user reaches the top of a
+     filtered library list. */
+  overscroll-behavior-y: contain;
+}
 body {
   background: var(--bg);
   color: var(--fg);
