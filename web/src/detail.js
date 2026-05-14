@@ -214,8 +214,9 @@ export function renderDetailHtml(entry) {
       <p class="detail__summary-prose">${escapeHtml(entry.researchSummary || "")}</p>
 
       <div class="detail__answer-actions">
-        <button type="button" class="detail__bookmark-btn" data-entry-id="${escapeHtml(id)}" aria-label="Toggle bookmark for ${escapeHtml(displayName)}" aria-pressed="${isBookmarked ? "true" : "false"}">
-          ${isBookmarked ? "\u2605" : "\u2606"} Bookmark
+        <button type="button" class="detail__bookmark-btn ${isBookmarked ? "is-bookmarked" : ""}" data-entry-id="${escapeHtml(id)}" aria-label="${isBookmarked ? "Remove bookmark for" : "Bookmark"} ${escapeHtml(displayName)}" aria-pressed="${isBookmarked ? "true" : "false"}">
+          <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false"><path d="M10 2.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 15.1l-4.94 2.6L6 12.21 2 8.31l5.53-.8L10 2.5z" fill="currentColor"/></svg>
+          <span>${isBookmarked ? "Bookmarked" : "Bookmark"}</span>
         </button>
       </div>
     </div>
@@ -412,7 +413,10 @@ export function syncDetailNav() {
 
   if (els.detailNav) els.detailNav.hidden = false;
   if (els.detailNavPos) {
-    els.detailNavPos.textContent = `${posForCounter} of ${totalForCounter}`;
+    // 'Entry X of Y' rather than the bare 'X of Y' — adds the noun
+    // for SR users and visual users alike, eliminates the cold-deep-
+    // link confusion the layperson audit flagged.
+    els.detailNavPos.textContent = `Entry ${posForCounter} of ${totalForCounter}`;
   }
 
   // PREV / NEXT remain enabled only when there's a real queue to step
@@ -463,8 +467,10 @@ export function bindDetailEvents() {
       const id = bookmarkBtn.dataset.entryId;
       toggleBookmark(id);
       const nowOn = state.bookmarks.has(id);
-      bookmarkBtn.innerHTML = (nowOn ? "\u2605" : "\u2606") + " Bookmark";
+      bookmarkBtn.classList.toggle("is-bookmarked", nowOn);
       bookmarkBtn.setAttribute("aria-pressed", String(nowOn));
+      const label = bookmarkBtn.querySelector("span");
+      if (label) label.textContent = nowOn ? "Bookmarked" : "Bookmark";
       if (_render) _render();
     });
   }

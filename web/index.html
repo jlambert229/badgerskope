@@ -217,6 +217,7 @@
           aria-labelledby="mobile-filter-sheet-title"
           aria-hidden="true"
         >
+          <span class="mobile-filter-sheet__grabber" aria-hidden="true"></span>
           <header class="mobile-filter-sheet__header">
             <h2 id="mobile-filter-sheet-title" class="mobile-filter-sheet__title">FILTERS</h2>
             <button
@@ -327,7 +328,10 @@
          ============================================================ -->
     <dialog class="modal" id="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title" aria-describedby="detail-hint">
       <div class="modal-panel">
-        <button type="button" class="modal-close modal-close--floating" id="detail-close" aria-label="Close">&times;</button>
+        <div class="modal-toolbar" role="presentation">
+          <span class="modal-grabber" aria-hidden="true"></span>
+          <button type="button" class="modal-close modal-close--floating" id="detail-close" aria-label="Close">&times;</button>
+        </div>
         <nav class="detail-nav" id="detail-nav" aria-label="Selected entries" hidden>
           <button type="button" class="btn btn-ghost btn-sm" id="detail-prev" aria-label="Previous entry">&larr; PREV</button>
           <span class="detail-nav-pos modal-nav__counter" id="detail-nav-pos" aria-live="polite"></span>
@@ -403,7 +407,7 @@
          BOOKMARKS BAR + BACK TO TOP
          ============================================================ -->
     <button type="button" class="bookmarks-bar" id="bookmarks-bar" aria-pressed="false" aria-label="Show bookmarked compounds only" hidden>
-      <span class="bookmarks-bar__icon" aria-hidden="true">★</span>
+      <span class="bookmarks-bar__icon" aria-hidden="true"><svg viewBox="0 0 20 20" width="14" height="14"><path d="M10 2.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 15.1l-4.94 2.6L6 12.21 2 8.31l5.53-.8L10 2.5z" fill="currentColor"/></svg></span>
       <span class="bookmarks-bar__count" id="bookmarks-count" aria-live="polite">0</span>
       <span class="bookmarks-bar__label">BOOKMARKED</span>
     </button>

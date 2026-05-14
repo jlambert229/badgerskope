@@ -43,6 +43,10 @@ body {
   line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  /* iOS Safari paints a translucent grey rectangle on every tap;
+     disable globally and rely on explicit :active states for
+     feedback. */
+  -webkit-tap-highlight-color: transparent;
 }
 /* Lock body scroll when any <dialog> is open. iOS Safari does not
    freeze background scroll for native <dialog> by default, so the
@@ -51,8 +55,45 @@ body:has(dialog[open]) { overflow: hidden; }
 
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-img { display: block; max-width: 100%; }
+img {
+  display: block;
+  max-width: 100%;
+  /* Suppress the iOS Safari long-press 'Save Image / Copy' callout
+     on decorative imagery. Real content images (badger logo, OG)
+     don't need to be saveable. */
+  -webkit-touch-callout: none;
+}
 ::selection { background: var(--accent); color: var(--bg); }
+
+/* iOS scroll polish — apply to the modal scroll container and the
+   filter sheet body so rubber-band overscroll doesn't propagate to
+   the body underneath (the page beneath shouldn't drift when the
+   user reaches the end of a modal). Also explicit momentum scroll. */
+.modal-panel,
+.mobile-filter-sheet__body {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Press-state feedback — Apple HIG wants a perceptible visual cue
+   on every tappable element while the finger is down. The
+   tap-highlight is suppressed globally above, so this is the only
+   feedback users get. Subtle dim + scale; covered for the most
+   visited interactive surfaces. */
+.btn:active,
+.chip:active,
+.nav-tab:active,
+.nav-link:active,
+.lib-row__bookmark:active,
+.lib-row__name:active,
+.lib-search-reset:active,
+.detail__bookmark-btn:active,
+.mobile-filter-sheet__btn:active,
+.mobile-filter-trigger:active,
+.synergy-pill:active {
+  transform: scale(0.97);
+  transition: transform 80ms ease-out;
+}
 
 /* Screen-reader-only utility — used by features that need an
    off-screen <label> for an input but already have visible context
@@ -759,13 +800,29 @@ html {
      ideal) but library density argues against full 44 on every row.
      ≤1100px breakpoint already pushes these to 44×44 for touch. */
   width: 36px; height: 36px;
-  font-size: 18px;
-  line-height: 1;
-  color: var(--fg-3);
   display: grid; place-items: center;
-  transition: color var(--transition-fast);
+  /* Bookmark glyph is a 14-vertex SVG <path fill=currentColor>. Default
+     state: outlined (stroke-only via paint-order trick). Bookmarked
+     state: solid teal fill via the .is-bookmarked class flipped on
+     toggle. The SVG itself doesn't change; only currentColor + the
+     stroke painting does. */
+  color: var(--fg-3);
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
-.lib-row__bookmark:hover { color: var(--accent); }
+.lib-row__bookmark svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.lib-row__bookmark.is-bookmarked,
+.lib-row__bookmark:hover {
+  color: var(--accent);
+}
+.lib-row__bookmark.is-bookmarked svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
 .card--bookmarked .lib-row__bookmark { color: var(--accent); }
 
 /* 44×44 hit area on the wrapper (Apple HIG / WCAG 2.5.5 — small visible
@@ -974,32 +1031,70 @@ html {
   margin-bottom: 16px;
 }
 .modal-close {
-  width: 32px; height: 32px;
+  /* 44×44 — Apple HIG touch-target minimum. 32px was below the floor. */
+  width: 44px; height: 44px;
   display: grid; place-items: center;
   font-size: 22px; line-height: 1;
   color: var(--fg-2);
   border: 1px solid var(--line-2);
   background: var(--bg);
   transition: all var(--transition-fast);
+  cursor: pointer;
 }
 .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+.modal-close:active { background: var(--bg-2); }
 
 /* Detail-modal close: float in the top-right of the panel so PREV/NEXT
    can occupy the toolbar row directly below it without taking a second
    row of space. The hairline-divider on .detail-nav still reads as the
    panel's actionable header bar. */
-.modal-close--floating {
-  /* Sticky so the close stays reachable when the user scrolls deep
-     into the modal. Previously absolute-positioned inside the
-     overflow:auto panel, which meant the close scrolled offscreen
-     and the only exit was Esc (desktop) or back-button (mobile).
-     The float keeps it right-aligned even though .modal-panel is
-     block-flow (sticky doesn't honor margin-left:auto on a block
-     child without flex). */
+/* Sticky toolbar at the top of every detail/help/shortcuts modal.
+   Hosts the close button and an iOS-style drag handle (grabber). */
+.modal-toolbar {
   position: sticky;
-  top: 16px;
-  float: right;
-  z-index: 2;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;  /* close button right-aligned */
+  /* Pull flush with the modal-panel padding so the toolbar visually
+     covers the panel edge while content below scrolls under it. */
+  margin: -32px -32px 12px;
+  padding: 8px 32px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  /* position: relative is implicit on a sticky element, but be
+     explicit so the absolute-positioned grabber resolves to this
+     box (not the panel above). */
+  isolation: isolate;
+}
+@media (max-width: 700px) {
+  .modal-toolbar {
+    margin: -20px -20px 12px;
+    padding: 16px 20px 8px;
+  }
+}
+/* Drag-handle pill: visible only on mobile, Apple HIG bottom-sheet
+   convention. The pill is decorative (no JS drag handler yet); its
+   job is to read as 'this is a sheet'. Positioned absolutely inside
+   the toolbar so it can center-overlap the close-button row. */
+.modal-grabber {
+  display: none;
+  width: 36px; height: 5px;
+  background: var(--line-2);
+  border-radius: 999px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6px;
+}
+@media (max-width: 700px) {
+  .modal-grabber { display: block; }
+}
+.modal-close--floating {
+  /* Close button now lives inside the sticky toolbar — no special
+     positioning needed. Its size (44×44 below) hits the Apple HIG
+     touch-target minimum. */
 }
 
 .modal--compact { width: min(560px, 92vw); }
@@ -1007,20 +1102,14 @@ html {
 .detail-nav {
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px;
-  /* Close button is now sticky-floated to the right at top of panel,
-     so the right-side padding can drop — PREV/NEXT no longer fight
-     the close for that 56px slot. */
   padding: 12px 0;
   margin-bottom: 24px;
   border-bottom: 1px solid var(--line);
-  /* Clear the float of the sticky close button above so the nav row
-     starts at the panel's left edge rather than flowing around it. */
-  clear: both;
 }
 @media (max-width: 700px) {
   /* Compact mobile nav: drop the outlined Prev/Next pills to small
      chevron-only buttons + counter. Frees ~40px of vertical chrome. */
-  .detail-nav .btn { padding: 8px 12px; font-size: 11px; min-height: 40px; }
+  .detail-nav .btn { padding: 10px 14px; font-size: 11px; min-height: 44px; }
   .detail-nav-pos { font-size: 10px; }
 }
 .detail-nav-pos {
@@ -1360,7 +1449,9 @@ html {
   .footer { padding: 40px 16px 16px; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
   .footer-mega { font-size: 40px; }
-  .modal-panel { padding: 20px; }
+  /* Bottom padding respects the iOS home-indicator safe area so the
+     final keyboard-hint row doesn't render under the gesture strip. */
+  .modal-panel { padding: 20px 20px max(20px, env(safe-area-inset-bottom)); }
   .help-list > div { grid-template-columns: 1fr; gap: 4px; }
   .shortcuts-list > div { grid-template-columns: 100px 1fr; }
 
@@ -1670,12 +1761,24 @@ html {
     }
   }
 
+  /* iOS-pattern drag handle (grabber) at the top of the sheet.
+     Visual cue that this is a sheet, not a fixed panel. Even
+     without a JS drag-to-dismiss handler, the pill makes the
+     intent legible. */
+  .mobile-filter-sheet__grabber {
+    display: block;
+    width: 36px; height: 5px;
+    margin: 8px auto 0;
+    border-radius: 999px;
+    background: var(--line-2);
+    flex: 0 0 auto;
+  }
   .mobile-filter-sheet__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 14px 16px;
+    padding: 10px 16px 14px;
     border-bottom: 1px solid var(--line);
     background: var(--bg);
     flex: 0 0 auto;
@@ -1782,6 +1885,10 @@ html {
     border-top: 1px solid var(--line-2);
     background: var(--bg);
     flex: 0 0 auto;
+    /* Apple HIG: bottom-anchored sheet footers must clear the home
+       indicator. Without env(safe-area-inset-bottom) the RESET/APPLY
+       row sits under the gesture strip on iPhone X-and-later. */
+    padding-bottom: env(safe-area-inset-bottom);
   }
   .mobile-filter-sheet__btn {
     flex: 1 1 50%;

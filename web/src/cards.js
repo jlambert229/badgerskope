@@ -10,6 +10,11 @@ import { escapeHtml, wellnessLabel, getDisplayName, getCatalogTitle } from './ut
 import { highestTier } from './constants.js';
 import { toggleBookmark } from './bookmarks.js';
 
+// SVG star — replaces the unicode ☆/★ pair which renders inconsistently
+// across iOS versions (text-style on older Safari, color-emoji on newer).
+// Filled state controlled via a class so we can swap stroke→fill in CSS.
+const STAR_SVG = '<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path d="M10 2.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 15.1l-4.94 2.6L6 12.21 2 8.31l5.53-.8L10 2.5z" fill="currentColor"/></svg>';
+
 let _openDetail = null;
 let _updateSelectionToolbar = null;
 
@@ -117,12 +122,13 @@ export function renderCard(entry, catIndex, cardIndex) {
   bookmarkBtn.title = isBookmarked
     ? `Remove ${displayName} from bookmarks`
     : `Bookmark ${displayName}`;
-  bookmarkBtn.textContent = isBookmarked ? "★" : "☆";
+  bookmarkBtn.innerHTML = STAR_SVG;
+  bookmarkBtn.classList.toggle("is-bookmarked", isBookmarked);
   bookmarkBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     toggleBookmark(id);
     const nowOn = state.bookmarks.has(id);
-    bookmarkBtn.textContent = nowOn ? "★" : "☆";
+    bookmarkBtn.classList.toggle("is-bookmarked", nowOn);
     bookmarkBtn.setAttribute("aria-pressed", String(nowOn));
     bookmarkBtn.title = nowOn
       ? `Remove ${displayName} from bookmarks`

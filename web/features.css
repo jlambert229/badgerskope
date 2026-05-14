@@ -116,6 +116,19 @@
 .detail__bookmark-btn:hover,
 .share-btn:hover,
 .print-btn:hover { border-color: var(--accent); color: var(--accent); }
+.detail__bookmark-btn svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.detail__bookmark-btn.is-bookmarked {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.detail__bookmark-btn.is-bookmarked svg {
+  fill: currentColor;
+}
 
 .detail__cats {
   display: flex; gap: 6px; flex-wrap: wrap;
