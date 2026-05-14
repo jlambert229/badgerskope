@@ -13,6 +13,9 @@
 html, body { margin: 0; padding: 0; }
 html, body { -webkit-tap-highlight-color: transparent; }
 img { -webkit-touch-callout: none; }
+button, a, summary, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+}
 
 /* Press-state feedback for marketing pages — same intent as the SPA
    pass, just scoped to elements the marketing layer renders. */

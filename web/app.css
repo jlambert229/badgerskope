@@ -64,6 +64,17 @@ body:has(dialog[open]) { overflow: hidden; }
 
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* touch-action: manipulation disables iOS Safari's double-tap-to-zoom
+   heuristic on interactive elements. Without it, every tap waits
+   ~300ms before firing the click handler while Safari decides
+   whether the next tap is part of a zoom gesture. With viewport
+   meta width=device-width set, the heuristic should auto-suppress,
+   but Safari still adds a small delay on dense interactive UI like
+   the filter row + library rows. Explicit declaration removes it. */
+button, a, summary, [role="button"], [role="tab"], input, select, textarea {
+  touch-action: manipulation;
+}
 img {
   display: block;
   max-width: 100%;
