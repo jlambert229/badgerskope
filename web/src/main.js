@@ -36,7 +36,6 @@ import { initChips } from "./features/chips.js";
 import { initShare } from "./features/share.js";
 import { initSearchEnhance } from "./features/search-enhance.js";
 import { initScroll } from "./features/scroll.js";
-import { initNotes } from "./features/notes.js";
 import { initDoping } from "./features/doping.js";
 import { initInteractions } from "./features/interactions.js";
 import { initGlossaryTooltips } from "./features/glossary-tooltips.js";
@@ -648,7 +647,6 @@ async function init() {
   initShare();
   initSearchEnhance();
   initScroll();
-  initNotes();
   initDoping();
   initSportFilter();
   initInteractions();

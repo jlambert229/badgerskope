@@ -499,45 +499,6 @@ table.compare { table-layout: fixed; }
 }
 
 /* ============================================================
-   FEATURE: USER NOTES
-   ============================================================ */
-.user-notes {
-  background: var(--bg-2);
-  border-left: 3px solid var(--accent);
-}
-.user-notes__input {
-  width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--line-2);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 14px; line-height: 1.55;
-  padding: 12px 16px;
-  outline: none;
-  resize: vertical;
-  transition: border-color var(--transition-fast);
-}
-.user-notes__input:focus { border-color: var(--accent); }
-.user-notes__actions {
-  display: flex; gap: 8px;
-  margin-top: 12px;
-}
-.user-notes__save, .user-notes__clear {
-  padding: 10px 16px;
-  font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: var(--tracking-mono);
-  border: 1px solid var(--line-2);
-  color: var(--fg);
-  transition: all var(--transition-fast);
-}
-.user-notes__save:hover { border-color: var(--accent); color: var(--accent); }
-.user-notes__save--done {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-}
-
-/* ============================================================
    FEATURE: START HERE — most looked-up compounds
    Uses --fg / --fg-3 for body text; accent only on hover border.
    No tier color in foreground (was failing contrast against bg).
