@@ -105,7 +105,7 @@
       </a>
     `).join('');
     // Total count must match peptide-info-database.json meta.entryCount.
-    countEl.textContent = `Showing ${visible.length} of 45 files`;
+    countEl.textContent = `Showing ${visible.length} of 63 files`;
   };
   renderLibrary('ALL');
   document.querySelectorAll('.library-filter .chip').forEach(chip => {
