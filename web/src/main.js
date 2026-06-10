@@ -21,7 +21,6 @@ import {
   openDetail, closeDetail, showDetailAt,
   setDetailCallbacks,
 } from "./detail.js";
-import { renderComparisonTable, setCompareCallbacks } from "./compare.js";
 import { renderStatsDashboard, setStatsCallbacks } from "./stats.js";
 import { switchTab, setTabCallbacks } from "./tabs.js";
 import {
@@ -218,7 +217,7 @@ function buildEmptyStatePanel(hiddenExperimental) {
   const hint = document.createElement("p");
   hint.className = "empty-state__hint";
   hint.textContent = hiddenExperimental > 0
-    ? `${hiddenExperimental} early-research ${hiddenExperimental === 1 ? "file is" : "files are"} hidden by default. Toggle them on, or clear the filters and start over.`
+    ? `${hiddenExperimental} early-research ${hiddenExperimental === 1 ? "file is" : "files are"} hidden by your SHOW EXPERIMENTAL setting. Toggle them on, or clear the filters and start over.`
     : "Try a broader search, or clear all filters to start over.";
   panel.appendChild(hint);
 
@@ -300,7 +299,7 @@ function render() {
       // Promote the experimental count to a click target so users can reveal them inline.
       // Two-line layout on mobile keeps the [SHOW ALL] action reachable
       // without horizontal text-overflow on narrow viewports.
-      html += `<span class="lib-meta-strip__sep" aria-hidden="true"> &middot; </span><span class="lib-meta-strip__hidden">${hiddenExperimental} early-research files hidden by default</span> <button type="button" id="show-experimental-inline" class="lib-meta-strip__action">SHOW ALL</button>`;
+      html += `<span class="lib-meta-strip__sep" aria-hidden="true"> &middot; </span><span class="lib-meta-strip__hidden">${hiddenExperimental} early-research files hidden</span> <button type="button" id="show-experimental-inline" class="lib-meta-strip__action">SHOW ALL</button>`;
     }
     if (selN) html += `<span class="lib-meta-strip__sep" aria-hidden="true"> &middot; </span>${selN} selected`;
     els.stats.innerHTML = html;
@@ -400,9 +399,8 @@ function render() {
 
 setCardCallbacks({ openDetail, updateSelectionToolbar });
 setDetailCallbacks({ render, updateHash, readHashParams, writeHashParams, updateHashFromState });
-setCompareCallbacks({ openDetail, updateSelectionToolbar, render });
 setStatsCallbacks({ switchTab, render });
-setTabCallbacks({ renderComparisonTable, renderStatsDashboard, updateHashFromState });
+setTabCallbacks({ renderStatsDashboard, updateHashFromState });
 setRouterCallbacks({ render, switchTab, openDetail });
 setKeyboardCallbacks({ closeDetail, showDetailAt, render });
 
@@ -551,12 +549,6 @@ async function init() {
     });
   }
 
-  if (els.compareSelected) {
-    els.compareSelected.addEventListener("click", () => {
-      if (state.selectedIds.size >= 2) switchTab("compare");
-    });
-  }
-
   // Detail navigation
   if (els.detailPrev) {
     els.detailPrev.addEventListener("click", () => {
@@ -577,7 +569,6 @@ async function init() {
 
   // Tab navigation
   if (els.tabBrowse) els.tabBrowse.addEventListener("click", () => switchTab("browse"));
-  if (els.tabCompare) els.tabCompare.addEventListener("click", () => switchTab("compare"));
   if (els.tabStats) els.tabStats.addEventListener("click", () => switchTab("stats"));
 
   // Theme toggle

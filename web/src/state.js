@@ -11,7 +11,10 @@ export const state = {
   detailIndex: 0,
   bookmarks: new Set(),
   activeTab: "browse",
-  showExperimental: false,
+  // Default ON: the full catalog is visible on first visit. Entries without
+  // documented side-effect data are still labeled experimental; the toggle
+  // lets users opt out (persisted in localStorage).
+  showExperimental: true,
 };
 
 export function getEntryId(entry) {

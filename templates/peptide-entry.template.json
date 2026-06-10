@@ -39,6 +39,11 @@
     }
   ],
   "synergisticWith": [],
+  "sportRisk": {
+    "status": "REPLACE_WITH_banned_OR_caution_OR_DELETE_THIS_BLOCK",
+    "reason": "REPLACE_WITH_PLAIN_LANGUAGE_SPORT_RISK_REASON"
+  },
+  "lastReviewed": "REPLACE_WITH_YYYY-MM-DD_REVIEW_DATE",
   "wellnessCategories": [
     "body_composition"
   ],

@@ -5,11 +5,12 @@
 // even after a successful Netlify deploy. (Bug observed 2026-04-29:
 // users still saw the broken Prev/Next + old modal layout 6+ hours
 // after the fix shipped.)
-const CACHE_NAME = "badgerskope-v12-swr";
+const CACHE_NAME = "badgerskope-v13-swr";
 
 const STATIC_ASSETS = [
   "/web/",
   "/web/index.html",
+  "/web/boot.js",
   "/web/app.css",
   "/web/features.css",
   "/web/src/main.js",
@@ -24,7 +25,6 @@ const STATIC_ASSETS = [
   "/web/src/selection.js",
   "/web/src/cards.js",
   "/web/src/detail.js",
-  "/web/src/compare.js",
   "/web/src/stats.js",
   "/web/src/tabs.js",
   "/web/src/router.js",

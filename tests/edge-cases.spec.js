@@ -145,6 +145,11 @@ test.describe("Edge cases — the bugs users find first", () => {
 
     await openAdvancedFilters(page);
 
+    // First control interaction lifts the default-landing 25-row cap (PR D),
+    // so baseline the count after an interaction — the invariant under test
+    // is "grouping loses no cards", not the landing cap itself.
+    await page.locator("#sort").selectOption("title-desc");
+    await page.waitForTimeout(300);
     const totalBefore = await page.locator(".card").count();
 
     await page.locator("#group-by").selectOption("theme");
@@ -165,6 +170,9 @@ test.describe("Edge cases — the bugs users find first", () => {
 
     await openAdvancedFilters(page);
 
+    // Lift the default-landing 25-row cap before baselining (see above).
+    await page.locator("#sort").selectOption("title-desc");
+    await page.waitForTimeout(300);
     const countBefore = await page.locator(".card").count();
 
     await page.locator("#sort").selectOption("evidence");

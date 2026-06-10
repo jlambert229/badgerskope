@@ -4,11 +4,19 @@
 **Scope:** Marketing site (`index.html`), research library (`web/`), supporting pages (`glossary.html`, `evidence-guide.html`), and data model (`peptide-info-database.json`)  
 **Sources:** In-repo copy, UI structure, feature modules, and schema disclaimers (see citations in Appendix A)
 
+> **Status note (2026-06):** This PRD predates several scope cuts. The
+> Compare tab, goal bar (`goals.js`), private notes (`notes.js`), and the
+> `web/features.js` power-user bundle were removed or never shipped; the
+> library is **Browse + Stats** with bookmarks, share, and filters.
+> Schema 3.1 shipped the P2 structured anti-doping fields (`sportRisk`)
+> and per-entry `lastReviewed` dates. References below are annotated
+> where reality differs.
+
 ---
 
 ## 1. Executive summary
 
-BadgerSkope is positioned as a **free, vendor-neutral peptide research library** that translates technical and commercial noise into **plain-English summaries** with an explicit **evidence grading system**, **comparison tooling**, and **local-only personalization** (bookmarks, notes, recent history). The product explicitly rejects commerce, medical advice, and hype while still speaking to people who encounter peptides through **grey-market discourse**, **forums**, **clinics**, and **athletic contexts**.
+BadgerSkope is positioned as a **free, vendor-neutral peptide research library** that translates technical and commercial noise into **plain-English summaries** with an explicit **evidence grading system** and **local-only personalization** (bookmarks). The product explicitly rejects commerce, medical advice, and hype while still speaking to people who encounter peptides through **grey-market discourse**, **forums**, **clinics**, and **athletic contexts**.
 
 **Receipt:** Hero and positioning copy in root `index.html`; library meta and nav in `web/index.html`; disclaimer block in `peptide-info-database.json` lines 1-2.
 
@@ -23,7 +31,7 @@ The **best version** of this site should double down on **research literacy** (u
 | **De-noise** | Replace forum/vendor/abstract confusion with one consistent card model | Marketing “problem” section; library browse + detail |
 | **Evidence honesty** | Every claim mapped to a tier; weak science labeled weak | `EVIDENCE_TIERS` and explainers in `web/src/constants.js`; marketing evidence stack |
 | **Action without prescription** | Help users compare and learn; never instruct dosing or treatment | Database disclaimer; FAQ “not medical advice” in `index.html` |
-| **Low-friction depth** | Power features for return visitors (compare, stats, notes, share) | Tabs Browse / Compare / Stats; `features.js`, `notes.js`, `goals.js` |
+| **Low-friction depth** | Power features for return visitors (stats, bookmarks, share) | Tabs Browse / Stats; `web/src/features/` modules (compare/notes/goals were cut — see status note) |
 | **Harm and compliance awareness** | Surface sport bans where relevant | `web/src/features/doping.js` |
 
 ---
@@ -36,13 +44,13 @@ These are **not** mutually exclusive; real users often blend roles (for example 
    **Receipt:** Marketing addresses “forum bros,” vendor hype, and PubMed friction (`index.html`).
 
 2. **Goal-driven wellness explorers** who think in outcomes (weight, sleep, healing, aging).  
-   **Receipt:** Goal bar “What are you looking for?” and theme filters (`web/src/features/goals.js`).
+   **Receipt:** Theme (“known for”) and wellness-category filters in the library. *(The dedicated goal bar / `goals.js` was never shipped.)*
 
 3. **Athletes and tested competitors** who need WADA and anti-doping context.  
-   **Receipt:** `WADA_BANNED` map and UI flags (`web/src/features/doping.js`).
+   **Receipt:** Structured `sportRisk` fields in `peptide-info-database.json` (schema 3.1) rendered by `web/src/features/doping.js`.
 
-4. **Repeat researchers and “synthesizers”** who bookmark, annotate, compare, and share.  
-   **Receipt:** Selection/compare flow in `web/index.html`; bookmarks, share, recent, notes in `web/features.js` and `web/src/features/notes.js`.
+4. **Repeat researchers and “synthesizers”** who bookmark and share.  
+   **Receipt:** Bookmarks (`web/src/bookmarks.js`) and share (`web/src/features/share.js`). *(Compare, notes, and the `features.js` bundle were removed — see status note.)*
 
 5. **Professionals and educators** (clinicians, pharmacists, journalists, coaches) who need **sourced**, **tiered** summaries for conversations with patients or the public.  
    **Receipt:** FAQ on data provenance; evidence guide link in library nav; extensive schema legends in `peptide-info-database.json`.
@@ -263,9 +271,9 @@ These are **not** mutually exclusive; real users often blend roles (for example 
 ### 6.2 Trust surface area
 
 - Make **evidence tiers** unavoidable in **card previews**, not only in detail.  
-- Add **“last updated”** per entry or global dataset date (meta already has `builtAt`) in UI for pros like Riley.
+- Add **“last updated”** per entry or global dataset date (meta already has `builtAt`) in UI for pros like Riley. *(Done: schema 3.1 added per-entry `lastReviewed`, shown in the detail modal’s Safety & status section.)*
 
-**Receipt:** `peptide-info-database.json` `meta.builtAt`.
+**Receipt:** `peptide-info-database.json` `meta.builtAt` + per-entry `lastReviewed`.
 
 ### 6.3 Safety and policy UX
 
@@ -275,9 +283,9 @@ These are **not** mutually exclusive; real users often blend roles (for example 
 
 ### 6.4 Athlete pathway
 
-- Consider a **dedicated filter** “Hide banned in sport” or “Show sport risk only” if legally and editorially viable; today flags are compound-name substring based and should evolve toward **structured data** in JSON for maintainability.
+- Consider a **dedicated filter** “Hide banned in sport” or “Show sport risk only” if legally and editorially viable. *(The “hide sport-banned” toggle shipped, and flags moved from title-substring matching to structured `sportRisk` JSON data in schema 3.1.)*
 
-**Receipt:** Implementation style in `web/src/features/doping.js` (title substring matching).
+**Receipt:** `web/src/features/doping.js` and `web/src/features/sport-filter.js` reading `entry.sportRisk`.
 
 ---
 
@@ -336,7 +344,7 @@ These are **not** mutually exclusive; real users often blend roles (for example 
 |-------|-------------|-----------------|
 | P0 | Persona-aligned copy audit (marketing vs library) | 5 user reads: each persona can answer JTBD |
 | P1 | Evidence and sport-risk **surface** parity on cards | Heuristic review against `doping.js` and tier chips |
-| P2 | Structured **anti-doping** and **regulatory** fields in JSON | No more substring-only card matching |
+| P2 | Structured **anti-doping** and **regulatory** fields in JSON | ✅ Done (schema 3.1 `sportRisk`; substring matching removed from `doping.js` / `sport-filter.js`) |
 | P3 | “What changed” dataset notes | Riley and Taylor trust improvement |
 | P4 | Optional exports for notes and bookmarks | Privacy review |
 
@@ -369,12 +377,12 @@ These are **not** mutually exclusive; real users often blend roles (for example 
 | Artifact | Path | What it establishes |
 |----------|------|---------------------|
 | Marketing positioning | `/index.html` | Audiences harmed by forum/vendor/abstract noise; free; not medical advice; 53 compounds; six evidence tiers in marketing copy |
-| Library shell | `/web/index.html` | Browse / Compare / Stats; filters; glossary and evidence guide; help |
+| Library shell | `/web/index.html` | Browse / Stats; filters; glossary and evidence guide; help *(Compare tab removed)* |
 | Evidence model | `/web/src/constants.js` | Tier keys, ranks, plain explainers |
-| Goal entry | `/web/src/features/goals.js` | Persona “Alex”; goal-to-theme mapping |
-| Athlete signals | `/web/src/features/doping.js` | WADA-related warnings |
-| Power user features | `/web/features.js`, `/web/src/features/notes.js` | Recent, bookmarks, share, highlights, private notes |
-| Dataset philosophy | `/peptide-info-database.json` | Disclaimers, legends, schema version, entry count |
+| Goal entry | *(not shipped)* | Goal bar / `goals.js` never landed; theme filters cover part of the intent |
+| Athlete signals | `/web/src/features/doping.js` + `sportRisk` fields in JSON | Sport-risk warnings (structured since schema 3.1) |
+| Power user features | `/web/src/features/` (bookmarks-toggle, share, chips, …) | Bookmarks and share; `features.js` / `notes.js` removed |
+| Dataset philosophy | `/peptide-info-database.json` | Disclaimers, legends, schema version, entry count, per-entry `lastReviewed` |
 
 ---
 

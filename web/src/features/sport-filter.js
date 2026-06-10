@@ -1,12 +1,10 @@
 /**
  * Sport ban filter toggle.
- * Adds a checkbox to the browse toolbar that hides WADA-banned compounds.
+ * Adds a checkbox to the browse toolbar that hides sport-risk compounds.
+ * Flags come from the structured per-entry `sportRisk` field (schema 3.1).
  */
 
-const WADA_KEYWORDS = [
-  "BPC-157", "TB-500", "Ipamorelin", "Sermorelin", "CJC-1295",
-  "GHRP", "SomatoPulse", "Tesa", "MT-II", "SLU-PP-332", "FOXO4-DRI",
-];
+import { getEntryByTitle } from "../state.js";
 
 const STORAGE_KEY = "bs_hide_banned";
 
@@ -42,8 +40,8 @@ export function initSportFilter() {
   // Mark banned cards when grid updates
   const markBanned = () => {
     document.querySelectorAll(".card").forEach(card => {
-      const title = card.querySelector(".card__title")?.textContent || "";
-      const isBanned = WADA_KEYWORDS.some(k => title.includes(k));
+      const title = (card.querySelector(".card__title")?.textContent || "").trim();
+      const isBanned = Boolean(getEntryByTitle(title)?.sportRisk);
       card.classList.toggle("card--sport-banned", isBanned);
     });
   };

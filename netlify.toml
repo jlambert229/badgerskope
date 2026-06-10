@@ -51,10 +51,14 @@
 
 # Global security + privacy headers.
 # Notes:
-#   * Content-Security-Policy permits inline <script> blocks (used by
-#     index.html, glossary.html, evidence-guide.html) and the
-#     fonts.googleapis.com style sheet. Tighten further by extracting
-#     inline blocks to files and dropping 'unsafe-inline' once done.
+#   * script-src is 'self' only — all executable scripts live in files
+#     (the last inline block was extracted to /web/boot.js). Inline
+#     <script type="application/ld+json"> blocks are data, not executed,
+#     so CSP does not apply to them.
+#   * style-src keeps 'unsafe-inline': glossary/evidence-guide carry
+#     inline <style> blocks and JS-rendered markup uses style=""
+#     attributes (tier colors, progress bars). Tighten if those move
+#     to classes.
 #   * HSTS is one year + preload. Only safe because the site is
 #     HTTPS-only on www.badgerskope.com.
 #   * Permissions-Policy denies every capability the site does not
@@ -67,7 +71,7 @@
     Referrer-Policy       = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Permissions-Policy    = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 
 # Static assets — long max-age, immutable would be safer once files
 # have content-hashed names. For now revalidate hourly.
