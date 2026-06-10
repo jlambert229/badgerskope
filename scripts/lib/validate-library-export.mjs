@@ -158,6 +158,8 @@ function validatePublic(data) {
     validateSourcesIfPresent(prefix, e.sources, errors);
     validateStringArrayIfPresent(prefix, "wellnessCategories", e.wellnessCategories, errors, false);
     validateDistinctiveQualityIfPresent(prefix, e.distinctiveQuality, errors);
+    validateSportRiskIfPresent(prefix, e.sportRisk, errors);
+    validateLastReviewedIfPresent(prefix, e.lastReviewed, errors);
   }
 
   const seen = new Map();
@@ -303,6 +305,8 @@ function validateStrict(data) {
     if ("distinctiveQuality" in e) {
       validateDistinctiveQuality(prefix, e.distinctiveQuality, errors);
     }
+    validateSportRiskIfPresent(prefix, e.sportRisk, errors);
+    validateLastReviewedIfPresent(prefix, e.lastReviewed, errors);
   }
 
   const seen = new Map();
@@ -435,6 +439,47 @@ function validateSourcesIfPresent(prefix, arr, errors) {
       errors.push(`${p}.url must not be a javascript: URL`);
     }
   });
+}
+
+const SPORT_RISK_STATUSES = ["banned", "caution"];
+
+/**
+ * Schema 3.1: structured sport/anti-doping flag (PRD §10 P2).
+ * @param {string} prefix
+ * @param {unknown} v
+ * @param {string[]} errors
+ */
+function validateSportRiskIfPresent(prefix, v, errors) {
+  if (v === undefined || v === null) {
+    return;
+  }
+  const path = `${prefix}.sportRisk`;
+  if (typeof v !== "object" || Array.isArray(v)) {
+    errors.push(`${path} must be an object when present`);
+    return;
+  }
+  const o = /** @type {Record<string, unknown>} */ (v);
+  if (typeof o.status !== "string" || !SPORT_RISK_STATUSES.includes(o.status)) {
+    errors.push(`${path}.status must be one of: ${SPORT_RISK_STATUSES.join(", ")}`);
+  }
+  if (typeof o.reason !== "string" || !o.reason.trim()) {
+    errors.push(`${path}.reason must be a non-empty string`);
+  }
+}
+
+/**
+ * Schema 3.1: per-entry review date.
+ * @param {string} prefix
+ * @param {unknown} v
+ * @param {string[]} errors
+ */
+function validateLastReviewedIfPresent(prefix, v, errors) {
+  if (v === undefined || v === null) {
+    return;
+  }
+  if (typeof v !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(v)) {
+    errors.push(`${prefix}.lastReviewed must be a YYYY-MM-DD string when present`);
+  }
 }
 
 /**

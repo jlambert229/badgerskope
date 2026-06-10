@@ -1,6 +1,6 @@
 # Peptide entry template
 
-`peptide-entry.template.json` mirrors the shape of each object inside `peptide-info-database.json` → `entries[]` as of schema version **3.0** in the live file. Copy the file, replace `REPLACE_`* strings, remove optional blocks you do not need (for example empty `synergisticWith`), and merge with `scripts/merge-*.mjs` or your future DB export pipeline.
+`peptide-entry.template.json` mirrors the shape of each object inside `peptide-info-database.json` → `entries[]` as of schema version **3.1** in the live file. Copy the file, replace `REPLACE_`* strings, remove optional blocks you do not need (for example empty `synergisticWith` or the `sportRisk` block), and merge with `scripts/merge-*.mjs` or your future DB export pipeline.
 
 ## Required top-level keys (as used by the app today)
 
@@ -32,6 +32,8 @@
 
 - `**wellnessCategories`:** keys must exist under `meta.wellnessCategoryIndex` in the database root.
 - `**distinctiveQuality`:** `headline`, `themes` (use `knownFor` keys from `web/src/constants.js` `KNOWN_FOR_THEME_ORDER` and `meta.knownForThemeIndex`), `basisNote`.
+- `**sportRisk`:** optional (schema 3.1). `{ status, reason }` where `status` is `"banned"` (on a prohibited list) or `"caution"` (monitored / not approved). Drives the card flag, detail banner, and "hide sport-banned" filter — delete the block for entries with no sport relevance.
+- `**lastReviewed`:** `YYYY-MM-DD` date of the last editorial/research review of this entry (schema 3.1). Shown in the detail modal's Safety & status section. Update it whenever an entry's content is verified or changed.
 
 ## `compoundType` values observed in the current database
 

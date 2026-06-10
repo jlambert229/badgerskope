@@ -78,11 +78,16 @@
   ];
   const rowsEl = document.getElementById('library-rows');
   const countEl = document.getElementById('library-count');
+  // Rows are built with innerHTML from the hardcoded files[] above; escape
+  // anyway so a future switch to JSON-driven data can't introduce injection.
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
   // Tier-letter expansion for screen readers — without an aria-label,
   // the badges read as bare letters ("A B C") with no semantic meaning.
   const TIER_NAMES = { A: 'Gold standard', B: 'Promising', C: 'Suggestive', D: 'Weak / dated', F: 'Slop' };
   const tierChip = (g, axis) =>
-    `<span class="tier" data-grade="${g}" aria-label="${axis}: tier ${g}, ${TIER_NAMES[g] || ''}"><span class="tier-letter" aria-hidden="true">${g}</span></span>`;
+    `<span class="tier" data-grade="${esc(g)}" aria-label="${esc(axis)}: tier ${esc(g)}, ${esc(TIER_NAMES[g] || '')}"><span class="tier-letter" aria-hidden="true">${esc(g)}</span></span>`;
   const renderLibrary = (filter) => {
     const visible = filter === 'ALL' ? files : files.filter(f => f.e === filter);
     // One tier chip per row instead of three (Evidence + Safety +
@@ -92,15 +97,15 @@
     // lives one tap away in the SPA. The evidence tier is the most
     // load-bearing single signal.
     rowsEl.innerHTML = visible.map(f => `
-      <a class="library-row" href="/web/#entry=${encodeURIComponent(f.slug)}" aria-label="${f.name}, evidence tier ${f.e}">
+      <a class="library-row" href="/web/#entry=${encodeURIComponent(f.slug)}" aria-label="${esc(f.name)}, evidence tier ${esc(f.e)}">
         <div class="lib-name">
-          <div class="lib-name-main">${f.name}</div>
-          <div class="lib-name-aka">${f.aka}</div>
+          <div class="lib-name-main">${esc(f.name)}</div>
+          <div class="lib-name-aka">${esc(f.aka)}</div>
         </div>
         <div>${tierChip(f.e, 'Evidence')}</div>
         <div class="mono">${f.n.toLocaleString()}</div>
-        <div class="lib-claim">${f.claim}</div>
-        <div class="mono lib-filed">${f.filed}</div>
+        <div class="lib-claim">${esc(f.claim)}</div>
+        <div class="mono lib-filed">${esc(f.filed)}</div>
         <div class="lib-arrow" aria-hidden="true">→</div>
       </a>
     `).join('');
@@ -181,24 +186,39 @@
       }
 
       // AJAX submit to Netlify Forms. The deployed site picks up the
-      // form-name during the post-deploy form-detection scan; locally
-      // (npm run web) the POST 404s and the catch branch fires — still
-      // shows the success state so the local UX matches production.
+      // form-name during the post-deploy form-detection scan. Only show
+      // the success state when the POST actually succeeded — a silent
+      // failure here means the visitor thinks they subscribed when the
+      // submission was lost.
       const body = new URLSearchParams(new FormData(form)).toString();
       const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
+      const showSubmitError = () => {
+        if (submitBtn) submitBtn.disabled = false;
+        if (!errEl) {
+          errEl = document.createElement('div');
+          errEl.className = 'sub-err';
+          errEl.setAttribute('role', 'alert');
+          form.insertAdjacentElement('afterend', errEl);
+        }
+        errEl.textContent = "Something went wrong — your email wasn't saved. Please try again.";
+      };
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body,
       })
-        .catch(() => { /* swallow network/dev errors; UX continues */ })
-        .finally(() => {
+        .then((res) => {
+          if (!res.ok) {
+            showSubmitError();
+            return;
+          }
           const ok = document.createElement('div');
           ok.className = 'sub-ok';
           ok.textContent = "✓ You're on the list. Check your inbox in a few minutes.";
           if (errEl) { errEl.remove(); errEl = null; }
           form.replaceWith(ok);
-        });
+        })
+        .catch(showSubmitError);
     });
   }

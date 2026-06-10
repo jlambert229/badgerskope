@@ -17,13 +17,6 @@ export function updateSelectionToolbar() {
   // Require ≥ 2 selections — single-entry "view" is what clicking a row does.
   // Prev/Next arrows are also disabled at length 1, so this matches the multi-detail flow.
   if (els.viewSelected) els.viewSelected.disabled = n < 2;
-  if (els.compareSelected) els.compareSelected.disabled = n < 2;
-  const compareBadge = els.tabCompare;
-  if (compareBadge && n >= 2) {
-    compareBadge.textContent = `COMPARE (${n})`;
-  } else if (compareBadge) {
-    compareBadge.textContent = "COMPARE";
-  }
 }
 
 export function selectedEntriesSorted() {

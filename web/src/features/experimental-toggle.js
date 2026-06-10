@@ -13,11 +13,14 @@ export function initExperimentalToggle({ onChange } = {}) {
     || document.querySelector(".filter-strip__toggles");
   if (!slot) return;
 
-  let stored = false;
+  // Default is ON (full catalog visible). Only an explicit stored "0"
+  // (the user unchecked the box on a previous visit) hides experimental
+  // entries.
+  let stored = true;
   try {
-    stored = localStorage.getItem(STORAGE_KEY) === "1";
+    stored = localStorage.getItem(STORAGE_KEY) !== "0";
   } catch {
-    stored = false;
+    stored = true;
   }
   const changed = stored !== state.showExperimental;
   state.showExperimental = stored;

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-29T22:48:24.986Z",
-  "databaseEntryCount": 45,
-  "databaseSchemaVersion": "3.0",
-  "totalChecks": 55,
-  "elapsedSec": 2.8,
+  "generatedAt": "2026-06-10T12:11:45.944Z",
+  "databaseEntryCount": 63,
+  "databaseSchemaVersion": "3.1",
+  "totalChecks": 179,
+  "elapsedSec": 6.6,
   "buckets": {
-    "ok2xx": 54,
-    "redirected": 1,
-    "client4xx": 0,
+    "ok2xx": 170,
+    "redirected": 6,
+    "client4xx": 3,
     "server5xx": 0,
     "network": 0,
     "timeout": 0
@@ -46,6 +46,22 @@
       "finalUrl": null
     },
     {
+      "entry": "1G-SGT",
+      "label": "FDA: Wegovy cardiovascular indication (Mar 2024)",
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-treatment-reduce-risk-serious-heart-problems-specifically-adults-obesity-or",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "1G-SGT",
+      "label": "FDA: Wegovy MASH accelerated approval (Aug 2025)",
+      "url": "https://www.fda.gov/drugs/news-events-human-drugs/fda-approves-treatment-serious-liver-disease-known-mash",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "2G-TZ",
       "label": "Wikipedia: Tirzepatide",
       "url": "https://en.wikipedia.org/wiki/Tirzepatide",
@@ -62,9 +78,65 @@
       "finalUrl": null
     },
     {
+      "entry": "2G-TZ",
+      "label": "FDA: Zepbound prescribing information (OSA indication)",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/217806Orig1s020lbl.pdf",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "2G-TZ",
+      "label": "FDA: Mounjaro prescribing information (pediatric T2D)",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215866s009lbl.pdf",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "2G-TZ",
+      "label": "PubMed: SURMOUNT-1 tirzepatide obesity trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35658024/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "3G-RT",
-      "label": "PubMed: Jastreboff retatrutide obesity Phase 2 (NEJM 2023)",
+      "label": "Jastreboff et al., Triple-Hormone-Receptor Agonist Retatrutide for Obesity — NEJM 2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37366315/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "3G-RT",
+      "label": "ClinicalTrials.gov: TRIUMPH-1 (Phase 3, obesity)",
+      "url": "https://clinicaltrials.gov/study/NCT05929066",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "3G-RT",
+      "label": "ClinicalTrials.gov: TRIUMPH-2 (Phase 3, obesity + type 2 diabetes)",
+      "url": "https://clinicaltrials.gov/study/NCT05882045",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "3G-RT",
+      "label": "Lilly: TRIUMPH-4 topline (Dec 2025)",
+      "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-delivered-weight-loss-average",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "3G-RT",
+      "label": "Lilly: TRIUMPH-1 Phase 3 topline (May 2026)",
+      "url": "https://www.prnewswire.com/news-releases/lillys-triple-agonist-retatrutide-delivered-powerful-weight-loss-in-pivotal-phase-3-obesity-trial-302778859.html",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -86,9 +158,41 @@
       "finalUrl": null
     },
     {
+      "entry": "5-amino-1mq",
+      "label": "PubMed: NNMT inhibition + exercise in aged muscle (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39161060/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "5-amino-1mq",
+      "label": "PubMed: NNMT inhibition in obesity metabolism (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38969654/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "AOD-9604",
       "label": "Compare: hGH fragment discussion (journal compare article)",
       "url": "https://www.peptidejournal.org/compare/fragment-176-191-vs-aod-9604-fat-loss-peptides",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "AOD-9604",
+      "label": "FDA: PCAC meeting Dec 4, 2024 (AOD-9604 review)",
+      "url": "https://www.fda.gov/advisory-committees/advisory-committee-calendar/updated-meeting-time-and-public-participation-information-december-4-2024-meeting-pharmacy",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "AOD-9604",
+      "label": "FDA: AOD-9604 briefing material (2024)",
+      "url": "https://www.fda.gov/media/183584/download",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -102,9 +206,41 @@
       "finalUrl": null
     },
     {
+      "entry": "ARA-290",
+      "label": "PubMed: ARA290 SIRT1/NF-κB in apical periodontitis (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40680515/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "BPC-157",
       "label": "Wikipedia: BPC-157",
       "url": "https://en.wikipedia.org/wiki/BPC-157",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "BPC-157",
+      "label": "PubMed: BPC-157 musculoskeletal narrative review (2025)",
+      "url": "https://link.springer.com/article/10.1007/s12178-025-09990-7",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://link.springer.com/article/10.1007/s12178-025-09990-7?error=cookies_not_supported&code=81dd77f1-f02c-4ba6-ae2a-3c8c5f48f9ef"
+    },
+    {
+      "entry": "BPC-157",
+      "label": "Frontiers: BPC-157 wound healing review",
+      "url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.627533/full",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "BPC-157",
+      "label": "Altern Ther Health Med: BPC-157 interstitial cystitis pilot (2024)",
+      "url": "http://www.alternative-therapies.com/oa/pdf/11423.pdf",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -121,6 +257,30 @@
       "entry": "Cag",
       "label": "Wikipedia: Cagrilintide/semaglutide",
       "url": "https://en.wikipedia.org/wiki/Cagrilintide/semaglutide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cag",
+      "label": "NEJM: CagriSema REDEFINE 1 (Jun 2025)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2502081",
+      "ok": false,
+      "status": 403,
+      "finalUrl": "https://www.nejm.org/doi/full/10.1056/NEJMoa2502081?cookieSet=1"
+    },
+    {
+      "entry": "Cag",
+      "label": "NEJM: CagriSema REDEFINE 2 T2D (Jun 2025)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2502082",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cag",
+      "label": "ClinicalTrials.gov: REDEFINE 1 (NCT05567796)",
+      "url": "https://clinicaltrials.gov/study/NCT05567796",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -150,9 +310,57 @@
       "finalUrl": null
     },
     {
+      "entry": "DSIP",
+      "label": "PubMed: DSIP fusion peptide PCPA insomnia mice (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/?term=10.3389/fphar.2024.1439536",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://pubmed.ncbi.nlm.nih.gov/39444618/"
+    },
+    {
+      "entry": "DSIP",
+      "label": "FDA: PCAC July 23-24, 2026 (emideltide on agenda)",
+      "url": "https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "DSIP",
+      "label": "FDA: bulk substances with significant safety concerns",
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Epithalon",
       "label": "Wikipedia: Epitalon",
       "url": "https://en.wikipedia.org/wiki/Epitalon",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Epithalon",
+      "label": "PubMed: Epitalon hTERT/telomere in vitro (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40908429/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Epithalon",
+      "label": "FDA: PCAC July 23-24, 2026 (epitalon on agenda)",
+      "url": "https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Epithalon",
+      "label": "FDA: bulk substances with significant safety concerns",
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -166,9 +374,33 @@
       "finalUrl": null
     },
     {
+      "entry": "FOXO4-DRI",
+      "label": "PubMed: FOXO4-DRI pulmonary fibrosis (2024 update)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35510614/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "FOXO4-DRI",
+      "label": "PubMed: FOXO4-DRI endothelial senescence (2026)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41625068/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "GHK-Cu",
       "label": "PMC: GHK review (example)",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3359723/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHK-Cu",
+      "label": "PubMed: GHK-Cu regenerative peptide review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29703431/",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -190,6 +422,22 @@
       "finalUrl": null
     },
     {
+      "entry": "Glutathione",
+      "label": "PubMed: Micellar oral glutathione bioavailability RCT (2026)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41897500/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Glutathione",
+      "label": "ClinicalTrials.gov: Glutathione bioavailability (NCT06345950)",
+      "url": "https://clinicaltrials.gov/study/NCT06345950",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Ipamorelin",
       "label": "PubMed: Gobburu ipamorelin PK/PD in humans (Pharm Res 1999)",
       "url": "https://pubmed.ncbi.nlm.nih.gov/10496658/",
@@ -206,9 +454,41 @@
       "finalUrl": null
     },
     {
+      "entry": "Ipamorelin",
+      "label": "FDA: PCAC meeting Oct 29, 2024 (ipamorelin review)",
+      "url": "https://www.fda.gov/advisory-committees/advisory-committee-calendar/october-29-2024-meeting-pharmacy-compounding-advisory-committee-10292024",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Ipamorelin",
+      "label": "FDA: ipamorelin briefing material (2024)",
+      "url": "https://www.fda.gov/media/182088/download",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Kisspeptin",
       "label": "PMC: kisspeptin signaling review",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4678402/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Kisspeptin",
+      "label": "PubMed: Intranasal kisspeptin RCT (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40215751/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Kisspeptin",
+      "label": "ClinicalTrials.gov: Hypothalamic amenorrhea Phase 2 (NCT07224438)",
+      "url": "https://clinicaltrials.gov/study/NCT07224438",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -230,6 +510,30 @@
       "finalUrl": null
     },
     {
+      "entry": "KPV",
+      "label": "PubMed: KPV-rapamycin nanoparticles vascular calcification (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39252648/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "KPV",
+      "label": "FDA: PCAC July 23-24, 2026 (KPV on agenda)",
+      "url": "https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "KPV",
+      "label": "FDA: bulk substances with significant safety concerns",
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "LIPO-C with B12",
       "label": "Example clinical explainer (compounding clinic)",
       "url": "https://www.defymedical.com/blog/what-is-in-lipo-c/",
@@ -246,9 +550,41 @@
       "finalUrl": null
     },
     {
+      "entry": "LL-37",
+      "label": "PubMed: LL-37 mechanism review (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40063262/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "LL-37",
+      "label": "PubMed: LL-37-derived peptides vs MDR pathogens (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41102328/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "MOTS-c",
       "label": "PMC: MOTS-c review",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9570330/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "MOTS-c",
+      "label": "PMC: MOTS-c islet senescence (Nature Aging 2025)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12411631/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "MOTS-c",
+      "label": "ClinicalTrials.gov: MOTS-c Phase 2a (NCT07505745)",
+      "url": "https://clinicaltrials.gov/study/NCT07505745",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -262,9 +598,25 @@
       "finalUrl": null
     },
     {
+      "entry": "MT-1",
+      "label": "ClinicalTrials.gov: Afamelanotide Phase 3 vitiligo (NCT06109649)",
+      "url": "https://clinicaltrials.gov/study/NCT06109649",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "MT-II",
       "label": "Wikipedia: Melanotan II",
       "url": "https://en.wikipedia.org/wiki/Melanotan_II",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "MT-II",
+      "label": "FDA: bulk substances with significant safety concerns (Melanotan II)",
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -294,9 +646,81 @@
       "finalUrl": null
     },
     {
+      "entry": "NAD+",
+      "label": "PubMed: NR PAD 6MWD trial (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38871717/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "NAD+",
+      "label": "PubMed: NMN older adults RCT (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38789831/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "NAD+",
+      "label": "PubMed: NR SCD/MCI pTau217 crossover (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39817194/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "NAD+",
+      "label": "PubMed: NAD boosters systematic review (2026)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41655607/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "NAD+",
+      "label": "Nature Metabolism: Whole-blood NAD+ across age (2026)",
+      "url": "https://www.nature.com/articles/s42255-026-01537-5",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.nature.com/articles/s42255-026-01537-5?error=cookies_not_supported&code=6c34a012-235b-4bea-b300-75bed8beaab4"
+    },
+    {
+      "entry": "Orbitzen 40",
+      "label": "Orbitrex catalog listing (vendor page, identity/claims source)",
+      "url": "https://orbitrexpeptide.is/product/orbtizen40/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Oxytocin",
       "label": "Wikipedia: Oxytocin",
       "url": "https://en.wikipedia.org/wiki/Oxytocin",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Oxytocin",
+      "label": "ClinicalTrials.gov: Intranasal oxytocin fMRI (NCT05892939)",
+      "url": "https://clinicaltrials.gov/study/NCT05892939",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Oxytocin",
+      "label": "ClinicalTrials.gov: Oxytocin postop delirium Phase 2 (NCT06945926)",
+      "url": "https://clinicaltrials.gov/study/NCT06945926",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Oxytocin",
+      "label": "ClinicalTrials.gov: Oxytocin brain-route (NCT07425938)",
+      "url": "https://clinicaltrials.gov/study/NCT07425938",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -307,12 +731,20 @@
       "url": "https://link.springer.com/article/10.1007/s10522-025-10315-x",
       "ok": true,
       "status": 200,
-      "finalUrl": "https://link.springer.com/article/10.1007/s10522-025-10315-x?error=cookies_not_supported&code=73d68985-7074-4658-a10a-a1242dfdb8e6"
+      "finalUrl": "https://idp.springer.com/transit?redirect_uri=https%3A%2F%2Flink.springer.com%2Farticle%2F10.1007%2Fs10522-025-10315-x&code=062e26b7-5ebe-4587-b1c9-746a4f3bdaae"
     },
     {
       "entry": "PT-141",
       "label": "Wikipedia: Bremelanotide",
       "url": "https://en.wikipedia.org/wiki/Bremelanotide",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PT-141",
+      "label": "ClinicalTrials.gov: Bremelanotide + tirzepatide Phase 2 (NCT06565611)",
+      "url": "https://clinicaltrials.gov/study/NCT06565611",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -329,6 +761,30 @@
       "entry": "Semax",
       "label": "PubMed: Semax neurochemical journal article",
       "url": "https://pubmed.ncbi.nlm.nih.gov/19139978/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax",
+      "label": "PubMed: Semax Alzheimer mouse model (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41479572/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax",
+      "label": "PubMed: Semax SCI μ-opioid/USP18 (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40692165/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax",
+      "label": "FDA: PCAC July 23-24, 2026 (semax on agenda)",
+      "url": "https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -353,6 +809,22 @@
       "entry": "SLU-PP-332",
       "label": "PubMed: metabolism paper",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37739806/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SLU-PP-332",
+      "label": "PubMed: SLU-PP-332 SAR optimization (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41850449/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SLU-PP-332",
+      "label": "PubMed: SLU-PP-332 metabolism / doping characterization (2026)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41688415/",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -390,6 +862,22 @@
       "finalUrl": null
     },
     {
+      "entry": "SS-31",
+      "label": "FDA: Forzinity approval for Barth syndrome (Sep 2025)",
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-grants-accelerated-approval-first-treatment-barth-syndrome",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "SS-31",
+      "label": "FDA: Forzinity prescribing information",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/215244s000lbl.pdf",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Survodutide",
       "label": "PubMed: survodutide obesity phase 2",
       "url": "https://pubmed.ncbi.nlm.nih.gov/38330987/",
@@ -406,9 +894,49 @@
       "finalUrl": null
     },
     {
+      "entry": "Survodutide",
+      "label": "ClinicalTrials.gov: SYNCHRONIZE-1 (NCT06066515)",
+      "url": "https://clinicaltrials.gov/study/NCT06066515",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Survodutide",
+      "label": "ClinicalTrials.gov: SYNCHRONIZE-2 T2D (NCT06066528)",
+      "url": "https://clinicaltrials.gov/study/NCT06066528",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Survodutide",
+      "label": "HCPLive: SYNCHRONIZE-1 results summary (Apr 2026)",
+      "url": "https://www.hcplive.com/view/synchronize-1-survodutide-achieves-significant-weight-loss-versus-placebo",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "TB-500",
       "label": "PMC: Thymosin β4 function review",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8724243/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "TB-500",
+      "label": "PubMed: rhTβ4 STEMI trial (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41229390/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "TB-500",
+      "label": "ClinicalTrials.gov: Thymosin beta-4 AMI Phase 2 (NCT05984134)",
+      "url": "https://clinicaltrials.gov/study/NCT05984134",
       "ok": true,
       "status": 200,
       "finalUrl": null
@@ -422,12 +950,44 @@
       "finalUrl": null
     },
     {
+      "entry": "Tesa",
+      "label": "PubMed: Tesamorelin neurocognition Phase 2 (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39813152/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Tesa",
+      "label": "PMC: Tesamorelin 12-month INSTI subgroup (2024)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11365754/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Thymosin Alpha-1",
       "label": "PMC: thymosin alpha-1 comprehensive review",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7747025/",
       "ok": true,
       "status": 200,
       "finalUrl": null
+    },
+    {
+      "entry": "Thymosin Alpha-1",
+      "label": "PubMed: TESTS thymosin α1 sepsis Phase 3 (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39814420/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Thymosin Alpha-1",
+      "label": "PubMed: Thymosin α1 in HIV immunological nonresponders (2024)",
+      "url": "https://link.springer.com/article/10.1186/s12879-024-08985-y",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://idp.springer.com/transit?redirect_uri=https%3A%2F%2Flink.springer.com%2Farticle%2F10.1186%2Fs12879-024-08985-y&code=dc677e12-549e-4f03-acd1-e548fcf880b9"
     },
     {
       "entry": "Vilon",
@@ -446,9 +1006,441 @@
       "finalUrl": null
     },
     {
+      "entry": "VIP",
+      "label": "PubMed: Inhaled aviptadil COVID-19 RCT (2025)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39870064/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "VIP",
+      "label": "ClinicalTrials.gov: Inhaled aviptadil COVID (NCT04844580)",
+      "url": "https://clinicaltrials.gov/study/NCT04844580",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
       "entry": "Wolverine",
       "label": "Neutral explainer (educational vendor)",
       "url": "https://www.peptidedeck.com/blog/what-is-the-wolverine-stack",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 (No DAC)",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/cjc-1295/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 (No DAC)",
+      "label": "PubMed: Modified GRF(1-29) GH stimulation",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1379256/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 (No DAC)",
+      "label": "PubMed: Sermorelin/GHRH human GH data",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8772599/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 With DAC",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/cjc-1295-with-dac-5mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 With DAC",
+      "label": "PubMed: CJC-1295 with DAC Phase 1/2 (2006)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16352683/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 With DAC",
+      "label": "PubMed: CJC-1295 trough GH pulsatility (2006)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17018654/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "CJC-1295 With DAC",
+      "label": "ClinicalTrials.gov: HIV lipodystrophy Phase 2 (NCT00267527)",
+      "url": "https://clinicaltrials.gov/study/NCT00267527",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHRP-2",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/ghrp-2/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHRP-2",
+      "label": "PubMed: GHRP-2 appetite/GH infusion study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15699539/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHRP-2",
+      "label": "PubMed: GHRP-2 in adolescents (JPEM 2024)",
+      "url": "https://doi.org/10.1515/jpem-2024-0115",
+      "ok": true,
+      "status": 202,
+      "finalUrl": "https://www.degruyterbrill.com/document/doi/10.1515/jpem-2024-0115/html"
+    },
+    {
+      "entry": "GHRP-6",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/ghrp-6/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHRP-6",
+      "label": "Frontiers: EGF + GHRP-6 stroke Phase I/II (2024)",
+      "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2024.1303402/full",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHRP-6",
+      "label": "PubMed: GHRP-6 Phase 1 PK",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23099431/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "IGF-1 LR3",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/igf-lr3-1mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "IGF-1 LR3",
+      "label": "PubMed: LR3IGF-I potency vs native IGF-I",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8371075/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "IGF-1 LR3",
+      "label": "PubMed: LR3-IGF-1 in Alzheimer mouse model (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39610283/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PEG-MGF",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/peg-mgf/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PEG-MGF",
+      "label": "PubMed: MGF and satellite cells review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20130113/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PEG-MGF",
+      "label": "PubMed: Synthetic MGF and porcine satellite cells",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22875667/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "AHK-Cu",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/ahk-cu-100mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "AHK-Cu",
+      "label": "PubMed: AHK-Cu human hair follicle ex vivo study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17703734/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Adamax",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/adamax-10mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Adamax",
+      "label": "PubMed: Semax BDNF upregulation",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16635254/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Adamax",
+      "label": "PubMed: Semax stroke recovery human study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11517472/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cartalax",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/cartalax-20mg/",
+      "ok": false,
+      "status": 403,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cartalax",
+      "label": "PubMed: Cartalax/Kartalax chondrocyte SASP review (2023)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37782637/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cartalax",
+      "label": "PMC: Khavinson peptide bioregulator review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8619776/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cortagen",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/cortagen-20mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cortagen",
+      "label": "PubMed: Cortagen gene expression in mice",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15159690/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cerebro Protein",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/cerebro-protien-60g/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cerebro Protein",
+      "label": "PMC: Cortexin neuroprotection preclinical",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8279368/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cerebro Protein",
+      "label": "PubMed: Animal-derived nootropics systematic review (2022)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36324709/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Thymalin",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/thymalin-10mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Thymalin",
+      "label": "PubMed: Thymalin geroprotective long-term study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12577695/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Thymalin",
+      "label": "PMC: Thymalin in severe COVID-19 older patients",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8654498/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PNC-27",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/pnc-27-10mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PNC-27",
+      "label": "PubMed: PNC-27 HDM-2 and mitochondrial disruption (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38802154/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "PNC-27",
+      "label": "PubMed: Poptosis review (2024)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38927351/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Snap-8",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/snap-8/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Snap-8",
+      "label": "PubMed: Argireline SNARE/wrinkle study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18498523/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax/Selank",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/semax-selank-10mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax/Selank",
+      "label": "PubMed: Selank GAD trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18454096/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Semax/Selank",
+      "label": "PubMed: Semax stroke recovery",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11517472/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "BPC157+TB500+KPV",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/bpc157tb500kpv-30mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "BPC157+TB500+KPV",
+      "label": "PubMed: BPC-157 review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34267654/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "BPC157+TB500+KPV",
+      "label": "PubMed: KPV colitis model",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18061177/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHK-Cu / KPV",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/ghk-cu-50mg-kpv-10mg/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHK-Cu / KPV",
+      "label": "PubMed: GHK-Cu regenerative review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29703431/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "GHK-Cu / KPV",
+      "label": "PubMed: KPV anti-inflammatory",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18061177/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cartalax / TB4 / BPC-157",
+      "label": "Ion Peptide product page",
+      "url": "https://ionpeptide.com/product/cartalax-tb4-bpc-157-40mg/",
+      "ok": false,
+      "status": 403,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cartalax / TB4 / BPC-157",
+      "label": "PubMed: Cartalax/Kartalax review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37782637/",
+      "ok": true,
+      "status": 200,
+      "finalUrl": null
+    },
+    {
+      "entry": "Cartalax / TB4 / BPC-157",
+      "label": "PubMed: BPC-157 review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34267654/",
       "ok": true,
       "status": 200,
       "finalUrl": null

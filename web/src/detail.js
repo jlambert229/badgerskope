@@ -229,11 +229,13 @@ export function renderDetailHtml(entry) {
         tier.tier === "phase1" ? "Not FDA-approved (early research)" :
         tier.tier === "preclinical" ? "Not FDA-approved (animal studies only)" :
         tier.tier === "practice" ? "Not FDA-approved (clinic use only)" : "Unknown regulatory status";
-      // entry.dopingStatus is not in the JSON schema; the WADA flag is
-      // computed from a title-substring lookup that's shared with the
-      // banner injection in features/doping.js.
-      const dopingFlag = findDopingReason(getCatalogTitle(entry) + " " + getDisplayName(entry));
+      const dopingFlag = findDopingReason(entry);
       const srcCount = (entry.sources || []).length;
+      // Per-entry review date (schema 3.1). Falls back silently for any
+      // entry that predates the field.
+      const reviewed = entry.lastReviewed
+        ? new Date(entry.lastReviewed + "T00:00:00").toLocaleDateString()
+        : "";
 
       return `<div class="detail__section detail__section--safety">
         <h3>Safety &amp; status</h3>
@@ -241,6 +243,7 @@ export function renderDetailHtml(entry) {
           <li><strong>Regulatory status:</strong> ${escapeHtml(fdaStatus)}</li>
           ${dopingFlag ? `<li><strong>Sport:</strong> ${escapeHtml(dopingFlag)}</li>` : ""}
           <li><strong>Sources used:</strong> ${srcCount} reference${srcCount !== 1 ? "s" : ""} linked below</li>
+          ${reviewed ? `<li><strong>Entry last reviewed:</strong> ${escapeHtml(reviewed)}</li>` : ""}
         </ul>
       </div>`;
     })()}

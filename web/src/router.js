@@ -116,7 +116,7 @@ export function applyHashOnLoad() {
     if (entry) _openDetail(entry);
   }
 
-  if ((params.tab === "compare" || params.tab === "stats") && _switchTab) {
+  if (params.tab === "stats" && _switchTab) {
     _switchTab(params.tab);
   }
 

@@ -1,6 +1,15 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Offline / PWA — users on flaky connections", () => {
+  // Playwright's WebKit build has no CDP and unreliable service-worker
+  // support, so these scenarios can only be exercised on Chromium. Skip
+  // cleanly instead of failing with internal WebKit/CDP errors when the
+  // safari-* projects are enabled (PLAYWRIGHT_WEBKIT=1).
+  test.skip(
+    ({ browserName }) => browserName === "webkit",
+    "Service worker + CDP network emulation require Chromium",
+  );
+
   test("service worker registers", async ({ page }) => {
     await page.goto("/web/");
     await page.waitForSelector(".card", { timeout: 10_000 });
